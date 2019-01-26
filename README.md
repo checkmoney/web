@@ -1,1 +1,3 @@
-`npm i -g commitizen`
+# checkmoney
+
+> Simple and powerful money tracker.
