@@ -1,21 +1,24 @@
 workflow "Check PR" {
   on = "pull_request"
-  resolves = ["borales/actions-yarn@master-1", "Install dependency", "Check types"]
+  resolves = [
+    "Check types",
+    "Static analysis",
+  ]
 }
 
 action "Install dependency" {
   uses = "borales/actions-yarn@master"
-  runs = "install"
+  args = "install"
 }
 
-action "borales/actions-yarn@master-1" {
+action "Static analysis" {
   uses = "borales/actions-yarn@master"
-  runs = "Static analysis"
   needs = ["Install dependency"]
+  args = "lint"
 }
 
 action "Check types" {
   uses = "borales/actions-yarn@master"
-  runs = "types"
   needs = ["Install dependency"]
+  args = "types"
 }
