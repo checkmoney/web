@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src/"],
+        "alias": {
+          "@front": "./src",
+          "@shared": "./../shared"
+        }
+      }
+    ]
+  ],
+  "presets": [
+    "next/babel",
+    "@zeit/next-typescript/babel"
+  ]
+}

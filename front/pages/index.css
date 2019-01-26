@@ -1,0 +1,5 @@
+.title {
+  display: flex;
+  font-size: 21px;
+  color: var(--color-primary);
+}

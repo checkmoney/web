@@ -1,0 +1,65 @@
+{
+  "name": "isapp",
+  "private": true,
+  "workspaces": [
+    "front",
+    "back"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf ./dist && cd back && yarn prestart:back:prod && cd ../front && yarn prestart:front:prod",
+    "lint:code": "tslint {front,back,shared}/**/*.ts{,x} -c tslint.json",
+    "lint": "yarn lint:code && cd front && yarn lint:style",
+    "types": "tcm front && tsc --noEmit -p front && tsc --noEmit -p back",
+    "pretty": "prettier --write \"{.,,!(dist|node_modules)/**}/*.{ts,tsx,js,css,json}\""
+  },
+  "dependencies": {
+    "tsconfig-paths": "^3.7.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "@solid-soda/tslint-config": "^2.5.3",
+    "cz-conventional-changelog": "2.1.0",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
+    "pm2": "^3.2.4",
+    "prettier": "^1.15.3",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,css}": [
+      "yarn lint"
+    ],
+    "*.{js,ts,tsx,css,json}": [
+      "yarn pretty",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true
+  }
+}
