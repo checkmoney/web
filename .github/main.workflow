@@ -8,17 +8,17 @@ workflow "Check PR" {
 
 action "Install dependency" {
   uses = "borales/actions-yarn@master"
-  runs = "install"
+  args = "install"
 }
 
 action "Static analysis" {
   uses = "borales/actions-yarn@master"
-  runs = "lint"
   needs = ["Install dependency"]
+  args = "lint"
 }
 
 action "Check types" {
   uses = "borales/actions-yarn@master"
-  runs = "types"
   needs = ["Install dependency"]
+  args = "types"
 }
