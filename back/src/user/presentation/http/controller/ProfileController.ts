@@ -6,9 +6,10 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
+import { PostNoCreate } from '@back/utils/http/PostNoCreate'
+
 import { ProfileRequest } from '../request/ProfileRequest'
 import { ProfileResponse } from '../response/ProfileResponse'
-import { PostNoCreate } from './annotations/PostNoCreate'
 
 @Controller('user/profile')
 @ApiUseTags('user')
