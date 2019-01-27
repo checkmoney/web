@@ -10,10 +10,13 @@
   "dependencies": {
     "@nestjs/common": "^5.6.2",
     "@nestjs/core": "^5.6.2",
+    "@nestjs/swagger": "^2.5.1",
+    "cors": "^2.8.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.3.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.4",
     "nodemon": "^1.18.9"
   }
 }
