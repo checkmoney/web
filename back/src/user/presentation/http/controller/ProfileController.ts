@@ -6,6 +6,7 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
+import { ProfileEditor } from '@back/user/application/ProfileEditor'
 import { UserRepository } from '@back/user/domain/UserRepository'
 import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
 
@@ -16,7 +17,10 @@ import { ProfileResponse } from '../response/ProfileResponse'
 @ApiUseTags('user')
 @ApiBearerAuth()
 export class ProfileController {
-  public constructor(private readonly userRepo: UserRepository) {}
+  public constructor(
+    private readonly userRepo: UserRepository,
+    private readonly profileEditor: ProfileEditor,
+  ) {}
 
   @Get()
   @ApiOperation({ title: 'Show user profile' })
@@ -25,9 +29,7 @@ export class ProfileController {
     type: ProfileResponse,
   })
   public async showProfile(): Promise<ProfileResponse> {
-    const user = await this.userRepo.getOne('email@email.com')
-
-    return ProfileResponse.fromProfile(user.profile)
+    return this.getResponseByLogin('email@email.com')
   }
 
   @PostNoCreate()
@@ -39,10 +41,14 @@ export class ProfileController {
   public async editProfile(
     @Body() request: ProfileRequest,
   ): Promise<ProfileResponse> {
-    const { name } = request
+    await this.profileEditor.edit('email@email.com', request)
 
-    return {
-      name,
-    }
+    return this.getResponseByLogin('email@email.com')
+  }
+
+  private async getResponseByLogin(login: string): Promise<ProfileResponse> {
+    const user = await this.userRepo.getOne(login)
+
+    return ProfileResponse.fromProfile(user.profile)
   }
 }

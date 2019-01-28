@@ -9,6 +9,7 @@ import { ProfileController } from './presentation/http/controller/ProfileControl
 import { User } from './domain/User.entity'
 import { UserRepository } from './domain/UserRepository'
 
+import { ProfileEditor } from './application/ProfileEditor'
 import { Registrator } from './application/Registrator'
 
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder'
@@ -23,6 +24,7 @@ import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncode
       useClass: BcryptPasswordEncoder,
     },
     Registrator,
+    ProfileEditor,
     UserRepository,
   ],
 })
