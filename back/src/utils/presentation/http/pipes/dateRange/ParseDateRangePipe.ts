@@ -1,8 +1,12 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common'
+import {
+  ArgumentMetadata,
+  BadRequestException,
+  Injectable,
+  PipeTransform,
+} from '@nestjs/common'
 
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { LogicException } from '@back/utils/infrastructure/exception/LogicException'
-import { UnexpectedParameterException } from '@back/utils/infrastructure/exception/UnexpectedParameterException'
 
 import { DateRangeQuery } from './DateRangeQuery'
 
@@ -31,7 +35,7 @@ export class ParseDateRangePipe
     const date = new Date(value)
 
     if (!this.dateIsValid(date)) {
-      throw new UnexpectedParameterException('Invalid date-string')
+      throw new BadRequestException('Invalid date-string')
     }
 
     return date

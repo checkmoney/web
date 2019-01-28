@@ -9,6 +9,7 @@ import {
 
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { ApiQueryDateRange } from '@back/utils/presentation/http/api/ApiQueryDateRange'
+import { createEnumValidationPipe } from '@back/utils/presentation/http/pipes/acceptable/createEnumValidationPipe'
 import { ParseDateRangePipe } from '@back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe'
 import { GroupBy } from '@shared/enum/GroupBy'
 
@@ -28,7 +29,7 @@ export class HistoryController {
   @ApiQueryDateRange()
   public async showGrouped(
     @Query(ParseDateRangePipe) range: DateRange,
-    @Query('by') by: GroupBy,
+    @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy,
   ): Promise<HistoryGroupResponse[]> {
     return []
   }
