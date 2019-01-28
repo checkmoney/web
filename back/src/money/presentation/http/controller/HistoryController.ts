@@ -7,9 +7,10 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
+import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
+import { ApiQueryDateRange } from '@back/utils/presentation/http/api/ApiQueryDateRange'
+import { ParseDateRangePipe } from '@back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe'
 import { GroupBy } from '@shared/enum/GroupBy'
-
-import { ParseDatePipe } from '@back/utils/http/ParseDatePipe'
 
 import { HistoryGroupResponse } from '../response/HistoryGroupResponse'
 
@@ -24,11 +25,10 @@ export class HistoryController {
     type: HistoryGroupResponse,
     isArray: true,
   })
-  @ApiImplicitQuery({ name: 'by', required: false })
+  @ApiQueryDateRange()
   public async showGrouped(
-    @Query('from', ParseDatePipe) from: Date,
-    @Query('to', ParseDatePipe) to: Date,
-    @Query('by') by: GroupBy = GroupBy.Month,
+    @Query(ParseDateRangePipe) range: DateRange,
+    @Query('by') by: GroupBy,
   ): Promise<HistoryGroupResponse[]> {
     return []
   }

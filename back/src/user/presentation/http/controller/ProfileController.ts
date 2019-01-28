@@ -6,7 +6,7 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
-import { PostNoCreate } from '@back/utils/http/PostNoCreate'
+import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
 
 import { ProfileRequest } from '../request/ProfileRequest'
 import { ProfileResponse } from '../response/ProfileResponse'
