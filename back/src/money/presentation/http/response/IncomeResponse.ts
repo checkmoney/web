@@ -7,7 +7,7 @@ export class IncomeResponse implements IncomeModel {
   @ApiModelProperty({ example: 1000 })
   public readonly amount: number
 
-  @ApiModelProperty({ example: Currency.RUB })
+  @ApiModelProperty({ example: Currency.RUB, enum: Object.values(Currency) })
   public readonly currency: Currency
 
   @ApiModelProperty({ example: 'NASA' })
