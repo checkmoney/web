@@ -6,6 +6,7 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
+import { UserRepository } from '@back/user/domain/UserRepository'
 import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
 
 import { ProfileRequest } from '../request/ProfileRequest'
@@ -15,6 +16,8 @@ import { ProfileResponse } from '../response/ProfileResponse'
 @ApiUseTags('user')
 @ApiBearerAuth()
 export class ProfileController {
+  public constructor(private readonly userRepo: UserRepository) {}
+
   @Get()
   @ApiOperation({ title: 'Show user profile' })
   @ApiOkResponse({
@@ -22,7 +25,9 @@ export class ProfileController {
     type: ProfileResponse,
   })
   public async showProfile(): Promise<ProfileResponse> {
-    return {}
+    const user = await this.userRepo.getOne('email@email.com')
+
+    return ProfileResponse.fromProfile(user.profile)
   }
 
   @PostNoCreate()

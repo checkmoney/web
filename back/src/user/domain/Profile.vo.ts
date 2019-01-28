@@ -1,8 +1,14 @@
+import { Option } from 'tsoption'
+
 export class Profile {
-  private name?: string
+  public get name(): Option<string> {
+    return Option.of(this._name)
+  }
+
+  private _name?: string
 
   public constructor(name?: string) {
-    this.name = name
+    this._name = name
   }
 
   public changeName(newName: string) {
@@ -10,10 +16,10 @@ export class Profile {
       // TODO: throw error
     }
 
-    this.name = newName
+    this._name = newName
   }
 
   public removeName() {
-    this.name = undefined
+    this._name = undefined
   }
 }
