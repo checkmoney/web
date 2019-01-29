@@ -6,7 +6,7 @@ export class Profile {
     return Option.of(this._name)
   }
 
-  @Column()
+  @Column({ nullable: true })
   private _name?: string
 
   public constructor(name?: string) {
