@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Option } from 'tsoption'
 import { Repository } from 'typeorm'
 
+import { EntityNotFoundException } from '@back/utils/domain/EntityNotFoundException'
+
 import { User } from './User.entity'
 
 @Injectable()
@@ -16,7 +18,9 @@ class UserRepo {
     const user = await this.userRepo.findOne(login)
 
     if (!user) {
-      // TODO: throw error
+      throw new EntityNotFoundException(User.name, {
+        login,
+      })
     }
 
     return user
