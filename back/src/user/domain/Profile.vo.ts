@@ -13,15 +13,15 @@ export class Profile {
     this._name = name
   }
 
-  public changeName(newName: string) {
+  public changeName(newName: string): void {
     if (newName.length < 1) {
-      // TODO: throw error
+      return this.removeName()
     }
 
     this._name = newName
   }
 
-  public removeName() {
+  public removeName(): void {
     this._name = undefined
   }
 }

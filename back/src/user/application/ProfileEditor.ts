@@ -16,16 +16,10 @@ export class ProfileEditor {
   public async edit(login: string, fields: ProfileFields): Promise<void> {
     const user = await this.userRepo.getOne(login)
 
-    this.editName(user, fields)
+    const { name } = fields
+
+    user.profile.changeName(name)
 
     await this.entitySaver.save(user)
-  }
-
-  private editName(user: User, { name }: ProfileFields): void {
-    if (name.length > 1) {
-      user.profile.changeName(name)
-    } else {
-      user.profile.removeName()
-    }
   }
 }
