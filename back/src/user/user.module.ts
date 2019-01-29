@@ -7,6 +7,9 @@ import { DbModule } from '@back/db/db.module'
 
 import { AuthController } from './presentation/http/controller/AuthController'
 import { ProfileController } from './presentation/http/controller/ProfileController'
+import { InvalidCredentialsFilter } from './presentation/http/filter/InvalidCredentialsFilter'
+import { LoginAlreadyTakenFilter } from './presentation/http/filter/LoginAlreadyTakenFilter'
+import { JwtGuard } from './presentation/http/security/JwtGuard'
 
 import { User } from './domain/User.entity'
 import { UserRepository } from './domain/UserRepository'
@@ -18,7 +21,6 @@ import { Registrator } from './application/Registrator'
 import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory'
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder'
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder'
-import { JwtGuard } from './presentation/http/security/JwtGuard'
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { JwtGuard } from './presentation/http/security/JwtGuard'
       provide: PasswordEncoder,
       useClass: BcryptPasswordEncoder,
     },
+    LoginAlreadyTakenFilter.provider(),
+    InvalidCredentialsFilter.provider(),
     Authenticator,
     Registrator,
     ProfileEditor,

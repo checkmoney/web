@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { Option } from 'tsoption'
 import { Repository } from 'typeorm'
 
 import { User } from './User.entity'
@@ -19,6 +20,12 @@ class UserRepo {
     }
 
     return user
+  }
+
+  public async findOne(login: string): Promise<Option<User>> {
+    const user = await this.userRepo.findOne(login)
+
+    return Option.of(user)
   }
 }
 
