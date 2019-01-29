@@ -12,8 +12,10 @@ import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
 
 import { ProfileRequest } from '../request/ProfileRequest'
 import { ProfileResponse } from '../response/ProfileResponse'
+import { OnlyForUsers } from '../security/OnlyForUsers'
 
 @Controller('user/profile')
+@OnlyForUsers()
 @ApiUseTags('user')
 @ApiBearerAuth()
 export class ProfileController {

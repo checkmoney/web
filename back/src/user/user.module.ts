@@ -18,6 +18,7 @@ import { Registrator } from './application/Registrator'
 import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory'
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder'
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder'
+import { JwtGuard } from './presentation/http/security/JwtGuard'
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncode
     Registrator,
     ProfileEditor,
     UserRepository,
+    JwtGuard,
   ],
 })
 export class UserModule implements NestModule {

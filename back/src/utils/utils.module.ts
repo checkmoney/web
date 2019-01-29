@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
-import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { ParseDateRangePipe } from './presentation/http/pipes/dateRange/ParseDateRangePipe'
 

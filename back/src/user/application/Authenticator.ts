@@ -14,6 +14,17 @@ export class Authenticator {
     private readonly jwt: JwtService,
   ) {}
 
+  public async decode(token: string): Promise<TokenPayload> {
+    try {
+      this.jwt.verify(token)
+
+      return this.jwt.decode(token) as TokenPayload
+    } catch (e) {
+      // token is invalid
+      // TODO: throw exception
+    }
+  }
+
   public async signIn(login: string, password: string): Promise<string> {
     const user = await this.userRepo.getOne(login)
     const passwordValid = await user.isPasswordValid(
