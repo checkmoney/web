@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-export default (app: INestApplication, path: string) => {
+export const setupSwagger = (app: INestApplication, path: string) => {
   const options = new DocumentBuilder()
     .setTitle('checkmoney')
     .setDescription('The API documentation')

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core'
 
-import setupCors from '@back/addons/cors'
-import setupSwagger from '@back/addons/swagger'
+import { setupCors } from '@back/addons/setupCors'
+import { setupSwagger } from '@back/addons/setupSwagger'
 import { AppModule } from '@back/app.module'
 
 async function bootstrap() {

@@ -22,6 +22,6 @@ const corsMiddleware = () => {
   return cors(corsOptions)
 }
 
-export default (app: INestApplication) => {
+export const setupCors = (app: INestApplication) => {
   app.use(corsMiddleware())
 }

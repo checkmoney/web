@@ -13,7 +13,7 @@
     "lint": "yarn lint:code && cd front && yarn lint:style",
     "types": "tcm front && tsc --noEmit -p front && tsc --noEmit -p back",
     "pretty": "prettier --write \"{.,,!(dist|node_modules)/**}/*.{ts,tsx,js,css,json}\"",
-    "circular": "madge --circular --extensions ts ./ --tsConfig back/tsconfig.json && madge --circular --extensions ts ./ --tsConfig front/tsconfig.json"
+    "circular": "madge --circular --extensions ts ./ --tsConfig tsconfig.madge.json"
   },
   "dependencies": {
     "tsconfig-paths": "^3.7.0"
