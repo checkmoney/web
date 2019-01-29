@@ -4,6 +4,7 @@ import { ParseDateRangePipe } from './presentation/http/pipes/dateRange/ParseDat
 
 @Module({
   providers: [ParseDateRangePipe],
+  exports: [ParseDateRangePipe],
 })
 export class UtilsModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
