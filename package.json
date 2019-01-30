@@ -16,7 +16,8 @@
     "circular": "madge --circular --extensions ts ./ --tsConfig tsconfig.madge.json"
   },
   "dependencies": {
-    "tsconfig-paths": "^3.7.0"
+    "tsconfig-paths": "^3.7.0",
+    "tsoption": "^0.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",

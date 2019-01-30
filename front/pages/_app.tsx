@@ -1,33 +1,28 @@
 import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
-import React, { Component as ReactComponent } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
+import { Option } from 'tsoption'
 
 import { AppContext } from '@front/domain/AppContext'
-import { Store } from '@front/domain/store/Store'
+import { WithReduxProps } from '@front/domain/store/WithReduxProps'
 import { withReduxStore } from '@front/domain/store/withReduxStore'
 
-interface Props {
-  reduxStore: Store
-  pageProps: any
-  Component: ReactComponent
-}
+class CheckmoneyWeb extends App<WithReduxProps> {
+  public static getInitialProps(appContext: NextAppContext) {
+    const ctx: AppContext = appContext.ctx as any
 
-class OncohelpWeb extends App<Props> {
-  public static getInitialProps(context: NextAppContext) {
-    const ctx: AppContext = context.ctx as any
+    const token = Option.of(ctx)
+      .map(context => context.req)
+      .map(request => request.cookies)
+      .map(cookies => cookies.token)
 
-    if (ctx.req && ctx.req.cookies) {
-      // TODO: option
-      const token: string | undefined = ctx.req.cookies.token
-
-      if (token) {
-        // TODO:
-        // ctx.reduxStore.dispatch(setToken(token))
-      }
+    if (token.nonEmpty()) {
+      // TODO:
+      // ctx.reduxStore.dispatch(setToken(token))
     }
 
-    return App.getInitialProps(context)
+    return App.getInitialProps(appContext)
   }
 
   public render() {
@@ -46,4 +41,4 @@ class OncohelpWeb extends App<Props> {
   }
 }
 
-export default withReduxStore(OncohelpWeb)
+export default withReduxStore(CheckmoneyWeb)
