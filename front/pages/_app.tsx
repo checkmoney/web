@@ -17,7 +17,6 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
     const ctx: AppContext = appContext.ctx as any
 
-    // TODO: set cookie!
     const token = Option.of(ctx)
       .flatMap(context => Option.of(context.req))
       .flatMap(request => Option.of(request.cookies))
