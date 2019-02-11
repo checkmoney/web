@@ -3,6 +3,7 @@ workflow "Check PR" {
   resolves = [
     "Check types",
     "Static analysis",
+    "Check circular dependency",
   ]
 }
 
@@ -21,4 +22,10 @@ action "Check types" {
   uses = "borales/actions-yarn@master"
   needs = ["Install dependency"]
   args = "types"
+}
+
+action "Check circular dependency" {
+  uses = "borales/actions-yarn@master"
+  needs = ["Install dependency"]
+  args = "circular"
 }
