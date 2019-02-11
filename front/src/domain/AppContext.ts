@@ -5,5 +5,5 @@ import { Store } from './store/Store'
 export interface AppContext {
   reduxStore: Store
   req: IncomingMessage & { cookies: { [key: string]: string } }
-  res: OutgoingMessage
+  res: OutgoingMessage & { statusCode: number }
 }

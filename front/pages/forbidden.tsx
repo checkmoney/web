@@ -5,8 +5,7 @@ import { AppContext } from '@front/domain/AppContext'
 
 export default class ForbiddenPage extends React.Component {
   public static getInitialProps({ res }: AppContext) {
-    // prettier-ignore
-    ;(res as any).statusCode = FORBIDDEN
+    res.statusCode = FORBIDDEN
 
     return {}
   }
