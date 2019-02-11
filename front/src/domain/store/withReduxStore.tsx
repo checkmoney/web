@@ -1,5 +1,10 @@
-import App, { AppProps, DefaultAppIProps, NextAppContext } from 'next/app'
-import React, { ComponentType } from 'react'
+import {
+  AppComponentType,
+  AppProps,
+  DefaultAppIProps,
+  NextAppContext,
+} from 'next/app'
+import React from 'react'
 
 import { AppContext } from '../AppContext'
 import { getOrCreateStore } from './getOrCreateStore'
@@ -9,7 +14,7 @@ import { WithReduxProps } from './WithReduxProps'
 type NextProps = AppProps & DefaultAppIProps
 
 export const withReduxStore = (
-  Application: ComponentType<NextProps & WithReduxProps>,
+  Application: AppComponentType<NextProps & WithReduxProps>,
 ) => {
   return class AppWithRedux extends React.Component<NextProps> {
     public static async getInitialProps(appContext: NextAppContext) {
@@ -19,8 +24,8 @@ export const withReduxStore = (
       context.reduxStore = reduxStore
 
       let appProps = {}
-      if (typeof App.getInitialProps === 'function') {
-        appProps = await App.getInitialProps(appContext)
+      if (typeof Application.getInitialProps === 'function') {
+        appProps = await Application.getInitialProps(appContext)
       }
 
       return {

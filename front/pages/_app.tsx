@@ -1,3 +1,4 @@
+import redirect from 'next-redirect'
 import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
@@ -9,18 +10,31 @@ import { AppContext } from '@front/domain/AppContext'
 import { WithReduxProps } from '@front/domain/store/WithReduxProps'
 import { withReduxStore } from '@front/domain/store/withReduxStore'
 import { actions } from '@front/domain/user/reducer/data'
+import { getToken } from '@front/domain/user/selectors/getToken'
+import { pushRoute } from '@front/pushRoute'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
-  public static getInitialProps(appContext: NextAppContext) {
+  public static async getInitialProps(appContext: NextAppContext) {
     const ctx: AppContext = appContext.ctx as any
 
+    // TODO: set cookie!
     const token = Option.of(ctx)
-      .map(context => context.req)
-      .map(request => request.cookies)
-      .map(cookies => cookies.token)
+      .flatMap(context => Option.of(context.req))
+      .flatMap(request => Option.of(request.cookies))
+      .flatMap(cookies => Option.of(cookies.token))
 
     if (token.nonEmpty()) {
       ctx.reduxStore.dispatch(actions.setToken(token.get()))
+    }
+
+    const isSecure = !!(appContext.Component as any).isSecure
+    const loggedIn = getToken(ctx.reduxStore.getState()).nonEmpty()
+    if (isSecure && !loggedIn) {
+      if (!!ctx.res) {
+        await redirect(ctx, '/forbidden')
+      } else {
+        await pushRoute('/forbidden')
+      }
     }
 
     return App.getInitialProps(appContext)
@@ -44,4 +58,4 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default withReduxStore(CheckmoneyWeb)
+export default withReduxStore(CheckmoneyWeb as any)

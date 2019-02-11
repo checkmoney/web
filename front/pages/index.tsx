@@ -1,11 +1,9 @@
 import * as React from 'react'
 
-import log from '@front/log'
-import con from '@shared/module'
+import { Landing } from '@front/features/landing'
 
-import s from './index.css'
-
-export default () => {
-  con()
-  return <p className={s.title}>{log()}</p>
+export default class IndexPage extends React.Component {
+  public render() {
+    return <Landing />
+  }
 }
