@@ -1,3 +1,5 @@
+import { State as UserState } from '@front/domain/user/reducer'
+
 export interface State {
-  a: string // TODO: remove
+  user: UserState
 }

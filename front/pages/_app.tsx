@@ -7,6 +7,7 @@ import { Option } from 'tsoption'
 import { AppContext } from '@front/domain/AppContext'
 import { WithReduxProps } from '@front/domain/store/WithReduxProps'
 import { withReduxStore } from '@front/domain/store/withReduxStore'
+import { actions } from '@front/domain/user/reducer/data'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static getInitialProps(appContext: NextAppContext) {
@@ -18,8 +19,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
       .map(cookies => cookies.token)
 
     if (token.nonEmpty()) {
-      // TODO:
-      // ctx.reduxStore.dispatch(setToken(token))
+      ctx.reduxStore.dispatch(actions.setToken(token.get()))
     }
 
     return App.getInitialProps(appContext)
