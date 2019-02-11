@@ -1,11 +1,16 @@
 import { initializeStore } from './initializeStore'
 import { State } from './State'
-import actualizeStore from './utils/actualizeStore'
+import { actualizeStore } from './utils/actualizeStore'
+import { markOptions } from './utils/markOptions'
 
 const isServer = typeof window === 'undefined'
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__'
 
 export const getOrCreateStore = (initialState?: State) => {
+  if (isServer) {
+    markOptions(initialState)
+  }
+
   const state = actualizeStore(initialState)
 
   // Always make a new store if server, otherwise state is shared between requests
