@@ -2,6 +2,7 @@ import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
 import { Provider } from 'react-redux'
+import { StoreContext } from 'redux-react-hook'
 import { Option } from 'tsoption'
 
 import { AppContext } from '@front/domain/AppContext'
@@ -34,7 +35,9 @@ class CheckmoneyWeb extends App<WithReduxProps> {
           <meta name="viewport" content="width=device-width, initial=scale=1" />
         </Head>
         <Provider store={reduxStore}>
-          <Component {...pageProps} />
+          <StoreContext.Provider value={reduxStore}>
+            <Component {...pageProps} />
+          </StoreContext.Provider>
         </Provider>
       </Container>
     )

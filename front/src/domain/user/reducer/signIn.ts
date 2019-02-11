@@ -1,34 +1,8 @@
-import { ClearAction, createClearRedux } from 'redux-clear'
-import { Option } from 'tsoption'
+import { createFetchingStore } from '@front/domain/store/fetchingRedux/createFetchingRedux'
+import { FetchingState } from '@front/domain/store/fetchingRedux/FetchingState'
 
-interface State {
-  error: Option<string>
-  loading: boolean
-}
+type State = FetchingState
 
-interface Actions {
-  request: ClearAction
-  failure: ClearAction<[string]>
-}
-
-const { reducer, actions } = createClearRedux<State, Actions>(
-  {
-    request: state => () => ({
-      ...state,
-      error: Option.of(null),
-      loading: true,
-    }),
-    failure: state => error => ({
-      ...state,
-      error: Option.of(error),
-      loading: false,
-    }),
-  },
-  {
-    loading: false,
-    error: Option.of(null),
-  },
-  'user',
-)
+const { reducer, actions } = createFetchingStore('user/sign-in')
 
 export { reducer, actions, State }
