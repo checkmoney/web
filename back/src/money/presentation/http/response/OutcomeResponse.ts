@@ -13,6 +13,6 @@ export class OutcomeResponse implements OutcomeModel {
   @ApiModelProperty({ example: 'Restaurants' })
   public readonly category: string
 
-  @ApiModelPropertyOptional({ example: '2019-02-10' })
-  public readonly date?: string
+  @ApiModelPropertyOptional({ example: new Date() })
+  public readonly date?: Date
 }

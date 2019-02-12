@@ -45,6 +45,7 @@ import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncode
     UserRepository,
     JwtGuard,
   ],
+  exports: [UserRepository, JwtGuard, Authenticator],
 })
 export class UserModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {

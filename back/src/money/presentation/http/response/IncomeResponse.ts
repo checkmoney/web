@@ -13,6 +13,6 @@ export class IncomeResponse implements IncomeModel {
   @ApiModelProperty({ example: 'NASA' })
   public readonly source: string
 
-  @ApiModelPropertyOptional({ example: '2019-02-10' })
-  public readonly date?: string
+  @ApiModelPropertyOptional({ example: new Date() })
+  public readonly date?: Date
 }

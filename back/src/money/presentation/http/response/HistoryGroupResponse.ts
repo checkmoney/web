@@ -11,7 +11,7 @@ const incomesExample: IncomeResponse[] = [
     amount: 1200,
     currency: Currency.RUB,
     source: 'NASA',
-    date: '2019-03-22',
+    date: new Date(),
   },
 ]
 
@@ -20,7 +20,7 @@ const outcomeExample: OutcomeResponse[] = [
     amount: 1200,
     currency: Currency.RUB,
     category: 'Cafes',
-    date: '2019-03-22',
+    date: new Date(),
   },
 ]
 

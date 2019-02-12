@@ -4,5 +4,5 @@ export interface IncomeModel {
   readonly amount: number // penny!
   readonly currency: Currency
   readonly source: string
-  readonly date?: string
+  readonly date?: Date
 }
