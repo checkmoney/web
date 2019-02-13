@@ -10,11 +10,11 @@ export const CreateIncome = () => {
   const create = useCreateIncome()
 
   const fieldsToIncomeModel = useCallback(
-    ({ amount, source, currency }: any): IncomeModel => ({
+    ({ amount, source, currency, date }: any): IncomeModel => ({
       amount: Math.round(parseFloat(amount) * 100),
       currency,
       source,
-      date: new Date(),
+      date: !!date ? new Date(date) : new Date(),
     }),
     [],
   )
@@ -26,8 +26,10 @@ export const CreateIncome = () => {
 
   return (
     <Form onSubmit={onSubmit} initialValues={{ currency: Currency.RUB }}>
-      {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+      {({ handleSubmit, form: { initialize }, initialValues }) => (
+        <form
+          onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
+        >
           <h2>Create new income</h2>
 
           <div>
@@ -49,7 +51,7 @@ export const CreateIncome = () => {
             <label>Source</label>
             <div>
               {Object.values(Currency).map(value => (
-                <label>
+                <label key={value}>
                   <Field
                     name="currency"
                     component="input"
@@ -61,6 +63,11 @@ export const CreateIncome = () => {
                 </label>
               ))}
             </div>
+          </div>
+
+          <div>
+            <label>Date</label>
+            <Field name="date" component="input" type="date" />
           </div>
 
           <button type="submit">create</button>
