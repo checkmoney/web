@@ -29,5 +29,6 @@
       "@front/*": ["src/*"],
       "@shared/*": ["./../shared/*"]
     }
-  }
+  },
+  "include": ["./src/**/*", "./../shared/**/*"]
 }
