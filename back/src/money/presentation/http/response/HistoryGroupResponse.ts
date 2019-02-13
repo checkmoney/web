@@ -1,5 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
+import { Income } from '@back/money/domain/Income.entity'
+import { Outcome } from '@back/money/domain/Outcome.entity'
 import { Currency } from '@shared/enum/Currency'
 import { HistoryGroupModel } from '@shared/models/money/HistoryGroupModel'
 
@@ -25,6 +27,18 @@ const outcomeExample: OutcomeResponse[] = [
 ]
 
 export class HistoryGroupResponse implements HistoryGroupModel {
+  public static fromPair(
+    title: string,
+    incomes: Income[],
+    outcomes: Outcome[],
+  ): HistoryGroupModel {
+    return {
+      title,
+      incomes: incomes.map(IncomeResponse.fromEntity),
+      outcomes: outcomes.map(OutcomeResponse.fromEntity),
+    }
+  }
+
   @ApiModelProperty({ example: 'Jan' })
   public readonly title: string
 

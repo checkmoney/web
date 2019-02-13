@@ -1,9 +1,14 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger'
 
+import { Income } from '@back/money/domain/Income.entity'
 import { Currency } from '@shared/enum/Currency'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
 export class IncomeResponse implements IncomeModel {
+  public static fromEntity(income: Income): IncomeResponse {
+    return income
+  }
+
   @ApiModelProperty({ example: 1000 })
   public readonly amount: number
 
