@@ -1,0 +1,1 @@
+export { CreateIncome } from './CreateIncome'
