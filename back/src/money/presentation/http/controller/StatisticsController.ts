@@ -37,12 +37,11 @@ export class StatisticsController {
     isArray: true,
   })
   @ApiQueryDateRange()
-  @ApiImplicitQuery({ name: 'currency' })
   public async showDateRangeStats(
     @Query(ParseDateRangePipe) range: DateRange,
     @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy = GroupBy.Month,
     @Query('currency', createEnumValidationPipe(Currency))
-    currency = Currency.USD,
+    currency: Currency = Currency.USD,
     @CurrentUser() { login }: TokenPayload,
   ): Promise<DateGroupResponse[]> {
     const stats = await this.statistician.showDateRangeStats(
