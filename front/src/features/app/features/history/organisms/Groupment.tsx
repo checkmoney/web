@@ -9,9 +9,11 @@ export const Groupment = ({ groupBy, updateGroupBy }: Props) => (
   <>
     {Object.values(GroupBy).map(value =>
       value === groupBy ? (
-        <span>{value}</span>
+        <span key={value}>{value}</span>
       ) : (
-        <button onClick={() => updateGroupBy(value)}>{value}</button>
+        <button key={value} onClick={() => updateGroupBy(value)}>
+          {value}
+        </button>
       ),
     )}
   </>

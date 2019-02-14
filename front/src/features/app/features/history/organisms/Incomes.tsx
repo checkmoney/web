@@ -10,7 +10,7 @@ export const Incomes = ({ incomes }: Props) => (
   <>
     <h4>Incomes</h4>
     {incomes.map(({ amount, currency, source, date }) => (
-      <p>
+      <p key={`${amount}-${date}`}>
         {Option.of(date)
           .map(_ => _.toDateString())
           .getOrElse('')}

@@ -42,11 +42,11 @@ export const History = () => {
       <Loader status={fetching}>
         {history.nonEmpty() &&
           history.get().map(({ title, incomes, outcomes }) => (
-            <>
+            <div key={title}>
               <h3>{title}</h3>
               <Incomes incomes={incomes} />
               <Outcomes outcomes={outcomes} />
-            </>
+            </div>
           ))}
       </Loader>
     </>
