@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { endOfDay, startOfDay } from 'date-fns'
 import { Option } from 'tsoption'
 import { Repository } from 'typeorm'
 
@@ -32,8 +33,8 @@ class OutomeRepo {
   ): Promise<Outcome[]> {
     const { from, to } = range
 
-    const start = from.toISOString()
-    const end = to.toISOString()
+    const start = startOfDay(from).toISOString()
+    const end = endOfDay(to).toISOString()
 
     return this.outcomeRepo
       .createQueryBuilder('outcome')
