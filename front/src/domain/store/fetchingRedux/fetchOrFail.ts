@@ -18,8 +18,14 @@ type Execute = (
   getState: () => State,
 ) => Promise<void | any>
 
+const defaultActions: FetchActions = {
+  request: () => ({ type: '' }),
+  success: () => ({ type: '' }),
+  failure: () => ({ type: '' }),
+}
+
 export const fetchOrFail = (
-  fetchActions: FetchActions,
+  fetchActions: FetchActions = defaultActions,
   execute: Execute,
 ) => async (
   dispatch: Dispatch<AnyAction>,

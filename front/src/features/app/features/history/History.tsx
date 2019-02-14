@@ -4,12 +4,15 @@ import { Option } from 'tsoption'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getFetchingStatus } from '@front/domain/money/selectors/getFetchingStatus'
+import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
 import { Loader } from '@front/ui/loader'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 export const History = () => {
-  const [from] = useState(new Date('2018-01-01'))
+  const firstTransactionDate = useMappedState(getFirstTransactionDate)
+
+  const [from] = useState(firstTransactionDate)
   const [to] = useState(new Date())
   const [groupBy] = useState(GroupBy.Year)
 
