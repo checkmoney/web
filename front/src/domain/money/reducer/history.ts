@@ -1,11 +1,13 @@
-import { drop } from 'lodash'
+import { uniqWith } from 'lodash'
 import { ClearAction, createClearRedux } from 'redux-clear'
 
-import { omitFirst } from '@front/helpers/omitFirst'
+import { correctArrayLength } from '@front/helpers/correctArrayLength'
+import { correctObjectLength } from '@front/helpers/correctObjectLength'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { HistoryGroupModel } from '@shared/models/money/HistoryGroupModel'
 
 import { createHistoryKey } from '../helpers/createHistoryKey'
+import { isEqueslHistoryPeriods } from '../helpers/isEqualHistoryPeriods'
 
 interface CachedPeriod {
   groupBy: GroupBy
@@ -26,7 +28,7 @@ interface Actions {
   addHistory: ClearAction<[CachedPeriod, HistoryGroupModel[]]>
 }
 
-const MAX_HISTORY_LENGTH = 10
+const MAX_HISTORY_LENGTH = 2
 
 const { actions, reducer } = createClearRedux<State, Actions>(
   {
@@ -34,24 +36,19 @@ const { actions, reducer } = createClearRedux<State, Actions>(
       const { from, to, groupBy } = period
       const key = createHistoryKey(from, to, groupBy)
 
-      const dataCount = Object.keys(data).length
-      const cachedPeriodsCount = cachedPeriods.length
+      const oldData = correctObjectLength(data, MAX_HISTORY_LENGTH)
+      const oldPeriods = correctArrayLength(cachedPeriods, MAX_HISTORY_LENGTH)
 
-      const oldData = dataCount >= MAX_HISTORY_LENGTH ? omitFirst(data) : data
-
-      const oldPeriods =
-        cachedPeriodsCount >= MAX_HISTORY_LENGTH
-          ? drop(cachedPeriods)
-          : cachedPeriods
-
-      // TODO: filter non-uniq cachedPeriods
       return {
         ...state,
         data: {
           ...oldData,
           [key]: newHistory,
         },
-        cachedPeriods: [...oldPeriods, period],
+        cachedPeriods: uniqWith(
+          [...oldPeriods, period],
+          isEqueslHistoryPeriods,
+        ),
       }
     },
   },
