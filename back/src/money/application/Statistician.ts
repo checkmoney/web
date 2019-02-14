@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common'
-import { flatten, uniq } from 'lodash'
 
 import { createGroups } from '@back/utils/infrastructure/dateGroups/createGroups'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
+import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
+import { AbstractTransaction } from '../domain/dto/AbstarctTransaction'
+import { Transaction } from '../domain/dto/Transaction'
 import { IncomeRepository } from '../domain/IncomeRepository'
 import { OutcomeRepository } from '../domain/OutcomeRepository'
+import { CurrencyConverter } from './CurrencyConverter'
 import { amountMapper } from './helpers/amountMapper'
 import { rangeFilter } from './helpers/rangeFilter'
 import { sumReducer } from './helpers/sumReducer'
@@ -16,12 +19,14 @@ export class Statistician {
   public constructor(
     private readonly incomeRepo: IncomeRepository,
     private readonly outcomeRepo: OutcomeRepository,
+    private readonly converter: CurrencyConverter,
   ) {}
 
   public async showDateRangeStats(
     userLogin: string,
     dateRange: DateRange,
     groupBy: GroupBy,
+    currency: Currency,
   ) {
     const [incomes, outcomes] = await Promise.all([
       this.incomeRepo.findByRangeForUser(userLogin, dateRange),
@@ -30,27 +35,36 @@ export class Statistician {
 
     const groups = createGroups(groupBy)(dateRange)
 
-    const foundСurrencies = uniq([
-      ...incomes.map(income => income.currency),
-      ...outcomes.map(outcome => outcome.currency),
+    // TODO: если рейт просрочен, то будет очень много запросов к апи, нужно как-то порешать эту проблему
+    const [convertedIncomes, convertedOutcomes] = await Promise.all([
+      Promise.all(incomes.map(this.convertItem(currency))),
+      Promise.all(outcomes.map(this.convertItem(currency))),
     ])
 
-    const stats = foundСurrencies.map(currency =>
-      groups.map(group => ({
-        currency,
-        start: group.from,
-        end: group.to,
-        income: incomes
-          .filter(rangeFilter(group))
-          .map(amountMapper)
-          .reduce(sumReducer, 0),
-        outcome: outcomes
-          .filter(rangeFilter(group))
-          .map(amountMapper)
-          .reduce(sumReducer, 0),
-      })),
-    )
+    return groups.map(group => ({
+      currency,
+      start: group.from,
+      end: group.to,
+      income: convertedIncomes
+        .filter(rangeFilter(group))
+        .map(amountMapper)
+        .reduce(sumReducer, 0),
+      outcome: convertedOutcomes
+        .filter(rangeFilter(group))
+        .map(amountMapper)
+        .reduce(sumReducer, 0),
+    }))
+  }
 
-    return flatten(stats)
+  private convertItem(targetCurrency: Currency) {
+    return async (item: AbstractTransaction): Promise<Transaction> => {
+      const newAmount = await this.converter.convert(
+        item.currency,
+        targetCurrency,
+        item.amount,
+      )
+
+      return new Transaction(newAmount, targetCurrency, item.date)
+    }
   }
 }

@@ -1,4 +1,3 @@
-import { Income } from '@back/money/domain/Income.entity'
-import { Outcome } from '@back/money/domain/Outcome.entity'
+import { AbstractTransaction } from '@back/money/domain/dto/AbstarctTransaction'
 
-export const amountMapper = (item: Income | Outcome) => item.amount
+export const amountMapper = (item: AbstractTransaction) => item.amount

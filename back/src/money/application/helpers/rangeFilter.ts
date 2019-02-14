@@ -1,7 +1,6 @@
-import { Income } from '@back/money/domain/Income.entity'
-import { Outcome } from '@back/money/domain/Outcome.entity'
+import { AbstractTransaction } from '@back/money/domain/dto/AbstarctTransaction'
 import { DateGroup } from '@back/utils/infrastructure/dateGroups/DateGroup'
 
 export const rangeFilter = ({ from, to }: DateGroup) => ({
   date,
-}: Income | Outcome) => date >= from && date < to
+}: AbstractTransaction) => date >= from && date < to

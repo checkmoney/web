@@ -1,6 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import {
   ApiBearerAuth,
+  ApiImplicitQuery,
   ApiOkResponse,
   ApiOperation,
   ApiUseTags,
@@ -14,6 +15,7 @@ import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { ApiQueryDateRange } from '@back/utils/presentation/http/api/ApiQueryDateRange'
 import { createEnumValidationPipe } from '@back/utils/presentation/http/pipes/acceptable/createEnumValidationPipe'
 import { ParseDateRangePipe } from '@back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe'
+import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse'
@@ -35,12 +37,20 @@ export class StatisticsController {
     isArray: true,
   })
   @ApiQueryDateRange()
+  @ApiImplicitQuery({ name: 'currency' })
   public async showDateRangeStats(
     @Query(ParseDateRangePipe) range: DateRange,
     @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy = GroupBy.Month,
+    @Query('currency', createEnumValidationPipe(Currency))
+    currency = Currency.USD,
     @CurrentUser() { login }: TokenPayload,
   ): Promise<DateGroupResponse[]> {
-    const stats = await this.statistician.showDateRangeStats(login, range, by)
+    const stats = await this.statistician.showDateRangeStats(
+      login,
+      range,
+      by,
+      currency,
+    )
 
     return stats
   }
