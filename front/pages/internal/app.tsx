@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { AppContext } from '@front/AppContext'
+import { AppContext } from '@front/domain/AppContext'
 import { fetchFirstTransactionDate } from '@front/domain/money/actions/fetchFirstTransactionDate'
 import { App } from '@front/features/app'
 

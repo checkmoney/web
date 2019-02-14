@@ -1,4 +1,3 @@
-import redirect from 'next-redirect'
 import App, { Container, NextAppContext } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
@@ -29,11 +28,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
     const isSecure = !!(appContext.Component as any).isSecure
     const loggedIn = getToken(ctx.reduxStore.getState()).nonEmpty()
     if (isSecure && !loggedIn) {
-      if (!!ctx.res) {
-        await redirect(ctx, '/forbidden')
-      } else {
-        await pushRoute('/forbidden')
-      }
+      await pushRoute('/forbidden', Option.of(ctx))
     }
 
     return App.getInitialProps(appContext)
