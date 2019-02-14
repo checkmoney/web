@@ -35,7 +35,6 @@ export class Statistician {
 
     const groups = createGroups(groupBy)(dateRange)
 
-    // TODO: если рейт просрочен, то будет очень много запросов к апи, нужно как-то порешать эту проблему
     const [convertedIncomes, convertedOutcomes] = await Promise.all([
       Promise.all(incomes.map(this.convertItem(currency))),
       Promise.all(outcomes.map(this.convertItem(currency))),
