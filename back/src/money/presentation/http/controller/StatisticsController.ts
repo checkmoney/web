@@ -6,6 +6,10 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
+import { Statistician } from '@back/money/application/Statistician'
+import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
+import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { ApiQueryDateRange } from '@back/utils/presentation/http/api/ApiQueryDateRange'
 import { createEnumValidationPipe } from '@back/utils/presentation/http/pipes/acceptable/createEnumValidationPipe'
@@ -17,9 +21,12 @@ import { DateGroupResponse } from '../response/DateGroupResponse'
 import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse'
 
 @Controller('money/statistics')
+@OnlyForUsers()
 @ApiUseTags('money')
 @ApiBearerAuth()
 export class StatisticsController {
+  public constructor(private readonly statistician: Statistician) {}
+
   @Get('date-range')
   @ApiOperation({ title: 'Show date range statistics' })
   @ApiOkResponse({
@@ -31,8 +38,11 @@ export class StatisticsController {
   public async showDateRangeStats(
     @Query(ParseDateRangePipe) range: DateRange,
     @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy = GroupBy.Month,
+    @CurrentUser() { login }: TokenPayload,
   ): Promise<DateGroupResponse[]> {
-    return []
+    const stats = await this.statistician.showDateRangeStats(login, range, by)
+
+    return stats
   }
 
   @Get('income-sources')
@@ -46,7 +56,7 @@ export class StatisticsController {
   public async showIncomeSourcesStats(
     @Query(ParseDateRangePipe) range: DateRange,
   ): Promise<SourceGroupIncomeResponse[]> {
-    return []
+    throw Error('Not implemented')
   }
 
   @Get('outcome-categories')
@@ -60,6 +70,6 @@ export class StatisticsController {
   public async showOutcomeCategoriesStats(
     @Query(ParseDateRangePipe) range: DateRange,
   ): Promise<CategoryGroupOutcomeResponse[]> {
-    return []
+    throw Error('Not implemented')
   }
 }

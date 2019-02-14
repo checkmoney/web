@@ -6,6 +6,7 @@ import { UtilsModule } from '@back/utils/utils.module'
 
 import { Accountant } from './application/Accountant'
 import { Historian } from './application/Historian'
+import { Statistician } from './application/Statistician'
 import { Income } from './domain/Income.entity'
 import { IncomeRepository } from './domain/IncomeRepository'
 import { Outcome } from './domain/Outcome.entity'
@@ -21,7 +22,13 @@ import { TransactionController } from './presentation/http/controller/Transactio
     TypeOrmModule.forFeature([Income, Outcome]),
   ],
   controllers: [TransactionController, HistoryController, StatisticsController],
-  providers: [Accountant, Historian, IncomeRepository, OutcomeRepository],
+  providers: [
+    Accountant,
+    Historian,
+    Statistician,
+    IncomeRepository,
+    OutcomeRepository,
+  ],
 })
 export class MoneyModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
