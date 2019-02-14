@@ -6388,11 +6388,6 @@ next-css-unpluggable@^2.1.0:
     ignore-loader "0.1.2"
     postcss-loader "3.0.0"
 
-next-redirect@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/next-redirect/-/next-redirect-1.0.1.tgz#eb84ba12f5e1d7ee37fed7088d56ea747b4cedf2"
-  integrity sha1-64S6EvXh1+43/tcIjVbqdHtM7fI=
-
 next-routes@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/next-routes/-/next-routes-1.4.2.tgz#736a382579a792ea69f35ae70b449acdfefa7944"
