@@ -3,20 +3,22 @@ import { ClearAction, createClearRedux } from 'redux-clear'
 
 import { correctArrayLength } from '@front/helpers/correctArrayLength'
 import { correctObjectLength } from '@front/helpers/correctObjectLength'
+import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
-import { HistoryGroupModel } from '@shared/models/money/HistoryGroupModel'
+import { DateGroupModel } from '@shared/models/money/DateGroupModel'
 
-import { createHistoryKey } from '../helpers/createHistoryKey'
-import { isEqualHistoryPeriods } from '../helpers/isEqualHistoryPeriods'
+import { createStatsKey } from '../helpers/createStatsKey'
+import { isEquelStatsPeriods } from '../helpers/isEqualStatsPeriods'
 
 interface CachedPeriod {
   groupBy: GroupBy
   from: Date
   to: Date
+  currency: Currency
 }
 
 interface Data {
-  [key: string]: HistoryGroupModel[]
+  [key: string]: DateGroupModel[]
 }
 
 interface State {
@@ -25,16 +27,16 @@ interface State {
 }
 
 interface Actions {
-  addHistory: ClearAction<[CachedPeriod, HistoryGroupModel[]]>
+  addStats: ClearAction<[CachedPeriod, DateGroupModel[]]>
 }
 
 const MAX_HISTORY_LENGTH = 2
 
 const { actions, reducer } = createClearRedux<State, Actions>(
   {
-    addHistory: ({ data, cachedPeriods, ...state }) => (period, newHistory) => {
-      const { from, to, groupBy } = period
-      const key = createHistoryKey(from, to, groupBy)
+    addStats: ({ data, cachedPeriods, ...state }) => (period, newStats) => {
+      const { from, to, groupBy, currency } = period
+      const key = createStatsKey(from, to, groupBy, currency)
 
       const oldData = correctObjectLength(data, MAX_HISTORY_LENGTH)
       const oldPeriods = correctArrayLength(cachedPeriods, MAX_HISTORY_LENGTH)
@@ -43,9 +45,9 @@ const { actions, reducer } = createClearRedux<State, Actions>(
         ...state,
         data: {
           ...oldData,
-          [key]: newHistory,
+          [key]: newStats,
         },
-        cachedPeriods: uniqWith([...oldPeriods, period], isEqualHistoryPeriods),
+        cachedPeriods: uniqWith([...oldPeriods, period], isEquelStatsPeriods),
       }
     },
   },
