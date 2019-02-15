@@ -1,6 +1,6 @@
 {
   "name": "isapp-web",
-  "script": "front/server.js",
+  "script": "server.js",
   "instances": "max",
   "env_production": {
     "NODE_ENV": "production"
