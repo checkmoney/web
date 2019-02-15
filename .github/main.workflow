@@ -33,8 +33,7 @@ action "Check circular dependency" {
 workflow "Deploy" {
   resolves = [
     "Push back image",
-    "Check deploy front successful",
-    "Check deploy back success",
+    "Deploy on server",
   ]
   on = "release"
 }
@@ -76,23 +75,4 @@ action "Deploy on server" {
   needs = ["Push front image", "Push back image"]
   args = "cd /root/web/checkmoney && docker-compose pull && docker-compose down && docker-compose up -d && docker image prune -f"
   secrets = ["HOST", "USER", "PUBLIC_KEY", "PRIVATE_KEY"]
-}
-
-action "Check deploy front successful" {
-  uses = "maddox/actions/wait-for-200@master"
-  needs = ["Deploy on server"]
-  env = {
-    URL = "https://checkmoney.space"
-    SECONDS_BETWEEN_CHECKS = "2"
-    MAX_TRIES = "5"
-  }
-}
-
-action "Check deploy back success" {
-  uses = "maddox/actions/wait-for-200@master"
-  needs = ["Deploy on server"]
-  env = {
-    URL = "https://api.checkmoney.space/docs/"
-    SECONDS_BETWEEN_CHECKS = "2"
-  }
 }
