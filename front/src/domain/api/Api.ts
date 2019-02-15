@@ -1,5 +1,9 @@
 import axios, { AxiosInstance } from 'axios'
+import getConfig from 'next/config'
 import { Option } from 'tsoption'
+
+const { publicRuntimeConfig } = getConfig()
+const { backUrl } = publicRuntimeConfig
 
 export class Api {
   public get client() {
@@ -14,7 +18,7 @@ export class Api {
       : {}
 
     this.axios = axios.create({
-      baseURL: 'http://localhost:3000/',
+      baseURL: backUrl,
       headers: authHeaders,
     })
   }
