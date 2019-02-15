@@ -6,13 +6,13 @@ import { createStatsKey } from '@front/domain/money/helpers/createStatsKey'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getStats } from '@front/domain/money/selectors/getStats'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
-import { Loader } from '@front/ui/loader'
+import { Loader } from '@front/ui/molecules/loader'
+import { Groupment } from '@front/ui/organisms/groupment'
+import { Period } from '@front/ui/organisms/period'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { CurrencySwitch } from './organisms/CurrencySwitch'
-import { Groupment } from './organisms/Groupment'
-import { Period } from './organisms/Period'
 
 export const Stats = () => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
