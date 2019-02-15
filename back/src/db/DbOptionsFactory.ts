@@ -1,5 +1,7 @@
 import { Inject } from '@nestjs/common'
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm'
+import { readFileSync } from 'fs'
+import { dirname, join } from 'path'
 
 import { Configuration } from '@back/config/Configuration'
 
@@ -9,6 +11,16 @@ export class DbOptionsFactory implements TypeOrmOptionsFactory {
   ) {}
 
   public createTypeOrmOptions(): TypeOrmModuleOptions {
+    const certPath = join(
+      dirname(process.cwd()),
+      '.secure',
+      'ca-certificate.txt',
+    )
+
+    const createSslConfig = this.config.isProd
+      ? () => ({ ca: readFileSync(certPath) })
+      : () => ({})
+
     return {
       type: 'postgres',
       host: this.config.getStringOrElse('DB_HOST', '127.0.0.1'),
@@ -18,6 +30,7 @@ export class DbOptionsFactory implements TypeOrmOptionsFactory {
       database: this.config.getStringOrElse('DB_NAME', 'oncohelp'),
       entities: [__dirname + `/../**/*.{entity,vo}.{ts,js}`],
       synchronize: !this.config.getBooleanOrElse('PRODUCTION_READY', true),
+      ssl: createSslConfig(),
     }
   }
 }
