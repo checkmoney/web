@@ -17,8 +17,8 @@
     "@solid-soda/config": "^1.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "mysql": "^2.16.0",
     "nanoid": "^2.0.1",
+    "pg": "^7.8.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.3.3",
     "typeorm": "^0.2.12"

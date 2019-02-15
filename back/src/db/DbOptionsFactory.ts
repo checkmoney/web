@@ -10,9 +10,9 @@ export class DbOptionsFactory implements TypeOrmOptionsFactory {
 
   public createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      type: 'mysql',
+      type: 'postgres',
       host: this.config.getStringOrElse('DB_HOST', '127.0.0.1'),
-      port: this.config.getNumberOrElse('DB_PORT', 3306),
+      port: this.config.getNumberOrElse('DB_PORT', 5432),
       username: this.config.getStringOrElse('DB_USER', 'admin'),
       password: this.config.getStringOrElse('DB_PASSWORD', 'admin'),
       database: this.config.getStringOrElse('DB_NAME', 'oncohelp'),
