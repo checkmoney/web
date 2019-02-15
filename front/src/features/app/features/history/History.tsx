@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
-import { getFetchingStatus } from '@front/domain/money/selectors/getFetchingStatus'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
+import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
 import { Loader } from '@front/ui/loader'
 import { GroupBy } from '@shared/enum/GroupBy'
 
@@ -15,7 +15,7 @@ import { Period } from './organisms/Period'
 
 export const History = () => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const fetching = useMappedState(getFetchingStatus)
+  const fetching = useMappedState(getHistoryFetchingStatus)
   const dispatch = useDispatch()
 
   const [from, setFrom] = useState(firstTransactionDate)
