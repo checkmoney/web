@@ -5,7 +5,9 @@
     "start:back:dev": "NODE_ENV=development nodemon --config ./nodemon.json",
     "start:back:debug": "NODE_ENV=development nodemon --config nodemon-debug.json",
     "prestart:back:prod": "tsc",
-    "start:back:prod": "pm2 start ./pm2.config.js"
+    "start:back:prod": "pm2 start ./pm2.config.js",
+    "evolutions:init": "evolutions --init",
+    "evolutions:run": "evolutions"
   },
   "dependencies": {
     "@breadhead/detil-ts": "^1.0.1",
@@ -15,6 +17,7 @@
     "@nestjs/swagger": "^2.5.1",
     "@nestjs/typeorm": "^5.2.2",
     "@solid-soda/config": "^1.1.0",
+    "@solid-soda/evolutions": "^0.0.6",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "nanoid": "^2.0.1",

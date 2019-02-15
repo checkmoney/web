@@ -17,9 +17,9 @@ export class DbOptionsFactory implements TypeOrmOptionsFactory {
       'ca-certificate.txt',
     )
 
-    const createSslConfig = this.config.isProd
+    const createSslConfig = this.config.isProd()
       ? () => ({ ca: readFileSync(certPath) })
-      : () => ({})
+      : () => undefined
 
     return {
       type: 'postgres',
