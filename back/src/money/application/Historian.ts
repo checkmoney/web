@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { min } from 'date-fns'
 
-import { createMonthGroups } from '@back/utils/infrastructure/dateGroups/createMonthGroups'
-import { createWeekGroups } from '@back/utils/infrastructure/dateGroups/createWeekGroups'
-import { createYearGroups } from '@back/utils/infrastructure/dateGroups/createYearGroups'
+import { createGroups } from '@back/utils/infrastructure/dateGroups/createGroups'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { IncomeRepository } from '../domain/IncomeRepository'
 import { OutcomeRepository } from '../domain/OutcomeRepository'
+import { rangeFilter } from './helpers/rangeFilter'
 
 @Injectable()
 export class Historian {
@@ -39,16 +38,12 @@ export class Historian {
       this.outcomeRepo.findByRangeForUser(userLogin, dateRange),
     ])
 
-    const groups = {
-      [GroupBy.Year]: createYearGroups,
-      [GroupBy.Month]: createMonthGroups,
-      [GroupBy.Week]: createWeekGroups,
-    }[groupBy](dateRange)
+    const groups = createGroups(groupBy)(dateRange)
 
-    return groups.map(({ title, from, to }) => ({
-      title,
-      incomes: incomes.filter(({ date }) => date >= from && date < to),
-      outcomes: outcomes.filter(({ date }) => date >= from && date < to),
+    return groups.map(group => ({
+      title: group.title,
+      incomes: incomes.filter(rangeFilter(group)),
+      outcomes: outcomes.filter(rangeFilter(group)),
     }))
   }
 }
