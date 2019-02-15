@@ -13,7 +13,7 @@ export class ExchangeRate {
   @Column()
   public readonly due: Date
 
-  @Column({ type: 'double' })
+  @Column({ type: 'float' })
   public readonly rate: number
 
   public constructor(from: Currency, to: Currency, due: Date, rate: number) {
