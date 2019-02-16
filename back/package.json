@@ -20,6 +20,7 @@
     "@solid-soda/evolutions": "^0.0.6",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "morgan": "^1.9.1",
     "nanoid": "^2.0.1",
     "pg": "^7.8.0",
     "reflect-metadata": "^0.1.13",
