@@ -23,6 +23,7 @@ module.exports = withPlugins(
     {
       publicRuntimeConfig: {
         backUrl: process.env.BACK_URL || 'http://localhost:3000',
+        backUrlServer: process.env.BACK_URL_SERVER || 'http://localhost:3000',
       },
     },
   ],
