@@ -43,6 +43,9 @@ export const fetchOrFail = (
   } catch (e) {
     dispatch(failure(e.message))
 
+    // tslint:disable-next-line:no-console
+    console.log(e.code) // Try log HTTP errors
+
     throw e
   }
 }
