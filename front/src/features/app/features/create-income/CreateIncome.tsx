@@ -7,6 +7,7 @@ import { IncomeModel } from '@shared/models/money/IncomeModel'
 import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
 import { Input, InputMoney } from '@front/features/final-form'
 import { Button } from '@front/ui/atoms/button'
+import { Label } from '@front/ui/atoms/label'
 
 export const CreateIncome = () => {
   const create = useCreateIncome()
@@ -34,38 +35,31 @@ export const CreateIncome = () => {
         >
           <h2>Create new income</h2>
 
-          <div>
-            <label>Amount</label>
+          <Label text="Amount">
             <InputMoney name="amount" currency={values.currency} />
-          </div>
+          </Label>
 
-          <div>
-            <label>Source</label>
+          <Label text="Source">
             <Input name="source" placeholder="NASA" />
-          </div>
+          </Label>
 
-          <div>
-            <label>Source</label>
-            <div>
-              {Object.values(Currency).map(value => (
-                <label key={value}>
-                  <Field
-                    name="currency"
-                    component="input"
-                    type="radio"
-                    value={value}
-                    key={value}
-                  />{' '}
-                  {value}
-                </label>
-              ))}
-            </div>
-          </div>
+          <Label text="Currency">
+            {Object.values(Currency).map(value => (
+              <Label text={value} key={value} after>
+                <Field
+                  name="currency"
+                  component="input"
+                  type="radio"
+                  value={value}
+                  key={value}
+                />
+              </Label>
+            ))}
+          </Label>
 
-          <div>
-            <label>Date</label>
+          <Label text="Date">
             <Field name="date" component="input" type="date" />
-          </div>
+          </Label>
 
           <Button submit>Create</Button>
         </form>
