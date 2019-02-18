@@ -9,7 +9,11 @@ interface Props {
 }
 
 export const Button = ({ submit = false, children, className }: Props) => (
-  <AntButton htmlType={resolveType(submit)} className={className}>
+  <AntButton
+    htmlType={resolveType(submit)}
+    className={className}
+    type="primary"
+  >
     {children}
   </AntButton>
 )
