@@ -1,0 +1,49 @@
+.container {
+  max-width: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.form {
+  display: grid;
+
+  grid-template:
+    'amount  currency'
+    'comment comment '
+    'date    submit  '
+    / 2fr minmax(150px, 1fr);
+
+  @media (max-width: 768px) {
+    grid-template:
+      'amount'
+      'currency'
+      'comment'
+      'date'
+      'submit';
+  }
+
+  align-items: end;
+  gap: 16px;
+}
+
+.amount {
+  grid-area: amount;
+}
+
+.comment {
+  grid-area: comment;
+}
+
+.date {
+  grid-area: date;
+}
+
+.currency {
+  grid-area: currency;
+}
+
+.submit {
+  grid-area: submit;
+}

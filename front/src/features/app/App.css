@@ -1,0 +1,34 @@
+.app {
+  display: grid;
+
+  grid-template:
+    'outcome income '
+    'history history'
+    'stats   stats  '
+    / 1fr 1fr;
+
+  align-items: end;
+  gap: 16px;
+  padding: 24px;
+
+  & > *:nth-child(odd) {
+    justify-self: end;
+  }
+
+  & > *:nth-child(even) {
+    justify-self: start;
+  }
+
+  @media (max-width: 576px) {
+    grid-template:
+      'outcome'
+      'income'
+      'history'
+      'stats';
+
+    & > *:nth-child(even),
+    & > *:nth-child(odd) {
+      justify-self: stretch;
+    }
+  }
+}
