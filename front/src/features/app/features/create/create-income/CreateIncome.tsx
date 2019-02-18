@@ -2,7 +2,8 @@ import { useCallback } from 'react'
 import { Field, Form } from 'react-final-form'
 
 import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
-import { Input, InputMoney } from '@front/features/final-form'
+import { EnumSelect, Input, InputMoney } from '@front/features/final-form'
+import { getCurrencyName } from '@front/helpers/getCurrencyName'
 import { Button } from '@front/ui/atoms/button'
 import { Label } from '@front/ui/atoms/label'
 import { Currency } from '@shared/enum/Currency'
@@ -46,17 +47,11 @@ export const CreateIncome = () => {
           </Label>
 
           <Label text="Currency" className={styles.currency}>
-            {Object.values(Currency).map(value => (
-              <label key={value}>
-                <Field
-                  name="currency"
-                  component="input"
-                  type="radio"
-                  value={value}
-                />
-                {value}
-              </label>
-            ))}
+            <EnumSelect
+              name="currency"
+              options={Currency}
+              getLabel={getCurrencyName}
+            />
           </Label>
 
           <Label text="Date" className={styles.date}>

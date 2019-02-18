@@ -2,10 +2,10 @@
   display: grid;
 
   grid-template-areas:
-    'title    title    title   '
-    'amount   source   source  '
-    'currency currency currency'
-    'date     .        submit  ';
+    'title  title    title   '
+    'amount currency currency'
+    'source source   source  '
+    'date   .        submit  ';
 
   align-items: end;
   max-width: 400px;

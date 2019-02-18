@@ -4,5 +4,5 @@ export const getCurrencySign = (currency: Currency): string =>
   ({
     [Currency.EUR]: '€',
     [Currency.USD]: '$',
-    [Currency.RUB]: '	₽',
+    [Currency.RUB]: '₽',
   }[currency])

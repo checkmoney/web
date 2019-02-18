@@ -1,10 +1,8 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react'
-
 import { getCurrencySign } from '@front/helpers/getCurrencySign'
+import { useCustomInput } from '@front/ui/hooks/useCustomInput'
 
 import { Input } from '../input'
 import { format } from './helpers/format'
-import { parse } from './helpers/parse'
 import { InputMoneyProps } from './InputMoneyProps'
 
 export const InputMoney = ({
@@ -13,30 +11,7 @@ export const InputMoney = ({
   onChange,
   ...props
 }: InputMoneyProps) => {
-  const [currentValue, changeCurrentValue] = useState(value)
-
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const newValue = parse(e.target.value)
-
-      if (onChange) {
-        // controlled
-        e.target.value = newValue
-        onChange(e)
-      } else {
-        // uncontrolled
-        changeCurrentValue(newValue)
-      }
-    },
-    [onChange],
-  )
-
-  useEffect(
-    () => {
-      changeCurrentValue(value || '')
-    },
-    [value],
-  )
+  const { currentValue, handleChange } = useCustomInput(value, onChange)
 
   return (
     <Input
