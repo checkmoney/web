@@ -1,23 +1,16 @@
 import { ReactNode } from 'react'
 
+import * as styles from './Label.css'
+
 interface Props {
   text: string
   children: ReactNode
-  after?: boolean
+  className?: string
 }
 
-export const Label = ({ text, children, after = false }: Props) => (
-  <label>
-    {after ? (
-      <>
-        {children}
-        {text}
-      </>
-    ) : (
-      <>
-        {text}
-        {children}
-      </>
-    )}
+export const Label = ({ text, children, className }: Props) => (
+  <label className={className}>
+    <span className={styles.text}>{text}</span>
+    {children}
   </label>
 )

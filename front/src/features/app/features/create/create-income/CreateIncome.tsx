@@ -1,13 +1,14 @@
 import { useCallback } from 'react'
 import { Field, Form } from 'react-final-form'
 
-import { Currency } from '@shared/enum/Currency'
-import { IncomeModel } from '@shared/models/money/IncomeModel'
-
 import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
 import { Input, InputMoney } from '@front/features/final-form'
 import { Button } from '@front/ui/atoms/button'
 import { Label } from '@front/ui/atoms/label'
+import { Currency } from '@shared/enum/Currency'
+import { IncomeModel } from '@shared/models/money/IncomeModel'
+
+import * as styles from '../SimpleForm.css'
 
 export const CreateIncome = () => {
   const create = useCreateIncome()
@@ -32,36 +33,39 @@ export const CreateIncome = () => {
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
+          className={styles.form}
         >
-          <h2>Create new income</h2>
+          <h2 className={styles.title}>Create new income</h2>
 
-          <Label text="Amount">
+          <Label text="Amount" className={styles.amount}>
             <InputMoney name="amount" currency={values.currency} />
           </Label>
 
-          <Label text="Source">
+          <Label text="Source" className={styles.comment}>
             <Input name="source" placeholder="NASA" />
           </Label>
 
-          <Label text="Currency">
+          <Label text="Currency" className={styles.currency}>
             {Object.values(Currency).map(value => (
-              <Label text={value} key={value} after>
+              <label key={value}>
                 <Field
                   name="currency"
                   component="input"
                   type="radio"
                   value={value}
-                  key={value}
                 />
-              </Label>
+                {value}
+              </label>
             ))}
           </Label>
 
-          <Label text="Date">
+          <Label text="Date" className={styles.date}>
             <Field name="date" component="input" type="date" />
           </Label>
 
-          <Button submit>Create</Button>
+          <Button className={styles.submit} submit>
+            Create
+          </Button>
         </form>
       )}
     </Form>

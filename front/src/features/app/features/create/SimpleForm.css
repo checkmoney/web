@@ -1,0 +1,40 @@
+.form {
+  display: grid;
+
+  grid-template-areas:
+    'title    title    title   '
+    'amount   source   source  '
+    'currency currency currency'
+    'date     .        submit  ';
+
+  align-items: end;
+  max-width: 400px;
+  padding: 16px;
+  border: 1px solid black;
+  gap: 16px;
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+}
+
+.amount {
+  grid-area: amount;
+}
+
+.comment {
+  grid-area: source;
+}
+
+.date {
+  grid-area: date;
+}
+
+.currency {
+  grid-area: currency;
+}
+
+.submit {
+  grid-area: submit;
+}
