@@ -1,10 +1,21 @@
 import { useCallback } from 'react'
-import { Field, Form } from 'react-final-form'
+import { Form } from 'react-final-form'
 
+import { useCreateOutcome } from '@front/domain/money/hooks/useCreateOutcome'
+import {
+  DatePicker,
+  EnumSelect,
+  Input,
+  InputMoney,
+} from '@front/features/final-form'
+import { getCurrencyName } from '@front/helpers/getCurrencyName'
+import { Button } from '@front/ui/atoms/button'
+import { Label } from '@front/ui/atoms/label'
+import { Card } from '@front/ui/molecules/card'
 import { Currency } from '@shared/enum/Currency'
 import { OutcomeModel } from '@shared/models/money/OutcomeModel'
 
-import { useCreateOutcome } from '@front/domain/money/hooks/useCreateOutcome'
+import * as styles from '../SimpleForm.css'
 
 export const CreateOutcome = () => {
   const create = useCreateOutcome()
@@ -14,7 +25,7 @@ export const CreateOutcome = () => {
       amount: Math.round(parseFloat(amount) * 100),
       currency,
       category,
-      date: !!date ? new Date(date) : new Date(),
+      date,
     }),
     [],
   )
@@ -25,52 +36,41 @@ export const CreateOutcome = () => {
   }, [])
 
   return (
-    <Form onSubmit={onSubmit} initialValues={{ currency: Currency.RUB }}>
-      {({ handleSubmit, form: { initialize }, initialValues }) => (
+    <Form
+      onSubmit={onSubmit}
+      initialValues={{ currency: Currency.RUB, date: new Date() }}
+    >
+      {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
+          className={styles.container}
         >
-          <h2>Create new outcome</h2>
+          <Card title="Create new outcome" className={styles.form}>
+            <Label text="Amount" className={styles.amount}>
+              <InputMoney name="amount" currency={values.currency} />
+            </Label>
 
-          <div>
-            <label>Amount</label>
-            <Field
-              name="amount"
-              component="input"
-              placeholder="12"
-              type="number"
-            />
-          </div>
+            <Label text="Category" className={styles.comment}>
+              <Input name="category" placeholder="Cafe" />
+            </Label>
 
-          <div>
-            <label>Category</label>
-            <Field name="category" component="input" placeholder="Cafe" />
-          </div>
+            <Label text="Currency" className={styles.currency}>
+              <EnumSelect
+                showSearch
+                name="currency"
+                options={Currency}
+                getLabel={getCurrencyName}
+              />
+            </Label>
 
-          <div>
-            <label>Source</label>
-            <div>
-              {Object.values(Currency).map(value => (
-                <label key={value}>
-                  <Field
-                    name="currency"
-                    component="input"
-                    type="radio"
-                    value={value}
-                    key={value}
-                  />{' '}
-                  {value}
-                </label>
-              ))}
-            </div>
-          </div>
+            <Label text="Date" className={styles.date}>
+              <DatePicker name="date" />
+            </Label>
 
-          <div>
-            <label>Date</label>
-            <Field name="date" component="input" type="date" />
-          </div>
-
-          <button type="submit">create</button>
+            <Button submit className={styles.submit}>
+              Create
+            </Button>
+          </Card>
         </form>
       )}
     </Form>
