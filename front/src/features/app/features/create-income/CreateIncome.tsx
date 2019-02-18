@@ -5,6 +5,8 @@ import { Currency } from '@shared/enum/Currency'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
 import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
+import { Input, InputMoney } from '@front/features/final-form'
+import { Button } from '@front/ui/atoms/button'
 
 export const CreateIncome = () => {
   const create = useCreateIncome()
@@ -26,7 +28,7 @@ export const CreateIncome = () => {
 
   return (
     <Form onSubmit={onSubmit} initialValues={{ currency: Currency.RUB }}>
-      {({ handleSubmit, form: { initialize }, initialValues }) => (
+      {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
         >
@@ -34,17 +36,12 @@ export const CreateIncome = () => {
 
           <div>
             <label>Amount</label>
-            <Field
-              name="amount"
-              component="input"
-              placeholder="12"
-              type="number"
-            />
+            <InputMoney name="amount" currency={values.currency} />
           </div>
 
           <div>
             <label>Source</label>
-            <Field name="source" component="input" placeholder="NASA" />
+            <Input name="source" placeholder="NASA" />
           </div>
 
           <div>
@@ -70,7 +67,7 @@ export const CreateIncome = () => {
             <Field name="date" component="input" type="date" />
           </div>
 
-          <button type="submit">create</button>
+          <Button submit>Create</Button>
         </form>
       )}
     </Form>
