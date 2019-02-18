@@ -4,6 +4,7 @@ import { useCallback, useMemo } from 'react'
 
 import { useCustomInput } from '@front/ui/hooks/useCustomInput'
 
+import * as styles from './DatePicker.css'
 import { DatePickerProps } from './DatePickerProps'
 
 export const DatePicker = ({ value, onChange }: DatePickerProps) => {
@@ -16,5 +17,11 @@ export const DatePicker = ({ value, onChange }: DatePickerProps) => {
 
   const momentValue = useMemo(() => moment(currentValue), [currentValue])
 
-  return <AntDatePicker onChange={momentHandleChange} value={momentValue} />
+  return (
+    <AntDatePicker
+      onChange={momentHandleChange}
+      value={momentValue}
+      className={styles.datePicker}
+    />
+  )
 }

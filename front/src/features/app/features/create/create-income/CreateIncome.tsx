@@ -11,6 +11,7 @@ import {
 import { getCurrencyName } from '@front/helpers/getCurrencyName'
 import { Button } from '@front/ui/atoms/button'
 import { Label } from '@front/ui/atoms/label'
+import { Card } from '@front/ui/molecules/card'
 import { Currency } from '@shared/enum/Currency'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
@@ -42,33 +43,34 @@ export const CreateIncome = () => {
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
-          className={styles.form}
+          className={styles.container}
         >
-          <h2 className={styles.title}>Create new income</h2>
+          <Card title="Create new income" className={styles.form}>
+            <Label text="Amount" className={styles.amount}>
+              <InputMoney name="amount" currency={values.currency} />
+            </Label>
 
-          <Label text="Amount" className={styles.amount}>
-            <InputMoney name="amount" currency={values.currency} />
-          </Label>
+            <Label text="Source" className={styles.comment}>
+              <Input name="source" placeholder="NASA" />
+            </Label>
 
-          <Label text="Source" className={styles.comment}>
-            <Input name="source" placeholder="NASA" />
-          </Label>
+            <Label text="Currency" className={styles.currency}>
+              <EnumSelect
+                showSearch
+                name="currency"
+                options={Currency}
+                getLabel={getCurrencyName}
+              />
+            </Label>
 
-          <Label text="Currency" className={styles.currency}>
-            <EnumSelect
-              name="currency"
-              options={Currency}
-              getLabel={getCurrencyName}
-            />
-          </Label>
+            <Label text="Date" className={styles.date}>
+              <DatePicker name="date" />
+            </Label>
 
-          <Label text="Date" className={styles.date}>
-            <DatePicker name="date" />
-          </Label>
-
-          <Button className={styles.submit} submit>
-            Create
-          </Button>
+            <Button submit className={styles.submit}>
+              Create
+            </Button>
+          </Card>
         </form>
       )}
     </Form>

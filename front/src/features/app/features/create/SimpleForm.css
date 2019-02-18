@@ -1,22 +1,27 @@
+.container {
+  max-width: 500px;
+}
+
 .form {
   display: grid;
 
-  grid-template-areas:
-    'title  title    title   '
-    'amount currency currency'
-    'source source   source  '
-    'date   .        submit  ';
+  grid-template:
+    'amount  currency'
+    'comment comment '
+    'date    submit  '
+    / 2fr minmax(150px, 1fr);
+
+  @media (max-width: 768px) {
+    grid-template:
+      'amount'
+      'currency'
+      'comment'
+      'date'
+      'submit';
+  }
 
   align-items: end;
-  max-width: 400px;
-  padding: 16px;
-  border: 1px solid black;
   gap: 16px;
-}
-
-.title {
-  grid-area: title;
-  text-align: center;
 }
 
 .amount {
@@ -24,7 +29,7 @@
 }
 
 .comment {
-  grid-area: source;
+  grid-area: comment;
 }
 
 .date {
