@@ -1,8 +1,13 @@
 import { useCallback } from 'react'
-import { Field, Form } from 'react-final-form'
+import { Form } from 'react-final-form'
 
 import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
-import { EnumSelect, Input, InputMoney } from '@front/features/final-form'
+import {
+  DatePicker,
+  EnumSelect,
+  Input,
+  InputMoney,
+} from '@front/features/final-form'
 import { getCurrencyName } from '@front/helpers/getCurrencyName'
 import { Button } from '@front/ui/atoms/button'
 import { Label } from '@front/ui/atoms/label'
@@ -19,7 +24,7 @@ export const CreateIncome = () => {
       amount: Math.round(parseFloat(amount) * 100),
       currency,
       source,
-      date: !!date ? new Date(date) : new Date(),
+      date,
     }),
     [],
   )
@@ -30,7 +35,10 @@ export const CreateIncome = () => {
   }, [])
 
   return (
-    <Form onSubmit={onSubmit} initialValues={{ currency: Currency.RUB }}>
+    <Form
+      onSubmit={onSubmit}
+      initialValues={{ currency: Currency.RUB, date: new Date() }}
+    >
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
@@ -55,7 +63,7 @@ export const CreateIncome = () => {
           </Label>
 
           <Label text="Date" className={styles.date}>
-            <Field name="date" component="input" type="date" />
+            <DatePicker name="date" />
           </Label>
 
           <Button className={styles.submit} submit>
