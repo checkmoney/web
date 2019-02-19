@@ -17,7 +17,11 @@ import { IncomeModel } from '@shared/models/money/IncomeModel'
 
 import * as styles from '../SimpleForm.css'
 
-export const CreateIncome = () => {
+interface Props {
+  className?: string
+}
+
+export const CreateIncome = ({ className }: Props) => {
   const create = useCreateIncome()
 
   const fieldsToIncomeModel = useCallback(
@@ -43,7 +47,7 @@ export const CreateIncome = () => {
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
-          className={styles.container}
+          className={className}
         >
           <Card title="Create new income" className={styles.form}>
             <Label text="Amount" className={styles.amount}>

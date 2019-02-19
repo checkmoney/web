@@ -7,10 +7,10 @@ import { Stats } from './features/stats'
 export const App = () => (
   <>
     <section className={styles.app}>
-      <CreateOutcome />
-      <CreateIncome />
+      <CreateOutcome className={styles.outcome} />
+      <CreateIncome className={styles.income} />
+      <History className={styles.history} />
     </section>
-    <History />
     <Stats />
   </>
 )

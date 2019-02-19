@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  & > * {
+    margin-right: 16px;
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    & > *:not(:first-child) {
+      margin-top: 16px;
+      margin-right: 0px;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 0px;
+}
+
+.dataSet {
+  display: grid;
+
+  grid-template:
+    'outcomes incomes'
+    / 1fr 1fr;
+
+  @media (max-width: 576px) {
+    grid-template:
+      'outcomes'
+      'incomes';
+  }
+
+  gap: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.outcomes {
+  grid-area: outcomes;
+}
+
+.incomes {
+  grid-area: incomes;
+}

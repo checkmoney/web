@@ -17,7 +17,11 @@ import { OutcomeModel } from '@shared/models/money/OutcomeModel'
 
 import * as styles from '../SimpleForm.css'
 
-export const CreateOutcome = () => {
+interface Props {
+  className?: string
+}
+
+export const CreateOutcome = ({ className }: Props) => {
   const create = useCreateOutcome()
 
   const fieldsToOutcomeModel = useCallback(
@@ -43,7 +47,7 @@ export const CreateOutcome = () => {
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
-          className={styles.container}
+          className={className}
         >
           <Card title="Create new outcome" className={styles.form}>
             <Label text="Amount" className={styles.amount}>

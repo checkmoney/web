@@ -1,5 +1,5 @@
-import { format } from 'date-fns'
-import { ChangeEvent, useCallback } from 'react'
+import { Label } from '@front/ui/atoms/label'
+import { DatePicker } from '@front/ui/molecules/date-picker'
 
 interface Props {
   start: Date
@@ -8,42 +8,19 @@ interface Props {
   updateEnd: (newEnd: Date) => void
 }
 
+const createHandle = (update: (d: Date) => void) => (date?: Date) =>
+  update(date ? new Date(date) : new Date())
+
 export const Period = ({ start, end, updateStart, updateEnd }: Props) => {
-  const createHandle = useCallback(
-    (update: (d: Date) => void) => ({
-      target,
-    }: ChangeEvent<HTMLInputElement>) => {
-      if (target.value) {
-        return update(new Date(target.value))
-      }
-    },
-    [],
-  )
-
-  const formatForInput = useCallback(
-    (date: Date) => format(date, 'YYYY-MM-DD'),
-    [],
-  )
-
   return (
     <>
-      <label>
-        <input
-          type="date"
-          value={formatForInput(start)}
-          onChange={createHandle(updateStart)}
-        />
-        Start
-      </label>
+      <Label text="Start" inline>
+        <DatePicker value={start} onChange={createHandle(updateStart)} />
+      </Label>
 
-      <label>
-        <input
-          type="date"
-          value={formatForInput(end)}
-          onChange={createHandle(updateEnd)}
-        />
-        End
-      </label>
+      <Label text="End" inline>
+        <DatePicker value={end} onChange={createHandle(updateEnd)} />
+      </Label>
     </>
   )
 }

@@ -1,54 +1,72 @@
-import { useCallback, useEffect, useState } from 'react'
+import { endOfMonth, startOfMonth } from 'date-fns'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
-import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
 import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
 import { Loader } from '@front/ui/molecules/loader'
-import { Groupment } from '@front/ui/organisms/groupment'
 import { Period } from '@front/ui/organisms/period'
 import { GroupBy } from '@shared/enum/GroupBy'
 
+import * as styles from './History.css'
 import { Incomes } from './organisms/Incomes'
 import { Outcomes } from './organisms/Outcomes'
 
-export const History = () => {
-  const firstTransactionDate = useMappedState(getFirstTransactionDate)
+interface Props {
+  className?: string
+}
+
+const groupBy = GroupBy.Month
+
+export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus)
   const dispatch = useDispatch()
 
-  const [from, setFrom] = useState(firstTransactionDate)
-  const [to, setTo] = useState(new Date())
-  const [groupBy, setGroupBy] = useState(GroupBy.Year)
+  const [from, setFrom] = useState(startOfMonth(new Date()))
+  const [to, setTo] = useState(endOfMonth(new Date()))
 
-  const updateTriggers = [from, to, groupBy]
+  const [actualFrom, actualTo] = useMemo(
+    () => [startOfMonth(from), endOfMonth(to)],
+    [from, to],
+  )
 
   const historySelector = useCallback(
-    getHistory(from, to, groupBy),
-    updateTriggers,
+    getHistory(actualFrom, actualTo, groupBy),
+    [actualFrom, actualTo],
   )
   const history = useMappedState(historySelector)
 
-  useEffect(() => {
-    dispatch(fetchHistory(from, to, groupBy) as any)
-  }, updateTriggers)
+  useEffect(
+    () => {
+      dispatch(fetchHistory(actualFrom, actualTo, groupBy) as any)
+    },
+    [actualFrom, actualTo],
+  )
 
   return (
-    <>
-      <h2>History</h2>
-      <Groupment groupBy={groupBy} updateGroupBy={setGroupBy} />
-      <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
+    <section className={className}>
+      <header className={styles.header}>
+        <h2 className={styles.title}>History</h2>
+        <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
+      </header>
       <Loader status={fetching}>
         {history.nonEmpty() &&
           history.get().map(({ title, incomes, outcomes }) => (
-            <div key={title}>
-              <h3>{title}</h3>
-              <Incomes incomes={incomes} />
-              <Outcomes outcomes={outcomes} />
+            <div key={title} className={styles.dataSet}>
+              <Outcomes
+                outcomes={outcomes}
+                periodName={title}
+                className={styles.outcomes}
+              />
+              <Incomes
+                incomes={incomes}
+                periodName={title}
+                className={styles.incomes}
+              />
             </div>
           ))}
       </Loader>
-    </>
+    </section>
   )
 }
