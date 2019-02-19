@@ -9,8 +9,8 @@ export const App = () => (
     <section className={styles.app}>
       <CreateOutcome className={styles.outcome} />
       <CreateIncome className={styles.income} />
+      <Stats className={styles.stats} />
       <History className={styles.history} />
     </section>
-    <Stats />
   </>
 )

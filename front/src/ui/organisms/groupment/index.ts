@@ -1,1 +1,0 @@
-export { Groupment } from './Groupment'

@@ -28,7 +28,7 @@ export const Incomes = ({ incomes, periodName, className }: Props) => (
     className={className}
     data={incomes.map(income => ({
       ...income,
-      amount: displayMoney(income.amount, income.currency),
+      amount: displayMoney(income.currency)(income.amount),
     }))}
     columns={columns}
   />

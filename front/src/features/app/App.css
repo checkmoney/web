@@ -3,8 +3,8 @@
 
   grid-template:
     'outcome income '
-    'history history'
     'stats   stats  '
+    'history history'
     / 1fr 1fr;
 
   align-items: end;
@@ -15,8 +15,8 @@
     grid-template:
       'outcome'
       'income'
-      'history'
-      'stats';
+      'stats'
+      'history';
   }
 }
 
@@ -50,6 +50,21 @@
 
 .history {
   grid-area: history;
+  justify-self: center;
+
+  min-width: 1016px;
+
+  @media (max-width: 1064px) {
+    min-width: 100%;
+  }
+
+  @media (max-width: 576px) {
+    justify-self: stretch;
+  }
+}
+
+.stats {
+  grid-area: stats;
   justify-self: center;
 
   min-width: 1016px;
