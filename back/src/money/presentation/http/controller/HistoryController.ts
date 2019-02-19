@@ -1,13 +1,14 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import {
   ApiBearerAuth,
-  ApiImplicitQuery,
   ApiOkResponse,
   ApiOperation,
   ApiUseTags,
 } from '@nestjs/swagger'
+import { reverse, sortBy } from 'lodash'
 
 import { Historian } from '@back/money/application/Historian'
+import { AbstractTransaction } from '@back/money/domain/dto/AbstarctTransaction'
 import { TokenPayload } from '@back/user/application/dto/TokenPayload'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
@@ -41,8 +42,17 @@ export class HistoryController {
   ): Promise<HistoryGroupResponse[]> {
     const history = await this.historian.showGroupedHistory(login, range, by)
 
-    return history.map(({ title, incomes, outcomes }) =>
-      HistoryGroupResponse.fromPair(title, incomes, outcomes),
+    const sorter = (transaction: AbstractTransaction) =>
+      -transaction.date.valueOf()
+
+    return reverse(
+      history.map(({ title, incomes, outcomes }) =>
+        HistoryGroupResponse.fromPair(
+          title,
+          sortBy(incomes, income => sorter(income)),
+          sortBy(outcomes, outcome => sorter(outcome)),
+        ),
+      ),
     )
   }
 

@@ -1,23 +1,35 @@
-import { Option } from 'tsoption'
-
+import { displayMoney } from '@front/helpers/displayMoney'
+import { displayNullableDate } from '@front/helpers/displayNullableDtae'
+import { Table } from '@front/ui/molecules/table'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
 interface Props {
   incomes: IncomeModel[]
   className?: string
+  periodName: string
 }
 
-export const Incomes = ({ incomes, className }: Props) => (
-  <section className={className}>
-    <h4>Incomes</h4>
-    {incomes.map(({ amount, currency, source, date }) => (
-      <p key={`${amount}-${date}`}>
-        {Option.of(date)
-          .map(_ => _.toDateString())
-          .getOrElse('')}
-        {' — '}
-        {amount / 100} {currency} ({source})
-      </p>
-    ))}
-  </section>
+const columns = {
+  date: {
+    title: 'Date',
+    transform: displayNullableDate,
+  },
+  amount: {
+    title: 'Amount',
+  },
+  source: {
+    title: 'Source',
+  },
+}
+
+export const Incomes = ({ incomes, periodName, className }: Props) => (
+  <Table
+    title={`Incomes: ${periodName}`}
+    className={className}
+    data={incomes.map(income => ({
+      ...income,
+      amount: displayMoney(income.amount, income.currency),
+    }))}
+    columns={columns}
+  />
 )

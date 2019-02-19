@@ -2,22 +2,18 @@
   display: grid;
 
   grid-template:
-    'title    title '
     'outcomes incomes'
     / 1fr 1fr;
 
   @media (max-width: 576px) {
     grid-template:
-      'title'
       'outcomes'
       'incomes';
   }
 
   gap: 16px;
-}
-
-.title {
-  grid-area: title;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .outcomes {
