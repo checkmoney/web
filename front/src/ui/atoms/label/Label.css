@@ -1,4 +1,17 @@
+.container {
+  padding: 0;
+}
+
+.inlineContainer {
+  display: flex;
+  align-items: center;
+}
+
 .text {
   display: block;
   padding-bottom: 8px;
+}
+
+.textInline {
+  padding-right: 8px;
 }

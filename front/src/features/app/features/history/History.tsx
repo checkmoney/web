@@ -1,5 +1,5 @@
 import { endOfMonth, startOfMonth } from 'date-fns'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
@@ -26,20 +26,30 @@ export const History = ({ className }: Props) => {
   const [from, setFrom] = useState(startOfMonth(new Date()))
   const [to, setTo] = useState(endOfMonth(new Date()))
 
-  const historySelector = useCallback(getHistory(from, to, groupBy), [from, to])
+  const [actualFrom, actualTo] = useMemo(
+    () => [startOfMonth(from), endOfMonth(to)],
+    [from, to],
+  )
+
+  const historySelector = useCallback(
+    getHistory(actualFrom, actualTo, groupBy),
+    [actualFrom, actualTo],
+  )
   const history = useMappedState(historySelector)
 
   useEffect(
     () => {
-      dispatch(fetchHistory(from, to, groupBy) as any)
+      dispatch(fetchHistory(actualFrom, actualTo, groupBy) as any)
     },
-    [from, to],
+    [actualFrom, actualTo],
   )
 
   return (
     <section className={className}>
-      <h2>History</h2>
-      <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
+      <header className={styles.header}>
+        <h2 className={styles.title}>History</h2>
+        <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
+      </header>
       <Loader status={fetching}>
         {history.nonEmpty() &&
           history.get().map(({ title, incomes, outcomes }) => (
