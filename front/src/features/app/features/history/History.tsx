@@ -1,3 +1,4 @@
+import { max, startOfMonth } from 'date-fns'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
 
@@ -10,17 +11,24 @@ import { Groupment } from '@front/ui/organisms/groupment'
 import { Period } from '@front/ui/organisms/period'
 import { GroupBy } from '@shared/enum/GroupBy'
 
+import * as styles from './History.css'
 import { Incomes } from './organisms/Incomes'
 import { Outcomes } from './organisms/Outcomes'
 
-export const History = () => {
+interface Props {
+  className?: string
+}
+
+export const History = ({ className }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getHistoryFetchingStatus)
   const dispatch = useDispatch()
 
-  const [from, setFrom] = useState(firstTransactionDate)
+  const [from, setFrom] = useState(
+    max(firstTransactionDate, startOfMonth(new Date())),
+  )
   const [to, setTo] = useState(new Date())
-  const [groupBy, setGroupBy] = useState(GroupBy.Year)
+  const [groupBy, setGroupBy] = useState(GroupBy.Month)
 
   const updateTriggers = [from, to, groupBy]
 
@@ -35,20 +43,20 @@ export const History = () => {
   }, updateTriggers)
 
   return (
-    <>
+    <section className={className}>
       <h2>History</h2>
       <Groupment groupBy={groupBy} updateGroupBy={setGroupBy} />
       <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
       <Loader status={fetching}>
         {history.nonEmpty() &&
           history.get().map(({ title, incomes, outcomes }) => (
-            <div key={title}>
-              <h3>{title}</h3>
-              <Incomes incomes={incomes} />
-              <Outcomes outcomes={outcomes} />
+            <div key={title} className={styles.dataSet}>
+              <h3 className={styles.title}>{title}</h3>
+              <Outcomes outcomes={outcomes} className={styles.outcomes} />
+              <Incomes incomes={incomes} className={styles.incomes} />
             </div>
           ))}
       </Loader>
-    </>
+    </section>
   )
 }
