@@ -23,7 +23,7 @@
     "lodash": "^4.17.11",
     "next": "^7.0.2",
     "next-compose-plugins": "^2.1.1",
-    "next-css-unpluggable": "^2.1.0",
+    "next-css-unpluggable": "^2.1.9",
     "next-routes": "^1.4.2",
     "randomcolor": "^0.5.4",
     "react": "^16.8.1",
