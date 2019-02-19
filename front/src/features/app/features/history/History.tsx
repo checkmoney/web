@@ -9,6 +9,7 @@ import { Loader } from '@front/ui/molecules/loader'
 import { Period } from '@front/ui/organisms/period'
 import { GroupBy } from '@shared/enum/GroupBy'
 
+import { Header } from '../../components/Header/Header'
 import * as styles from './History.css'
 import { Incomes } from './organisms/Incomes'
 import { Outcomes } from './organisms/Outcomes'
@@ -46,10 +47,9 @@ export const History = ({ className }: Props) => {
 
   return (
     <section className={className}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>History</h2>
+      <Header title="History">
         <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
-      </header>
+      </Header>
       <Loader status={fetching}>
         {history.nonEmpty() &&
           history.get().map(({ title, incomes, outcomes }) => (
