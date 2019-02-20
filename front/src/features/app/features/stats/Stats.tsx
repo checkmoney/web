@@ -7,14 +7,14 @@ import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstT
 import { getStats } from '@front/domain/money/selectors/getStats'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
 import { displayMoney } from '@front/helpers/displayMoney'
-import { Loader } from '@front/ui/molecules/loader'
-import { BarChart } from '@front/ui/organisms/bar-char'
-import { Period } from '@front/ui/organisms/period'
+import { BarChart } from '@front/ui/components/chart/bar-chart'
+import { Period } from '@front/ui/components/form/period'
+import { Loader } from '@front/ui/components/layout/loader'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
-import { Header } from '../../components/Header/Header'
-import { CurrencySwitch } from './organisms/CurrencySwitch'
+import { Header } from '../../components/header'
+import { CurrencySwitch } from './components/currency-switch'
 
 const groupBy = GroupBy.Year
 

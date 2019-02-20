@@ -1,7 +1,10 @@
 import { Field, FieldRenderProps } from 'react-final-form'
 import { Diff } from 'utility-types'
 
-import { Select as JustSelect, SelectProps } from '@front/ui/molecules/select'
+import {
+  Select as JustSelect,
+  SelectProps,
+} from '@front/ui/components/form/select'
 
 interface OwnProps {
   name: string

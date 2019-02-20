@@ -1,5 +1,5 @@
 import { pushRoute } from '@front/pushRoute'
-import { Button } from '@front/ui/atoms/button'
+import { Button } from '@front/ui/components/form/button'
 
 import * as styles from './Hello.css'
 

@@ -5,14 +5,14 @@ import { useDispatch, useMappedState } from 'redux-react-hook'
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
 import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
-import { Loader } from '@front/ui/molecules/loader'
-import { Period } from '@front/ui/organisms/period'
+import { Period } from '@front/ui/components/form/period'
+import { Loader } from '@front/ui/components/layout/loader'
 import { GroupBy } from '@shared/enum/GroupBy'
 
-import { Header } from '../../components/Header/Header'
+import { Header } from '../../components/header'
+import { Incomes } from './components/Incomes'
+import { Outcomes } from './components/Outcomes'
 import * as styles from './History.css'
-import { Incomes } from './organisms/Incomes'
-import { Outcomes } from './organisms/Outcomes'
 
 interface Props {
   className?: string

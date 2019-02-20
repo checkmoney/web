@@ -11,9 +11,9 @@ import {
   InputMoney,
 } from '@front/features/final-form'
 import { getCurrencyName } from '@front/helpers/getCurrencyName'
-import { Label } from '@front/ui/atoms/label'
-import { LoadingButton } from '@front/ui/atoms/loading-button'
-import { Card } from '@front/ui/molecules/card'
+import { Label } from '@front/ui/components/form/label'
+import { LoadingButton } from '@front/ui/components/form/loading-button'
+import { Card } from '@front/ui/components/layout/card'
 import { Currency } from '@shared/enum/Currency'
 import { OutcomeModel } from '@shared/models/money/OutcomeModel'
 
