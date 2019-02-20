@@ -1,8 +1,11 @@
 import { useCallback } from 'react'
 import { Field, Form } from 'react-final-form'
+import { useMappedState } from 'redux-react-hook'
 
 import { useSignIn } from '@front/domain/user/hooks/useSignIn'
+import { getSignInFetching } from '@front/domain/user/selectors/getSignInFetching'
 import { pushRoute } from '@front/pushRoute'
+import { LoadingButton } from '@front/ui/atoms/loading-button'
 
 export const SignIn = () => {
   const signIn = useSignIn()
@@ -11,6 +14,8 @@ export const SignIn = () => {
     await signIn(email, password)
     await pushRoute('/app')
   }, [])
+
+  const fetching = useMappedState(getSignInFetching)
 
   return (
     <Form onSubmit={onSubmit}>
@@ -33,7 +38,9 @@ export const SignIn = () => {
             <Field name="password" component="input" type="password" />
           </div>
 
-          <button type="submit">sign-in</button>
+          <LoadingButton fethcing={fetching} submit>
+            Sign-in
+          </LoadingButton>
         </form>
       )}
     </Form>
