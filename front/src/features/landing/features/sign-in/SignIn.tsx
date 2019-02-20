@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Form } from 'react-final-form'
-import { useMappedState } from 'redux-react-hook'
+import { useDispatch, useMappedState } from 'redux-react-hook'
 
-import { useSignIn } from '@front/domain/user/hooks/useSignIn'
+import { signIn } from '@front/domain/user/actions/signIn'
 import { getSignInFetching } from '@front/domain/user/selectors/getSignInFetching'
 import { Input } from '@front/features/final-form'
 import { pushRoute } from '@front/features/routing'
@@ -14,10 +14,10 @@ import { Card } from '@front/ui/components/layout/card'
 import * as styles from '../SignForm.css'
 
 export const SignIn = () => {
-  const signIn = useSignIn()
+  const dispatch = useDispatch()
 
   const onSubmit = useCallback(async ({ email, password }) => {
-    await signIn(email, password)
+    await dispatch(signIn(email, password) as any)
     await pushRoute('/app')
   }, [])
 

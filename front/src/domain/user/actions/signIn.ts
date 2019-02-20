@@ -1,9 +1,9 @@
 import { fetchOrFail } from '@front/domain/fetching-redux'
 
 import { signIn as signInRequest } from '../api/signIn'
+import { setCookie } from '../helpers/setCookie'
 import { actions as dataActions } from '../reducer/data'
 import { actions as signInActions } from '../reducer/signIn'
-import { setCookie } from '../setCookie'
 
 const { setToken } = dataActions
 

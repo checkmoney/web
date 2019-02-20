@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import { Form } from 'react-final-form'
-import { useMappedState } from 'redux-react-hook'
+import { useDispatch, useMappedState } from 'redux-react-hook'
 
-import { useSignUp } from '@front/domain/user/hooks/useSignUp'
+import { signUp } from '@front/domain/user/actions/signUp'
 import { getSignUpFetching } from '@front/domain/user/selectors/getSignUpFetching'
 import { Input } from '@front/features/final-form'
 import { pushRoute } from '@front/features/routing'
@@ -14,10 +14,10 @@ import { Card } from '@front/ui/components/layout/card'
 import * as styles from '../SignForm.css'
 
 export const SignUp = () => {
-  const signUp = useSignUp()
+  const dispatch = useDispatch()
 
   const onSubmit = useCallback(async ({ email, password }) => {
-    await signUp(email, password)
+    await dispatch(signUp(email, password) as any)
     await pushRoute('/hello')
   }, [])
 
