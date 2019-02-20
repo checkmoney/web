@@ -1,8 +1,17 @@
 import { useCallback } from 'react'
-import { Field, Form } from 'react-final-form'
+import { Form } from 'react-final-form'
+import { useMappedState } from 'redux-react-hook'
 
 import { useSignUp } from '@front/domain/user/hooks/useSignUp'
+import { getSignUpFetching } from '@front/domain/user/selectors/getSignUpFetching'
+import { Input } from '@front/features/final-form'
 import { pushRoute } from '@front/pushRoute'
+import { InputType } from '@front/ui/atoms/input/InputType'
+import { Label } from '@front/ui/atoms/label'
+import { LoadingButton } from '@front/ui/atoms/loading-button'
+import { Card } from '@front/ui/molecules/card'
+
+import * as styles from '../SignForm.css'
 
 export const SignUp = () => {
   const signUp = useSignUp()
@@ -12,33 +21,33 @@ export const SignUp = () => {
     await pushRoute('/hello')
   }, [])
 
+  const fetching = useMappedState(getSignUpFetching)
+
   return (
     <Form onSubmit={onSubmit}>
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <h2>Sign-up</h2>
+        <form onSubmit={handleSubmit} className={styles.container}>
+          <Card title="Sign-up" className={styles.card}>
+            <Label text="Email">
+              <Input
+                name="email"
+                type={InputType.Email}
+                placeholder="email@example.com"
+              />
+            </Label>
 
-          <div>
-            <label>Email</label>
-            <Field
-              name="email"
-              component="input"
-              placeholder="email@example.com"
-              type="email"
-            />
-          </div>
+            <Label text="Password">
+              <Input name="password" type={InputType.Password} />
+            </Label>
 
-          <div>
-            <label>Password</label>
-            <Field name="password" component="input" type="password" />
-          </div>
+            <Label text="Repeat password">
+              <Input name="password-repeat" type={InputType.Password} />
+            </Label>
 
-          <div>
-            <label>Again =) (fake!)</label>
-            <Field name="password-again" component="input" type="password" />
-          </div>
-
-          <button type="submit">sign-up</button>
+            <LoadingButton fethcing={fetching} submit>
+              Sign-up
+            </LoadingButton>
+          </Card>
         </form>
       )}
     </Form>

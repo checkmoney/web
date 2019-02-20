@@ -1,7 +1,9 @@
 import { useCallback } from 'react'
 import { Form } from 'react-final-form'
+import { useMappedState } from 'redux-react-hook'
 
 import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
+import { getCreateIncomeFetching } from '@front/domain/money/selectors/getCreateIncomeFetching'
 import {
   DatePicker,
   EnumSelect,
@@ -9,8 +11,8 @@ import {
   InputMoney,
 } from '@front/features/final-form'
 import { getCurrencyName } from '@front/helpers/getCurrencyName'
-import { Button } from '@front/ui/atoms/button'
 import { Label } from '@front/ui/atoms/label'
+import { LoadingButton } from '@front/ui/atoms/loading-button'
 import { Card } from '@front/ui/molecules/card'
 import { Currency } from '@shared/enum/Currency'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
@@ -38,6 +40,8 @@ export const CreateIncome = ({ className }: Props) => {
     const income = fieldsToIncomeModel(fields)
     await create(income)
   }, [])
+
+  const fetching = useMappedState(getCreateIncomeFetching)
 
   return (
     <Form
@@ -71,9 +75,9 @@ export const CreateIncome = ({ className }: Props) => {
               <DatePicker name="date" />
             </Label>
 
-            <Button submit className={styles.submit}>
+            <LoadingButton fethcing={fetching} submit className={styles.submit}>
               Create
-            </Button>
+            </LoadingButton>
           </Card>
         </form>
       )}
