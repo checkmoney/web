@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+
+  grid-template: 'sign-in sign-out';
+
+  align-items: center;
+  justify-content: space-eventaly;
+  justify-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  & > * {
+    min-width: 350px;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template:
+      'sign-in'
+      'sign-out';
+  }
+}
