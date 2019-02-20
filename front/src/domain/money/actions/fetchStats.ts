@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
+import { fetchOrFail } from '@front/domain/fetching-redux'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 

@@ -1,4 +1,4 @@
-import { pushRoute } from '@front/pushRoute'
+import { pushRoute } from '@front/features/routing'
 import { Button } from '@front/ui/components/form/button'
 
 import * as styles from './Hello.css'

@@ -1,10 +1,10 @@
 import { AnyAction, Dispatch } from 'redux'
 import { Option } from 'tsoption'
 
-import { Api } from '@front/domain/api/Api'
+import { Api } from '@front/domain/api'
 import { getToken } from '@front/domain/user/selectors/getToken'
 
-import { State } from '../State'
+import { State } from '@front/domain/store/State'
 
 interface FetchActions {
   request: () => AnyAction

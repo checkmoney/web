@@ -1,5 +1,7 @@
-import { createFetchingStore } from '@front/domain/store/fetchingRedux/createFetchingRedux'
-import { FetchingState } from '@front/domain/store/fetchingRedux/FetchingState'
+import {
+  createFetchingStore,
+  FetchingState,
+} from '@front/domain/fetching-redux'
 
 type State = FetchingState
 

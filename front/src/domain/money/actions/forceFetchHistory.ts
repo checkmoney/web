@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
+import { fetchOrFail } from '@front/domain/fetching-redux'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { fetchHistoryRequest } from '../api/fetchHistoryRequest'

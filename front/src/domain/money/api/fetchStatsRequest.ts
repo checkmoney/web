@@ -1,4 +1,4 @@
-import { Api } from '@front/domain/api/Api'
+import { Api } from '@front/domain/api'
 import { actualizeStore } from '@front/domain/store/utils/actualizeStore'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'

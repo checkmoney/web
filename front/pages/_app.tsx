@@ -11,7 +11,7 @@ import { WithReduxProps } from '@front/domain/store/WithReduxProps'
 import { withReduxStore } from '@front/domain/store/withReduxStore'
 import { actions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
-import { pushRoute } from '@front/pushRoute'
+import { pushRoute } from '@front/features/routing'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {

@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
+import { fetchOrFail } from '@front/domain/fetching-redux'
 
 import { signUp as signUpRequest } from '../api/signUp'
 import { actions as dataActions } from '../reducer/data'

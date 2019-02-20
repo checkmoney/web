@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
+import { fetchOrFail } from '@front/domain/fetching-redux'
 
 import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods'
 import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods'
