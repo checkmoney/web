@@ -4,7 +4,7 @@ import { Diff } from 'utility-types'
 import {
   DatePicker as JustDatePicker,
   DatePickerProps,
-} from '@front/ui/molecules/date-picker'
+} from '@front/ui/components/form/date-picker'
 
 interface OwnProps {
   name: string

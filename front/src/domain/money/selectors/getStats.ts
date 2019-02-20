@@ -1,6 +1,6 @@
 import { Option } from 'tsoption'
 
-import { State } from '@front/domain/store/State'
+import { State } from '@front/domain/store'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { createStatsKey } from '../helpers/createStatsKey'

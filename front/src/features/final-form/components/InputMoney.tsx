@@ -4,7 +4,7 @@ import { Diff } from 'utility-types'
 import {
   InputMoney as JustInputMoney,
   InputMoneyProps,
-} from '@front/ui/atoms/input-money'
+} from '@front/ui/components/form/input-money'
 
 interface OwnProps {
   name: string

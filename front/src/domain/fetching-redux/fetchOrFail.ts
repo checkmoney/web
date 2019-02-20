@@ -1,10 +1,10 @@
-import { AnyAction, Dispatch } from 'redux'
+import { AnyAction } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 import { Option } from 'tsoption'
 
-import { Api } from '@front/domain/api/Api'
+import { Api } from '@front/domain/api'
+import { ExtraArg, State } from '@front/domain/store'
 import { getToken } from '@front/domain/user/selectors/getToken'
-
-import { State } from '../State'
 
 interface FetchActions {
   request: () => AnyAction
@@ -13,7 +13,7 @@ interface FetchActions {
 }
 
 type Execute = (
-  dispatch: Dispatch,
+  dispatch: ThunkDispatch<State, ExtraArg, AnyAction>,
   getApi: () => Api,
   getState: () => State,
 ) => Promise<void | any>
@@ -28,7 +28,7 @@ export const fetchOrFail = (
   fetchActions: FetchActions = defaultActions,
   execute: Execute,
 ) => async (
-  dispatch: Dispatch<AnyAction>,
+  dispatch: ThunkDispatch<State, ExtraArg, AnyAction>,
   getState: () => State,
   createApi: (token: Option<string>) => Api,
 ) => {

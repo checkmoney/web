@@ -1,6 +1,6 @@
 import { displayMoney } from '@front/helpers/displayMoney'
 import { displayNullableDate } from '@front/helpers/displayNullableDtae'
-import { Table } from '@front/ui/molecules/table'
+import { Table } from '@front/ui/components/layout/table'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
 interface Props {

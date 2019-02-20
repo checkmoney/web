@@ -1,20 +1,21 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useDispatch, useMappedState } from 'redux-react-hook'
+import { useMappedState } from 'redux-react-hook'
 
 import { fetchStats } from '@front/domain/money/actions/fetchStats'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getStats } from '@front/domain/money/selectors/getStats'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
+import { useThunk } from '@front/domain/store'
 import { displayMoney } from '@front/helpers/displayMoney'
-import { Loader } from '@front/ui/molecules/loader'
-import { BarChart } from '@front/ui/organisms/bar-char'
-import { Period } from '@front/ui/organisms/period'
+import { BarChart } from '@front/ui/components/chart/bar-chart'
+import { Period } from '@front/ui/components/form/period'
+import { Loader } from '@front/ui/components/layout/loader'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
-import { Header } from '../../components/Header/Header'
-import { CurrencySwitch } from './organisms/CurrencySwitch'
+import { Header } from '../../components/header'
+import { CurrencySwitch } from './components/currency-switch'
 
 const groupBy = GroupBy.Year
 
@@ -25,7 +26,7 @@ interface Props {
 export const Stats = ({ className }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsFetchingStatus)
-  const dispatch = useDispatch()
+  const dispatch = useThunk()
 
   const [from, setFrom] = useState(startOfYear(firstTransactionDate))
   const [to, setTo] = useState(endOfYear(new Date()))
@@ -44,7 +45,7 @@ export const Stats = ({ className }: Props) => {
 
   useEffect(
     () => {
-      dispatch(fetchStats(actualFrom, actualTo, groupBy, currency) as any)
+      dispatch(fetchStats(actualFrom, actualTo, groupBy, currency))
     },
     [actualFrom, actualTo, currency],
   )

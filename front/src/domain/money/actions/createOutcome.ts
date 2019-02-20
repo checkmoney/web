@@ -1,6 +1,5 @@
+import { fetchOrFail } from '@front/domain/fetching-redux'
 import { OutcomeModel } from '@shared/models/money/OutcomeModel'
-
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
 
 import { createOutcomeRequest } from '../api/createOutcomeRequest'
 import { actions as outcomeFetchingActions } from '../reducer/createOutcomeFetching'
@@ -10,5 +9,5 @@ export const createOutcome = (outcomeFields: OutcomeModel) =>
   fetchOrFail(outcomeFetchingActions, async (dispatch, getApi) => {
     await createOutcomeRequest(getApi())(outcomeFields)
 
-    await dispatch(refetchData() as any)
+    await dispatch(refetchData())
   })

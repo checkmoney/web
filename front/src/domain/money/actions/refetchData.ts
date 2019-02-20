@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
+import { fetchOrFail } from '@front/domain/fetching-redux'
 
 import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods'
 import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods'
@@ -12,12 +12,12 @@ export const refetchData = () =>
     const statsCachedPeriods = getStatsCachedPeriods(getState())
 
     await Promise.all([
-      dispatch(fetchFirstTransactionDate() as any),
+      dispatch(fetchFirstTransactionDate()),
       ...historyCachedPeriods.map(({ from, to, groupBy }) =>
-        dispatch(forceFetchHistory(from, to, groupBy) as any),
+        dispatch(forceFetchHistory(from, to, groupBy)),
       ),
       ...statsCachedPeriods.map(({ from, to, groupBy, currency }) =>
-        dispatch(forceFetchStats(from, to, groupBy, currency) as any),
+        dispatch(forceFetchStats(from, to, groupBy, currency)),
       ),
     ])
   })

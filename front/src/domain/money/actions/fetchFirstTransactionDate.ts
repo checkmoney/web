@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store/fetchingRedux/fetchOrFail'
+import { fetchOrFail } from '@front/domain/fetching-redux'
 
 import { fetchFirstTransactionDateRequest } from '../api/fetchFirstTransactionDateRequest'
 import { actions as dataActions } from '../reducer/firstTransactionDate'

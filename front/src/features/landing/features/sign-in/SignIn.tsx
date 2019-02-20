@@ -2,22 +2,23 @@ import { useCallback } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
 
-import { useSignIn } from '@front/domain/user/hooks/useSignIn'
+import { useThunk } from '@front/domain/store'
+import { signIn } from '@front/domain/user/actions/signIn'
 import { getSignInFetching } from '@front/domain/user/selectors/getSignInFetching'
 import { Input } from '@front/features/final-form'
-import { pushRoute } from '@front/pushRoute'
-import { InputType } from '@front/ui/atoms/input/InputType'
-import { Label } from '@front/ui/atoms/label'
-import { LoadingButton } from '@front/ui/atoms/loading-button'
-import { Card } from '@front/ui/molecules/card'
+import { pushRoute } from '@front/features/routing'
+import { InputType } from '@front/ui/components/form/input/InputType'
+import { Label } from '@front/ui/components/form/label'
+import { LoadingButton } from '@front/ui/components/form/loading-button'
+import { Card } from '@front/ui/components/layout/card'
 
 import * as styles from '../SignForm.css'
 
 export const SignIn = () => {
-  const signIn = useSignIn()
+  const dispatch = useThunk()
 
   const onSubmit = useCallback(async ({ email, password }) => {
-    await signIn(email, password)
+    await dispatch(signIn(email, password))
     await pushRoute('/app')
   }, [])
 

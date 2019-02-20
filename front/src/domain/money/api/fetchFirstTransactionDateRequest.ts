@@ -1,4 +1,4 @@
-import { Api } from '@front/domain/api/Api'
+import { Api } from '@front/domain/api'
 import { actualizeStore } from '@front/domain/store/utils/actualizeStore'
 
 export const fetchFirstTransactionDateRequest = (api: Api) => (): Promise<

@@ -1,6 +1,6 @@
 import { ReactChild, ReactFragment } from 'react'
 
-import NextRoutes from '../routes'
+import NextRoutes from '../../../routes'
 
 interface Props {
   route?: string

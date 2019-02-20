@@ -1,5 +1,5 @@
-import { Label } from '@front/ui/atoms/label'
-import { DatePicker } from '@front/ui/molecules/date-picker'
+import { DatePicker } from '../date-picker'
+import { Label } from '../label'
 
 interface Props {
   start: Date

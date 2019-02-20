@@ -1,9 +1,11 @@
-import { pushRoute } from '@front/pushRoute'
-import { Button } from '@front/ui/atoms/button'
+import { pushRoute, useRoutePrefetching } from '@front/features/routing'
+import { Button } from '@front/ui/components/form/button'
 
 import * as styles from './Hello.css'
 
 export const Hello = () => {
+  useRoutePrefetching(['/app'])
+
   return (
     <section className={styles.container}>
       <h1>

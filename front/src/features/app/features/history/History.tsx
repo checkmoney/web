@@ -1,18 +1,19 @@
 import { endOfMonth, startOfMonth } from 'date-fns'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useDispatch, useMappedState } from 'redux-react-hook'
+import { useMappedState } from 'redux-react-hook'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
 import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
-import { Loader } from '@front/ui/molecules/loader'
-import { Period } from '@front/ui/organisms/period'
+import { useThunk } from '@front/domain/store'
+import { Period } from '@front/ui/components/form/period'
+import { Loader } from '@front/ui/components/layout/loader'
 import { GroupBy } from '@shared/enum/GroupBy'
 
-import { Header } from '../../components/Header/Header'
+import { Header } from '../../components/header'
+import { Incomes } from './components/Incomes'
+import { Outcomes } from './components/Outcomes'
 import * as styles from './History.css'
-import { Incomes } from './organisms/Incomes'
-import { Outcomes } from './organisms/Outcomes'
 
 interface Props {
   className?: string
@@ -22,7 +23,7 @@ const groupBy = GroupBy.Month
 
 export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus)
-  const dispatch = useDispatch()
+  const dispatch = useThunk()
 
   const [from, setFrom] = useState(startOfMonth(new Date()))
   const [to, setTo] = useState(endOfMonth(new Date()))
@@ -40,7 +41,7 @@ export const History = ({ className }: Props) => {
 
   useEffect(
     () => {
-      dispatch(fetchHistory(actualFrom, actualTo, groupBy) as any)
+      dispatch(fetchHistory(actualFrom, actualTo, groupBy))
     },
     [actualFrom, actualTo],
   )

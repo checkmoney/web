@@ -2,8 +2,9 @@ import { useCallback } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
 
-import { useCreateIncome } from '@front/domain/money/hooks/useCreateIncome'
+import { createIncome } from '@front/domain/money/actions/createIncome'
 import { getCreateIncomeFetching } from '@front/domain/money/selectors/getCreateIncomeFetching'
+import { useThunk } from '@front/domain/store'
 import {
   DatePicker,
   EnumSelect,
@@ -11,9 +12,9 @@ import {
   InputMoney,
 } from '@front/features/final-form'
 import { getCurrencyName } from '@front/helpers/getCurrencyName'
-import { Label } from '@front/ui/atoms/label'
-import { LoadingButton } from '@front/ui/atoms/loading-button'
-import { Card } from '@front/ui/molecules/card'
+import { Label } from '@front/ui/components/form/label'
+import { LoadingButton } from '@front/ui/components/form/loading-button'
+import { Card } from '@front/ui/components/layout/card'
 import { Currency } from '@shared/enum/Currency'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
@@ -24,7 +25,7 @@ interface Props {
 }
 
 export const CreateIncome = ({ className }: Props) => {
-  const create = useCreateIncome()
+  const dispatch = useThunk()
 
   const fieldsToIncomeModel = useCallback(
     ({ amount, source, currency, date }: any): IncomeModel => ({
@@ -38,7 +39,7 @@ export const CreateIncome = ({ className }: Props) => {
 
   const onSubmit = useCallback(async fields => {
     const income = fieldsToIncomeModel(fields)
-    await create(income)
+    await dispatch(createIncome(income))
   }, [])
 
   const fetching = useMappedState(getCreateIncomeFetching)
