@@ -2,8 +2,9 @@ import { useCallback } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
 
-import { useCreateOutcome } from '@front/domain/money/hooks/useCreateOutcome'
+import { createOutcome } from '@front/domain/money/actions/createOutcome'
 import { getCreateOutcomeFetching } from '@front/domain/money/selectors/getCreateOutcomeFetching'
+import { useThunk } from '@front/domain/store'
 import {
   DatePicker,
   EnumSelect,
@@ -24,7 +25,7 @@ interface Props {
 }
 
 export const CreateOutcome = ({ className }: Props) => {
-  const create = useCreateOutcome()
+  const dispath = useThunk()
 
   const fieldsToOutcomeModel = useCallback(
     ({ amount, category, currency, date }: any): OutcomeModel => ({
@@ -38,7 +39,7 @@ export const CreateOutcome = ({ className }: Props) => {
 
   const onSubmit = useCallback(async fields => {
     const outcome = fieldsToOutcomeModel(fields)
-    await create(outcome)
+    await dispath(createOutcome(outcome))
   }, [])
 
   const fetching = useMappedState(getCreateOutcomeFetching)

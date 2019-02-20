@@ -9,5 +9,5 @@ export const createOutcome = (outcomeFields: OutcomeModel) =>
   fetchOrFail(outcomeFetchingActions, async (dispatch, getApi) => {
     await createOutcomeRequest(getApi())(outcomeFields)
 
-    await dispatch(refetchData() as any)
+    await dispatch(refetchData())
   })

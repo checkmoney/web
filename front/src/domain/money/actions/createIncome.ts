@@ -9,5 +9,5 @@ export const createIncome = (incomeFields: IncomeModel) =>
   fetchOrFail(incomeFetchingActions, async (dispatch, getApi) => {
     await createIncomeRequest(getApi())(incomeFields)
 
-    await dispatch(refetchData() as any)
+    await dispatch(refetchData())
   })
