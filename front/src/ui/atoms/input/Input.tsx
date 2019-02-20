@@ -1,9 +1,15 @@
 import { Input as AntInput } from 'antd'
 import { ChangeEvent, useCallback } from 'react'
 
+import { resolveType } from './helpers/resolveType'
 import { InputProps } from './InputProps'
+import { InputType } from './InputType'
 
-export const Input = ({ onChange, ...props }: InputProps) => {
+export const Input = ({
+  onChange,
+  type = InputType.Default,
+  ...props
+}: InputProps) => {
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
@@ -13,5 +19,7 @@ export const Input = ({ onChange, ...props }: InputProps) => {
     [onChange],
   )
 
-  return <AntInput onChange={handleChange} {...props} />
+  return (
+    <AntInput type={resolveType(type)} onChange={handleChange} {...props} />
+  )
 }
