@@ -43,12 +43,9 @@ export const Stats = ({ className }: Props) => {
   )
   const stats = useMappedState(statsSelector)
 
-  useEffect(
-    () => {
-      dispatch(fetchStats(actualFrom, actualTo, groupBy, currency))
-    },
-    [actualFrom, actualTo, currency],
-  )
+  useEffect(() => {
+    dispatch(fetchStats(actualFrom, actualTo, groupBy, currency))
+  }, [actualFrom, actualTo, currency])
 
   return (
     <section className={className}>

@@ -19,12 +19,9 @@ export const useCustomInput = <Value>(
     [onChange],
   )
 
-  useEffect(
-    () => {
-      changeCurrentValue(value)
-    },
-    [value],
-  )
+  useEffect(() => {
+    changeCurrentValue(value)
+  }, [value])
 
   return {
     currentValue,

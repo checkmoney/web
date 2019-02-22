@@ -39,12 +39,9 @@ export const History = ({ className }: Props) => {
   )
   const history = useMappedState(historySelector)
 
-  useEffect(
-    () => {
-      dispatch(fetchHistory(actualFrom, actualTo, groupBy))
-    },
-    [actualFrom, actualTo],
-  )
+  useEffect(() => {
+    dispatch(fetchHistory(actualFrom, actualTo, groupBy))
+  }, [actualFrom, actualTo])
 
   return (
     <section className={className}>

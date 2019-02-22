@@ -28,7 +28,7 @@ export class DbOptionsFactory implements TypeOrmOptionsFactory {
       username: this.config.getStringOrElse('DB_USER', 'admin'),
       password: this.config.getStringOrElse('DB_PASSWORD', 'admin'),
       database: this.config.getStringOrElse('DB_NAME', 'oncohelp'),
-      entities: [__dirname + `/../**/*.{entity,vo}.{ts,js}`],
+      entities: [join(__dirname, '/../**/*.{entity,vo}.{ts,js}')],
       synchronize: !this.config.getBooleanOrElse('PRODUCTION_READY', true),
       ssl: createSslConfig(),
     }

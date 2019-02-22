@@ -15,7 +15,8 @@ export class Profile {
 
   public changeName(newName: string): void {
     if (newName.length < 1) {
-      return this.removeName()
+      this.removeName()
+      return
     }
 
     this._name = newName
