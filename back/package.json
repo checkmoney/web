@@ -16,7 +16,7 @@
     "@nestjs/jwt": "^0.2.1",
     "@nestjs/swagger": "^2.5.1",
     "@nestjs/typeorm": "^5.2.2",
-    "@solid-soda/config": "^1.1.0",
+    "@solid-soda/config": "^1.1.6",
     "@solid-soda/evolutions": "^0.0.6",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

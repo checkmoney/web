@@ -1077,10 +1077,10 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@solid-soda/config@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@solid-soda/config/-/config-1.1.0.tgz#f8c434946574770040a4d80875e5c786b0364970"
-  integrity sha512-A7ZVfhRyRHSBQK8S70V/FUL78KJk3KMzMGuIUUdxeUaScviwLbi4SF1XtbA/utQBQ+jaRIfkpU4TIwqLeJEXJw==
+"@solid-soda/config@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@solid-soda/config/-/config-1.1.6.tgz#c4453be9337b10f8dd385f9b4b61b04ed7d4044b"
+  integrity sha512-ji6SiRez4HNOC6W4F2IbugAnx+EdXi3HzOPox1UeWpjBiCia78B2NneJNhgAvZDSQM51Jc4YAVQ/BWRZ6Pg1qg==
   dependencies:
     change-case "^3.1.0"
     dotenv "^6.2.0"
@@ -1096,10 +1096,10 @@
     md5 "^2.2.1"
     path "^0.12.7"
 
-"@solid-soda/scripts@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@solid-soda/scripts/-/scripts-1.0.6.tgz#e3201244165ca932962dcf47f95532f39dd848ac"
-  integrity sha512-XRCfUOaF6ZQfxIrtbb3efEhxVjvEAi9Hp6efKeCtCscA9Zl442OfAiMSEySW8rMrKoE07BJ6uGYgozsL1+s1WA==
+"@solid-soda/scripts@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@solid-soda/scripts/-/scripts-1.1.3.tgz#a31e1b5cc7d03d597be609dc61e5982ac8b9b7c2"
+  integrity sha512-Q9OJmYXE2lCEHmhSh8R1loMZDgSzxpo+fOFSIxMI026kIDxedDC1GKe7eH4cZJqugJjHX7Gzi6Xm/jU4Ww5FwQ==
   dependencies:
     "@commitlint/cli" "7.x"
     "@commitlint/config-conventional" "7.x"
