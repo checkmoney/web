@@ -1,9 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, Post, Query, Delete, Param } from '@nestjs/common'
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
   ApiOperation,
   ApiUseTags,
+  ApiOkResponse,
 } from '@nestjs/swagger'
 
 import { Accountant } from '@back/money/application/Accountant'
@@ -51,5 +52,15 @@ export class TransactionController {
     await this.accountant.outcome(login, request)
 
     return request
+  }
+
+  @Delete('/:id')
+  @ApiOperation({ title: 'Delete transaction' })
+  @ApiOkResponse({ description: 'Transaction deleted' })
+  public async remove(
+    @Param('id') id: string,
+    @CurrentUser() { login }: TokenPayload,
+  ) {
+    await this.accountant.remove(id, login)
   }
 }

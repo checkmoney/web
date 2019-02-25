@@ -15,6 +15,21 @@ class OutomeRepo {
     private readonly outcomeRepo: Repository<Outcome>,
   ) {}
 
+  public async findForUser(
+    id: string,
+    userLogin: string,
+  ): Promise<Option<Outcome>> {
+    const outcome = await this.outcomeRepo
+      .createQueryBuilder('outcome')
+      .innerJoin('outcome.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .where('outcome.id = :id', { id })
+      .getOne()
+
+    return Option.of(outcome)
+  }
+
   public async findEarliest(userLogin: string): Promise<Option<Outcome>> {
     const income = await this.outcomeRepo
       .createQueryBuilder('outcome')

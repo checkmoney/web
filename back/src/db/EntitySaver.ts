@@ -11,4 +11,8 @@ export class EntitySaver {
   public async save<Entity>(...entities: Entity[]): Promise<void> {
     await this.em.save(entities)
   }
+
+  public async remove<Entity>(...entities: Entity[]): Promise<void> {
+    await this.em.remove(entities)
+  }
 }

@@ -15,6 +15,21 @@ class IncomeRepo {
     private readonly incomeRepo: Repository<Income>,
   ) {}
 
+  public async findForUser(
+    id: string,
+    userLogin: string,
+  ): Promise<Option<Income>> {
+    const income = await this.incomeRepo
+      .createQueryBuilder('income')
+      .innerJoin('income.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .where('income.id = :id', { id })
+      .getOne()
+
+    return Option.of(income)
+  }
+
   public async findEarliest(userLogin: string): Promise<Option<Income>> {
     const income = await this.incomeRepo
       .createQueryBuilder('income')
