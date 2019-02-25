@@ -32,10 +32,14 @@ action "Check circular dependency" {
 
 workflow "Deploy" {
   resolves = [
-    "Push back image",
     "Deploy on server",
   ]
-  on = "release"
+  on = "push"
+}
+
+action "Only on tag" {
+  uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
+  args = "tag"
 }
 
 action "Login to Docker" {
@@ -44,6 +48,7 @@ action "Login to Docker" {
     "DOCKER_PASSWORD",
     "DOCKER_USERNAME",
   ]
+  needs = ["Only on tag"]
 }
 
 action "Build back image" {
