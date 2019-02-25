@@ -2,6 +2,6 @@ import { ButtonType } from '../ButtonType'
 
 export const resolveClassName = (type: ButtonType): string =>
   ({
-    [ButtonType.Primary]: 'defaultButton',
+    [ButtonType.Primary]: '',
     [ButtonType.Text]: 'textButton',
   }[type])
