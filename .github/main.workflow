@@ -37,9 +37,9 @@ workflow "Deploy" {
   on = "push"
 }
 
-action "Only on tag" {
+action "Only on master" {
   uses = "actions/bin/filter@24a566c2524e05ebedadef0a285f72dc9b631411"
-  args = "tag v*"
+  args = "branch master"
 }
 
 action "Login to Docker" {
@@ -48,7 +48,7 @@ action "Login to Docker" {
     "DOCKER_PASSWORD",
     "DOCKER_USERNAME",
   ]
-  needs = ["Only on tag"]
+  needs = ["Only on master"]
 }
 
 action "Build back image" {
