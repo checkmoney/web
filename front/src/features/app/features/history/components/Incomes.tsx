@@ -3,6 +3,8 @@ import { displayNullableDate } from '@front/helpers/displayNullableDtae'
 import { Table } from '@front/ui/components/layout/table'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
+import { DeleteButton } from './DeleteButton'
+
 interface Props {
   incomes: IncomeModel[]
   className?: string
@@ -19,6 +21,10 @@ const columns = {
   },
   source: {
     title: 'Source',
+  },
+  id: {
+    title: 'Actions',
+    transform: (id: string) => <DeleteButton id={id} />,
   },
 }
 
