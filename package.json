@@ -5,7 +5,7 @@
     "front",
     "back"
   ],
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && cd back && yarn prestart:back:prod && cd ../front && yarn prestart:front:prod",
