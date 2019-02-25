@@ -1,0 +1,8 @@
+.defaultButton {
+  margin: 0;
+}
+
+.textButton {
+  border: none;
+  box-shadow: none;
+}
