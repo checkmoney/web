@@ -10,6 +10,9 @@ import { ProfileController } from './presentation/http/controller/ProfileControl
 import { InvalidCredentialsFilter } from './presentation/http/filter/InvalidCredentialsFilter'
 import { LoginAlreadyTakenFilter } from './presentation/http/filter/LoginAlreadyTakenFilter'
 import { JwtGuard } from './presentation/http/security/JwtGuard'
+import { AuthActions } from './presentation/telegram/actions/AuthActions'
+import { InvalidCredentialsCatcher } from './presentation/telegram/catcher/InvalidCredentialsCatcher'
+import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser'
 
 import { User } from './domain/User.entity'
 import { UserRepository } from './domain/UserRepository'
@@ -21,7 +24,6 @@ import { Registrator } from './application/Registrator'
 import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory'
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder'
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder'
-import { AuthActions } from './presentation/telegram/actions/AuthActions'
 
 @Module({
   imports: [
@@ -46,6 +48,8 @@ import { AuthActions } from './presentation/telegram/actions/AuthActions'
     UserRepository,
     JwtGuard,
     AuthActions,
+    InvalidCredentialsCatcher,
+    IsKnownUser,
   ],
   exports: [UserRepository, JwtGuard, Authenticator],
 })

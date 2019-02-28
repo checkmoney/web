@@ -1,8 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
-import {
-  TelegramModule as OriginalTelegramModule,
-  TelegramBot,
-} from 'nest-telegram'
+import { TelegramModule as OriginalTelegramModule } from 'nest-telegram'
 
 import { ConfigModule } from '@back/config/config.module'
 

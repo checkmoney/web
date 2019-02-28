@@ -31,6 +31,17 @@ class UserRepo {
 
     return Option.of(user)
   }
+
+  public async findOneByTelegram(telegramId: number): Promise<Option<User>> {
+    const user = await this.userRepo
+      .createQueryBuilder()
+      .where({
+        telegramId,
+      })
+      .getOne()
+
+    return Option.of(user)
+  }
 }
 
 export const UserRepository = UserRepo
