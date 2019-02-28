@@ -32,6 +32,18 @@ class UserRepo {
     return Option.of(user)
   }
 
+  public async getOneByTeleram(telegramId: number): Promise<User> {
+    const user = await this.findOneByTelegram(telegramId)
+
+    if (user.nonEmpty()) {
+      return user.get()
+    }
+
+    throw new EntityNotFoundException(User.name, {
+      telegramId,
+    })
+  }
+
   public async findOneByTelegram(telegramId: number): Promise<Option<User>> {
     const user = await this.userRepo
       .createQueryBuilder()

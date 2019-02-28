@@ -13,6 +13,7 @@ import { JwtGuard } from './presentation/http/security/JwtGuard'
 import { AuthActions } from './presentation/telegram/actions/AuthActions'
 import { InvalidCredentialsCatcher } from './presentation/telegram/catcher/InvalidCredentialsCatcher'
 import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser'
+import { CurrentSender } from './presentation/telegram/transformer/CurrentSender'
 
 import { User } from './domain/User.entity'
 import { UserRepository } from './domain/UserRepository'
@@ -50,8 +51,9 @@ import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncode
     AuthActions,
     InvalidCredentialsCatcher,
     IsKnownUser,
+    CurrentSender,
   ],
-  exports: [UserRepository, JwtGuard, Authenticator],
+  exports: [UserRepository, JwtGuard, Authenticator, CurrentSender],
 })
 export class UserModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {

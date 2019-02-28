@@ -11,7 +11,7 @@ import {
   Input,
   InputMoney,
 } from '@front/features/final-form'
-import { getCurrencyName } from '@front/helpers/getCurrencyName'
+import { getCurrencyName } from '@shared/helpers/getCurrencyName'
 import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { Card } from '@front/ui/components/layout/card'

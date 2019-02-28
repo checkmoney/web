@@ -7,7 +7,7 @@ import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstT
 import { getStats } from '@front/domain/money/selectors/getStats'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
 import { useThunk } from '@front/domain/store'
-import { displayMoney } from '@front/helpers/displayMoney'
+import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
 import { Period } from '@front/ui/components/form/period'
 import { Loader } from '@front/ui/components/layout/loader'
