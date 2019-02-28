@@ -33,7 +33,7 @@ export class HandlebarsTemplating implements Templating {
     }
 
     const templateContent = (await promisify(readFile)(
-      resolve(__dirname, '../../../../templates', `${templateName}.twig`),
+      resolve(__dirname, '../../../../templates', `${templateName}.hbs`),
     )).toString()
 
     const compiled = Handlebars.compile(templateContent)
