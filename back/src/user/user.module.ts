@@ -21,6 +21,7 @@ import { Registrator } from './application/Registrator'
 import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory'
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder'
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder'
+import { AuthActions } from './presentation/telegram/actions/AuthActions'
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncode
     ProfileEditor,
     UserRepository,
     JwtGuard,
+    AuthActions,
   ],
   exports: [UserRepository, JwtGuard, Authenticator],
 })
