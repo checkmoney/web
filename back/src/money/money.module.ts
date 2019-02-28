@@ -18,6 +18,8 @@ import { ExchangeRateApi } from './insfrastructure/ExchangeRateApi'
 import { HistoryController } from './presentation/http/controller/HistoryController'
 import { StatisticsController } from './presentation/http/controller/StatisticsController'
 import { TransactionController } from './presentation/http/controller/TransactionController'
+import { TransactionActions } from './presentation/telegram/actions/TransactionActions'
+import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/UnexpectedParameterCatcher'
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { TransactionController } from './presentation/http/controller/Transactio
     CurrencyConverter,
     ExchangeRateApi,
     ExchangeRateRepository,
+    TransactionActions,
+    UnexpectedParameterCatcher,
   ],
 })
 export class MoneyModule implements NestModule {

@@ -25,12 +25,12 @@ const client = new Client({
 })
 
 client.connect().then(() => {
-  console.log('Connected!')
+  console.log(`Connected to ${process.env.DB_NAME}`)
 })
 
 module.exports = {
   evolutionsFolderPath: ['evolutions'],
   runQuery(query) {
-    return client.query(query)
+    return client.query(query).then(result => result.rows)
   },
 }

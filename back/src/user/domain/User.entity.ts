@@ -14,6 +14,9 @@ export class User {
   @Column()
   private password: string | undefined
 
+  @Column()
+  private telegramId: string | undefined
+
   public constructor(login: string) {
     this.login = login
 
@@ -32,5 +35,9 @@ export class User {
     encoder: PasswordEncoder,
   ): Promise<boolean> {
     return encoder.isPasswordValid(this.password, rawPassword)
+  }
+
+  public attachTelegram(telegramId: number): void {
+    this.telegramId = telegramId.toString()
   }
 }

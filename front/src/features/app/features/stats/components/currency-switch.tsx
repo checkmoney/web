@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { getCurrencyName } from '@front/helpers/getCurrencyName'
+import { getCurrencyName } from '@shared/helpers/getCurrencyName'
 import { EnumSelect } from '@front/ui/components/form/select'
 import { Currency } from '@shared/enum/Currency'
 

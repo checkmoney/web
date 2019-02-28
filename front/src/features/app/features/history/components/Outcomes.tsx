@@ -1,4 +1,4 @@
-import { displayMoney } from '@front/helpers/displayMoney'
+import { displayMoney } from '@shared/helpers/displayMoney'
 import { displayNullableDate } from '@front/helpers/displayNullableDtae'
 import { Table } from '@front/ui/components/layout/table'
 import { OutcomeModel } from '@shared/models/money/OutcomeModel'
