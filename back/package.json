@@ -4,7 +4,7 @@
   "scripts": {
     "start:back:dev": "NODE_ENV=development nodemon --config ./nodemon.json",
     "start:back:debug": "NODE_ENV=development nodemon --config nodemon-debug.json",
-    "prestart:back:prod": "tsc",
+    "prestart:back:prod": "tsc && cp -a ./templates ../dist/back/back",
     "start:back:prod": "pm2 start ./pm2.config.js",
     "evolutions:init": "evolutions --init",
     "evolutions:run": "evolutions"
