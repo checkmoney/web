@@ -17,14 +17,6 @@ export class CurrencyConverter {
     private readonly entitySaver: EntitySaver,
   ) {}
 
-  public async convertApproximately(
-    from: Currency,
-    to: Currency,
-    amount: number,
-  ): Promise<number> {
-    return 0
-  }
-
   public async convert(
     from: Currency,
     to: Currency,
