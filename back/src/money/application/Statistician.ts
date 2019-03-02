@@ -61,6 +61,7 @@ export class Statistician {
         item.currency,
         targetCurrency,
         item.amount,
+        item.date,
       )
 
       return new Transaction(newAmount, targetCurrency, item.date)

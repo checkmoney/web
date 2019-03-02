@@ -10,16 +10,21 @@ export class ExchangeRate {
   @PrimaryColumn({ type: 'enum', enum: Currency })
   public readonly to: Currency
 
-  @Column()
-  public readonly due: Date
+  @PrimaryColumn()
+  public readonly collectAt: Date
 
   @Column({ type: 'float' })
   public readonly rate: number
 
-  public constructor(from: Currency, to: Currency, due: Date, rate: number) {
+  public constructor(
+    from: Currency,
+    to: Currency,
+    collectAt: Date,
+    rate: number,
+  ) {
     this.from = from
     this.to = to
-    this.due = due
+    this.collectAt = collectAt
     this.rate = rate
   }
 }
