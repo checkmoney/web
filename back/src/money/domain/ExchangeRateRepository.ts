@@ -31,6 +31,17 @@ class ExchangeRateRepo {
       .then(this.toOption)
   }
 
+  public async findLast(
+    from: Currency,
+    to: Currency,
+  ): Promise<Option<ExchangeRate>> {
+    return this.createFromToQueryBuilder('rate')
+      .orderBy('rate.collectAt', 'DESC')
+      .setParameters({ from, to })
+      .getOne()
+      .then(this.toOption)
+  }
+
   public async findClosest(
     from: Currency,
     to: Currency,

@@ -7,6 +7,7 @@ import { Currency } from '@shared/enum/Currency'
 import { ExchangeRate } from '../domain/ExchangeRate.entity'
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository'
 import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi'
+import { Option } from 'tsoption'
 
 @Injectable()
 export class CurrencyConverter {
@@ -15,6 +16,14 @@ export class CurrencyConverter {
     private readonly exchangeRateRepo: ExchangeRateRepository,
     private readonly entitySaver: EntitySaver,
   ) {}
+
+  public async convertApproximately(
+    from: Currency,
+    to: Currency,
+    amount: number,
+  ): Promise<number> {
+    return 0
+  }
 
   public async convert(
     from: Currency,
@@ -28,22 +37,22 @@ export class CurrencyConverter {
 
     const normalizedDate = startOfHour(when)
 
-    const rate = await this.getExchangeRate(from, to, normalizedDate).catch(
-      async e => {
-        // if correct rate getting failed, we can return the closest available rate
-        const closestRate = await this.exchangeRateRepo.findClosest(
-          from,
-          to,
-          normalizedDate,
-        )
+    const tryTo = (promiseRate: Promise<Option<ExchangeRate>>) => async (
+      e: Error,
+    ) => {
+      const optionalRate = await promiseRate
 
-        if (closestRate.nonEmpty()) {
-          return closestRate.get().rate
-        }
+      if (optionalRate.nonEmpty()) {
+        return optionalRate.get().rate
+      }
 
-        throw e
-      },
-    )
+      throw e
+    }
+
+    const rate = await this.getExchangeRate(from, to, normalizedDate)
+      .catch(tryTo(this.exchangeRateRepo.findClosest(from, to, normalizedDate)))
+      .catch(() => this.fetchExchangeRate(from, to, new Date()))
+      .catch(tryTo(this.exchangeRateRepo.findLast(from, to)))
 
     return Math.round(amount * rate)
   }
