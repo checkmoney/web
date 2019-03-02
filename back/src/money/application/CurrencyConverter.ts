@@ -77,16 +77,13 @@ export class CurrencyConverter {
   ): Promise<number> {
     const MIN_DAY_FOR_HISTORY_TRANSACTION = 2
 
-    const rateIsHistory =
+    const rateIsOld =
       differenceInDays(when, new Date()) > MIN_DAY_FOR_HISTORY_TRANSACTION
 
-    const getNowRate = () => this.exchangeRateApi.getExchangeRate(from, to)
+    if (rateIsOld) {
+      return this.exchangeRateApi.getHistoryExchangeRate(from, to, when)
+    }
 
-    const getHistoryRate = () =>
-      this.exchangeRateApi
-        .getHistoryExchangeRate(from, to, when)
-        .catch(getNowRate) // Okay, now rate is ok
-
-    return rateIsHistory ? getNowRate() : getHistoryRate()
+    return this.exchangeRateApi.getExchangeRate(from, to)
   }
 }
