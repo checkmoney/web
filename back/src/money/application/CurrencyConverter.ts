@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { addDays } from 'date-fns'
+import { differenceInDays, startOfHour } from 'date-fns'
 
 import { EntitySaver } from '@back/db/EntitySaver'
 import { Currency } from '@shared/enum/Currency'
@@ -20,36 +20,73 @@ export class CurrencyConverter {
     from: Currency,
     to: Currency,
     amount: number,
+    when: Date,
   ): Promise<number> {
     if (from === to) {
       return amount
     }
 
-    const rate = await this.getExchangeRate(from, to)
+    const normalizedDate = startOfHour(when)
+
+    const rate = await this.getExchangeRate(from, to, normalizedDate).catch(
+      async e => {
+        // if correct rate getting failed, we can return the closest available rate
+        const closestRate = await this.exchangeRateRepo.findClosest(
+          from,
+          to,
+          normalizedDate,
+        )
+
+        if (closestRate.nonEmpty()) {
+          return closestRate.get().rate
+        }
+
+        throw e
+      },
+    )
 
     return Math.round(amount * rate)
   }
 
-  private async getExchangeRate(from: Currency, to: Currency): Promise<number> {
-    const existRate = await this.exchangeRateRepo.find(from, to)
+  private async getExchangeRate(
+    from: Currency,
+    to: Currency,
+    when: Date,
+  ): Promise<number> {
+    const existRate = await this.exchangeRateRepo.find(from, to, when)
 
-    const overdue = existRate.map(rate => rate.due < new Date()).getOrElse(true)
-
-    if (existRate.nonEmpty() && !overdue) {
+    if (existRate.nonEmpty()) {
       return existRate.get().rate
     }
 
-    const actualRate = await this.exchangeRateApi.getExchangeRate(from, to)
+    const actualRate = await this.fetchExchangeRate(from, to, when)
 
-    const newRate = new ExchangeRate(
-      from,
-      to,
-      addDays(new Date(), 1),
-      actualRate,
-    )
+    const newRate = new ExchangeRate(from, to, when, actualRate)
 
-    await this.entitySaver.save(newRate)
+    await this.entitySaver.save(newRate).catch(() => {
+      // Okay, rate not saved
+    })
 
     return newRate.rate
+  }
+
+  private async fetchExchangeRate(
+    from: Currency,
+    to: Currency,
+    when: Date,
+  ): Promise<number> {
+    const MIN_DAY_FOR_HISTORY_TRANSACTION = 2
+
+    const rateIsHistory =
+      differenceInDays(when, new Date()) > MIN_DAY_FOR_HISTORY_TRANSACTION
+
+    const getNowRate = () => this.exchangeRateApi.getExchangeRate(from, to)
+
+    const getHistoryRate = () =>
+      this.exchangeRateApi
+        .getHistoryExchangeRate(from, to, when)
+        .catch(getNowRate) // Okay, now rate it ok
+
+    return rateIsHistory ? getNowRate() : getHistoryRate()
   }
 }
