@@ -85,7 +85,7 @@ export class CurrencyConverter {
     const getHistoryRate = () =>
       this.exchangeRateApi
         .getHistoryExchangeRate(from, to, when)
-        .catch(getNowRate) // Okay, now rate it ok
+        .catch(getNowRate) // Okay, now rate is ok
 
     return rateIsHistory ? getNowRate() : getHistoryRate()
   }
