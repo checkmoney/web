@@ -47,7 +47,7 @@ class ExchangeRateRepo {
     const findAfter = () =>
       this.createFromToQueryBuilder('rate')
         .andWhere('rate.collectAt >= :forWhen')
-        .orderBy('rate.collectAt', 'DESC')
+        .orderBy('rate.collectAt', 'ASC')
         .setParameters({ from, to, forWhen })
         .getOne()
         .then(this.toOption)
