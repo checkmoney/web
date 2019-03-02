@@ -9,7 +9,10 @@ interface PromiseCacheMap {
   [key: string]: Promise<number>
 }
 
-const API_URL = 'https://free.currencyconverterapi.com'
+interface Query {
+  query: string
+  date?: string
+}
 
 @Injectable()
 export class ExchangeRateApi {
@@ -26,11 +29,7 @@ export class ExchangeRateApi {
     const query = `${from}_${to}`
 
     if (!this.simplePromises[query]) {
-      this.simplePromises[query] = Axios.get(
-        `${API_URL}/api/v6/convert?q=${query}&apiKey=${this.apiKey}`,
-      )
-        .then(response => response.data)
-        .then(data => data.results)
+      this.simplePromises[query] = this.request({ query })
         .then(results => results[query])
         .then(rate => parseFloat(rate.val))
     }
@@ -43,32 +42,33 @@ export class ExchangeRateApi {
     to: Currency,
     when: Date,
   ): Promise<number> {
-    const MAX_RATE_AGE_IN_DAYS = 360
+    const date = format(when, 'YYYY-MM-DD')
+    const query = `${from}_${to}`
 
-    const dateInvalidForApi =
-      differenceInDays(when, new Date()) >= MAX_RATE_AGE_IN_DAYS
-    const correctDate = dateInvalidForApi
-      ? subDays(new Date(), MAX_RATE_AGE_IN_DAYS)
-      : when
-
-    const dateQuery = format(correctDate, 'YYYY-MM-DD')
-    const currencyQuery = `${from}_${to}`
-
-    const fullQuery = `${currencyQuery}_${dateQuery}`
+    const fullQuery = `${query}_${date}`
 
     if (!this.historyPromises[fullQuery]) {
-      this.historyPromises[fullQuery] = Axios.get(
-        `${API_URL}/api/v6/convert?q=${currencyQuery}&apiKey=${
-          this.apiKey
-        }&date=${dateQuery}`,
-      )
-        .then(response => response.data)
-        .then(data => data.results)
-        .then(results => results[currencyQuery])
-        .then(dateData => dateData[dateQuery])
+      this.historyPromises[fullQuery] = this.request({
+        query,
+        date,
+      })
+        .then(results => results[query])
+        .then(dateData => dateData[date])
         .then(rate => parseFloat(rate.val))
     }
 
     return this.historyPromises[fullQuery]
+  }
+
+  private async request({ query, date }: Query) {
+    const API_URL = 'https://free.currencyconverterapi.com/api/v6/convert'
+
+    const dateParam = !!date ? `&date=${date}` : ''
+
+    const requestUrl = `${API_URL}?q=${query}&apiKey=${this.apiKey}${dateParam}`
+
+    return Axios.get(requestUrl)
+      .then(response => response.data)
+      .then(data => data.results)
   }
 }
