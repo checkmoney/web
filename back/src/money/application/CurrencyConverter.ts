@@ -82,10 +82,10 @@ export class CurrencyConverter {
       Math.abs(differenceInDays(when, new Date())) >
       MIN_DAY_FOR_HISTORY_TRANSACTION
 
-    if (rateIsOld) {
-      return this.exchangeRateApi.getHistoryExchangeRate(from, to, when)
-    }
+    const rate = await (rateIsOld
+      ? this.exchangeRateApi.getHistoryExchangeRate(from, to, when)
+      : this.exchangeRateApi.getExchangeRate(from, to))
 
-    return this.exchangeRateApi.getExchangeRate(from, to)
+    return rate
   }
 }

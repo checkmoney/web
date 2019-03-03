@@ -4,6 +4,7 @@ import Axios from 'axios'
 import { Configuration } from '@back/config/Configuration'
 import { Currency } from '@shared/enum/Currency'
 import { format, differenceInDays, subDays } from 'date-fns'
+import { ExchangeRateApiException } from './ExchangeRateApiException'
 
 interface PromiseCacheMap {
   [key: string]: Promise<number>
@@ -32,6 +33,9 @@ export class ExchangeRateApi {
       this.simplePromises[query] = this.request({ query })
         .then(results => results[query])
         .then(rate => parseFloat(rate.val))
+        .catch(() => {
+          throw new ExchangeRateApiException()
+        })
     }
 
     return this.simplePromises[query]
@@ -55,6 +59,9 @@ export class ExchangeRateApi {
         .then(results => results[query])
         .then(dateData => dateData[date])
         .then(rate => parseFloat(rate.val))
+        .catch(() => {
+          throw new ExchangeRateApiException()
+        })
     }
 
     return this.historyPromises[fullQuery]
