@@ -20,6 +20,7 @@ import { StatisticsController } from './presentation/http/controller/StatisticsC
 import { TransactionController } from './presentation/http/controller/TransactionController'
 import { TransactionActions } from './presentation/telegram/actions/TransactionActions'
 import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/UnexpectedParameterCatcher'
+import { ConversationFailedFilter } from './presentation/http/filter/ConversationFailedFilter'
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/Unex
   ],
   controllers: [TransactionController, HistoryController, StatisticsController],
   providers: [
+    ConversationFailedFilter.provider(),
     Accountant,
     Historian,
     Statistician,
