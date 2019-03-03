@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common'
 import Axios from 'axios'
 import { Option } from 'tsoption'
 import { format, differenceInDays } from 'date-fns'
 
 import { Configuration } from '@back/config/Configuration'
 import { Currency } from '@shared/enum/Currency'
+import { ExchangeRateApi } from '../ExchangeRateApi'
 
 interface PromiseCacheMap {
   [key: string]: Promise<Option<number>>
@@ -15,8 +15,7 @@ interface Query {
   date?: string
 }
 
-@Injectable()
-export class ExchangeRateApi {
+export class MannyApiClient implements ExchangeRateApi {
   private readonly apiKey: string
 
   private readonly simplePromises: PromiseCacheMap = {}

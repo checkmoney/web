@@ -6,7 +6,7 @@ import { Currency } from '@shared/enum/Currency'
 
 import { ExchangeRate } from '../domain/ExchangeRate.entity'
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository'
-import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi'
+import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi/ExchangeRateApi'
 import { Option } from 'tsoption'
 import { ConversationFailedException } from './exception/ConversationFailedException'
 
