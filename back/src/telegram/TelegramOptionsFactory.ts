@@ -14,7 +14,7 @@ export class TelegramOptionsFactory implements TelegramModuleOptionsFactory {
     this.token = config.getStringOrElse('TELEGRAM_BOT_TOKEN', 'Secret')
 
     if (config.isProd()) {
-      this.token = config.getStringOrElse(
+      this.sitePublicUrl = config.getStringOrElse(
         'API_PUBLIC_URL',
         'https://api.checkmoney.space',
       )
