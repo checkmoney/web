@@ -23,7 +23,7 @@
     "handlebars": "^4.1.0",
     "morgan": "^1.9.1",
     "nanoid": "^2.0.1",
-    "nest-telegram": "^0.2.2",
+    "nest-telegram": "^0.2.3",
     "pg": "^7.8.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.3.3",
