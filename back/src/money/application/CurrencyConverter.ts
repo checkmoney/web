@@ -43,7 +43,7 @@ export class CurrencyConverter {
 
     const rate = await this.getExchangeRate(from, to, normalizedDate)
       .catch(tryTo(this.exchangeRateRepo.findClosest(from, to, normalizedDate)))
-      .catch(() => this.fetchExchangeRate(from, to, new Date()))
+      .catch(() => this.getExchangeRate(from, to, new Date()))
       .catch(tryTo(this.exchangeRateRepo.findLast(from, to)))
 
     return Math.round(amount * rate)
@@ -79,7 +79,8 @@ export class CurrencyConverter {
     const MIN_DAY_FOR_HISTORY_TRANSACTION = 2
 
     const rateIsOld =
-      differenceInDays(when, new Date()) > MIN_DAY_FOR_HISTORY_TRANSACTION
+      Math.abs(differenceInDays(when, new Date())) >
+      MIN_DAY_FOR_HISTORY_TRANSACTION
 
     if (rateIsOld) {
       return this.exchangeRateApi.getHistoryExchangeRate(from, to, when)

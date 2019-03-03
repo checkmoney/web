@@ -68,6 +68,7 @@ class ExchangeRateRepo {
     const rateToDiff = (rate: Option<ExchangeRate>) =>
       rate
         .map(r => differenceInMilliseconds(r.collectAt, forWhen))
+        .map(Math.abs)
         .getOrElse(Infinity)
 
     const beforeDiff = rateToDiff(before)
