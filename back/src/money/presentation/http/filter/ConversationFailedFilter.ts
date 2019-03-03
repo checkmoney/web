@@ -20,6 +20,7 @@ export class ConversationFailedFilter
 
     res.status(HTTP_STATUS).json({
       status: HTTP_STATUS,
+      message: exception.message,
       ...exception,
     })
   }
