@@ -31,14 +31,7 @@ export class AppModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
     this.telegramBot.init(this.moduleRef)
 
-    if (this.config.isProd()) {
-      // in prod use webhook
-      consumer.apply(
-        this.telegramBot.getMiddleware(
-          this.config.getStringOrElse('APP_SECRET', 'secret-path'),
-        ),
-      )
-    } else {
+    if (this.config.isDev()) {
       // in dev use long poll
       this.telegramBot.startPolling()
     }
