@@ -9,6 +9,8 @@ import { UserModule } from './user/user.module'
 import { UtilsModule } from './utils/utils.module'
 import { TelegramModule } from './telegram/telegram.module'
 
+import { Configuration } from './config/Configuration'
+
 @Module({
   imports: [
     UserModule,
@@ -21,12 +23,24 @@ import { TelegramModule } from './telegram/telegram.module'
 })
 export class AppModule implements NestModule {
   public constructor(
+    private readonly config: Configuration,
     private readonly telegramBot: TelegramBot,
     private readonly moduleRef: ModuleRef,
   ) {}
 
   public configure(consumer: MiddlewareConsumer) {
     this.telegramBot.init(this.moduleRef)
-    this.telegramBot.start()
+
+    if (this.config.isProd()) {
+      // in prod use webhook
+      consumer.apply(
+        this.telegramBot.getMiddleware(
+          this.config.getStringOrElse('APP_SECRET', 'secret-path'),
+        ),
+      )
+    } else {
+      // in dev use long poll
+      this.telegramBot.startPolling()
+    }
   }
 }
