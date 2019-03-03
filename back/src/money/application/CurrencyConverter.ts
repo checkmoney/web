@@ -8,6 +8,7 @@ import { ExchangeRate } from '../domain/ExchangeRate.entity'
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository'
 import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi'
 import { Option } from 'tsoption'
+import { ConversationFailedException } from './exception/ConversationFailedException'
 
 @Injectable()
 export class CurrencyConverter {
@@ -28,50 +29,18 @@ export class CurrencyConverter {
     }
 
     const normalizedDate = startOfHour(when)
+    const normalizedNowDate = startOfHour(new Date())
 
-    const tryTo = (promiseRate: Promise<Option<ExchangeRate>>) => async (
-      e: Error,
-    ) => {
-      const optionalRate = await promiseRate
-
-      if (optionalRate.nonEmpty()) {
-        return optionalRate.get().rate
-      }
-
-      throw e
-    }
-
-    const rate = await this.getExchangeRate(from, to, normalizedDate)
-      .catch(tryTo(this.exchangeRateRepo.findClosest(from, to, normalizedDate)))
-      .catch(() => this.getExchangeRate(from, to, new Date()))
-      .catch(tryTo(this.exchangeRateRepo.findLast(from, to)))
+    const rate = await this.getExistRate(from, to, normalizedDate)
+      .catch(() => this.getActualRate(from, to, normalizedDate))
+      .catch(() => this.getClosestExistRate(from, to, normalizedDate))
+      .catch(() => this.getActualRate(from, to, normalizedNowDate))
+      .catch(() => this.getLastExistRate(from, to))
 
     return Math.round(amount * rate)
   }
 
-  private async getExchangeRate(
-    from: Currency,
-    to: Currency,
-    when: Date,
-  ): Promise<number> {
-    const existRate = await this.exchangeRateRepo.find(from, to, when)
-
-    if (existRate.nonEmpty()) {
-      return existRate.get().rate
-    }
-
-    const actualRate = await this.fetchExchangeRate(from, to, when)
-
-    const newRate = new ExchangeRate(from, to, when, actualRate)
-
-    await this.entitySaver.save(newRate).catch(() => {
-      // Okay, rate not saved
-    })
-
-    return newRate.rate
-  }
-
-  private async fetchExchangeRate(
+  private async getActualRate(
     from: Currency,
     to: Currency,
     when: Date,
@@ -82,10 +51,65 @@ export class CurrencyConverter {
       Math.abs(differenceInDays(when, new Date())) >
       MIN_DAY_FOR_HISTORY_TRANSACTION
 
-    const rate = await (rateIsOld
+    const actualRate = await (rateIsOld
       ? this.exchangeRateApi.getHistoryExchangeRate(from, to, when)
       : this.exchangeRateApi.getExchangeRate(from, to))
 
-    return rate
+    if (actualRate.nonEmpty()) {
+      const newRate = new ExchangeRate(from, to, when, actualRate.get())
+
+      await this.entitySaver.save(newRate).catch(() => {
+        // Okay, rate not saved
+      })
+
+      return newRate.rate
+    }
+
+    throw new ConversationFailedException(from, to, when)
+  }
+
+  private async getExistRate(
+    from: Currency,
+    to: Currency,
+    when: Date,
+  ): Promise<number> {
+    return this.getOrThrow(
+      this.exchangeRateRepo.find(from, to, when),
+      new ConversationFailedException(from, to, when),
+    )
+  }
+
+  private async getClosestExistRate(
+    from: Currency,
+    to: Currency,
+    when: Date,
+  ): Promise<number> {
+    return this.getOrThrow(
+      this.exchangeRateRepo.findClosest(from, to, when),
+      new ConversationFailedException(from, to, when),
+    )
+  }
+
+  private async getLastExistRate(
+    from: Currency,
+    to: Currency,
+  ): Promise<number> {
+    return this.getOrThrow(
+      this.exchangeRateRepo.findLast(from, to),
+      new ConversationFailedException(from, to, new Date()),
+    )
+  }
+
+  private async getOrThrow(
+    promiseRate: Promise<Option<ExchangeRate>>,
+    error: ConversationFailedException,
+  ): Promise<number> {
+    const rate = await promiseRate
+
+    if (rate.nonEmpty()) {
+      return rate.get().rate
+    }
+
+    throw error
   }
 }

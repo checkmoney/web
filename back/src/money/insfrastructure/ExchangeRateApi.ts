@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import Axios from 'axios'
+import { Option } from 'tsoption'
+import { format } from 'date-fns'
 
 import { Configuration } from '@back/config/Configuration'
 import { Currency } from '@shared/enum/Currency'
-import { format, differenceInDays, subDays } from 'date-fns'
-import { ExchangeRateApiException } from './ExchangeRateApiException'
 
 interface PromiseCacheMap {
-  [key: string]: Promise<number>
+  [key: string]: Promise<Option<number>>
 }
 
 interface Query {
@@ -26,16 +26,18 @@ export class ExchangeRateApi {
     this.apiKey = config.getStringOrElse('MANNY_API_KEY', '')
   }
 
-  public getExchangeRate(from: Currency, to: Currency): Promise<number> {
+  public getExchangeRate(
+    from: Currency,
+    to: Currency,
+  ): Promise<Option<number>> {
     const query = `${from}_${to}`
 
     if (!this.simplePromises[query]) {
       this.simplePromises[query] = this.request({ query })
         .then(results => results[query])
         .then(rate => parseFloat(rate.val))
-        .catch(() => {
-          throw new ExchangeRateApiException()
-        })
+        .then(rate => Option.of(rate))
+        .catch(() => Option.of(null))
     }
 
     return this.simplePromises[query]
@@ -45,7 +47,7 @@ export class ExchangeRateApi {
     from: Currency,
     to: Currency,
     when: Date,
-  ): Promise<number> {
+  ): Promise<Option<number>> {
     const date = format(when, 'YYYY-MM-DD')
     const query = `${from}_${to}`
 
@@ -59,9 +61,8 @@ export class ExchangeRateApi {
         .then(results => results[query])
         .then(dateData => dateData[date])
         .then(rate => parseFloat(rate.val))
-        .catch(() => {
-          throw new ExchangeRateApiException()
-        })
+        .then(rate => Option.of(rate))
+        .catch(() => Option.of(null))
     }
 
     return this.historyPromises[fullQuery]
