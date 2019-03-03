@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { differenceInDays, startOfHour } from 'date-fns'
+import { differenceInDays, startOfHour, startOfDay } from 'date-fns'
 
 import { EntitySaver } from '@back/db/EntitySaver'
 import { Currency } from '@shared/enum/Currency'
@@ -28,8 +28,8 @@ export class CurrencyConverter {
       return amount
     }
 
-    const normalizedDate = startOfHour(when)
-    const normalizedNowDate = startOfHour(new Date())
+    const normalizedDate = startOfDay(when)
+    const normalizedNowDate = startOfDay(new Date())
 
     const rate = await this.getExistRate(from, to, normalizedDate)
       .catch(() => this.getActualRate(from, to, normalizedDate))
