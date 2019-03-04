@@ -5,7 +5,7 @@ import * as styles from './ControlHeader.css'
 
 interface Props {
   title: string
-  children: ReactNode
+  children?: ReactNode
   className?: string
 }
 

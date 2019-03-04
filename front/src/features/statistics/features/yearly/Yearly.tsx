@@ -1,5 +1,5 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { fetchStats } from '@front/domain/money/actions/fetchStats'
@@ -9,13 +9,11 @@ import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFe
 import { useThunk } from '@front/domain/store'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
-import { Period } from '@front/ui/components/form/period'
 import { Loader } from '@front/ui/components/layout/loader'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { useMemoState } from '@front/domain/store'
-import { useActualDateRange } from '@front/ui/hooks/useActualDateRange'
 
 const groupBy = GroupBy.Year
 
@@ -29,28 +27,23 @@ export const Yearly = ({ className, currency }: Props) => {
   const fetching = useMappedState(getStatsFetchingStatus)
   const dispatch = useThunk()
 
-  const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
+  const from = useMemo(() => startOfYear(firstTransactionDate), [
     firstTransactionDate,
-    new Date(),
-    startOfYear,
-    endOfYear,
-  )
+  ])
+  const to = useMemo(() => endOfYear(new Date()), [])
 
-  const stats = useMemoState(
-    () => getStats(actualFrom, actualTo, groupBy, currency),
-    [actualFrom, actualTo, currency],
-  )
+  const stats = useMemoState(() => getStats(from, to, groupBy, currency), [
+    from,
+    currency,
+  ])
 
   useEffect(() => {
-    dispatch(fetchStats(actualFrom, actualTo, groupBy, currency))
-  }, [actualFrom, actualTo, currency])
+    dispatch(fetchStats(from, to, groupBy, currency))
+  }, [from, currency, stats.isEmpty()])
 
   return (
     <section className={className}>
-      <ControlHeader title="Yearly">
-        <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
-      </ControlHeader>
-
+      <ControlHeader title="Yearly" />
       <Loader status={fetching}>
         {stats.nonEmpty() && (
           <BarChart
