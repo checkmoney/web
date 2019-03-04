@@ -1,9 +1,8 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { fetchStats } from '@front/domain/money/actions/fetchStats'
-import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getStats } from '@front/domain/money/selectors/getStats'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
 import { useThunk, useMemoState } from '@front/domain/store'
@@ -14,28 +13,26 @@ import { Loader } from '@front/ui/components/layout/loader'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
-import { CurrencySwitch } from '@front/ui/components/controls/currency-switch'
 import { useActualDateRange } from '@front/ui/hooks/useActualDateRange'
 
-const groupBy = GroupBy.Year
+const groupBy = GroupBy.Month
 
 interface Props {
   className?: string
+  currency: Currency
 }
 
-export const Stats = ({ className }: Props) => {
-  const firstTransactionDate = useMappedState(getFirstTransactionDate)
+export const Monthly = ({ className, currency }: Props) => {
   const fetching = useMappedState(getStatsFetchingStatus)
   const dispatch = useThunk()
 
+  // TODO: nache to select year (only year)
   const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
-    firstTransactionDate,
+    new Date(),
     new Date(),
     startOfYear,
     endOfYear,
   )
-
-  const [currency, setCurrency] = useState(Currency.USD)
 
   const stats = useMemoState(
     () => getStats(actualFrom, actualTo, groupBy, currency),
@@ -48,9 +45,8 @@ export const Stats = ({ className }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title="Stats">
+      <ControlHeader title="Monthly">
         <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
-        <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
       </ControlHeader>
 
       <Loader status={fetching}>
@@ -58,7 +54,7 @@ export const Stats = ({ className }: Props) => {
           <BarChart
             displayValue={displayMoney(currency)}
             dataSets={stats.get().map(({ start, income, outcome }) => ({
-              name: format(start, 'YYYY'),
+              name: format(start, 'MMMM'),
               data: {
                 income,
                 outcome,
