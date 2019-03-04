@@ -33,10 +33,6 @@ export class MannyApiClient implements ExchangeRateApi {
 
     if (!this.simplePromises[query]) {
       this.simplePromises[query] = this.request({ query })
-        .then(results => results[query])
-        .then(rate => parseFloat(rate.val))
-        .then(rate => Option.of(rate))
-        .catch(() => Option.of(null))
     }
 
     return this.simplePromises[query]
@@ -61,21 +57,22 @@ export class MannyApiClient implements ExchangeRateApi {
     const fullQuery = `${query}_${date}`
 
     if (!this.historyPromises[fullQuery]) {
-      this.historyPromises[fullQuery] = this.request({
-        query,
-        date,
-      })
-        .then(results => results[query])
-        .then(dateData => dateData[date])
-        .then(rate => parseFloat(rate.val))
-        .then(rate => Option.of(rate))
-        .catch(() => Option.of(null))
+      this.historyPromises[fullQuery] = this.request(
+        {
+          query,
+          date,
+        },
+        dateData => dateData[date],
+      )
     }
 
     return this.historyPromises[fullQuery]
   }
 
-  private async request({ query, date }: Query) {
+  private async request(
+    { query, date }: Query,
+    mapper: (results: any) => any = v => v,
+  ): Promise<Option<number>> {
     const API_URL = 'https://free.currencyconverterapi.com/api/v6/convert'
 
     const dateParam = !!date ? `&date=${date}` : ''
@@ -85,5 +82,10 @@ export class MannyApiClient implements ExchangeRateApi {
     return Axios.get(requestUrl)
       .then(response => response.data)
       .then(data => data.results)
+      .then(results => results[query])
+      .then(mapper)
+      .then(rate => parseFloat(rate.val))
+      .then(rate => Option.of(rate))
+      .catch(() => Option.of(null))
   }
 }
