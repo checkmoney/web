@@ -1,58 +1,51 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
+import { useMedia } from 'use-media'
 
 import { fetchStats } from '@front/domain/money/actions/fetchStats'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getStats } from '@front/domain/money/selectors/getStats'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
-import { useThunk, useMemoState } from '@front/domain/store'
+import { useThunk } from '@front/domain/store'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
-import { Period } from '@front/ui/components/form/period'
 import { Loader } from '@front/ui/components/layout/loader'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
-import { CurrencySwitch } from '@front/ui/components/controls/currency-switch'
-import { useActualDateRange } from '@front/ui/hooks/useActualDateRange'
+import { useMemoState } from '@front/domain/store'
 
 const groupBy = GroupBy.Year
 
 interface Props {
   className?: string
+  currency: Currency
 }
 
-export const Stats = ({ className }: Props) => {
+export const Yearly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsFetchingStatus)
   const dispatch = useThunk()
+  const isSmall = useMedia({ maxWidth: 768 })
 
-  const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
+  const from = useMemo(() => startOfYear(firstTransactionDate), [
     firstTransactionDate,
-    new Date(),
-    startOfYear,
-    endOfYear,
-  )
+  ])
+  const to = useMemo(() => endOfYear(new Date()), [])
 
-  const [currency, setCurrency] = useState(Currency.USD)
-
-  const stats = useMemoState(
-    () => getStats(actualFrom, actualTo, groupBy, currency),
-    [actualFrom, actualTo, currency],
-  )
+  const stats = useMemoState(() => getStats(from, to, groupBy, currency), [
+    from,
+    currency,
+  ])
 
   useEffect(() => {
-    dispatch(fetchStats(actualFrom, actualTo, groupBy, currency))
-  }, [actualFrom, actualTo, currency])
+    dispatch(fetchStats(from, to, groupBy, currency))
+  }, [from, currency, stats.isEmpty()])
 
   return (
     <section className={className}>
-      <ControlHeader title="Stats">
-        <Period start={from} updateStart={setFrom} end={to} updateEnd={setTo} />
-        <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
-      </ControlHeader>
-
+      <ControlHeader title="Yearly dynamics" />
       <Loader status={fetching}>
         {stats.nonEmpty() && (
           <BarChart
@@ -64,6 +57,7 @@ export const Stats = ({ className }: Props) => {
                 outcome,
               },
             }))}
+            fitToContainer={isSmall}
           />
         )}
       </Loader>
