@@ -1,6 +1,7 @@
 import { endOfYear, format, startOfYear, getYear, parse } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
+import { useMedia } from 'use-media'
 
 import { fetchStats } from '@front/domain/money/actions/fetchStats'
 import { getStats } from '@front/domain/money/selectors/getStats'
@@ -14,7 +15,6 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { YearPicker } from '@front/ui/components/form/year-picker'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
-import { useMemo } from 'react'
 
 const groupBy = GroupBy.Month
 
@@ -27,6 +27,7 @@ export const Monthly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsFetchingStatus)
   const dispatch = useThunk()
+  const isSmall = useMedia({ maxWidth: 768 })
 
   const [year, setYear] = useState(getYear(new Date()))
 
@@ -48,7 +49,7 @@ export const Monthly = ({ className, currency }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title="Monthly">
+      <ControlHeader title="Monthly dynamics in">
         <YearPicker
           min={getYear(firstTransactionDate)}
           value={year}
@@ -67,6 +68,7 @@ export const Monthly = ({ className, currency }: Props) => {
                 outcome,
               },
             }))}
+            fitToContainer={isSmall}
           />
         )}
       </Loader>

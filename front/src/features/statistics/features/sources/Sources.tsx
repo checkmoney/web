@@ -4,17 +4,26 @@ import { sortBy } from 'lodash'
 import { Table } from '@front/ui/components/layout/table'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { Currency } from '@shared/enum/Currency'
+import { GroupBy } from '@shared/enum/GroupBy'
 
 interface Props {
   className?: string
   currency: Currency
+  group: GroupBy.Month | GroupBy.Year
+  widthPercent: number
 }
 
-export const Sources = ({ className, currency }: Props) => {
+export const Sources = ({
+  className,
+  currency,
+  group,
+  widthPercent,
+}: Props) => {
   const columns = useMemo(
     () => ({
       source: {
         title: 'Source',
+        widthPercent,
       },
       amount: {
         title: 'Amount',
@@ -39,7 +48,7 @@ export const Sources = ({ className, currency }: Props) => {
 
   return (
     <Table
-      title="Sources of income"
+      title={`What brought you money this ${group}`}
       columns={columns}
       data={fakeDate}
       hideHeader

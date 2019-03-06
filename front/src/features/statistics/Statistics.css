@@ -9,6 +9,14 @@
 
   gap: 16px;
 
+  @media (max-width: 1024px) {
+    grid-template:
+      'aside  charts'
+      'aside  charts'
+      'aside  charts'
+      / 1fr 1fr;
+  }
+
   @media (max-width: 768px) {
     grid-template:
       'aside'
@@ -26,4 +34,12 @@
 
 .charts {
   grid-area: charts;
+
+  & > * {
+    max-height: 40vh;
+
+    @media (max-width: 768px) {
+      margin-bottom: 32px;
+    }
+  }
 }

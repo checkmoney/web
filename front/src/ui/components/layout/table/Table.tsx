@@ -7,6 +7,7 @@ import './AntTable.css?CSSModulesDisable'
 interface Column {
   title: string
   transform?: (v: any) => ReactNode
+  widthPercent?: number
 }
 
 interface Columns {
@@ -43,6 +44,7 @@ export const Table = <Data extends Array<{}>>({
         ...value,
         dataIndex: key,
         render: value.transform,
+        width: value.widthPercent && `${value.widthPercent}%`,
       })),
     [columns],
   )

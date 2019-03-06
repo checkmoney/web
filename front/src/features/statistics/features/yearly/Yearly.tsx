@@ -1,6 +1,7 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
 import { useEffect, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
+import { useMedia } from 'use-media'
 
 import { fetchStats } from '@front/domain/money/actions/fetchStats'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
@@ -26,6 +27,7 @@ export const Yearly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsFetchingStatus)
   const dispatch = useThunk()
+  const isSmall = useMedia({ maxWidth: 768 })
 
   const from = useMemo(() => startOfYear(firstTransactionDate), [
     firstTransactionDate,
@@ -43,7 +45,7 @@ export const Yearly = ({ className, currency }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title="Yearly" />
+      <ControlHeader title="Yearly dynamics" />
       <Loader status={fetching}>
         {stats.nonEmpty() && (
           <BarChart
@@ -55,6 +57,7 @@ export const Yearly = ({ className, currency }: Props) => {
                 outcome,
               },
             }))}
+            fitToContainer={isSmall}
           />
         )}
       </Loader>

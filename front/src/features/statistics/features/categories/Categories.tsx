@@ -4,17 +4,26 @@ import { sortBy } from 'lodash'
 import { Currency } from '@shared/enum/Currency'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { Table } from '@front/ui/components/layout/table'
+import { GroupBy } from '@shared/enum/GroupBy'
 
 interface Props {
   className?: string
   currency: Currency
+  group: GroupBy.Month | GroupBy.Year
+  widthPercent: number
 }
 
-export const Categories = ({ className, currency }: Props) => {
+export const Categories = ({
+  className,
+  currency,
+  group,
+  widthPercent,
+}: Props) => {
   const columns = useMemo(
     () => ({
       source: {
         title: 'Category',
+        widthPercent,
       },
       amount: {
         title: 'Amount',
@@ -39,7 +48,7 @@ export const Categories = ({ className, currency }: Props) => {
 
   return (
     <Table
-      title="Where was the money spent"
+      title={`What did you spend money on this ${group}`}
       columns={columns}
       data={fakeDate}
       hideHeader

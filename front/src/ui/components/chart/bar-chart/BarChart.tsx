@@ -20,9 +20,13 @@ const defaultDisplay: Display = v => `${v}`
 interface Props {
   dataSets: DataSet[]
   displayValue?: Display
+  fitToContainer?: boolean
 }
 
-const createOptions = (displayValue: Display): ChartOptions => ({
+const createOptions = (
+  displayValue: Display,
+  maintainAspectRatio = true,
+): ChartOptions => ({
   scales: {
     yAxes: [
       {
@@ -56,11 +60,14 @@ const createOptions = (displayValue: Display): ChartOptions => ({
   legend: {
     position: 'bottom',
   },
+  responsive: true,
+  maintainAspectRatio,
 })
 
 export const BarChart = ({
   dataSets,
   displayValue = defaultDisplay,
+  fitToContainer = false,
 }: Props) => {
   const data = useMemo(
     () => ({
@@ -78,5 +85,7 @@ export const BarChart = ({
     [dataSets],
   )
 
-  return <Bar data={data} options={createOptions(displayValue)} />
+  return (
+    <Bar data={data} options={createOptions(displayValue, !fitToContainer)} />
+  )
 }
