@@ -8,7 +8,7 @@ export const createWeekGroups = ({ from, to }: DateRange): DateGroup[] => {
   const groups = []
 
   let now = startOfWeek(from)
-  while (now < subWeeks(to, 1)) {
+  while (now < to) {
     const next = addWeeks(now, 1)
     const nowYear = now.getFullYear()
     groups.push({

@@ -8,7 +8,7 @@ export const createMonthGroups = ({ from, to }: DateRange): DateGroup[] => {
   const groups = []
 
   let now = startOfMonth(from)
-  while (now < subMonths(to, 1)) {
+  while (now < to) {
     const next = addMonths(now, 1)
     const nowYear = now.getFullYear()
     groups.push({

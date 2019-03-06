@@ -6,8 +6,8 @@ export const useActualDateRange = (
   transfromFrom: (from: Date, to: Date) => Date,
   transfromTo: (to: Date, from: Date) => Date,
 ) => {
-  const [from, setFrom] = useState(transfromFrom(initialFrom, initialTo))
-  const [to, setTo] = useState(transfromTo(initialTo, initialFrom))
+  const [from, setFrom] = useState(initialFrom)
+  const [to, setTo] = useState(initialTo)
 
   const [actualFrom, actualTo] = useMemo(
     () => [transfromFrom(from, to), transfromTo(to, from)],
