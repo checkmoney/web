@@ -1,0 +1,36 @@
+.statistics {
+  display: grid;
+
+  grid-template:
+    'header header '
+    'agenda sources'
+    'charts charts '
+    / 1fr 2fr;
+
+  align-items: end;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template:
+      'header'
+      'agenda'
+      'sources'
+      'charts';
+  }
+}
+
+.header {
+  grid-area: header;
+}
+
+.agenda {
+  grid-area: agenda;
+}
+
+.sources {
+  grid-area: sources;
+}
+
+.charts {
+  grid-area: charts;
+}
