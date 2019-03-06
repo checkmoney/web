@@ -3,16 +3,12 @@
 
   grid-template:
     'aside  charts'
-    'aside  charts'
-    'aside  charts'
     / 1fr 2fr;
 
   gap: 16px;
 
   @media (max-width: 1024px) {
     grid-template:
-      'aside  charts'
-      'aside  charts'
       'aside  charts'
       / 1fr 1fr;
   }
