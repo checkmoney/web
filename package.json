@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn soda lint-staged && yarn types && yarn circular",
+      "pre-commit": "yarn soda lint-staged && yarn types && yarn circular && cd front && yarn lint:style",
       "commit-msg": "yarn soda commitlint"
     }
   },

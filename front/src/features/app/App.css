@@ -21,28 +21,28 @@
 
 .income {
   grid-area: income;
+  justify-self: stretch;
 
   min-width: 100%;
-  justify-self: stretch;
 }
 
 .outcome {
   grid-area: outcome;
+  justify-self: stretch;
 
   min-width: 100%;
-  justify-self: stretch;
 }
 
 .history {
   grid-area: history;
+  justify-self: stretch;
 
   min-width: 100%;
-  justify-self: stretch;
 }
 
 .stats {
   grid-area: stats;
+  justify-self: stretch;
 
   min-width: 100%;
-  justify-self: stretch;
 }

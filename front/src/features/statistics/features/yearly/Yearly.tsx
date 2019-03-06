@@ -15,6 +15,7 @@ import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { useMemoState } from '@front/domain/store'
+import { wantUTC } from '@front/helpers/wantUTC'
 
 const groupBy = GroupBy.Year
 
@@ -29,10 +30,10 @@ export const Yearly = ({ className, currency }: Props) => {
   const dispatch = useThunk()
   const isSmall = useMedia({ maxWidth: 768 })
 
-  const from = useMemo(() => startOfYear(firstTransactionDate), [
+  const from = useMemo(() => wantUTC(startOfYear)(firstTransactionDate), [
     firstTransactionDate,
   ])
-  const to = useMemo(() => endOfYear(new Date()), [])
+  const to = useMemo(() => wantUTC(endOfYear)(new Date()), [])
 
   const stats = useMemoState(() => getStats(from, to, groupBy, currency), [
     from,

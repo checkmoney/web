@@ -20,14 +20,6 @@
   }
 }
 
-.aside {
-  grid-area: aside;
-
-  & > *:not(:last-child) {
-    margin-bottom: 16px;
-  }
-}
-
 .charts {
   grid-area: charts;
 
@@ -37,5 +29,13 @@
     @media (max-width: 768px) {
       margin-bottom: 32px;
     }
+  }
+}
+
+.aside {
+  grid-area: aside;
+
+  & > *:not(:last-child) {
+    margin-bottom: 16px;
   }
 }

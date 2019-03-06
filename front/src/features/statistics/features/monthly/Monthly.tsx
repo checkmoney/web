@@ -15,6 +15,7 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { YearPicker } from '@front/ui/components/form/year-picker'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
+import { wantUTC } from '@front/helpers/wantUTC'
 
 const groupBy = GroupBy.Month
 
@@ -34,7 +35,7 @@ export const Monthly = ({ className, currency }: Props) => {
   const [from, to] = useMemo(() => {
     const date = parse(`${year}-01-01`)
 
-    return [startOfYear(date), endOfYear(date)]
+    return [wantUTC(startOfYear)(date), wantUTC(endOfYear)(date)]
   }, [year])
 
   const stats = useMemoState(() => getStats(from, to, groupBy, currency), [
