@@ -2,19 +2,18 @@
   display: grid;
 
   grid-template:
-    'header header '
-    'agenda sources'
-    'charts charts '
+    'header header'
+    'aside  charts'
+    'aside  charts'
+    'aside  charts'
     / 1fr 2fr;
 
-  align-items: end;
   gap: 16px;
 
   @media (max-width: 768px) {
     grid-template:
       'header'
-      'agenda'
-      'sources'
+      'aside'
       'charts';
   }
 }
@@ -23,12 +22,12 @@
   grid-area: header;
 }
 
-.agenda {
-  grid-area: agenda;
-}
+.aside {
+  grid-area: aside;
 
-.sources {
-  grid-area: sources;
+  & > *:not(:last-child) {
+    margin-bottom: 16px;
+  }
 }
 
 .charts {

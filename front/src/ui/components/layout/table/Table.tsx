@@ -1,6 +1,9 @@
 import { Table as AntTable } from 'antd'
 import { ReactNode, useMemo } from 'react'
 
+import * as styles from './Table.css'
+import './AntTable.css?CSSModulesDisable'
+
 interface Column {
   title: string
   transform?: (v: any) => ReactNode
@@ -15,6 +18,7 @@ interface Props<Data extends Array<{}>> {
   columns: Columns
   className?: string
   title: string
+  hideHeader?: boolean
 }
 
 export const Table = <Data extends Array<{}>>({
@@ -22,6 +26,7 @@ export const Table = <Data extends Array<{}>>({
   data,
   columns,
   title,
+  hideHeader = false,
 }: Props<Data>) => {
   const adoptedData = useMemo(
     () =>
@@ -50,7 +55,8 @@ export const Table = <Data extends Array<{}>>({
       bordered
       size="middle"
       pagination={false}
-      title={() => title}
+      showHeader={!hideHeader}
+      title={() => <div className={styles.title}>{title}</div>}
     />
   )
 }

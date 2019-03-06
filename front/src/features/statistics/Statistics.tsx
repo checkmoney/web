@@ -9,6 +9,8 @@ import { Tabs, Tab } from '@front/ui/components/layout/tabs'
 import { Yearly } from './features/yearly'
 import { Monthly } from './features/monthly'
 import { ThisMonth } from './features/this-month'
+import { Categories } from './features/categories'
+import { Sources } from './features/sources'
 import * as styles from './Statistics.css'
 
 export const Statistics = () => {
@@ -20,9 +22,11 @@ export const Statistics = () => {
         <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
       </ControlHeader>
 
-      <ThisMonth className={styles.agenda} />
-
-      <p className={styles.sources}>...</p>
+      <aside className={styles.aside}>
+        <ThisMonth />
+        <Categories currency={currency} />
+        <Sources currency={currency} />
+      </aside>
 
       <Tabs className={styles.charts}>
         <Tab title="Monthly">
