@@ -2,7 +2,6 @@
   display: grid;
 
   grid-template:
-    'header header'
     'aside  charts'
     'aside  charts'
     'aside  charts'
@@ -12,14 +11,9 @@
 
   @media (max-width: 768px) {
     grid-template:
-      'header'
       'aside'
       'charts';
   }
-}
-
-.header {
-  grid-area: header;
 }
 
 .aside {

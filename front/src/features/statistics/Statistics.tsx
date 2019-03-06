@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
 import { Currency } from '@shared/enum/Currency'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
@@ -8,32 +8,45 @@ import { Tabs, Tab } from '@front/ui/components/layout/tabs'
 
 import { Yearly } from './features/yearly'
 import { Monthly } from './features/monthly'
-import { ThisMonth } from './features/this-month'
+import { Dynamics } from './features/dynamics'
 import { Categories } from './features/categories'
 import { Sources } from './features/sources'
 import * as styles from './Statistics.css'
+import { GroupBy } from '@shared/enum/GroupBy'
 
 export const Statistics = () => {
   const [currency, setCurrency] = useState(Currency.USD)
 
+  const renderContent = useCallback(
+    (group: GroupBy.Month | GroupBy.Year) => (
+      <>
+        <aside className={styles.aside}>
+          <Dynamics group={group} />
+          <Categories currency={currency} />
+          <Sources currency={currency} />
+        </aside>
+
+        <div className={styles.charts}>
+          {group === GroupBy.Month && <Monthly currency={currency} />}
+          {group === GroupBy.Year && <Yearly currency={currency} />}
+        </div>
+      </>
+    ),
+    [currency],
+  )
+
   return (
-    <Container className={styles.statistics}>
-      <ControlHeader title="Statistics" className={styles.header}>
+    <Container>
+      <ControlHeader title="Statistics">
         <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
       </ControlHeader>
 
-      <aside className={styles.aside}>
-        <ThisMonth />
-        <Categories currency={currency} />
-        <Sources currency={currency} />
-      </aside>
-
-      <Tabs className={styles.charts}>
-        <Tab title="Monthly">
-          <Monthly currency={currency} />
+      <Tabs>
+        <Tab title="Monthly" className={styles.statistics}>
+          {renderContent(GroupBy.Month)}
         </Tab>
-        <Tab title="Yearly">
-          <Yearly currency={currency} />
+        <Tab title="Yearly" className={styles.statistics}>
+          {renderContent(GroupBy.Year)}
         </Tab>
       </Tabs>
     </Container>
