@@ -10,11 +10,12 @@ import { Period } from '@front/ui/components/form/period'
 import { Loader } from '@front/ui/components/layout/loader'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
+import { useActualDateRange } from '@front/ui/hooks/useActualDateRange'
+import { wantUTC } from '@front/helpers/wantUTC'
 
 import { Incomes } from './components/Incomes'
 import { Outcomes } from './components/Outcomes'
 import * as styles from './History.css'
-import { useActualDateRange } from '@front/ui/hooks/useActualDateRange'
 
 interface Props {
   className?: string
@@ -29,8 +30,8 @@ export const History = ({ className }: Props) => {
   const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
     new Date(),
     new Date(),
-    startOfMonth,
-    endOfMonth,
+    wantUTC(startOfMonth),
+    wantUTC(endOfMonth),
   )
 
   const history = useMemoState(

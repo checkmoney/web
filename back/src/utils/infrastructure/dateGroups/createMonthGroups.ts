@@ -1,4 +1,4 @@
-import { addMonths, startOfMonth } from 'date-fns'
+import { addMonths, startOfMonth, subMonths } from 'date-fns'
 
 import { DateRange } from '../dto/DateRange'
 import { DateGroup } from './DateGroup'
@@ -8,7 +8,7 @@ export const createMonthGroups = ({ from, to }: DateRange): DateGroup[] => {
   const groups = []
 
   let now = startOfMonth(from)
-  while (now < to) {
+  while (now < subMonths(to, 1)) {
     const next = addMonths(now, 1)
     const nowYear = now.getFullYear()
     groups.push({

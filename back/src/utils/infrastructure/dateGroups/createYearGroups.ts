@@ -7,7 +7,7 @@ export const createYearGroups = ({ from, to }: DateRange): DateGroup[] => {
   const firstYear = from.getFullYear()
   const lastYear = to.getFullYear()
 
-  const years = range(firstYear, lastYear + 1)
+  const years = range(firstYear, lastYear)
 
   return years.map(year => ({
     title: year.toString(),

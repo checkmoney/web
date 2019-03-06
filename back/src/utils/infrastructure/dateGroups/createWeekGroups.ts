@@ -1,4 +1,4 @@
-import { addWeeks, getISOWeek, startOfWeek } from 'date-fns'
+import { addWeeks, getISOWeek, startOfWeek, subWeeks } from 'date-fns'
 
 import { DateRange } from '../dto/DateRange'
 import { DateGroup } from './DateGroup'
@@ -8,7 +8,7 @@ export const createWeekGroups = ({ from, to }: DateRange): DateGroup[] => {
   const groups = []
 
   let now = startOfWeek(from)
-  while (now < to) {
+  while (now < subWeeks(to, 1)) {
     const next = addWeeks(now, 1)
     const nowYear = now.getFullYear()
     groups.push({

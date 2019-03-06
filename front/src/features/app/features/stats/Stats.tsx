@@ -16,6 +16,7 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { CurrencySwitch } from '@front/ui/components/controls/currency-switch'
 import { useActualDateRange } from '@front/ui/hooks/useActualDateRange'
+import { wantUTC } from '@front/helpers/wantUTC'
 
 const groupBy = GroupBy.Year
 
@@ -31,8 +32,8 @@ export const Stats = ({ className }: Props) => {
   const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
     firstTransactionDate,
     new Date(),
-    startOfYear,
-    endOfYear,
+    wantUTC(startOfYear),
+    wantUTC(endOfYear),
   )
 
   const [currency, setCurrency] = useState(Currency.USD)
