@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
-
-import { FetchingState } from '@front/domain/fetching-redux'
+import { FetchingState } from 'redux-clear'
 
 interface Props {
   status: FetchingState

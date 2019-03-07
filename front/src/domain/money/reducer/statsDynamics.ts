@@ -1,5 +1,9 @@
 import { uniqWith } from 'lodash'
-import { ClearAction, createClearRedux } from 'redux-clear'
+import {
+  ClearAction,
+  WithFetchingState,
+  createClearReduxWithFetching,
+} from 'redux-clear'
 
 import { correctArrayLength } from '@front/helpers/correctArrayLength'
 import { correctObjectLength } from '@front/helpers/correctObjectLength'
@@ -17,12 +21,10 @@ interface CachedPeriod {
   currency: Currency
 }
 
-interface Data {
-  [key: string]: DateGroupModel[]
-}
-
-interface State {
-  data: Data
+interface InternalState {
+  data: {
+    [key: string]: DateGroupModel[]
+  }
   cachedPeriods: CachedPeriod[]
 }
 
@@ -30,9 +32,14 @@ interface Actions {
   addStats: ClearAction<[CachedPeriod, DateGroupModel[]]>
 }
 
+type State = WithFetchingState<InternalState>
+
 const MAX_HISTORY_LENGTH = 2
 
-const { actions, reducer } = createClearRedux<State, Actions>(
+const { actions, reducer } = createClearReduxWithFetching<
+  InternalState,
+  Actions
+>(
   {
     addStats: ({ data, cachedPeriods, ...state }) => (period, newStats) => {
       const { from, to, groupBy, currency } = period

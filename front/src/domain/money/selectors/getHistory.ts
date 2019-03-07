@@ -7,4 +7,5 @@ import { createHistoryKey } from '../helpers/createHistoryKey'
 
 export const getHistory = (from: Date, to: Date, groupBy: GroupBy) => (
   state: State,
-) => Option.of(state.money.history.data[createHistoryKey(from, to, groupBy)])
+) =>
+  Option.of(state.money.history.data.data[createHistoryKey(from, to, groupBy)])

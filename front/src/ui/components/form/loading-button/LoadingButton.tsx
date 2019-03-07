@@ -1,6 +1,5 @@
 import { Omit } from 'utility-types'
-
-import { FetchingState } from '@front/domain/fetching-redux'
+import { FetchingState } from 'redux-clear'
 
 import { Button, ButtonProps } from '../button'
 

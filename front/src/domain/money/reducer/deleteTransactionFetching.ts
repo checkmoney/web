@@ -1,10 +1,7 @@
-import {
-  createFetchingStore,
-  FetchingState,
-} from '@front/domain/fetching-redux'
+import { createFetchingRedux, FetchingState } from 'redux-clear'
 
 type State = FetchingState
 
-const { reducer, actions } = createFetchingStore('transaction/delete')
+const { reducer, actions } = createFetchingRedux('transaction/delete')
 
 export { reducer, actions, State }

@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/fetching-redux'
+import { fetchOrFail } from '@front/domain/store'
 import { OutcomeModel } from '@shared/models/money/OutcomeModel'
 
 import { createOutcomeRequest } from '../api/createOutcomeRequest'

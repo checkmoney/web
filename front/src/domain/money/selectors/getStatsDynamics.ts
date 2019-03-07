@@ -12,5 +12,7 @@ export const getStatsDynamics = (
   currency: Currency,
 ) => (state: State) =>
   Option.of(
-    state.money.statsDynamics.data[createStatsKey(from, to, groupBy, currency)],
+    state.money.statsDynamics.data.data[
+      createStatsKey(from, to, groupBy, currency)
+    ],
   )

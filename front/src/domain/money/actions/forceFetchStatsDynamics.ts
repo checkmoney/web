@@ -1,11 +1,9 @@
-import { fetchOrFail } from '@front/domain/fetching-redux'
+import { fetchOrFail } from '@front/domain/store'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { fetchStatsRequest } from '../api/fetchStatsRequest'
-import { actions as dataActions } from '../reducer/statsDynamics'
-
-const { addStats } = dataActions
+import { actions } from '../reducer/statsDynamics'
 
 export const forceFetchStatsDynamics = (
   from: Date,
@@ -16,5 +14,5 @@ export const forceFetchStatsDynamics = (
   fetchOrFail(undefined, async (dispatch, getApi) => {
     const stats = await fetchStatsRequest(getApi())(from, to, groupBy, currency)
 
-    dispatch(addStats({ from, to, groupBy, currency }, stats))
+    dispatch(actions.data.addStats({ from, to, groupBy, currency }, stats))
   })

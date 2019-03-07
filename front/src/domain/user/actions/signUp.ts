@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/fetching-redux'
+import { fetchOrFail } from '@front/domain/store'
 
 import { signUp as signUpRequest } from '../api/signUp'
 import { setCookie } from '../helpers/setCookie'
