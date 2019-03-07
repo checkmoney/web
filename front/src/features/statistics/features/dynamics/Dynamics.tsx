@@ -13,7 +13,7 @@ interface Props {
 export const Dynamics = ({ className, group }: Props) => {
   const period =
     group === GroupBy.Month
-      ? format(new Date(), 'MMMM')
+      ? format(new Date(), 'MMMM YYYY')
       : format(new Date(), 'YYYY')
 
   return (
