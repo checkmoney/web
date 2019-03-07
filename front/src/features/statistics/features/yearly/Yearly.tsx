@@ -1,13 +1,12 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 import { useMedia } from 'use-media'
 
-import { fetchStats } from '@front/domain/money/actions/fetchStats'
+import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
-import { getStats } from '@front/domain/money/selectors/getStats'
+import { getStatsDynamics } from '@front/domain/money/selectors/getStatsDynamics'
 import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
-import { useThunk } from '@front/domain/store'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
 import { Loader } from '@front/ui/components/layout/loader'
@@ -27,7 +26,6 @@ interface Props {
 export const Yearly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsFetchingStatus)
-  const dispatch = useThunk()
   const isSmall = useMedia({ maxWidth: 768 })
 
   const from = useMemo(() => wantUTC(startOfYear)(firstTransactionDate), [
@@ -35,14 +33,11 @@ export const Yearly = ({ className, currency }: Props) => {
   ])
   const to = useMemo(() => wantUTC(endOfYear)(new Date()), [])
 
-  const stats = useMemoState(() => getStats(from, to, groupBy, currency), [
-    from,
-    currency,
-  ])
-
-  useEffect(() => {
-    dispatch(fetchStats(from, to, groupBy, currency))
-  }, [from, currency, stats.isEmpty()])
+  const stats = useMemoState(
+    () => getStatsDynamics(from, to, groupBy, currency),
+    () => fetchStatsDynamics(from, to, groupBy, currency),
+    [from, currency],
+  )
 
   return (
     <section className={className}>

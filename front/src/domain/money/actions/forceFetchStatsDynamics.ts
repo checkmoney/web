@@ -3,11 +3,11 @@ import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { fetchStatsRequest } from '../api/fetchStatsRequest'
-import { actions as dataActions } from '../reducer/stats'
+import { actions as dataActions } from '../reducer/statsDynamics'
 
 const { addStats } = dataActions
 
-export const forceFetchStats = (
+export const forceFetchStatsDynamics = (
   from: Date,
   to: Date,
   groupBy: GroupBy,

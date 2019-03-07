@@ -4,7 +4,7 @@ import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods'
 import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods'
 import { fetchFirstTransactionDate } from './fetchFirstTransactionDate'
 import { forceFetchHistory } from './forceFetchHistory'
-import { forceFetchStats } from './forceFetchStats'
+import { forceFetchStatsDynamics } from './forceFetchStatsDynamics'
 
 export const refetchData = () =>
   fetchOrFail(undefined, async (dispatch, _, getState) => {
@@ -17,7 +17,7 @@ export const refetchData = () =>
         dispatch(forceFetchHistory(from, to, groupBy)),
       ),
       ...statsCachedPeriods.map(({ from, to, groupBy, currency }) =>
-        dispatch(forceFetchStats(from, to, groupBy, currency)),
+        dispatch(forceFetchStatsDynamics(from, to, groupBy, currency)),
       ),
     ])
   })

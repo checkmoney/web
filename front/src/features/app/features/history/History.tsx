@@ -1,11 +1,10 @@
 import { endOfMonth, startOfMonth } from 'date-fns'
-import { useEffect } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
 import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
-import { useThunk, useMemoState } from '@front/domain/store'
+import { useMemoState } from '@front/domain/store'
 import { Period } from '@front/ui/components/form/period'
 import { Loader } from '@front/ui/components/layout/loader'
 import { GroupBy } from '@shared/enum/GroupBy'
@@ -25,7 +24,6 @@ const groupBy = GroupBy.Month
 
 export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus)
-  const dispatch = useThunk()
 
   const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
     new Date(),
@@ -36,12 +34,9 @@ export const History = ({ className }: Props) => {
 
   const history = useMemoState(
     () => getHistory(actualFrom, actualTo, groupBy),
+    () => fetchHistory(actualFrom, actualTo, groupBy),
     [actualFrom, actualTo],
   )
-
-  useEffect(() => {
-    dispatch(fetchHistory(actualFrom, actualTo, groupBy))
-  }, [actualFrom, actualTo])
 
   return (
     <section className={className}>

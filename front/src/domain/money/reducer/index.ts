@@ -17,11 +17,14 @@ import {
   reducer as historyFetchingReducer,
   State as HistoryFetchingState,
 } from './historyFetching'
-import { reducer as statsReducer, State as StatsState } from './stats'
 import {
-  reducer as statsFetchingReducer,
-  State as StatsFetchingState,
-} from './statsFetching'
+  reducer as statsDynamicsReducer,
+  State as StatsDynamicsState,
+} from './statsDynamics'
+import {
+  reducer as statsDynamicsFetchingReducer,
+  State as StatsDynamicsFetchingState,
+} from './statsDynamicsFetching'
 import {
   reducer as deleteTransactionFetchingReducer,
   State as DeleteTransactionFetching,
@@ -31,8 +34,8 @@ interface State {
   createIncomeFetching: IncomeFetchingState
   createOutcomeFetching: OutcomeFetchingState
   historyFetching: HistoryFetchingState
-  statsFetching: StatsFetchingState
-  stats: StatsState
+  statsDynamicsFetching: StatsDynamicsFetchingState
+  statsDynamics: StatsDynamicsState
   history: HistoryState
   firstTransactionDate: FirstTransactionDateState
   deleteTransactionFetching: DeleteTransactionFetching
@@ -42,8 +45,8 @@ const reducer = combineReducers<State>({
   createIncomeFetching: incomeFetchingReducer,
   createOutcomeFetching: outcomeFetchingReducer,
   historyFetching: historyFetchingReducer,
-  statsFetching: statsFetchingReducer,
-  stats: statsReducer,
+  statsDynamicsFetching: statsDynamicsFetchingReducer,
+  statsDynamics: statsDynamicsReducer,
   history: historyReducer,
   firstTransactionDate: firstTransactionDateReducer,
   deleteTransactionFetching: deleteTransactionFetchingReducer,
