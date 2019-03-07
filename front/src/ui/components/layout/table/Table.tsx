@@ -1,26 +1,9 @@
 import { Table as AntTable } from 'antd'
-import { ReactNode, useMemo } from 'react'
+import { useMemo } from 'react'
 
+import { TableProps } from './TableProps'
 import * as styles from './Table.css'
 import './AntTable.css?CSSModulesDisable'
-
-interface Column {
-  title: string
-  transform?: (v: any) => ReactNode
-  widthPercent?: number
-}
-
-interface Columns {
-  [key: string]: Column
-}
-
-interface Props<Data extends Array<{}>> {
-  data: Data
-  columns: Columns
-  className?: string
-  title: string
-  hideHeader?: boolean
-}
 
 export const Table = <Data extends Array<{}>>({
   className,
@@ -28,7 +11,7 @@ export const Table = <Data extends Array<{}>>({
   columns,
   title,
   hideHeader = false,
-}: Props<Data>) => {
+}: TableProps<Data>) => {
   const adoptedData = useMemo(
     () =>
       data.map((dataItem, key) => ({

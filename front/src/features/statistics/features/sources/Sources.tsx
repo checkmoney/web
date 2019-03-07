@@ -1,16 +1,24 @@
+import { useMappedState } from 'redux-react-hook'
 import { useMemo } from 'react'
-import { sortBy } from 'lodash'
+import { sortBy, take } from 'lodash'
 
-import { Table } from '@front/ui/components/layout/table'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
+import { useMemoState } from '@front/domain/store'
+import { getStatsSources } from '@front/domain/money/selectors/getStatsSources'
+import { wantUTC } from '@front/helpers/wantUTC'
+import { startOfMonth, endOfMonth, startOfYear, endOfYear } from 'date-fns'
+import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources'
+import { getStatsSourcesFetchingStatus } from '@front/domain/money/selectors/getStatsSourcesFetchingStatus'
+import { LoaderTable } from '@front/ui/components/layout/loader-table'
 
 interface Props {
   className?: string
   currency: Currency
   group: GroupBy.Month | GroupBy.Year
   widthPercent: number
+  maxLength: number
 }
 
 export const Sources = ({
@@ -18,6 +26,7 @@ export const Sources = ({
   currency,
   group,
   widthPercent,
+  maxLength,
 }: Props) => {
   const columns = useMemo(
     () => ({
@@ -25,34 +34,44 @@ export const Sources = ({
         title: 'Source',
         widthPercent,
       },
-      amount: {
+      income: {
         title: 'Amount',
         transform: displayMoney(currency),
       },
     }),
-    [currency],
+    [currency, widthPercent],
   )
 
-  const fakeDate = useMemo(
-    () =>
-      sortBy(
-        [
-          { source: 'Breadhead', amount: 50000 },
-          { source: 'Netology', amount: 40000 },
-          { source: 'Whatever', amount: 45000 },
-        ],
-        '-amount',
-      ),
-    [],
+  const fetching = useMappedState(getStatsSourcesFetchingStatus)
+
+  const [from, to] = useMemo(() => {
+    const start = group === GroupBy.Month ? startOfMonth : startOfYear
+    const end = group === GroupBy.Month ? endOfMonth : endOfYear
+
+    return [wantUTC(start)(new Date()), wantUTC(end)(new Date())]
+  }, [group])
+
+  const stats = useMemoState(
+    () => getStatsSources(from, to, currency),
+    () => fetchStatsSources(from, to, currency),
+    [from, to, currency],
+  )
+
+  // sort by `income` and take `maxLength` top groups
+  const preparedData = useMemo(
+    () => stats.map(s => take(sortBy(s, t => -t.income), maxLength)),
+    [stats, maxLength],
   )
 
   return (
-    <Table
+    <LoaderTable
       title={`What brought you money this ${group}`}
       columns={columns}
-      data={fakeDate}
-      hideHeader
+      data={preparedData}
+      fetching={fetching}
+      expectedRows={maxLength}
       className={className}
+      hideHeader
     />
   )
 }

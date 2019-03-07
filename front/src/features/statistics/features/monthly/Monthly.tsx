@@ -5,7 +5,7 @@ import { useMedia } from 'use-media'
 
 import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { getStatsDynamics } from '@front/domain/money/selectors/getStatsDynamics'
-import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
+import { getStatsDynamicsFetchingStatus } from '@front/domain/money/selectors/getStatsDynamicsFetchingStatus'
 import { useMemoState } from '@front/domain/store'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
@@ -26,7 +26,7 @@ interface Props {
 
 export const Monthly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const fetching = useMappedState(getStatsFetchingStatus)
+  const fetching = useMappedState(getStatsDynamicsFetchingStatus)
   const isSmall = useMedia({ maxWidth: 768 })
 
   const [year, setYear] = useState(getYear(new Date()))

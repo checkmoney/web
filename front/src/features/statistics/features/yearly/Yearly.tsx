@@ -6,7 +6,7 @@ import { useMedia } from 'use-media'
 import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { getStatsDynamics } from '@front/domain/money/selectors/getStatsDynamics'
-import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
+import { getStatsDynamicsFetchingStatus } from '@front/domain/money/selectors/getStatsDynamicsFetchingStatus'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
 import { Loader } from '@front/ui/components/layout/loader'
@@ -25,7 +25,7 @@ interface Props {
 
 export const Yearly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const fetching = useMappedState(getStatsFetchingStatus)
+  const fetching = useMappedState(getStatsDynamicsFetchingStatus)
   const isSmall = useMedia({ maxWidth: 768 })
 
   const from = useMemo(() => wantUTC(startOfYear)(firstTransactionDate), [
