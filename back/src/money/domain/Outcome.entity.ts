@@ -3,7 +3,7 @@ import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 import { Currency } from '@shared/enum/Currency'
 
 import { User } from '@back/user/domain/User.entity'
-import { AbstractTransaction } from './dto/AbstarctTransaction'
+import { AbstractTransaction } from './interfaces/AbstarctTransaction'
 
 @Entity()
 export class Outcome implements AbstractTransaction {
