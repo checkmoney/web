@@ -28,7 +28,7 @@ export const Statistics = () => {
             group={group}
             currency={currency}
             widthPercent={columnWidthPercent}
-            // maxLength={maxLength}
+            maxLength={maxLength}
           />
           <Sources
             group={group}
