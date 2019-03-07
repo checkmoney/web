@@ -1,8 +1,7 @@
-import { addWeeks, getISOWeek, startOfWeek, subWeeks } from 'date-fns'
+import { addWeeks, startOfWeek, format } from 'date-fns'
 
 import { DateRange } from '../dto/DateRange'
 import { DateGroup } from './DateGroup'
-import { getRealMonth } from './getRealMonth'
 
 export const createWeekGroups = ({ from, to }: DateRange): DateGroup[] => {
   const groups = []
@@ -10,9 +9,8 @@ export const createWeekGroups = ({ from, to }: DateRange): DateGroup[] => {
   let now = startOfWeek(from)
   while (now < to) {
     const next = addWeeks(now, 1)
-    const nowYear = now.getFullYear()
     groups.push({
-      title: `${nowYear}-${getRealMonth(now)}, week ${getISOWeek(now)}`,
+      title: format(now, 'YYYY-MM-DD'),
       from: now,
       to: next,
     })
