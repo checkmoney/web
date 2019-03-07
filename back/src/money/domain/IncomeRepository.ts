@@ -7,9 +7,10 @@ import { Repository } from 'typeorm'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 
 import { Income } from './Income.entity'
+import { TransactionRepository } from './interfaces/TransactionRepository'
 
 @Injectable()
-class IncomeRepo {
+class IncomeRepo implements TransactionRepository {
   public constructor(
     @InjectRepository(Income)
     private readonly incomeRepo: Repository<Income>,

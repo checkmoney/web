@@ -1,14 +1,12 @@
-import { fetchOrFail } from '@front/domain/fetching-redux'
+import { fetchOrFail } from '@front/domain/store'
 import { GroupBy } from '@shared/enum/GroupBy'
 
 import { fetchHistoryRequest } from '../api/fetchHistoryRequest'
-import { actions as dataActions } from '../reducer/history'
-
-const { addHistory } = dataActions
+import { actions } from '../reducer/history'
 
 export const forceFetchHistory = (from: Date, to: Date, groupBy: GroupBy) =>
   fetchOrFail(undefined, async (dispatch, getApi) => {
     const history = await fetchHistoryRequest(getApi())(from, to, groupBy)
 
-    dispatch(addHistory({ from, to, groupBy }, history))
+    dispatch(actions.data.addHistory({ from, to, groupBy }, history))
   })

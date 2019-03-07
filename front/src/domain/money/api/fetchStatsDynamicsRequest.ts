@@ -4,7 +4,7 @@ import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { DateGroupModel } from '@shared/models/money/DateGroupModel'
 
-export const fetchStatsRequest = (api: Api) => (
+export const fetchStatsDynamicsRequest = (api: Api) => (
   from: Date,
   to: Date,
   by: GroupBy,

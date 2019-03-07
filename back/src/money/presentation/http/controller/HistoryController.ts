@@ -8,7 +8,7 @@ import {
 import { reverse, sortBy } from 'lodash'
 
 import { Historian } from '@back/money/application/Historian'
-import { AbstractTransaction } from '@back/money/domain/dto/AbstarctTransaction'
+import { AbstractTransaction } from '@back/money/domain/interfaces/AbstarctTransaction'
 import { TokenPayload } from '@back/user/application/dto/TokenPayload'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'

@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/fetching-redux'
+import { fetchOrFail } from '@front/domain/store'
 import { IncomeModel } from '@shared/models/money/IncomeModel'
 
 import { createIncomeRequest } from '../api/createIncomeRequest'

@@ -14,6 +14,7 @@ import { Sources } from './features/sources'
 import * as styles from './Statistics.css'
 
 const columnWidthPercent = 40
+const maxLength = 5
 
 export const Statistics = () => {
   const [currency, setCurrency] = useState(Currency.USD)
@@ -27,11 +28,13 @@ export const Statistics = () => {
             group={group}
             currency={currency}
             widthPercent={columnWidthPercent}
+            maxLength={maxLength}
           />
           <Sources
             group={group}
             currency={currency}
             widthPercent={columnWidthPercent}
+            maxLength={maxLength}
           />
         </aside>
 

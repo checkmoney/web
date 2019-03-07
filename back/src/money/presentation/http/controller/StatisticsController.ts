@@ -64,8 +64,13 @@ export class StatisticsController {
   @ApiQueryDateRange()
   public async showIncomeSourcesStats(
     @Query(ParseDateRangePipe) range: DateRange,
+    @Query('currency', createEnumValidationPipe(Currency))
+    currency: Currency = Currency.USD,
+    @CurrentUser() { login }: TokenPayload,
   ): Promise<SourceGroupIncomeResponse[]> {
-    throw Error('Not implemented')
+    const sources = await this.statistician.showSources(login, range, currency)
+
+    return sources
   }
 
   @Get('outcome-categories')
@@ -78,7 +83,16 @@ export class StatisticsController {
   @ApiQueryDateRange()
   public async showOutcomeCategoriesStats(
     @Query(ParseDateRangePipe) range: DateRange,
+    @Query('currency', createEnumValidationPipe(Currency))
+    currency: Currency = Currency.USD,
+    @CurrentUser() { login }: TokenPayload,
   ): Promise<CategoryGroupOutcomeResponse[]> {
-    throw Error('Not implemented')
+    const categories = await this.statistician.showCategories(
+      login,
+      range,
+      currency,
+    )
+
+    return categories
   }
 }

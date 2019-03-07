@@ -10523,12 +10523,13 @@ redent@^2.0.0:
     indent-string "^3.0.0"
     strip-indent "^2.0.0"
 
-redux-clear@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/redux-clear/-/redux-clear-1.0.3.tgz#7881e8c7157f81e8a21866a946cd87dcfcc6ce49"
-  integrity sha512-9iRFRcHvCrjpp+3cwVhxookErW8vHgfnFDmvd8VEUUqKXRaHc8VXs66USv4V2jqNxHaAZ1hg164Bk04EE9RBmg==
+redux-clear@^v1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/redux-clear/-/redux-clear-1.1.2.tgz#a273079d581e4f77caeb4679b1def859974d2b24"
+  integrity sha512-Fui6oEcKtIKF0+ryOmmoYbI6fHV3I0bCC1qGVtV2Z0zZYFah83Fw4vmNvGxMXssAMRgLT+g9QwCqliTav7BoDg==
   dependencies:
     nanoid "^2.0.1"
+    tsoption "^0.7.0"
 
 redux-devtools-extension@^2.13.7:
   version "2.13.7"

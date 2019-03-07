@@ -1,12 +1,12 @@
 import { endOfYear, format, startOfYear } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
-import { fetchStats } from '@front/domain/money/actions/fetchStats'
+import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
-import { getStats } from '@front/domain/money/selectors/getStats'
-import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
-import { useThunk, useMemoState } from '@front/domain/store'
+import { getStatsDynamics } from '@front/domain/money/selectors/getStatsDynamics'
+import { getStatsDynamicsFetchingStatus } from '@front/domain/money/selectors/getStatsDynamicsFetchingStatus'
+import { useMemoState } from '@front/domain/store'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
 import { Period } from '@front/ui/components/form/period'
@@ -26,8 +26,7 @@ interface Props {
 
 export const Stats = ({ className }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const fetching = useMappedState(getStatsFetchingStatus)
-  const dispatch = useThunk()
+  const fetching = useMappedState(getStatsDynamicsFetchingStatus)
 
   const { from, setFrom, to, setTo, actualFrom, actualTo } = useActualDateRange(
     firstTransactionDate,
@@ -39,13 +38,10 @@ export const Stats = ({ className }: Props) => {
   const [currency, setCurrency] = useState(Currency.USD)
 
   const stats = useMemoState(
-    () => getStats(actualFrom, actualTo, groupBy, currency),
+    () => getStatsDynamics(actualFrom, actualTo, groupBy, currency),
+    () => fetchStatsDynamics(actualFrom, actualTo, groupBy, currency),
     [actualFrom, actualTo, currency],
   )
-
-  useEffect(() => {
-    dispatch(fetchStats(actualFrom, actualTo, groupBy, currency))
-  }, [actualFrom, actualTo, currency])
 
   return (
     <section className={className}>

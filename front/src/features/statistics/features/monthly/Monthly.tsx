@@ -1,12 +1,12 @@
 import { endOfYear, format, startOfYear, getYear, parse } from 'date-fns'
-import { useEffect, useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 import { useMedia } from 'use-media'
 
-import { fetchStats } from '@front/domain/money/actions/fetchStats'
-import { getStats } from '@front/domain/money/selectors/getStats'
-import { getStatsFetchingStatus } from '@front/domain/money/selectors/getStatsFetchingStatus'
-import { useThunk, useMemoState } from '@front/domain/store'
+import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
+import { getStatsDynamics } from '@front/domain/money/selectors/getStatsDynamics'
+import { getStatsDynamicsFetchingStatus } from '@front/domain/money/selectors/getStatsDynamicsFetchingStatus'
+import { useMemoState } from '@front/domain/store'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { BarChart } from '@front/ui/components/chart/bar-chart'
 import { Loader } from '@front/ui/components/layout/loader'
@@ -26,8 +26,7 @@ interface Props {
 
 export const Monthly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const fetching = useMappedState(getStatsFetchingStatus)
-  const dispatch = useThunk()
+  const fetching = useMappedState(getStatsDynamicsFetchingStatus)
   const isSmall = useMedia({ maxWidth: 768 })
 
   const [year, setYear] = useState(getYear(new Date()))
@@ -38,15 +37,11 @@ export const Monthly = ({ className, currency }: Props) => {
     return [wantUTC(startOfYear)(date), wantUTC(endOfYear)(date)]
   }, [year])
 
-  const stats = useMemoState(() => getStats(from, to, groupBy, currency), [
-    from,
-    to,
-    currency,
-  ])
-
-  useEffect(() => {
-    dispatch(fetchStats(from, to, groupBy, currency))
-  }, [from, to, currency, stats.isEmpty()])
+  const stats = useMemoState(
+    () => getStatsDynamics(from, to, groupBy, currency),
+    () => fetchStatsDynamics(from, to, groupBy, currency),
+    [from, to, currency],
+  )
 
   return (
     <section className={className}>
