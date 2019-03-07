@@ -2,7 +2,7 @@ import { fetchOrFail } from '@front/domain/store'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 
-import { fetchStatsRequest } from '../api/fetchStatsRequest'
+import { fetchStatsDynamicsRequest } from '../api/fetchStatsDynamicsRequest'
 import { actions } from '../reducer/statsDynamics'
 import { getStatsDynamics } from '../selectors/getStatsDynamics'
 
@@ -16,7 +16,7 @@ export const fetchStatsDynamics = (
     const existStats = getStatsDynamics(from, to, groupBy, currency)(getState())
 
     if (existStats.isEmpty()) {
-      const stats = await fetchStatsRequest(getApi())(
+      const stats = await fetchStatsDynamicsRequest(getApi())(
         from,
         to,
         groupBy,
