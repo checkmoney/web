@@ -13,11 +13,15 @@ export const refetchData = () =>
 
     await Promise.all([
       dispatch(fetchFirstTransactionDate()),
-      ...historyCachedPeriods.map(({ from, to, groupBy }) =>
-        dispatch(forceFetchHistory(from, to, groupBy)),
+      ...historyCachedPeriods.map(
+        ({ from, to, groupBy }) =>
+          groupBy && dispatch(forceFetchHistory(from, to, groupBy)),
       ),
-      ...statsCachedPeriods.map(({ from, to, groupBy, currency }) =>
-        dispatch(forceFetchStatsDynamics(from, to, groupBy, currency)),
+      ...statsCachedPeriods.map(
+        ({ from, to, groupBy, currency }) =>
+          groupBy &&
+          currency &&
+          dispatch(forceFetchStatsDynamics(from, to, groupBy, currency)),
       ),
     ])
   })

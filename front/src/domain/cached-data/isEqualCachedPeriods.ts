@@ -1,16 +1,8 @@
-import { Currency } from '@shared/enum/Currency'
-import { GroupBy } from '@shared/enum/GroupBy'
+import { CachedPeriod } from './CachedPeriod'
 
-interface HistoryPeriod {
-  groupBy: GroupBy
-  from: Date
-  to: Date
-  currency: Currency
-}
-
-export const isEquelStatsPeriods = (
-  a: HistoryPeriod,
-  b: HistoryPeriod,
+export const isEqualCachedPeriods = (
+  a: CachedPeriod,
+  b: CachedPeriod,
 ): boolean => {
   const equalsGroupBy = a.groupBy === b.groupBy
   const equalsFrom = a.from.toDateString() === b.from.toDateString()

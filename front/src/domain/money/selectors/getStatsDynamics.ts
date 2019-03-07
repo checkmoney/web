@@ -3,7 +3,7 @@ import { Option } from 'tsoption'
 import { State } from '@front/domain/store'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
-import { createStatsKey } from '../helpers/createStatsKey'
+import { createCachedPeriodKey } from '@front/domain/cached-data'
 
 export const getStatsDynamics = (
   from: Date,
@@ -13,6 +13,6 @@ export const getStatsDynamics = (
 ) => (state: State) =>
   Option.of(
     state.money.statsDynamics.data.data[
-      createStatsKey(from, to, groupBy, currency)
+      createCachedPeriodKey({ from, to, groupBy, currency })
     ],
   )
