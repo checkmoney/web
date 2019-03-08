@@ -13,9 +13,11 @@ export const getStatsTotalAverage = (currency: Currency, groupBy: GroupBy) =>
       optionalStats.map(stats => ({
         income: stats
           .map(item => item.income)
+          .filter(Boolean)
           .reduce(createAverageReducer(), 0),
         outcome: stats
           .map(item => item.outcome)
+          .filter(Boolean)
           .reduce(createAverageReducer(), 0),
       })),
   )
