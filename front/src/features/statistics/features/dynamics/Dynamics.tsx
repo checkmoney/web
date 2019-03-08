@@ -72,8 +72,8 @@ export const Dynamics = ({ className, group, currency }: Props) => {
       nowStats
         .flatMap(s => Option.of(head(s)))
         .map(s => ({
-          income: s.income * progressRate,
-          outcome: s.outcome * progressRate,
+          income: s.income / progressRate,
+          outcome: s.outcome / progressRate,
         })),
     [progressRate, nowStats],
   )
