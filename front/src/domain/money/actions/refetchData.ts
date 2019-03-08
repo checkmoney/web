@@ -15,12 +15,17 @@ export const refetchData = () =>
       dispatch(fetchFirstTransactionDate()),
       ...historyCachedPeriods.map(
         ({ from, to, groupBy }) =>
-          groupBy && dispatch(forceFetchHistory(from, to, groupBy)),
+          groupBy &&
+          from &&
+          to &&
+          dispatch(forceFetchHistory(from, to, groupBy)),
       ),
       ...statsCachedPeriods.map(
         ({ from, to, groupBy, currency }) =>
           groupBy &&
           currency &&
+          from &&
+          to &&
           dispatch(forceFetchStatsDynamics(from, to, groupBy, currency)),
       ),
     ])

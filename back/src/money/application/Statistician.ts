@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common'
-import { groupBy } from 'lodash'
-import { Assign, Intersection } from 'utility-types'
+import { groupBy, flow, curryRight, mapValues, flatMap } from 'lodash'
 
+import { dateGroupByCallback } from '@back/utils/infrastructure/dateGroups/dateGroupByCallback'
 import { CategoryGroupOutcomeModel } from '@shared/models/money/CategoryGroupOutcomeModel'
 import { SourceGroupIncomeModel } from '@shared/models/money/SourceGroupIncomeModel'
 import { createGroups } from '@back/utils/infrastructure/dateGroups/createGroups'
+import { AverageAmountModel } from '@shared/models/money/AvergaeAmountModel'
+import { createAverageReducer } from '@shared/helpers/createAverageReducer'
+import { prevDate } from '@back/utils/infrastructure/dateGroups/prevDate'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
@@ -19,14 +22,69 @@ import { amountMapper } from './helpers/amountMapper'
 import { rangeFilter } from './helpers/rangeFilter'
 import { sumReducer } from './helpers/sumReducer'
 import { SummedGroup } from './types/SummedGroup'
+import { Historian } from './Historian'
 
 @Injectable()
 export class Statistician {
   public constructor(
-    private readonly incomeRepo: IncomeRepository,
     private readonly outcomeRepo: OutcomeRepository,
+    private readonly incomeRepo: IncomeRepository,
     private readonly converter: CurrencyConverter,
+    private readonly historian: Historian,
   ) {}
+
+  public async showAverage(
+    userLogin: string,
+    statsGroupBy: GroupBy,
+    currency: Currency,
+  ): Promise<AverageAmountModel[]> {
+    const from = await this.historian.getDateOfEarliestTransaction(userLogin)
+    const to = prevDate(statsGroupBy) // to exclude current period
+
+    const groups = await this.historian.showGroupedHistory(
+      userLogin,
+      { from, to },
+      statsGroupBy,
+    )
+
+    const convertedGroups = await Promise.all(
+      groups.map(async ({ title, incomes, outcomes }) => ({
+        period: new Date(title),
+        incomes: await this.convertItems(currency)(incomes),
+        outcomes: await this.convertItems(currency)(outcomes),
+      })),
+    )
+
+    const summedGroups = convertedGroups.map(
+      ({ incomes, outcomes, period }) => ({
+        period,
+        income: incomes.map(amountMapper).reduce(sumReducer, 0),
+        outcome: outcomes.map(amountMapper).reduce(sumReducer, 0),
+      }),
+    )
+
+    const groupedGroups = mapValues(
+      groupBy(summedGroups, group =>
+        dateGroupByCallback(statsGroupBy)(group.period),
+      ),
+      (values, period) => ({
+        period,
+        income: values
+          .map(group => group.income)
+          .filter(Boolean)
+          .reduce(createAverageReducer(), 0),
+        outcome: values
+          .map(group => group.outcome)
+          .filter(Boolean)
+          .reduce(createAverageReducer(), 0),
+      }),
+    )
+
+    return Object.values(groupedGroups).map(group => ({
+      ...group,
+      currency,
+    }))
+  }
 
   public async showDateRangeStats(
     userLogin: string,

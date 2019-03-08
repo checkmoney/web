@@ -1,7 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import {
   ApiBearerAuth,
-  ApiImplicitQuery,
   ApiOkResponse,
   ApiOperation,
   ApiUseTags,
@@ -21,6 +20,7 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse'
 import { DateGroupResponse } from '../response/DateGroupResponse'
 import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse'
+import { AverageAmountResponse } from '../response/AverageAmountResponse'
 
 @Controller('money/statistics')
 @OnlyForUsers()
@@ -94,5 +94,23 @@ export class StatisticsController {
     )
 
     return categories
+  }
+
+  @Get('average')
+  @ApiOperation({ title: 'Show average amounts' })
+  @ApiOkResponse({
+    description: 'Fetching stats success',
+    type: AverageAmountResponse,
+    isArray: true,
+  })
+  public async showAverage(
+    @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy,
+    @Query('currency', createEnumValidationPipe(Currency))
+    currency: Currency = Currency.USD,
+    @CurrentUser() { login }: TokenPayload,
+  ): Promise<AverageAmountResponse[]> {
+    const averages = await this.statistician.showAverage(login, by, currency)
+
+    return averages
   }
 }
