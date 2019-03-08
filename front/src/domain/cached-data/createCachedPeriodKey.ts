@@ -6,4 +6,5 @@ export const createCachedPeriodKey = ({
   groupBy,
   currency,
 }: CachedPeriod): string =>
-  `${from.toISOString()}-${to.toISOString()}-by${groupBy}-in${currency}`
+  `${from && from.toISOString()}-${to &&
+    to.toISOString()}-by${groupBy}-in${currency}`

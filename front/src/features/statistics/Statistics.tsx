@@ -23,7 +23,7 @@ export const Statistics = () => {
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
       <Tab title={title} className={styles.statistics}>
         <aside className={styles.aside}>
-          <Dynamics group={group} />
+          <Dynamics group={group} currency={currency} />
           <Categories
             group={group}
             currency={currency}

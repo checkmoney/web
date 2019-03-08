@@ -6,6 +6,8 @@ import { CategoryGroupOutcomeModel } from '@shared/models/money/CategoryGroupOut
 import { SourceGroupIncomeModel } from '@shared/models/money/SourceGroupIncomeModel'
 import { createGroups } from '@back/utils/infrastructure/dateGroups/createGroups'
 import { AverageAmountModel } from '@shared/models/money/AvergaeAmountModel'
+import { createAverageReducer } from '@shared/helpers/createAverageReducer'
+import { prevDate } from '@back/utils/infrastructure/dateGroups/prevDate'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
 import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
@@ -21,7 +23,6 @@ import { rangeFilter } from './helpers/rangeFilter'
 import { sumReducer } from './helpers/sumReducer'
 import { SummedGroup } from './types/SummedGroup'
 import { Historian } from './Historian'
-import { createAverageReducer } from './helpers/createAverageReducer'
 
 @Injectable()
 export class Statistician {
@@ -38,7 +39,7 @@ export class Statistician {
     currency: Currency,
   ): Promise<AverageAmountModel[]> {
     const from = await this.historian.getDateOfEarliestTransaction(userLogin)
-    const to = new Date()
+    const to = prevDate(statsGroupBy) // to exclude current period
 
     const groups = await this.historian.showGroupedHistory(
       userLogin,
@@ -54,31 +55,35 @@ export class Statistician {
       })),
     )
 
-    // TODO: refactor it!
+    const summedGroups = convertedGroups.map(
+      ({ incomes, outcomes, period }) => ({
+        period,
+        income: incomes.map(amountMapper).reduce(sumReducer, 0),
+        outcome: outcomes.map(amountMapper).reduce(sumReducer, 0),
+      }),
+    )
 
-    const mapObject = curryRight(mapValues)
-
-    return flow([
-      curryRight(groupBy)(group =>
+    const groupedGroups = mapValues(
+      groupBy(summedGroups, group =>
         dateGroupByCallback(statsGroupBy)(group.period),
       ),
-      mapObject(groupOfGroups => ({
-        incomes: flatMap(groupOfGroups, group =>
-          group.incomes.map(amountMapper),
-        ),
-        outcomes: flatMap(groupOfGroups, group =>
-          group.outcomes.map(amountMapper),
-        ),
-      })),
-      mapObject(({ incomes, outcomes }) => ({
-        income: incomes.reduce(createAverageReducer(), 0),
-        outcome: outcomes.reduce(createAverageReducer(), 0),
-      })),
-      mapObject(({ income, outcome }) => ({
-        income: Math.round(income),
-        outcome: Math.round(outcome),
-      })),
-    ])(convertedGroups)
+      (values, period) => ({
+        period,
+        income: values
+          .map(group => group.income)
+          .filter(Boolean)
+          .reduce(createAverageReducer(), 0),
+        outcome: values
+          .map(group => group.outcome)
+          .filter(Boolean)
+          .reduce(createAverageReducer(), 0),
+      }),
+    )
+
+    return Object.values(groupedGroups).map(group => ({
+      ...group,
+      currency,
+    }))
   }
 
   public async showDateRangeStats(

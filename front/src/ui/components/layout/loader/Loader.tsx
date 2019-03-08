@@ -1,20 +1,22 @@
 import { ReactNode } from 'react'
 import { FetchingState } from 'redux-clear'
-import { Skeleton } from 'antd'
+import { Skeleton } from '../../controls/skeleton/Skeleton'
 
 interface Props {
   status: FetchingState
   children: ReactNode
   skeleton?: boolean
+  expectedRows?: number
 }
 
 export const Loader = ({
   status: { loading, error },
   children,
+  expectedRows,
   skeleton = false,
 }: Props) => {
-  if (skeleton) {
-    return <Skeleton loading={loading}>{children}</Skeleton>
+  if (skeleton && loading) {
+    return <Skeleton rows={expectedRows} />
   }
 
   if (loading) {

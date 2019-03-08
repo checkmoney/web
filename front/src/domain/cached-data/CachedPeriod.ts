@@ -3,7 +3,7 @@ import { Currency } from '@shared/enum/Currency'
 
 export interface CachedPeriod {
   groupBy?: GroupBy
-  from: Date
-  to: Date
+  from?: Date
+  to?: Date
   currency?: Currency
 }

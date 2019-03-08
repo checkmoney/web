@@ -8,7 +8,7 @@ import { CachedPeriod } from './CachedPeriod'
 import { createCachedPeriodKey } from './createCachedPeriodKey'
 import { isEqualCachedPeriods } from './isEqualCachedPeriods'
 
-const MAX_HISTORY_LENGTH = 2
+const MAX_HISTORY_LENGTH = 10
 
 export const newItemProcessor = <T>({
   data,
