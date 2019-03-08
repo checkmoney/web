@@ -1,8 +1,8 @@
 import { Option } from 'tsoption'
 
-import { State } from '@front/domain/store'
-import { Currency } from '@shared/enum/Currency'
 import { createCachedPeriodKey } from '@front/domain/cached-data'
+import { Currency } from '@shared/enum/Currency'
+import { State } from '@front/domain/store'
 
 export const getStatsSources = (from: Date, to: Date, currency: Currency) => (
   state: State,
