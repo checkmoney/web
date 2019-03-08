@@ -1,9 +1,9 @@
-import { ChartOptions } from 'chart.js'
-import Color from 'color'
 import { capitalize, flatten, isUndefined, uniq } from 'lodash'
+import { ChartOptions } from 'chart.js'
 import randomColor from 'randomcolor'
-import { useMemo } from 'react'
 import { Bar } from 'react-chartjs-2'
+import { useMemo } from 'react'
+import Color from 'color'
 
 interface Data {
   [key: string]: number
