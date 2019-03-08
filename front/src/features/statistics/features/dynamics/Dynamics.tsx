@@ -35,7 +35,7 @@ interface Props {
   currency: Currency
 }
 
-// TODO: refactor it
+// TODO: refactor it please
 export const Dynamics = ({ className, group, currency }: Props) => {
   const period =
     group === GroupBy.Month
