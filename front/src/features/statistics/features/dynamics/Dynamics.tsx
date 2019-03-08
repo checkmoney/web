@@ -97,7 +97,7 @@ export const Dynamics = ({ className, group, currency }: Props) => {
       <Loader skeleton expectedRows={2} status={fetching}>
         <div className={styles.diff}>
           <Stat title="Income" value={incomeGrow} suffix="%" />
-          <Stat title="Outcome" value={outcomeGrow} suffix="%" />
+          <Stat title="Outcome" value={outcomeGrow} suffix="%" decreaseIsGood />
         </div>
       </Loader>
     </Card>

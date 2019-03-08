@@ -5,13 +5,21 @@ interface Props {
   title: string
   value: Option<number>
   suffix?: string
+  decreaseIsGood?: boolean
 }
 
-export const Stat = ({ title, value, suffix }: Props) => {
+export const Stat = ({
+  title,
+  value,
+  suffix,
+  decreaseIsGood = false,
+}: Props) => {
   if (value.nonEmpty()) {
     const positive = value.get() > 0
 
-    const color = positive ? '#3f8600' : '#cf1322'
+    const green = !decreaseIsGood ? positive : !positive
+
+    const color = green ? '#3f8600' : '#cf1322'
     const iconType = positive ? 'arrow-up' : 'arrow-down'
 
     return (
