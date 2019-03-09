@@ -12,6 +12,8 @@ import { Dynamics } from './features/dynamics'
 import { Categories } from './features/categories'
 import { Sources } from './features/sources'
 import * as styles from './Statistics.css'
+import { PageHeader } from '@front/ui/components/layout/page-header'
+import { pushRoute } from '../routing'
 
 const columnWidthPercent = 40
 const maxLength = 5
@@ -49,6 +51,8 @@ export const Statistics = () => {
 
   return (
     <Container>
+      <PageHeader title="Statistics" onBack={() => pushRoute('/app')} />
+
       <Tabs
         tabBarExtraContent={
           <CurrencySwitch currency={currency} updateCurrency={setCurrency} />

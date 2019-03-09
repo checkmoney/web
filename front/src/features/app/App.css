@@ -2,8 +2,8 @@
   display: grid;
 
   grid-template:
-    'outcome income '
-    'stats   stats  '
+    'income outcome '
+    'nav     nav    '
     'history history'
     / 1fr 1fr;
 
@@ -14,7 +14,7 @@
     grid-template:
       'outcome'
       'income'
-      'stats'
+      'nav'
       'history';
   }
 }
@@ -40,8 +40,8 @@
   min-width: 100%;
 }
 
-.stats {
-  grid-area: stats;
+.nav {
+  grid-area: nav;
   justify-self: stretch;
 
   min-width: 100%;
