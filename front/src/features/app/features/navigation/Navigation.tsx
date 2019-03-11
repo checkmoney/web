@@ -1,7 +1,18 @@
+import { Menu } from '@front/ui/components/controls/menu/Menu'
+import { MenuItem } from '@front/ui/components/controls/menu/MenuItem'
+import { pushRoute } from '@front/features/routing'
+
 interface Props {
   className?: string
 }
 
 export const Navigation = ({ className }: Props) => (
-  <p className={className}>MORE</p>
+  <Menu className={className}>
+    <MenuItem id="home" selected>
+      Home
+    </MenuItem>
+    <MenuItem id="stats" onClick={() => pushRoute('/app/stats')}>
+      Stats
+    </MenuItem>
+  </Menu>
 )

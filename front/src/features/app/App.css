@@ -2,8 +2,8 @@
   display: grid;
 
   grid-template:
-    'income outcome '
     'nav     nav    '
+    'outcome income '
     'history history'
     / 1fr 1fr;
 
@@ -12,9 +12,9 @@
 
   @media (max-width: 576px) {
     grid-template:
+      'nav'
       'outcome'
       'income'
-      'nav'
       'history';
   }
 }
