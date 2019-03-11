@@ -2,8 +2,8 @@
   display: grid;
 
   grid-template:
+    'nav     nav    '
     'outcome income '
-    'stats   stats  '
     'history history'
     / 1fr 1fr;
 
@@ -12,9 +12,9 @@
 
   @media (max-width: 576px) {
     grid-template:
+      'nav'
       'outcome'
       'income'
-      'stats'
       'history';
   }
 }
@@ -40,8 +40,8 @@
   min-width: 100%;
 }
 
-.stats {
-  grid-area: stats;
+.nav {
+  grid-area: nav;
   justify-self: stretch;
 
   min-width: 100%;
