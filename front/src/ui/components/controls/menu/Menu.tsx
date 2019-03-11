@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Menu = ({ children, className }: Props) => {
-  const selectedKeys: string[] = useMemo(
+  const selectedKeys = useMemo(
     () =>
       children
         .filter(({ props }) => props.selected)
