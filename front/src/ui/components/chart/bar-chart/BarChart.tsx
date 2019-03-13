@@ -14,7 +14,7 @@ interface DataSet {
   data: Data
 }
 
-type Display = (value: number | string | undefined, long?: boolean) => string
+type Display = (value: number | string | undefined) => string
 const defaultDisplay: Display = v => `${v}`
 
 interface Props {
@@ -31,7 +31,7 @@ const createOptions = (
     yAxes: [
       {
         ticks: {
-          callback: v => `${displayValue(v, false)}`,
+          callback: v => `${displayValue(v)}`,
           beginAtZero: true,
         },
       },

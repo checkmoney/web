@@ -45,7 +45,7 @@ export const Yearly = ({ className, currency }: Props) => {
       <Loader status={fetching}>
         {stats.nonEmpty() && (
           <BarChart
-            displayValue={displayMoney(currency)}
+            displayValue={v => displayMoney(currency)(v, { withPenny: false })}
             dataSets={stats.get().map(({ start, income, outcome }) => ({
               name: format(start, 'YYYY'),
               data: {
