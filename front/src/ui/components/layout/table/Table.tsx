@@ -11,6 +11,7 @@ export const Table = <Data extends Array<{}>>({
   columns,
   title,
   hideHeader = false,
+  footer,
 }: TableProps<Data>) => {
   const adoptedData = useMemo(
     () =>
@@ -42,6 +43,7 @@ export const Table = <Data extends Array<{}>>({
       pagination={false}
       showHeader={!hideHeader}
       title={() => <div className={styles.title}>{title}</div>}
+      footer={!!footer ? () => footer : undefined}
     />
   )
 }

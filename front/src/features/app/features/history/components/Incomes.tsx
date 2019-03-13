@@ -1,41 +1,48 @@
-import { displayMoney } from '@shared/helpers/displayMoney'
-import { displayNullableDate } from '@front/helpers/displayNullableDtae'
-import { Table } from '@front/ui/components/layout/table'
-import { IncomeModel } from '@shared/models/money/IncomeModel'
+import { FetchingState } from 'redux-clear'
+import { useMemo } from 'react'
+import { take, head } from 'lodash'
+import { Option } from 'tsoption'
 
-import { DeleteButton } from './DeleteButton'
+import { displayMoney } from '@shared/helpers/displayMoney'
+import { HistoryGroupModel } from '@shared/models/money/HistoryGroupModel'
+import { LoaderTable } from '@front/ui/components/layout/loader-table'
+
+import { createColumns } from './helpers/createColumns'
+import { FullHistoryButton } from './full-history-button/FullHistoryButton'
 
 interface Props {
-  incomes: IncomeModel[]
   className?: string
-  periodName: string
+  maxCount: number
+  history: Option<HistoryGroupModel[]>
+  fetching: FetchingState
 }
 
-const columns = {
-  date: {
-    title: 'Date',
-    transform: displayNullableDate,
-  },
-  amount: {
-    title: 'Amount',
-  },
-  source: {
-    title: 'Source',
-  },
-  id: {
-    title: 'Actions',
-    transform: (id: string) => <DeleteButton id={id} />,
-  },
-}
+const columns = createColumns('source', 'Source')
 
-export const Incomes = ({ incomes, periodName, className }: Props) => (
-  <Table
-    title={`Incomes: ${periodName}`}
-    className={className}
-    data={incomes.map(income => ({
-      ...income,
-      amount: displayMoney(income.currency)(income.amount),
-    }))}
-    columns={columns}
-  />
-)
+export const Incomes = ({ fetching, history, className, maxCount }: Props) => {
+  const lastIncomes = useMemo(
+    () =>
+      history
+        .flatMap(items => Option.of(head(items)))
+        .map(item => take(item.incomes, maxCount))
+        .map(incomes =>
+          incomes.map(income => ({
+            ...income,
+            amount: displayMoney(income.currency)(income.amount),
+          })),
+        ),
+    [history],
+  )
+
+  return (
+    <LoaderTable
+      title="Incomes"
+      data={lastIncomes}
+      columns={columns}
+      fetching={fetching}
+      expectedRows={maxCount}
+      className={className}
+      footer={<FullHistoryButton />}
+    />
+  )
+}
