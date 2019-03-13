@@ -16,4 +16,5 @@ export interface TableProps<Data extends Array<{}>> {
   className?: string
   title: string
   hideHeader?: boolean
+  footer?: ReactNode
 }

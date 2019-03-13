@@ -4,7 +4,7 @@
   grid-template:
     'nav     nav    '
     'outcome income '
-    'history history'
+    'history pass   '
     / 1fr 1fr;
 
   align-items: end;
