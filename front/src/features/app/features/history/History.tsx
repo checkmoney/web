@@ -12,7 +12,6 @@ import { wantUTC } from '@front/helpers/wantUTC'
 import { Incomes } from './components/Incomes'
 import { Outcomes } from './components/Outcomes'
 import * as styles from './History.css'
-import { useMemo } from 'react'
 
 interface Props {
   className?: string
@@ -20,12 +19,11 @@ interface Props {
 
 const groupBy = GroupBy.Month
 const historyLength = 5
+const from = wantUTC(startOfMonth)(new Date())
+const to = wantUTC(endOfMonth)(new Date())
 
 export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus)
-
-  const from = useMemo(() => wantUTC(startOfMonth)(new Date()), [])
-  const to = useMemo(() => wantUTC(endOfMonth)(new Date()), [])
 
   const history = useMemoState(
     () => getHistory(from, to, groupBy),
