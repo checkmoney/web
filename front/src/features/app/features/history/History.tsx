@@ -1,26 +1,28 @@
 import { endOfMonth, startOfMonth } from 'date-fns'
 import { useMappedState } from 'redux-react-hook'
+import { useMemo } from 'react'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
 import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
 import { useMemoState } from '@front/domain/store'
 import { GroupBy } from '@shared/enum/GroupBy'
-import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { wantUTC } from '@front/helpers/wantUTC'
+import { LoaderTable } from '@front/ui/components/layout/loader-table'
 
-import { Incomes } from './components/Incomes'
-import { Outcomes } from './components/Outcomes'
-import * as styles from './History.css'
+import { FullHistoryButton } from './components/full-history-button'
+import { createColumns } from './helpers/createColumns'
+import { historyToTableData } from './helpers/historyToTableData'
 
 interface Props {
   className?: string
 }
 
 const groupBy = GroupBy.Month
-const historyLength = 5
+const historyLength = 10
 const from = wantUTC(startOfMonth)(new Date())
 const to = wantUTC(endOfMonth)(new Date())
+const columns = createColumns('comment', 'Comment')
 
 export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus)
@@ -31,23 +33,20 @@ export const History = ({ className }: Props) => {
     [from, to],
   )
 
+  const lastOutcomes = useMemo(
+    () => historyToTableData(history, historyLength),
+    [history],
+  )
+
   return (
-    <section className={className}>
-      <ControlHeader title="Last transactions" />
-      <div className={styles.dataSet}>
-        <Outcomes
-          fetching={fetching}
-          history={history}
-          className={styles.outcomes}
-          maxCount={historyLength}
-        />
-        <Incomes
-          fetching={fetching}
-          history={history}
-          className={styles.incomes}
-          maxCount={historyLength}
-        />
-      </div>
-    </section>
+    <LoaderTable
+      title="Last transactions"
+      className={className}
+      data={lastOutcomes}
+      columns={columns}
+      expectedRows={historyLength * 1.5}
+      fetching={fetching}
+      footer={<FullHistoryButton />}
+    />
   )
 }
