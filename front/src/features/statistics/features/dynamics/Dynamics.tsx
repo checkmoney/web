@@ -22,12 +22,12 @@ import { getStatsAverageFetchingStatus } from '@front/domain/money/selectors/get
 import { getStatsDynamicsFetchingStatus } from '@front/domain/money/selectors/getStatsDynamicsFetchingStatus'
 import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { wantUTC } from '@front/helpers/wantUTC'
+import { Loader } from '@front/ui/components/layout/loader'
+import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
 
 import * as styles from './Dynamics.css'
 import { calculateGrowPercentage } from './helpers/calculateGrowPercentage'
 import { calculateGroupProgress } from './helpers/calculateGroupProgress'
-import { mergeFetchingState } from './helpers/mergeFetchingState'
-import { Loader } from '@front/ui/components/layout/loader'
 
 interface Props {
   className?: string
