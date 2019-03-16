@@ -2,9 +2,9 @@
   display: grid;
 
   grid-template:
-    'nav     nav    '
-    'outcome income '
-    'history pass   '
+    'nav     nav'
+    'create  now'
+    'history now'
     / 1fr 1fr;
 
   align-items: end;
@@ -13,21 +13,14 @@
   @media (max-width: 576px) {
     grid-template:
       'nav'
-      'outcome'
-      'income'
-      'history';
+      'create'
+      'history'
+      'now';
   }
 }
 
-.income {
-  grid-area: income;
-  justify-self: stretch;
-
-  min-width: 100%;
-}
-
-.outcome {
-  grid-area: outcome;
+.create {
+  grid-area: create;
   justify-self: stretch;
 
   min-width: 100%;
@@ -42,6 +35,13 @@
 
 .nav {
   grid-area: nav;
+  justify-self: stretch;
+
+  min-width: 100%;
+}
+
+.now {
+  grid-area: now;
   justify-self: stretch;
 
   min-width: 100%;

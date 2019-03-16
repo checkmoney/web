@@ -4,8 +4,9 @@
   grid-template:
     'amount  currency'
     'comment comment '
-    'date    submit  '
-    / 2fr minmax(150px, 1fr);
+    'date    kind    '
+    'submit  submit  '
+    / 2fr minmax(200px, 1fr);
 
   @media (max-width: 768px) {
     grid-template:
@@ -13,6 +14,7 @@
       'currency'
       'comment'
       'date'
+      'kind'
       'submit';
   }
 
@@ -34,6 +36,10 @@
 
 .currency {
   grid-area: currency;
+}
+
+.kind {
+  grid-area: kind;
 }
 
 .submit {
