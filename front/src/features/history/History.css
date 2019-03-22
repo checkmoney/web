@@ -1,0 +1,20 @@
+.history {
+  display: grid;
+
+  grid-template:
+    'incomes currenct outcomes'
+    / 1fr 1fr 1fr;
+
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template:
+      'income'
+      'current'
+      'outcomes';
+  }
+}
+
+.tabs {
+  height: calc(100vh - 97px);
+}
