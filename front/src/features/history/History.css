@@ -14,12 +14,16 @@
       / 1fr;
   }
 
-  height: calc(100vh - 97px);
-  overflow: scroll;
+  @media (min-width: 768px) {
+    height: calc(100vh - 97px);
+    overflow: scroll;
+  }
 }
 
 .tabs {
-  height: calc(100vh - 97px);
+  @media (min-width: 768px) {
+    height: calc(100vh - 97px);
+  }
 }
 
 .incomes {
