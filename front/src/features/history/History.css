@@ -2,19 +2,30 @@
   display: grid;
 
   grid-template:
-    'incomes currenct outcomes'
-    / 1fr 1fr 1fr;
+    'incomes outcomes'
+    / 1fr 1fr;
 
   gap: 16px;
 
   @media (max-width: 768px) {
     grid-template:
-      'income'
-      'current'
-      'outcomes';
+      'incomes'
+      'outcomes'
+      / 1fr;
   }
+
+  height: calc(100vh - 97px);
+  overflow: scroll;
 }
 
 .tabs {
   height: calc(100vh - 97px);
+}
+
+.incomes {
+  grid-area: incomes;
+}
+
+.outcomes {
+  grid-area: outcomes;
 }

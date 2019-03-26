@@ -38,8 +38,6 @@ export const Tabs = ({
     return children
   }, [children])
 
-  console.log(getMode(vertical))
-
   return (
     <AntTabs
       defaultActiveKey={defaultActiveKey}

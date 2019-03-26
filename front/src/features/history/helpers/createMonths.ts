@@ -1,16 +1,19 @@
-import { startOfMonth, addMonths } from 'date-fns'
+import { startOfMonth, addMonths, endOfMonth } from 'date-fns'
+
+import { wantUTC } from '@front/helpers/wantUTC'
+
 import { createMonthTitle } from './createMonthTitle'
 
 export const createMonths = (from: Date, to: Date) => {
   const groups = []
 
-  let now = startOfMonth(from)
+  let now = wantUTC(startOfMonth)(from)
   while (now < to) {
-    const next = addMonths(now, 1)
+    const next = wantUTC(addMonths)(now, 1)
     groups.push({
       title: createMonthTitle(now),
       from: now,
-      to: next,
+      to: wantUTC(endOfMonth)(now),
     })
 
     now = next

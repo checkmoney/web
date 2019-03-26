@@ -1,7 +1,7 @@
 import { addHours } from 'date-fns'
 
-export const wantUTC = <T extends []>(f: (d: Date, ...args: T) => Date) => (
-  date: Date,
+export const wantUTC = <D, T extends any[]>(f: (d: D, ...args: T) => Date) => (
+  date: D,
   ...args: T
 ) => {
   const newDate = f(date, ...args)

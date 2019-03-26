@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { Container } from '@front/ui/components/layout/container'
@@ -10,6 +10,7 @@ import { pushRoute } from '../routing'
 import * as styles from './History.css'
 import { createMonths } from './helpers/createMonths'
 import { createMonthTitle } from './helpers/createMonthTitle'
+import { TransactionList } from './components/transaction-list'
 
 export const History = () => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
@@ -18,24 +19,6 @@ export const History = () => {
     firstTransactionDate,
   ])
   const defaultMonthTitle = useMemo(() => createMonthTitle(new Date()), [])
-
-  const renderMonthes = useCallback(
-    () =>
-      months.map(month => (
-        <Tab title={month.title} className={styles.history} key={month.title}>
-          <aside>
-            <p>...</p>
-          </aside>
-
-          <section>...</section>
-
-          <aside>
-            <p>...</p>
-          </aside>
-        </Tab>
-      )),
-    [months],
-  )
 
   return (
     <Container>
@@ -46,7 +29,15 @@ export const History = () => {
         defaultSelected={defaultMonthTitle}
         vertical
       >
-        {renderMonthes()}
+        {months.map(month => (
+          <Tab title={month.title} className={styles.history} key={month.title}>
+            <TransactionList
+              from={month.from}
+              to={month.to}
+              classNames={styles}
+            />
+          </Tab>
+        ))}
       </Tabs>
     </Container>
   )

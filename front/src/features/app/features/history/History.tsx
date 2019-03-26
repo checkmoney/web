@@ -9,10 +9,9 @@ import { useMemoState } from '@front/domain/store'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { wantUTC } from '@front/helpers/wantUTC'
 import { LoaderTable } from '@front/ui/components/layout/loader-table'
+import { historyToTableData, createColumns } from '@front/features/history'
 
 import { FullHistoryButton } from './components/full-history-button'
-import { createColumns } from './helpers/createColumns'
-import { historyToTableData } from './helpers/historyToTableData'
 
 interface Props {
   className?: string
@@ -34,7 +33,7 @@ export const History = ({ className }: Props) => {
   )
 
   const lastOutcomes = useMemo(
-    () => historyToTableData(history, historyLength),
+    () => historyToTableData(history, { maxLength: historyLength }),
     [history],
   )
 
