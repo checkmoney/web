@@ -7,6 +7,7 @@ interface Props {
   children: ReactNode
   skeleton?: boolean
   expectedRows?: number
+  dataAvaiable?: boolean
 }
 
 export const Loader = ({
@@ -14,12 +15,15 @@ export const Loader = ({
   children,
   expectedRows,
   skeleton = false,
+  dataAvaiable = true,
 }: Props) => {
-  if (skeleton && loading) {
+  const showLoader = loading || !dataAvaiable
+
+  if (skeleton && showLoader) {
     return <Skeleton rows={expectedRows} />
   }
 
-  if (loading) {
+  if (showLoader) {
     return <p>loading...</p>
   }
 
