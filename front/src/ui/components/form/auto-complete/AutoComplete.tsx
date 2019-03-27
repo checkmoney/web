@@ -24,7 +24,7 @@ export const AutoComplete = ({
   const [dataSource, setDataSource] = useState<string[]>([])
   useEffect(() => {
     setDataSource(currentValue && currentValue.length ? variants : [])
-  }, [currentValue])
+  }, [currentValue, variants])
 
   return (
     <AntAutoComplete

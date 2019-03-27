@@ -1,10 +1,9 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
 
-import { createOutcome } from '@front/domain/money/actions/createOutcome'
 import { getCreateOutcomeFetching } from '@front/domain/money/selectors/getCreateOutcomeFetching'
-import { useThunk, useMemoState } from '@front/domain/store'
+import { useThunk } from '@front/domain/store'
 import {
   DatePicker,
   EnumSelect,
@@ -18,18 +17,18 @@ import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { Card } from '@front/ui/components/layout/card'
 import { Currency } from '@shared/enum/Currency'
 import { Variant } from '@front/ui/components/form/toggle/Variant'
-import { createIncome } from '@front/domain/money/actions/createIncome'
 import { getCreateIncomeFetching } from '@front/domain/money/selectors/getCreateIncomeFetching'
 import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
 
 import * as styles from './CreateTransaction.css'
-import { fieldsToIncomeModel } from './helpers/fieldsToIncomeModel'
-import { fieldsToOutcomeModel } from './helpers/fieldsToOutcomeModel'
 import { Kind } from './helpers/Kind'
 import { getCommentByKind } from './helpers/getCommentByKind'
 import { getExampleByKind } from './helpers/getExampleByKind'
 import { getSources } from '@front/domain/money/selectors/getSources'
 import { fetchSources } from '@front/domain/money/actions/fetchSources'
+import { getCategories } from '@front/domain/money/selectors/getCategories'
+import { fetchCategories } from '@front/domain/money/actions/fetchCategories'
+import { useOnSubmit } from './helpers/useOnSubmit'
 
 interface Props {
   className?: string
@@ -38,42 +37,26 @@ interface Props {
 export const CreateTransaction = ({ className }: Props) => {
   const dispatch = useThunk()
 
-  const onSubmit = useCallback(
-    async fields => {
-      if (fields.kind === Kind.Income) {
-        const income = fieldsToIncomeModel(fields)
-        await dispatch(createIncome(income))
-      }
-
-      if (fields.kind === Kind.Outcome) {
-        const outcome = fieldsToOutcomeModel(fields)
-        await dispatch(createOutcome(outcome))
-      }
-    },
-    [dispatch],
-  )
+  const onSubmit = useOnSubmit()
 
   const outcomeFetching = useMappedState(getCreateOutcomeFetching)
   const incomeFetching = useMappedState(getCreateIncomeFetching)
-
-  const existSources = useMemoState(() => getSources, fetchSources, [])
-
   const fetching = mergeFetchingState(outcomeFetching, incomeFetching)
 
-  // TODO: fetch variants and pass it
+  const existSources = useMappedState(getSources)
+  const existCategories = useMappedState(getCategories)
+  useEffect(() => {
+    dispatch(fetchSources())
+    dispatch(fetchCategories())
+  }, [])
+
   const getVariants = useCallback(
-    (kind: Kind) => {
-      if (kind === Kind.Income) {
-        return existSources
-      }
-
-      if (kind === Kind.Outcome) {
-        return ['cafe', 'lunch']
-      }
-
-      return []
-    },
-    [existSources],
+    (kind: Kind) =>
+      ({
+        [Kind.Income]: existSources,
+        [Kind.Outcome]: existCategories,
+      }[kind]),
+    [existSources, existCategories],
   )
 
   return (
