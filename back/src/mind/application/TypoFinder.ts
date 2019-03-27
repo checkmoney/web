@@ -26,6 +26,7 @@ export class TypoFinder {
   private matches(variants: string[]) {
     const TYPO_THRESHOLD = 0.8
 
+    // TODO: remove duplicates like {fd => fs} and {fs => fd}
     return variants
       .map(variant => ({
         original: variant,

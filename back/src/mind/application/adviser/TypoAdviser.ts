@@ -15,14 +15,20 @@ export class TypoAdviser implements Adviser {
       this.typoFinder.findTyposInCategories(userLogin),
     ])
 
-    console.log(sourceTypos, categoryTypos)
+    const now = new Date()
 
+    // TODO: add real action and meta (original and suggest)
     return [
-      {
-        date: new Date(),
-        theme: userLogin,
+      ...sourceTypos.map(() => ({
+        date: now,
+        theme: `Possibly typo in source`,
         action: TipAction.Nothing,
-      },
+      })),
+      ...categoryTypos.map(() => ({
+        date: now,
+        theme: `Possibly typo in category`,
+        action: TipAction.Nothing,
+      })),
     ]
   }
 }
