@@ -61,6 +61,18 @@ class IncomeRepo implements TransactionRepository {
       .andWhere('income.date < :end', { end })
       .getMany()
   }
+
+  public async findSourcesForUser(userLogin: string): Promise<string[]> {
+    const result = await this.incomeRepo
+      .createQueryBuilder('income')
+      .select('DISTINCT ON (income.source) income.source', 'source')
+      .innerJoin('income.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .getRawMany()
+
+    return result.map(({ source }) => source)
+  }
 }
 
 export const IncomeRepository = IncomeRepo

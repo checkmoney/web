@@ -1,3 +1,4 @@
+export { AutoComplete } from './components/AutoComplete'
 export { Input } from './components/Input'
 export { InputMoney } from './components/InputMoney'
 export { Select } from './components/Select'

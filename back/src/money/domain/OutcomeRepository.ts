@@ -61,6 +61,18 @@ class OutomeRepo implements TransactionRepository {
       .andWhere('outcome.date < :end', { end })
       .getMany()
   }
+
+  public async findCategoriesForUser(userLogin: string): Promise<string[]> {
+    const result = await this.outcomeRepo
+      .createQueryBuilder('outcome')
+      .select('DISTINCT ON (outcome.category) outcome.category', 'category')
+      .innerJoin('outcome.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .getRawMany()
+
+    return result.map(({ category }) => category)
+  }
 }
 
 export const OutcomeRepository = OutomeRepo

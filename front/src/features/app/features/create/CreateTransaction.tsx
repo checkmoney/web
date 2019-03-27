@@ -1,16 +1,15 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
 
-import { createOutcome } from '@front/domain/money/actions/createOutcome'
 import { getCreateOutcomeFetching } from '@front/domain/money/selectors/getCreateOutcomeFetching'
 import { useThunk } from '@front/domain/store'
 import {
   DatePicker,
   EnumSelect,
-  Input,
   InputMoney,
   Toggle,
+  AutoComplete,
 } from '@front/features/final-form'
 import { getCurrencyName } from '@shared/helpers/getCurrencyName'
 import { Label } from '@front/ui/components/form/label'
@@ -18,13 +17,18 @@ import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { Card } from '@front/ui/components/layout/card'
 import { Currency } from '@shared/enum/Currency'
 import { Variant } from '@front/ui/components/form/toggle/Variant'
-import { createIncome } from '@front/domain/money/actions/createIncome'
 import { getCreateIncomeFetching } from '@front/domain/money/selectors/getCreateIncomeFetching'
 import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
 
 import * as styles from './CreateTransaction.css'
-import { fieldsToIncomeModel } from './helpers/fieldsToIncomeModel'
-import { fieldsToOutcomeModel } from './helpers/fieldsToOutcomeModel'
+import { Kind } from './helpers/Kind'
+import { getCommentByKind } from './helpers/getCommentByKind'
+import { getExampleByKind } from './helpers/getExampleByKind'
+import { getSources } from '@front/domain/money/selectors/getSources'
+import { fetchSources } from '@front/domain/money/actions/fetchSources'
+import { getCategories } from '@front/domain/money/selectors/getCategories'
+import { fetchCategories } from '@front/domain/money/actions/fetchCategories'
+import { useOnSubmit } from './helpers/useOnSubmit'
 
 interface Props {
   className?: string
@@ -33,25 +37,27 @@ interface Props {
 export const CreateTransaction = ({ className }: Props) => {
   const dispatch = useThunk()
 
-  const onSubmit = useCallback(
-    async fields => {
-      if (fields.kind === 'income') {
-        const income = fieldsToIncomeModel(fields)
-        await dispatch(createIncome(income))
-      }
-
-      if (fields.kind === 'outcome') {
-        const outcome = fieldsToOutcomeModel(fields)
-        await dispatch(createOutcome(outcome))
-      }
-    },
-    [dispatch],
-  )
+  const onSubmit = useOnSubmit()
 
   const outcomeFetching = useMappedState(getCreateOutcomeFetching)
   const incomeFetching = useMappedState(getCreateIncomeFetching)
-
   const fetching = mergeFetchingState(outcomeFetching, incomeFetching)
+
+  const existSources = useMappedState(getSources)
+  const existCategories = useMappedState(getCategories)
+  useEffect(() => {
+    dispatch(fetchSources())
+    dispatch(fetchCategories())
+  }, [])
+
+  const getVariants = useCallback(
+    (kind: Kind) =>
+      ({
+        [Kind.Income]: existSources,
+        [Kind.Outcome]: existCategories,
+      }[kind]),
+    [existSources, existCategories],
+  )
 
   return (
     <Form
@@ -59,7 +65,7 @@ export const CreateTransaction = ({ className }: Props) => {
       initialValues={{
         currency: Currency.RUB,
         date: new Date(),
-        kind: 'outcome',
+        kind: Kind.Income,
       }}
     >
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
@@ -72,8 +78,15 @@ export const CreateTransaction = ({ className }: Props) => {
               <InputMoney name="amount" currency={values.currency} />
             </Label>
 
-            <Label text="Comment" className={styles.comment}>
-              <Input name="comment" placeholder="Cafe" />
+            <Label
+              text={getCommentByKind(values.kind)}
+              className={styles.comment}
+            >
+              <AutoComplete
+                name="comment"
+                placeholder={getExampleByKind(values.kind)}
+                variants={getVariants(values.kind)}
+              />
             </Label>
 
             <Label text="Currency" className={styles.currency}>
@@ -90,8 +103,8 @@ export const CreateTransaction = ({ className }: Props) => {
             </Label>
 
             <Toggle name="kind" className={styles.kind}>
-              <Variant value="outcome">Outcome</Variant>
-              <Variant value="income">Income</Variant>
+              <Variant value={Kind.Outcome}>Outcome</Variant>
+              <Variant value={Kind.Income}>Income</Variant>
             </Toggle>
 
             <LoadingButton fethcing={fetching} submit className={styles.submit}>
