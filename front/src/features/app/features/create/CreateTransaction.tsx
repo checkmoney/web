@@ -8,9 +8,9 @@ import { useThunk } from '@front/domain/store'
 import {
   DatePicker,
   EnumSelect,
-  Input,
   InputMoney,
   Toggle,
+  AutoComplete,
 } from '@front/features/final-form'
 import { getCurrencyName } from '@shared/helpers/getCurrencyName'
 import { Label } from '@front/ui/components/form/label'
@@ -25,6 +25,9 @@ import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
 import * as styles from './CreateTransaction.css'
 import { fieldsToIncomeModel } from './helpers/fieldsToIncomeModel'
 import { fieldsToOutcomeModel } from './helpers/fieldsToOutcomeModel'
+import { Kind } from './helpers/Kind'
+import { getCommentByKind } from './helpers/getCommentByKind'
+import { getExampleByKind } from './helpers/getExampleByKind'
 
 interface Props {
   className?: string
@@ -35,12 +38,12 @@ export const CreateTransaction = ({ className }: Props) => {
 
   const onSubmit = useCallback(
     async fields => {
-      if (fields.kind === 'income') {
+      if (fields.kind === Kind.Income) {
         const income = fieldsToIncomeModel(fields)
         await dispatch(createIncome(income))
       }
 
-      if (fields.kind === 'outcome') {
+      if (fields.kind === Kind.Outcome) {
         const outcome = fieldsToOutcomeModel(fields)
         await dispatch(createOutcome(outcome))
       }
@@ -53,13 +56,26 @@ export const CreateTransaction = ({ className }: Props) => {
 
   const fetching = mergeFetchingState(outcomeFetching, incomeFetching)
 
+  // TODO: fetch variants and pass it
+  const getVariants = useCallback((kind: Kind) => {
+    if (kind === Kind.Income) {
+      return ['breadhead', 'netology']
+    }
+
+    if (kind === Kind.Outcome) {
+      return ['cafe', 'lunch']
+    }
+
+    return []
+  }, [])
+
   return (
     <Form
       onSubmit={onSubmit}
       initialValues={{
         currency: Currency.RUB,
         date: new Date(),
-        kind: 'outcome',
+        kind: Kind.Income,
       }}
     >
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
@@ -72,8 +88,15 @@ export const CreateTransaction = ({ className }: Props) => {
               <InputMoney name="amount" currency={values.currency} />
             </Label>
 
-            <Label text="Comment" className={styles.comment}>
-              <Input name="comment" placeholder="Cafe" />
+            <Label
+              text={getCommentByKind(values.kind)}
+              className={styles.comment}
+            >
+              <AutoComplete
+                name="comment"
+                placeholder={getExampleByKind(values.kind)}
+                variants={getVariants(values.kind)}
+              />
             </Label>
 
             <Label text="Currency" className={styles.currency}>
@@ -90,8 +113,8 @@ export const CreateTransaction = ({ className }: Props) => {
             </Label>
 
             <Toggle name="kind" className={styles.kind}>
-              <Variant value="outcome">Outcome</Variant>
-              <Variant value="income">Income</Variant>
+              <Variant value={Kind.Outcome}>Outcome</Variant>
+              <Variant value={Kind.Income}>Income</Variant>
             </Toggle>
 
             <LoadingButton fethcing={fetching} submit className={styles.submit}>
