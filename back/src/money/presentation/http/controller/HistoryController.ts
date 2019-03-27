@@ -17,6 +17,8 @@ import { ApiQueryDateRange } from '@back/utils/presentation/http/api/ApiQueryDat
 import { createEnumValidationPipe } from '@back/utils/presentation/http/pipes/acceptable/createEnumValidationPipe'
 import { ParseDateRangePipe } from '@back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe'
 import { GroupBy } from '@shared/enum/GroupBy'
+import { OutcomeRepository } from '@back/money/domain/OutcomeRepository'
+import { IncomeRepository } from '@back/money/domain/IncomeRepository'
 
 import { HistoryGroupResponse } from '../response/HistoryGroupResponse'
 
@@ -25,7 +27,11 @@ import { HistoryGroupResponse } from '../response/HistoryGroupResponse'
 @ApiUseTags('money')
 @ApiBearerAuth()
 export class HistoryController {
-  public constructor(private readonly historian: Historian) {}
+  public constructor(
+    private readonly historian: Historian,
+    private readonly outcomeRepo: OutcomeRepository,
+    private readonly incomeRepo: IncomeRepository,
+  ) {}
 
   @Get('grouped')
   @ApiOperation({ title: 'Fetch grouped history' })
@@ -67,5 +73,31 @@ export class HistoryController {
     user: TokenPayload,
   ): Promise<Date> {
     return this.historian.getDateOfEarliestTransaction(user.login)
+  }
+
+  @Get('all-categories')
+  @ApiOperation({ title: 'Fetch list of categories' })
+  @ApiOkResponse({
+    description: 'Fetching list success',
+    type: String,
+    isArray: true,
+  })
+  public async showAllCategories(
+    @CurrentUser() user: TokenPayload,
+  ): Promise<string[]> {
+    return this.outcomeRepo.findCategoriesForUser(user.login)
+  }
+
+  @Get('all-sources')
+  @ApiOperation({ title: 'Fetch list of sources' })
+  @ApiOkResponse({
+    description: 'Fetching list success',
+    type: String,
+    isArray: true,
+  })
+  public async showAllSources(
+    @CurrentUser() user: TokenPayload,
+  ): Promise<string[]> {
+    return this.incomeRepo.findSourcesForUser(user.login)
   }
 }
