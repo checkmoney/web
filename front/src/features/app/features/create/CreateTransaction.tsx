@@ -4,7 +4,7 @@ import { useMappedState } from 'redux-react-hook'
 
 import { createOutcome } from '@front/domain/money/actions/createOutcome'
 import { getCreateOutcomeFetching } from '@front/domain/money/selectors/getCreateOutcomeFetching'
-import { useThunk } from '@front/domain/store'
+import { useThunk, useMemoState } from '@front/domain/store'
 import {
   DatePicker,
   EnumSelect,
@@ -28,6 +28,8 @@ import { fieldsToOutcomeModel } from './helpers/fieldsToOutcomeModel'
 import { Kind } from './helpers/Kind'
 import { getCommentByKind } from './helpers/getCommentByKind'
 import { getExampleByKind } from './helpers/getExampleByKind'
+import { getSources } from '@front/domain/money/selectors/getSources'
+import { fetchSources } from '@front/domain/money/actions/fetchSources'
 
 interface Props {
   className?: string
@@ -54,20 +56,25 @@ export const CreateTransaction = ({ className }: Props) => {
   const outcomeFetching = useMappedState(getCreateOutcomeFetching)
   const incomeFetching = useMappedState(getCreateIncomeFetching)
 
+  const existSources = useMemoState(() => getSources, fetchSources, [])
+
   const fetching = mergeFetchingState(outcomeFetching, incomeFetching)
 
   // TODO: fetch variants and pass it
-  const getVariants = useCallback((kind: Kind) => {
-    if (kind === Kind.Income) {
-      return ['breadhead', 'netology']
-    }
+  const getVariants = useCallback(
+    (kind: Kind) => {
+      if (kind === Kind.Income) {
+        return existSources
+      }
 
-    if (kind === Kind.Outcome) {
-      return ['cafe', 'lunch']
-    }
+      if (kind === Kind.Outcome) {
+        return ['cafe', 'lunch']
+      }
 
-    return []
-  }, [])
+      return []
+    },
+    [existSources],
+  )
 
   return (
     <Form
