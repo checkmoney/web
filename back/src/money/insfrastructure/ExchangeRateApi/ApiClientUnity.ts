@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Option } from 'tsoption'
+import { timeout } from 'promise-timeout'
 
 import { Currency } from '@shared/enum/Currency'
 import { Configuration } from '@back/config/Configuration'
@@ -22,7 +23,7 @@ export class ApiClientUnity implements ExchangeRateApi {
     for (const client of this.clients) {
       // await in loop because we want try sequentially get rate
       // eslint-disable-next-line no-await-in-loop
-      const rate = await client.getExchangeRate(from, to)
+      const rate = await this.fetchWithTimeout(client.getExchangeRate(from, to))
 
       if (rate.nonEmpty()) {
         return rate
@@ -40,7 +41,9 @@ export class ApiClientUnity implements ExchangeRateApi {
     for (const client of this.clients) {
       // await in loop because we want try sequentially get rate
       // eslint-disable-next-line no-await-in-loop
-      const rate = await client.getHistoryExchangeRate(from, to, when)
+      const rate = await this.fetchWithTimeout(
+        client.getHistoryExchangeRate(from, to, when),
+      )
 
       if (rate.nonEmpty()) {
         return rate
@@ -48,5 +51,11 @@ export class ApiClientUnity implements ExchangeRateApi {
     }
 
     return Option.of(null)
+  }
+
+  private fetchWithTimeout(
+    promise: Promise<Option<number>>,
+  ): Promise<Option<number>> {
+    return timeout(promise, 1000).catch(() => Option.of(null))
   }
 }
