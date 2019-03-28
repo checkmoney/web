@@ -21,6 +21,7 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "handlebars": "^4.1.0",
+    "md5": "^2.2.1",
     "morgan": "^1.9.1",
     "nanoid": "^2.0.1",
     "nest-telegram": "^0.2.3",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.4",
+    "@types/md5": "^2.1.33",
     "@types/string-similarity": "^3.0.0",
     "nodemon": "^1.18.9"
   }

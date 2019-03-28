@@ -26,8 +26,7 @@ export class TypoFinder {
   private matches(variants: string[]) {
     const TYPO_THRESHOLD = 0.8
 
-    // TODO: remove duplicates like {fd => fs} and {fs => fd}
-    return variants
+    const pairs = variants
       .map(variant => ({
         original: variant,
         bestMatch: findBestMatch(variant, variants.filter(v => v !== variant))
@@ -35,9 +34,26 @@ export class TypoFinder {
       }))
       .filter(({ bestMatch }) => !!bestMatch)
       .filter(({ bestMatch }) => bestMatch.rating > TYPO_THRESHOLD)
-      .map(({ original, bestMatch }) => ({
-        original,
-        suggest: bestMatch.target,
-      }))
+      .map(({ original, bestMatch }) => [original, bestMatch.target])
+
+    // Do not rewrite this with `reduce`, please
+    const sameSets: string[][] = []
+
+    pairs.forEach(pair => {
+      const exist = sameSets.find(same =>
+        pair.some(suggestion => same.includes(suggestion)),
+      )
+
+      if (!exist) {
+        // add new set — pair
+        sameSets.push(pair)
+        return
+      }
+
+      // add pait to exist set
+      exist.push(...pair)
+    })
+
+    return sameSets.map(same => [...new Set(same)])
   }
 }

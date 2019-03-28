@@ -1,7 +1,8 @@
 import { TipAction } from '@shared/enum/TipAction'
 
-export interface TipModel {
+export interface TipModel<Meta = any> {
+  token: string
   date: Date
-  theme: string
   action: TipAction
+  meta: Meta
 }

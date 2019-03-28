@@ -1,3 +1,5 @@
+import * as md5 from 'md5'
+
 import { TipModel } from '@shared/models/mind/TipModel'
 import { TipAction } from '@shared/enum/TipAction'
 
@@ -17,18 +19,37 @@ export class TypoAdviser implements Adviser {
 
     const now = new Date()
 
-    // TODO: add real action and meta (original and suggest)
     return [
-      ...sourceTypos.map(() => ({
+      ...sourceTypos.map(sources => ({
         date: now,
-        theme: `Possibly typo in source`,
-        action: TipAction.Nothing,
+        action: TipAction.MergeSources,
+        meta: sources,
+        token: this.createToken(sources, TipAction.MergeSources, userLogin),
       })),
-      ...categoryTypos.map(() => ({
+      ...categoryTypos.map(categories => ({
         date: now,
-        theme: `Possibly typo in category`,
-        action: TipAction.Nothing,
+        action: TipAction.MergeCategories,
+        meta: categories,
+        token: this.createToken(
+          categories,
+          TipAction.MergeCategories,
+          userLogin,
+        ),
       })),
     ]
+  }
+
+  private createToken(
+    variants: string[],
+    action: TipAction,
+    userLogin: string,
+  ): string {
+    const payload = {
+      variants: variants.sort(),
+      action,
+      userLogin,
+    }
+
+    return md5(JSON.stringify(payload))
   }
 }

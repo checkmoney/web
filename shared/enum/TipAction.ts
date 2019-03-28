@@ -1,3 +1,4 @@
 export enum TipAction {
-  Nothing,
+  MergeSources,
+  MergeCategories,
 }
