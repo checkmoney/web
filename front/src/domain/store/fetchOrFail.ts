@@ -5,6 +5,7 @@ import { Option } from 'tsoption'
 import { Api } from '@front/domain/api'
 import { ExtraArg, State } from '@front/domain/store'
 import { getToken } from '@front/domain/user/selectors/getToken'
+import { tryOr } from '@front/helpers/tryOr'
 
 interface FetchActions {
   request: () => AnyAction
@@ -41,10 +42,7 @@ export const fetchOrFail = (
 
     dispatch(success())
   } catch (e) {
-    dispatch(failure(e.message))
-
-    // tslint:disable-next-line:no-console
-    console.log(e.code) // Try log HTTP errors
+    dispatch(failure(tryOr(() => e.response.data.message, e.message)))
 
     throw e
   }
