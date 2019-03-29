@@ -14,8 +14,8 @@
     grid-template:
       'nav'
       'create'
-      'history'
-      'now';
+      'now'
+      'history';
   }
 }
 
@@ -42,6 +42,7 @@
 
 .now {
   grid-area: now;
+  align-self: start;
   justify-self: stretch;
 
   min-width: 100%;
