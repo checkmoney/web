@@ -14,6 +14,8 @@ import { TipsFilter } from './application/TipsFilter'
 import { DisabledTip } from './domain/DisabledTip.entity'
 import { DisabledTipRepository } from './domain/DisabledTipRepository'
 import { TipsDisabler } from './application/TipsDisabler'
+import { TypoController } from './presentation/http/controller/TypoController'
+import { TypoMerger } from './application/TypoMerger'
 
 @Module({
   imports: [
@@ -22,9 +24,10 @@ import { TipsDisabler } from './application/TipsDisabler'
     MoneyModule,
     TypeOrmModule.forFeature([DisabledTip]),
   ],
-  controllers: [TipController],
+  controllers: [TipController, TypoController],
   providers: [
     TypoFinder,
+    TypoMerger,
     TypoAdviser,
     AdviserUnity,
     TipsFilter,

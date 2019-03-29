@@ -21,9 +21,12 @@ export const Merge = ({ token, variants, target }: Props) => {
 
   const createOnMerge = useCallback(
     (mainVariant: string) => {
-      const otherVaraints = variants.filter(varinat => varinat !== mainVariant)
+      const merge = {
+        primary: mainVariant,
+        secondary: variants.filter(varinat => varinat !== mainVariant),
+      }
 
-      return () => dispatch(mergeTypos(token, mainVariant, otherVaraints))
+      return () => dispatch(mergeTypos(token, merge))
     },
     [variants, token],
   )
