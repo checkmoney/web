@@ -4,15 +4,14 @@ import { User } from '@back/user/domain/User.entity'
 
 @Entity()
 export class DisabledTip {
-  // Token must identify tip (include "for who")
   @PrimaryColumn()
   public readonly token: string
 
+  @ManyToOne(type => User, { primary: true })
+  public readonly user: User
+
   @Column()
   public readonly expireAt: Date
-
-  @ManyToOne(type => User)
-  public readonly user: User
 
   public constructor(token: string, user: User, expireAt: Date = null) {
     this.token = token

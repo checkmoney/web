@@ -5,8 +5,8 @@ CREATE TABLE public.disabled_tip (
 );
 
 ALTER TABLE ONLY public.disabled_tip
-    ADD CONSTRAINT "PK_disabled_tip_token" PRIMARY KEY ("token"),
-    ADD CONSTRAINT "FK_disabled_tip_login" FOREIGN KEY ("userLogin") REFERENCES public."user"(login);
+    ADD CONSTRAINT "FK_disabled_tip_login" FOREIGN KEY ("userLogin") REFERENCES public."user"(login),
+    ADD CONSTRAINT "PK_disabled_tip_token" PRIMARY KEY ("token", "userLogin");
 
 #DOWN
 

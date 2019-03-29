@@ -24,30 +24,21 @@ export class TypoAdviser implements Adviser {
         date: now,
         action: TipAction.MergeSources,
         meta: sources,
-        token: this.createToken(sources, TipAction.MergeSources, userLogin),
+        token: this.createToken(sources, TipAction.MergeSources),
       })),
       ...categoryTypos.map(categories => ({
         date: now,
         action: TipAction.MergeCategories,
         meta: categories,
-        token: this.createToken(
-          categories,
-          TipAction.MergeCategories,
-          userLogin,
-        ),
+        token: this.createToken(categories, TipAction.MergeCategories),
       })),
     ]
   }
 
-  private createToken(
-    variants: string[],
-    action: TipAction,
-    userLogin: string,
-  ): string {
+  private createToken(variants: string[], action: TipAction): string {
     const payload = {
       variants: variants.sort(),
       action,
-      userLogin,
     }
 
     return md5(JSON.stringify(payload))

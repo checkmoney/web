@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { MoneyModule } from '@back/money/money.module'
 import { UserModule } from '@back/user/user.module'
+import { DbModule } from '@back/db/db.module'
 
 import { TypoFinder } from './application/TypoFinder'
 import { TipController } from './presentation/http/controller/TipController'
@@ -12,15 +13,22 @@ import { AdviserUnity } from './infrastructure/adviser/AdviserUnity'
 import { TipsFilter } from './application/TipsFilter'
 import { DisabledTip } from './domain/DisabledTip.entity'
 import { DisabledTipRepository } from './domain/DisabledTipRepository'
+import { TipsDisabler } from './application/TipsDisabler'
 
 @Module({
-  imports: [UserModule, MoneyModule, TypeOrmModule.forFeature([DisabledTip])],
+  imports: [
+    UserModule,
+    DbModule,
+    MoneyModule,
+    TypeOrmModule.forFeature([DisabledTip]),
+  ],
   controllers: [TipController],
   providers: [
     TypoFinder,
     TypoAdviser,
     AdviserUnity,
     TipsFilter,
+    TipsDisabler,
     DisabledTipRepository,
   ],
 })
