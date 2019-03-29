@@ -24,7 +24,7 @@ export class TypoFinder {
   }
 
   private matches(variants: string[]) {
-    const TYPO_THRESHOLD = 0.2
+    const TYPO_THRESHOLD = 0.4
 
     const pairs = variants
       .map(variant => ({
