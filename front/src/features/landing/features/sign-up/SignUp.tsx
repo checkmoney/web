@@ -10,6 +10,7 @@ import { pushRoute } from '@front/features/routing'
 import { InputType } from '@front/ui/components/form/input/InputType'
 import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
+import { useErrorAlert } from '@front/ui/hooks/useErrorAlert'
 import { Card } from '@front/ui/components/layout/card'
 
 import * as styles from '../SignForm.css'
@@ -23,6 +24,7 @@ export const SignUp = () => {
   }, [])
 
   const fetching = useMappedState(getSignUpFetching)
+  useErrorAlert(fetching.error)
 
   return (
     <Form onSubmit={onSubmit}>
