@@ -2,6 +2,7 @@ import { FORBIDDEN } from 'http-status-codes'
 import * as React from 'react'
 
 import { AppContext } from '@front/domain/AppContext'
+import { Landing } from '@front/features/landing'
 
 export default class ForbiddenPage extends React.Component {
   public static getInitialProps({ res }: AppContext) {
@@ -11,6 +12,6 @@ export default class ForbiddenPage extends React.Component {
   }
 
   public render() {
-    return <p>Forbidden</p>
+    return <Landing forbidden />
   }
 }
