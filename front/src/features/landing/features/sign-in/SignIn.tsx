@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
+import cx from 'classnames'
 
 import { useThunk } from '@front/domain/store'
 import { signIn } from '@front/domain/user/actions/signIn'
@@ -15,7 +16,11 @@ import { Card } from '@front/ui/components/layout/card'
 
 import * as styles from '../SignForm.css'
 
-export const SignIn = () => {
+interface Props {
+  className?: string
+}
+
+export const SignIn = ({ className }: Props) => {
   const dispatch = useThunk()
 
   const onSubmit = useCallback(async ({ email, password }) => {
@@ -29,7 +34,10 @@ export const SignIn = () => {
   return (
     <Form onSubmit={onSubmit}>
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} className={styles.container}>
+        <form
+          onSubmit={handleSubmit}
+          className={cx(styles.container, className)}
+        >
           <Card title="Sign-in" className={styles.card}>
             <Label text="Email">
               <Input
