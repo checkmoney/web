@@ -12,22 +12,7 @@ import { AppContext } from '@front/domain/AppContext'
 import { WithReduxProps, withReduxStore } from '@front/domain/store'
 import { actions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
-import { pushRoute } from '@front/features/routing'
-import backwards from './animations/backwards.css'
-import forwards from './animations/forwards.css'
-
-const routeAnimations = [
-  {
-    prevRoute: '/app',
-    nextRoute: '/app/(.+)',
-    styles: forwards,
-  },
-  {
-    prevRoute: '/app/(.+)',
-    nextRoute: '/app',
-    styles: backwards,
-  },
-]
+import { pushRoute, routeAnimations } from '@front/features/routing'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
