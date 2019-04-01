@@ -1,5 +1,7 @@
 import 'antd/dist/antd.css?CSSModulesDisable'
 import App, { Container, NextAppContext } from 'next/app'
+import { Ampa } from '@ampa/nextjs'
+
 import Head from 'next/head'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -11,6 +13,21 @@ import { WithReduxProps, withReduxStore } from '@front/domain/store'
 import { actions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
 import { pushRoute } from '@front/features/routing'
+import backwards from './animations/backwards.css'
+import forwards from './animations/forwards.css'
+
+const routeAnimations = [
+  {
+    prevRoute: '/app',
+    nextRoute: '/app/(.+)',
+    styles: forwards,
+  },
+  {
+    prevRoute: '/app/(.+)',
+    nextRoute: '/app',
+    styles: backwards,
+  },
+]
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -44,7 +61,12 @@ class CheckmoneyWeb extends App<WithReduxProps> {
         </Head>
         <Provider store={reduxStore}>
           <StoreContext.Provider value={reduxStore}>
-            <Component {...pageProps} />
+            <Ampa
+              timeout={{ enter: 500, exit: 500 }}
+              routeAnimations={routeAnimations}
+            >
+              <Component {...pageProps} />
+            </Ampa>
           </StoreContext.Provider>
         </Provider>
       </Container>
