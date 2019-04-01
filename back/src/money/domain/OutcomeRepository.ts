@@ -73,6 +73,19 @@ class OutomeRepo implements TransactionRepository {
 
     return result.map(({ category }) => category)
   }
+
+  public async findByCategoriesForUser(
+    categories: string[],
+    userLogin: string,
+  ): Promise<Outcome[]> {
+    return this.outcomeRepo
+      .createQueryBuilder('outcome')
+      .where('outcome.category IN (:...categories)', { categories })
+      .innerJoin('outcome.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .getMany()
+  }
 }
 
 export const OutcomeRepository = OutomeRepo

@@ -73,6 +73,19 @@ class IncomeRepo implements TransactionRepository {
 
     return result.map(({ source }) => source)
   }
+
+  public async findBySourcesForUser(
+    sources: string[],
+    userLogin: string,
+  ): Promise<Income[]> {
+    return this.incomeRepo
+      .createQueryBuilder('income')
+      .where('income.source IN (:...sources)', { sources })
+      .innerJoin('income.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .getMany()
+  }
 }
 
 export const IncomeRepository = IncomeRepo

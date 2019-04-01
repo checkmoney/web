@@ -20,7 +20,7 @@ export class Outcome implements AbstractTransaction {
   public readonly date: Date
 
   @Column()
-  public readonly category: string
+  public category: string
 
   @ManyToOne(type => User)
   public readonly author: User
