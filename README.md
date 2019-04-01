@@ -2,27 +2,41 @@
 
 > Simple and powerful money tracker.
 
-### Installation
+## Installation
+
+you need to have installed [postgres](https://www.postgresql.org)
 
 ```sh
-$ yarn
-$ cd back yarn evolutions:init
-$ cd back yarn evolutions:run
-$ cd back yarn start:back:dev
-$ cd front yarn start
+  yarn
+  cd back
+    yarn evolutions:init
+    yarn evolutions:run
+    yarn start:back:dev
+    cd ..
+
+  cd front
+    yarn start:front:dev
 ```
 
-### Usage
+## Environment
 
 ```sh
-$ cd back yarn start:back:dev
-$ cd front yarn start
+  cd back
+    cp .env.dist .env
 ```
 
-### Commit
+## Usage
 
 ```sh
-$ yarn s cz
+ cd back yarn start:back:dev
+ cd front start:front:dev
 ```
 
-**app runnig on localhost:3001**
+## Commit
+
+```sh
+ yarn s cz
+```
+
+**front running on localhost:3001**
+**back running on localhost:3000**
