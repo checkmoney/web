@@ -20,7 +20,7 @@ export class Income implements AbstractTransaction {
   public readonly date: Date
 
   @Column()
-  public readonly source: string
+  public source: string
 
   @ManyToOne(type => User)
   public readonly author: User

@@ -46,6 +46,7 @@ import { ApiClientUnity } from './insfrastructure/ExchangeRateApi/ApiClientUnity
     TransactionActions,
     UnexpectedParameterCatcher,
   ],
+  exports: [IncomeRepository, OutcomeRepository],
 })
 export class MoneyModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
