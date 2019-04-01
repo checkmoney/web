@@ -78,6 +78,6 @@ action "Push front image" {
 action "Deploy on server" {
   uses = "maddox/actions/ssh@master"
   needs = ["Push front image", "Push back image"]
-  args = "cd /root/web/checkmoney && docker-compose pull && docker-compose down && docker-compose up -d && docker image prune -f"
+  args = "cd /root/web/checkmoney && docker-compose pull && docker-compose down && docker-compose up -d && docker-compose run back yarn evolutions:run && docker image prune -f"
   secrets = ["HOST", "USER", "PUBLIC_KEY", "PRIVATE_KEY"]
 }
