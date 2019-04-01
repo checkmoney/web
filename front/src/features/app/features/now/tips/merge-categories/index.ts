@@ -1,0 +1,1 @@
+export { MergeCategories } from './MergeCategories'

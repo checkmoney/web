@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
+import cx from 'classnames'
 
 import { useThunk } from '@front/domain/store'
 import { signUp } from '@front/domain/user/actions/signUp'
@@ -10,11 +11,16 @@ import { pushRoute } from '@front/features/routing'
 import { InputType } from '@front/ui/components/form/input/InputType'
 import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
+import { useErrorAlert } from '@front/ui/hooks/useErrorAlert'
 import { Card } from '@front/ui/components/layout/card'
 
 import * as styles from '../SignForm.css'
 
-export const SignUp = () => {
+interface Props {
+  className?: string
+}
+
+export const SignUp = ({ className }: Props) => {
   const dispatch = useThunk()
 
   const onSubmit = useCallback(async ({ email, password }) => {
@@ -23,11 +29,15 @@ export const SignUp = () => {
   }, [])
 
   const fetching = useMappedState(getSignUpFetching)
+  useErrorAlert(fetching.error)
 
   return (
     <Form onSubmit={onSubmit}>
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} className={styles.container}>
+        <form
+          onSubmit={handleSubmit}
+          className={cx(styles.container, className)}
+        >
           <Card title="Sign-up" className={styles.card}>
             <Label text="Email">
               <Input
