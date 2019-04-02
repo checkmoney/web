@@ -6,7 +6,7 @@
 
 ### Database
 
-You need to have installed [postgres](https://www.postgresql.org) and pass parameters to .env dile in back dir.
+You need to have installed [postgres](https://www.postgresql.org) and pass parameters to .env file in back dir.
 
 ```sh
   yarn
@@ -33,7 +33,7 @@ You need to have installed [postgres](https://www.postgresql.org) and pass param
  yarn start:front:dev
 ```
 
-**front running on localhost:3001**
+**front running on localhost:3001**   
 **back running on localhost:3000**
 
 ### Commit
