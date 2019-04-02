@@ -9,28 +9,28 @@
 You need to have installed [postgres](https://www.postgresql.org) and pass parameters to .env file in back dir.
 
 ```sh
-  yarn
+yarn
   
-  cd back
-  yarn evolutions:init
-  yarn evolutions:run
+cd back
+yarn evolutions:init
+yarn evolutions:run
 ```
 
 ### Environment
 
 ```sh
-  cd back
-  cp .env.dist .env
+cd back
+cp .env.dist .env
 ```
 
 ### Usage
 
 ```sh
- cd back
- yarn start:back:dev
+cd back
+yarn start:back:dev
  
- cd front
- yarn start:front:dev
+cd front
+yarn start:front:dev
 ```
 
 **front running on localhost:3001**   
@@ -39,5 +39,5 @@ You need to have installed [postgres](https://www.postgresql.org) and pass param
 ### Commit
 
 ```sh
- yarn s cz
+yarn s cz
 ```
