@@ -5,7 +5,7 @@ import { Option } from 'tsoption'
 import { Api } from '@front/domain/api'
 import { ExtraArg, State } from '@front/domain/store'
 import { getToken } from '@front/domain/user/selectors/getToken'
-import { tryOr } from '@front/helpers/tryOr'
+import { tryOr } from '@shared/helpers/tryOr'
 
 interface FetchActions {
   request: () => AnyAction
