@@ -1,4 +1,4 @@
-import { Body, Controller, Get } from '@nestjs/common'
+import { Body, Controller, Get, Put } from '@nestjs/common'
 import {
   ApiBearerAuth,
   ApiOkResponse,
@@ -44,6 +44,20 @@ export class ProfileController {
     @Body() request: ProfileRequest,
   ): Promise<ProfileResponse> {
     await this.profileEditor.edit('email@email.com', request)
+
+    return this.getResponseByLogin('email@email.com')
+  }
+
+  @Put()
+  @ApiOperation({ title: 'Set default currency' })
+  @ApiOkResponse({
+    description: 'Setting default currency',
+    type: ProfileResponse,
+  })
+  public async setDefaultCurrency(
+    @Body() request: ProfileRequest,
+  ): Promise<ProfileResponse> {
+    await this.profileEditor.changeCurrency('email@email.com', request)
 
     return this.getResponseByLogin('email@email.com')
   }

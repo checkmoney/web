@@ -14,6 +14,7 @@ export const Hello = () => {
         <small>Wellcome!</small>
       </h1>
       <Button onClick={() => pushRoute('/app')}>Start</Button>
+      {/* вопрос какой ваш дефолтный курренси */}
     </section>
   )
 }
