@@ -19,6 +19,7 @@ import { Currency } from '@shared/enum/Currency'
 import { Variant } from '@front/ui/components/form/toggle/Variant'
 import { getCreateIncomeFetching } from '@front/domain/money/selectors/getCreateIncomeFetching'
 import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
+import { setCurrencyAction } from '@front/domain/user/actions/setCurrencyAction'
 
 import * as styles from './CreateTransaction.css'
 import { Kind } from './helpers/Kind'
@@ -59,60 +60,73 @@ export const CreateTransaction = ({ className }: Props) => {
     [existSources, existCategories],
   )
 
+  const setCurrency = useCallback(async currency => {
+    await dispatch(setCurrencyAction(currency))
+  }, [])
+
   return (
-    <Form
-      onSubmit={onSubmit}
-      initialValues={{
-        currency: Currency.RUB,
-        date: new Date(),
-        kind: Kind.Income,
-      }}
-    >
-      {({ handleSubmit, form: { initialize }, values, initialValues }) => (
-        <form
-          onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
-          className={className}
-        >
-          <Card title="Create new transaction" className={styles.form}>
-            <Label text="Amount" className={styles.amount}>
-              <InputMoney name="amount" currency={values.currency} />
-            </Label>
+    <>
+      <button onClick={() => setCurrency(Currency.RUB)}>set currency</button>
+      <Form
+        onSubmit={onSubmit}
+        initialValues={{
+          currency: Currency.RUB,
+          date: new Date(),
+          kind: Kind.Income,
+        }}
+      >
+        {({ handleSubmit, form: { initialize }, values, initialValues }) => (
+          <form
+            onSubmit={e =>
+              handleSubmit(e)!.then(() => initialize(initialValues))
+            }
+            className={className}
+          >
+            <Card title="Create new transaction" className={styles.form}>
+              <Label text="Amount" className={styles.amount}>
+                <InputMoney name="amount" currency={values.currency} />
+              </Label>
 
-            <Label
-              text={getCommentByKind(values.kind)}
-              className={styles.comment}
-            >
-              <AutoComplete
-                name="comment"
-                placeholder={getExampleByKind(values.kind)}
-                variants={getVariants(values.kind)}
-              />
-            </Label>
+              <Label
+                text={getCommentByKind(values.kind)}
+                className={styles.comment}
+              >
+                <AutoComplete
+                  name="comment"
+                  placeholder={getExampleByKind(values.kind)}
+                  variants={getVariants(values.kind)}
+                />
+              </Label>
 
-            <Label text="Currency" className={styles.currency}>
-              <EnumSelect
-                showSearch
-                name="currency"
-                options={Currency}
-                getLabel={getCurrencyName}
-              />
-            </Label>
+              <Label text="Currency" className={styles.currency}>
+                <EnumSelect
+                  showSearch
+                  name="currency"
+                  options={Currency}
+                  getLabel={getCurrencyName}
+                />
+              </Label>
 
-            <Label text="Date" className={styles.date}>
-              <DatePicker name="date" />
-            </Label>
+              <Label text="Date" className={styles.date}>
+                <DatePicker name="date" />
+              </Label>
 
-            <Toggle name="kind" className={styles.kind}>
-              <Variant value={Kind.Outcome}>Outcome</Variant>
-              <Variant value={Kind.Income}>Income</Variant>
-            </Toggle>
+              <Toggle name="kind" className={styles.kind}>
+                <Variant value={Kind.Outcome}>Outcome</Variant>
+                <Variant value={Kind.Income}>Income</Variant>
+              </Toggle>
 
-            <LoadingButton fethcing={fetching} submit className={styles.submit}>
-              Create
-            </LoadingButton>
-          </Card>
-        </form>
-      )}
-    </Form>
+              <LoadingButton
+                fethcing={fetching}
+                submit
+                className={styles.submit}
+              >
+                Create
+              </LoadingButton>
+            </Card>
+          </form>
+        )}
+      </Form>
+    </>
   )
 }

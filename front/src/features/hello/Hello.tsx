@@ -5,6 +5,13 @@ import * as styles from './Hello.css'
 
 export const Hello = () => {
   useRoutePrefetching(['/app'])
+  // const dispatch = useThunk()
+
+  // const setCurrency = useCallback(async ({ currency }) => {
+  //   console.log('button:', currency)
+  //   await dispatch(setCurrencyAction(currency))
+  // }, [])
+  // тут нужно спросить о currency но я так и не поняла по какому роуту находится эта страница
 
   return (
     <section className={styles.container}>
@@ -14,7 +21,6 @@ export const Hello = () => {
         <small>Wellcome!</small>
       </h1>
       <Button onClick={() => pushRoute('/app')}>Start</Button>
-      {/* вопрос какой ваш дефолтный курренси */}
     </section>
   )
 }
