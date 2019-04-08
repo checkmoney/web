@@ -6,5 +6,6 @@ httpProxy
   .createProxyServer({
     changeOrigin: true,
     target: UPSTREAM,
+    followRedirects: true,
   })
   .listen(8000)
