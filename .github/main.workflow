@@ -63,6 +63,12 @@ action "Build front image" {
   needs = ["Login to Docker"]
 }
 
+action "Build proxy image" {
+  uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
+  args = "build -t igorkamyshev/checkmoney-proxy -f Dockerfile-proxy ."
+  needs = ["Login to Docker"]
+}
+
 action "Push back image" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   args = "push igorkamyshev/checkmoney-back"
@@ -73,6 +79,12 @@ action "Push front image" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   args = "push igorkamyshev/checkmoney-front"
   needs = ["Build front image"]
+}
+
+action "Push proxy image" {
+  uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
+  args = "push igorkamyshev/checkmoney-proxy"
+  needs = ["Build proxy image"]
 }
 
 action "Deploy on server" {

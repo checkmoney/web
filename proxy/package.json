@@ -1,0 +1,13 @@
+{
+  "name": "checkmoney-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:proxy:prod": "pm2 start ./pm2.config.js"
+  },
+  "dependencies": {
+    "fastify": "^2.2.0",
+    "fastify-http-proxy": "^2.1.0"
+  }
+}
