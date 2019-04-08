@@ -1,8 +1,10 @@
-const Fastify = require('fastify')
-const server = Fastify()
+const httpProxy = require('http-proxy')
 
-server.register(require('fastify-http-proxy'), {
-  upstream: process.env.BACK_URL || 'https://api.checkmoney.space',
-})
+const UPSTREAM = process.env.BACK_URL || 'https://api.checkmoney.space'
 
-server.listen(3000)
+httpProxy
+  .createProxyServer({
+    changeOrigin: true,
+    target: UPSTREAM,
+  })
+  .listen(8000)

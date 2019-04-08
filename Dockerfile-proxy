@@ -10,8 +10,6 @@ COPY . .
 WORKDIR /app/proxy
 RUN yarn
 
-EXPOSE 3000
-
-ENV NODE_ENV="production"
+EXPOSE 8000
 
 CMD [ "pm2-docker", "start", "pm2.config.js" ]
