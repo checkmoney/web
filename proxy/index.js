@@ -8,4 +8,5 @@ httpProxy
     target: UPSTREAM,
     followRedirects: true,
   })
+  .on('error', e => console.log(JSON.stringify(e, null, ' ')))
   .listen(8000)
