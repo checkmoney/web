@@ -3,6 +3,7 @@ import { TelegramActionHandler, Context, PipeContext } from 'nest-telegram'
 
 import { Authenticator } from '@back/user/application/Authenticator'
 import { Registrator } from '@back/user/application/Registrator'
+import { Templating } from '@back/utils/infrastructure/Templating/Templating'
 
 import { IsKnownUser } from '../transformer/IsKnownUser'
 
@@ -11,6 +12,7 @@ export class AuthActions {
   constructor(
     private readonly authenticator: Authenticator,
     private readonly registrator: Registrator,
+    private readonly templating: Templating,
   ) {}
 
   @TelegramActionHandler({ onStart: true })
@@ -18,11 +20,11 @@ export class AuthActions {
     ctx: Context,
     @PipeContext(IsKnownUser) loggedIn: boolean,
   ) {
-    await ctx.reply('Hello!')
+    const responseText = await this.templating.render('telegram/start', {
+      loggedIn,
+    })
 
-    await ctx.reply(
-      loggedIn ? 'Welcome back!' : 'To auth send me "/auth login password"',
-    )
+    await ctx.reply(responseText)
   }
 
   @TelegramActionHandler({ command: 'auth' })
