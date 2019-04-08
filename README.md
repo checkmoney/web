@@ -23,7 +23,7 @@ cd back
 cp .env.dist .env
 ```
 
-### Usage
+### Start
 
 ```sh
 cd back
