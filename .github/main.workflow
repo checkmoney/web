@@ -63,12 +63,6 @@ action "Build front image" {
   needs = ["Login to Docker"]
 }
 
-action "Build proxy image" {
-  uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  args = "build -t igorkamyshev/checkmoney-proxy -f Dockerfile-proxy ."
-  needs = ["Login to Docker"]
-}
-
 action "Push back image" {
   uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
   args = "push igorkamyshev/checkmoney-back"
@@ -81,15 +75,9 @@ action "Push front image" {
   needs = ["Build front image"]
 }
 
-action "Push proxy image" {
-  uses = "actions/docker/cli@8cdf801b322af5f369e00d85e9cf3a7122f49108"
-  args = "push igorkamyshev/checkmoney-proxy"
-  needs = ["Build proxy image"]
-}
-
 action "Deploy on server" {
   uses = "maddox/actions/ssh@master"
-  needs = ["Push front image", "Push back image", "Push proxy image"]
+  needs = ["Push front image", "Push back image"]
   args = "cd /root/web/checkmoney && docker-compose pull && docker-compose down && docker-compose up -d && docker-compose run back yarn evolutions:run && docker image prune -f"
   secrets = ["HOST", "USER", "PUBLIC_KEY", "PRIVATE_KEY"]
 }
