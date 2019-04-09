@@ -30,7 +30,7 @@ export const Merge = ({ token, variants, target }: Props) => {
     },
     [variants, token],
   )
-
+  console.log(variants)
   return (
     <div className={styles.card}>
       <Card

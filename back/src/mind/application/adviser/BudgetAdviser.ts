@@ -17,28 +17,30 @@ export class BudgetAdviser implements Adviser {
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const now = new Date()
 
-    const [_, ...stats] = await this.statistician.showDateRangeStats(
+    const [_, ...monthsStats] = await this.statistician.showDateRangeStats(
       userLogin,
-      { from: new Date(addMonths(new Date(), -2)), to: new Date() },
+      // TODO: use -1 instead of -2
+      { from: addMonths(new Date(), -2), to: new Date() },
       GroupBy.Month,
       Currency.USD,
     )
 
-    const lastMonthIncome = stats[0].income
-    const thisMonthOutcome = stats[1].outcome
+    const lastMonthIncome = monthsStats[0].income
+    const thisMonthOutcome = monthsStats[1].outcome
     const expectedProfit = lastMonthIncome - thisMonthOutcome
     const daysRemainInMonth = differenceInDays(
       lastDayOfMonth(new Date()),
       new Date(),
     )
-    const result = expectedProfit / daysRemainInMonth
+    // TODO: substract todays outcome
+    const dailyBudget = expectedProfit / daysRemainInMonth
 
     return [
       {
         date: now,
-        action: TipAction.MergeSources,
-        meta: result,
-        token: this.createToken([''], TipAction.MergeSources),
+        action: TipAction.DailyBudget,
+        meta: dailyBudget,
+        token: this.createToken([`${dailyBudget}`], TipAction.DailyBudget),
       },
     ]
   }
