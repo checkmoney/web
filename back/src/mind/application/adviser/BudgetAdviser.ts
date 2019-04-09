@@ -8,7 +8,7 @@ import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
 import { Statistician } from '@back/money/application/Statistician'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { Currency } from '@shared/enum/Currency'
-import { addMonths } from 'date-fns'
+import { addMonths, lastDayOfMonth, differenceInDays } from 'date-fns'
 
 @IsAdviser()
 export class BudgetAdviser implements Adviser {
@@ -17,12 +17,21 @@ export class BudgetAdviser implements Adviser {
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const now = new Date()
 
-    const [_, ...result] = await this.statistician.showDateRangeStats(
+    const [_, ...stats] = await this.statistician.showDateRangeStats(
       userLogin,
       { from: new Date(addMonths(new Date(), -2)), to: new Date() },
       GroupBy.Month,
       Currency.USD,
     )
+
+    const lastMonthIncome = stats[0].income
+    const thisMonthOutcome = stats[1].outcome
+    const expectedProfit = lastMonthIncome - thisMonthOutcome
+    const daysRemainInMonth = differenceInDays(
+      lastDayOfMonth(new Date()),
+      new Date(),
+    )
+    const result = expectedProfit / daysRemainInMonth
 
     return [
       {
