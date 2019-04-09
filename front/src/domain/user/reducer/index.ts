@@ -16,7 +16,7 @@ const reducer = combineReducers<State>({
   signIn: signInReducer,
   signUp: signUpReducer,
   data: dataReducer,
-  user: userReducer,
+  user: userReducer as any,
 })
 
 export { reducer, State }

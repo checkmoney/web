@@ -8,13 +8,13 @@ export class ProfileResponse implements ProfileModel {
   public static fromProfile(profile: Profile): ProfileResponse {
     return {
       name: profile.name.getOrElse(undefined),
-      currency: profile.currency,
+      defaultCurrency: profile.defaultCurrency,
     }
   }
 
   @ApiModelPropertyOptional({
-    example: { name: 'Nick', currency: Currency.EUR },
+    example: { name: 'Nick', defaultCurrency: Currency.EUR },
   })
   public readonly name?: string
-  public currency?: Currency
+  public readonly defaultCurrency?: Currency
 }

@@ -7,23 +7,23 @@ export class Profile {
     return Option.of(this._name)
   }
 
-  public get currency(): Currency {
-    return this._currency
+  public get defaultCurrency(): Currency {
+    return this._defaultCurrency
   }
 
   @Column({ nullable: true })
   private _name?: string
 
-  @Column({ nullable: true })
-  public _currency?: Currency
+  @Column()
+  private _defaultCurrency?: Currency = Currency.USD
 
-  public constructor(name?: string, currency = Currency.USD) {
+  public constructor(name?: string, defaultCurrency = Currency.USD) {
     this._name = name
-    this._currency = currency
+    this._defaultCurrency = defaultCurrency
   }
 
   public changeName(newName: string): void {
-    if (newName.length < 1) {
+    if (!!newName && newName.length < 1) {
       this.removeName()
       return
     }
@@ -36,6 +36,6 @@ export class Profile {
   }
 
   public changeCurrency(currensy: Currency): void {
-    this._currency = currensy
+    this._defaultCurrency = currensy
   }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Put } from '@nestjs/common'
+import { Body, Controller, Get, Put, Query, Param } from '@nestjs/common'
 import {
   ApiBearerAuth,
   ApiOkResponse,
@@ -13,6 +13,9 @@ import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
 import { ProfileRequest } from '../request/ProfileRequest'
 import { ProfileResponse } from '../response/ProfileResponse'
 import { OnlyForUsers } from '../security/OnlyForUsers'
+import { CurrentUser } from '../decorator/CurrentUser'
+import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { Currency } from '@shared/enum/Currency'
 
 @Controller('user/profile')
 @OnlyForUsers()
@@ -48,18 +51,17 @@ export class ProfileController {
     return this.getResponseByLogin('email@email.com')
   }
 
-  @Put()
+  @PostNoCreate('/set-currency/:currency')
   @ApiOperation({ title: 'Set default currency' })
   @ApiOkResponse({
     description: 'Setting default currency',
     type: ProfileResponse,
   })
   public async setDefaultCurrency(
-    @Body() request: ProfileRequest,
-  ): Promise<ProfileResponse> {
-    await this.profileEditor.changeCurrency('email@email.com', request)
-
-    return this.getResponseByLogin('email@email.com')
+    @Param('currency') currency: Currency,
+    @CurrentUser() user: TokenPayload,
+  ): Promise<void> {
+    await this.profileEditor.changeCurrency(user.login, currency)
   }
 
   private async getResponseByLogin(login: string): Promise<ProfileResponse> {

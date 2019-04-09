@@ -25,6 +25,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
 
     if (token.nonEmpty()) {
       ctx.reduxStore.dispatch(actions.setToken(token.get()))
+      // await ctx.reduxStore.dispatch(/* fetch default currency */)
     }
 
     const isSecure = !!(appContext.Component as any).isSecure

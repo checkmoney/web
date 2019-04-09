@@ -1,15 +1,18 @@
-import { ClearAction, createClearRedux } from 'redux-clear'
+import {
+  ClearAction,
+  createClearReduxWithFetching,
+  FetchingState,
+} from 'redux-clear'
 import { Currency } from '@shared/enum/Currency'
-
-interface State {
-  currency: Currency
+interface State extends FetchingState {
+  defaultCurrency: Currency
 }
 
 interface Actions {
   setCurrency: ClearAction<[Currency]>
 }
 
-const { reducer, actions } = createClearRedux<State, Actions>(
+const { reducer, actions } = createClearReduxWithFetching<State, Actions>(
   {
     setCurrency: state => currency => ({
       ...state,
@@ -17,7 +20,9 @@ const { reducer, actions } = createClearRedux<State, Actions>(
     }),
   },
   {
-    currency: Currency.USD,
+    defaultCurrency: Currency.USD,
+    error: Error as any,
+    loading: false,
   },
   'user-data',
 )

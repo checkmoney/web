@@ -5,6 +5,7 @@ import { EntitySaver } from '@back/db/EntitySaver'
 import { User } from '../domain/User.entity'
 import { UserRepository } from '../domain/UserRepository'
 import { ProfileFields } from './dto/ProfileFields'
+import { Currency } from '@shared/enum/Currency'
 
 @Injectable()
 export class ProfileEditor {
@@ -23,10 +24,8 @@ export class ProfileEditor {
     await this.entitySaver.save(user)
   }
 
-  public async changeCurrency(login: string, fields: ProfileFields) {
+  public async changeCurrency(login: string, currency: Currency) {
     const user = await this.userRepo.getOne(login)
-
-    const { currency } = fields
 
     user.profile.changeCurrency(currency)
 
