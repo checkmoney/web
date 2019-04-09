@@ -17,23 +17,9 @@ export class BudgetAdviser implements Adviser {
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const now = new Date()
 
-    const [_, ...monthsStats] = await this.statistician.showDateRangeStats(
-      userLogin,
-      // TODO: use -1 instead of -2
-      { from: addMonths(new Date(), -2), to: new Date() },
-      GroupBy.Month,
-      Currency.USD,
-    )
+    const monthsStats = await this.getMonthsStats(userLogin)
 
-    const lastMonthIncome = monthsStats[0].income
-    const thisMonthOutcome = monthsStats[1].outcome
-    const expectedProfit = lastMonthIncome - thisMonthOutcome
-    const daysRemainInMonth = differenceInDays(
-      lastDayOfMonth(new Date()),
-      new Date(),
-    )
-    // TODO: substract todays outcome
-    const dailyBudget = expectedProfit / daysRemainInMonth
+    const dailyBudget = this.calculateDailyBudget(monthsStats)
 
     return [
       {
@@ -43,6 +29,38 @@ export class BudgetAdviser implements Adviser {
         token: this.createToken([`${dailyBudget}`], TipAction.DailyBudget),
       },
     ]
+  }
+
+  private calculateDailyBudget(
+    monthsStats: {
+      currency: Currency
+      start: Date
+      end: Date
+      income: number
+      outcome: number
+    }[],
+  ) {
+    const lastMonthIncome = monthsStats[0].income
+    const thisMonthOutcome = monthsStats[1].outcome
+    const expectedProfit = lastMonthIncome - thisMonthOutcome
+    const daysRemainInMonth = differenceInDays(
+      lastDayOfMonth(new Date()),
+      new Date(),
+    )
+    // TODO: substract todays outcome
+    const dailyBudget = expectedProfit / daysRemainInMonth
+    return dailyBudget
+  }
+
+  private async getMonthsStats(userLogin: string) {
+    const [_, ...monthsStats] = await this.statistician.showDateRangeStats(
+      userLogin,
+      // TODO: use -1 instead of -2
+      { from: addMonths(new Date(), -2), to: new Date() },
+      GroupBy.Month,
+      Currency.USD,
+    )
+    return monthsStats
   }
 
   private createToken(variants: string[], action: TipAction): string {
