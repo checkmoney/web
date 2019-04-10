@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
+import { useMappedState } from 'redux-react-hook'
 
-import { Currency } from '@shared/enum/Currency'
 import { CurrencySwitch } from '@front/ui/components/controls/currency-switch'
 import { Container } from '@front/ui/components/layout/container'
 import { Tabs, Tab } from '@front/ui/components/layout/tabs'
@@ -14,12 +14,14 @@ import { Sources } from './features/sources'
 import * as styles from './Statistics.css'
 import { PageHeader } from '@front/ui/components/layout/page-header'
 import { pushRoute } from '../routing'
+import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
 
 const columnWidthPercent = 40
 const maxLength = 5
 
 export const Statistics = () => {
-  const [currency, setCurrency] = useState(Currency.USD)
+  const defaultCurrency = useMappedState(getDefaultCurrency)
+  const [currency, setCurrency] = useState(defaultCurrency)
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (

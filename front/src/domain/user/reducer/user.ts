@@ -8,7 +8,7 @@ import { UserProfile } from '../actions/UserProfile'
 import { Option } from 'tsoption'
 
 interface State extends FetchingState {
-  profile: { defaultCurrency: Currency }
+  data: { profile: { defaultCurrency: Currency } }
 }
 interface Actions {
   setCurrency: ClearAction<[Currency]>
@@ -31,8 +31,10 @@ const { reducer, actions } = createClearReduxWithFetching<State, Actions>(
     },
   },
   {
-    profile: {
-      defaultCurrency: Currency.USD,
+    data: {
+      profile: {
+        defaultCurrency: Currency.USD,
+      },
     },
     error: Option.of(null),
     loading: false,
