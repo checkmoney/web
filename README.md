@@ -2,9 +2,7 @@
 
 > Simple and powerful money tracker.
 
-Site: https://checkmoney.space
-
-For Russia: https://checkmoney.ml (thanks, RKN)
+Site: https://checkmoney.space and https://checkmoney.ml (thanks, RKN)
 
 ## Development
 
