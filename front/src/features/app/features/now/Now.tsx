@@ -11,7 +11,6 @@ interface Props {
 
 export const Now = ({ className }: Props) => {
   const tips = useMemoState(() => getTips, () => fetchTips(), [])
-
   const components = useMemo(
     () =>
       tips.map(tip => {
