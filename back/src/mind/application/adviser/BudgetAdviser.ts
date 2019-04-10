@@ -36,7 +36,7 @@ export class BudgetAdviser implements Adviser {
         date: now,
         action: TipAction.DailyBudget,
         meta: { amount: amount, currency: Currency.USD },
-        token: this.createToken(`${amount}${now}`, TipAction.DailyBudget),
+        token: this.createToken(amount, now, TipAction.DailyBudget),
       },
     ]
   }
@@ -54,10 +54,11 @@ export class BudgetAdviser implements Adviser {
   }
 
   private async getMonthsStats(userLogin: string) {
-    const startDate = startOfMonth(subMonths(new Date(), 1))
+    const now = new Date()
+    const startDate = startOfMonth(subMonths(now, 1))
     const monthsStats = await this.statistician.showDateRangeStats(
       userLogin,
-      { from: startDate, to: new Date() },
+      { from: startDate, to: now },
       GroupBy.Month,
       Currency.USD,
     )
@@ -81,8 +82,11 @@ export class BudgetAdviser implements Adviser {
     return roundedAmount
   }
 
-  private getDaysRemainInMonth = () =>
-    differenceInDays(lastDayOfMonth(new Date()), new Date())
+  private getDaysRemainInMonth = () => {
+    const now = new Date()
+
+    return differenceInDays(lastDayOfMonth(now), now)
+  }
 
   private calculateRawAmount(
     expectedProfit: number,
@@ -93,12 +97,12 @@ export class BudgetAdviser implements Adviser {
   }
 
   private roundAmount(amount: number) {
-    return amount > 0 ? amount.toFixed(0) : 0
+    return amount > 0 ? Math.round(amount) : 0
   }
 
-  private createToken(variant: string, action: TipAction): string {
+  private createToken(amount: number, now: Date, action: TipAction): string {
     const payload = {
-      variant,
+      variant: `${amount}${now}`,
       action,
     }
 
