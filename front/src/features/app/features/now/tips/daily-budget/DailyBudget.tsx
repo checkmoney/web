@@ -8,6 +8,8 @@ import { disableTips } from '@front/domain/mind/actions/disableTips'
 import { DailyBudgetMeta } from './DailyBudgetMeta'
 import * as styles from '../components/merge/Merge.css'
 
+import { DailyBudgetMeta } from './DailyBudgetMeta'
+
 interface Props {
   tip: TipModel<DailyBudgetMeta>
 }
