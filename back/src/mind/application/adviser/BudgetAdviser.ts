@@ -4,8 +4,10 @@ import {
   differenceInDays,
   subMonths,
   startOfMonth,
+  format,
 } from 'date-fns'
 
+import { formatDate } from '@shared/helpers/formatDate'
 import { TipModel } from '@shared/models/mind/TipModel'
 import { TipAction } from '@shared/enum/TipAction'
 import { Statistician } from '@back/money/application/Statistician'
@@ -100,9 +102,9 @@ export class BudgetAdviser implements Adviser {
     return amount > 0 ? Math.round(amount) : 0
   }
 
-  private createToken(amount: number, now: Date, action: TipAction): string {
+  private createToken(amount: number, date: Date, action: TipAction): string {
     const payload = {
-      variant: `${amount}${now}`,
+      variant: `${amount}${formatDate(date)}`,
       action,
     }
 
