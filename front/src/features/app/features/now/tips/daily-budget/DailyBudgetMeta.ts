@@ -1,2 +1,6 @@
-// TODO: replace with proper data type
-export type DailyBudgetMeta = number
+import { Currency } from '@shared/enum/Currency'
+
+export interface DailyBudgetMeta {
+  amount: number
+  currency: Currency
+}
