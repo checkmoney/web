@@ -1,6 +1,7 @@
 import { TipModel } from '@shared/models/mind/TipModel'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { Card } from '@front/ui/components/layout/card'
+
 import { DailyBudgetMeta } from './DailyBudgetMeta'
 import * as styles from '../components/merge/Merge.css'
 
