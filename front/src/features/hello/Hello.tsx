@@ -22,7 +22,13 @@ export const Hello = () => {
         Checkmoney Space
         <br />
         <small>Wellcome!</small>
-        <CurrencySwitch currency={Currency.USD} updateCurrency={setCurrency} />
+        <div>
+          <p className={styles.text}>Choose default currency</p>
+          <CurrencySwitch
+            currency={Currency.USD}
+            updateCurrency={setCurrency}
+          />
+        </div>
       </h1>
       <Button onClick={() => pushRoute('/app')}>Start</Button>
     </section>
