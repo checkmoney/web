@@ -3,6 +3,7 @@ import { findBestMatch } from 'string-similarity'
 
 import { IncomeRepository } from '@back/money/domain/IncomeRepository'
 import { OutcomeRepository } from '@back/money/domain/OutcomeRepository'
+import { tryOr } from '@shared/helpers/tryOr'
 
 @Injectable()
 export class TypoFinder {
@@ -27,10 +28,14 @@ export class TypoFinder {
     const TYPO_THRESHOLD = 0.4
 
     const pairs = variants
-      .map(variant => ({
-        original: variant,
-        bestMatch: findBestMatch(variant, variants.filter(v => v !== variant))
-          .bestMatch,
+      .map(original => ({
+        original,
+        bestMatch: tryOr(
+          () =>
+            findBestMatch(original, variants.filter(v => v !== original))
+              .bestMatch,
+          undefined,
+        ),
       }))
       .filter(({ bestMatch }) => !!bestMatch)
       .filter(({ bestMatch }) => bestMatch.rating > TYPO_THRESHOLD)

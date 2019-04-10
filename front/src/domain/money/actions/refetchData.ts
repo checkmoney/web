@@ -1,4 +1,5 @@
 import { fetchOrFail } from '@front/domain/store'
+import { fetchTips } from '@front/domain/mind/actions/fetchTips'
 
 import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods'
 import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods'
@@ -13,6 +14,7 @@ export const refetchData = () =>
 
     await Promise.all([
       dispatch(fetchFirstTransactionDate()),
+      dispatch(fetchTips()),
       ...historyCachedPeriods.map(
         ({ from, to, groupBy }) =>
           groupBy &&

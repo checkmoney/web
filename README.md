@@ -2,6 +2,8 @@
 
 > Simple and powerful money tracker.
 
+Site: https://checkmoney.space and https://checkmoney.ml (thanks, RKN)
+
 ## Development
 
 ### Database
@@ -23,7 +25,7 @@ cd back
 cp .env.dist .env
 ```
 
-### Usage
+### Start
 
 ```sh
 cd back

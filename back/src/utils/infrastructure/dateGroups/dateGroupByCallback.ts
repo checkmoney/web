@@ -16,5 +16,9 @@ export const dateGroupByCallback = (groupBy: GroupBy) => (date: Date) => {
     return format(date, 'WW')
   }
 
+  if (groupBy === GroupBy.Day) {
+    return format(date, 'DD')
+  }
+
   throw new LogicException('Unknown group by')
 }
