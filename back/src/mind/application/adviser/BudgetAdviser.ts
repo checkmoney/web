@@ -6,8 +6,8 @@ import {
   startOfMonth,
   format,
 } from 'date-fns'
-import { formatDate } from '@shared/helpers/formatDate'
 
+import { formatDate } from '@shared/helpers/formatDate'
 import { TipModel } from '@shared/models/mind/TipModel'
 import { TipAction } from '@shared/enum/TipAction'
 import { Statistician } from '@back/money/application/Statistician'
