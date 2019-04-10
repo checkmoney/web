@@ -10,9 +10,10 @@ import { Option } from 'tsoption'
 
 import { AppContext } from '@front/domain/AppContext'
 import { WithReduxProps, withReduxStore } from '@front/domain/store'
-import { actions } from '@front/domain/user/reducer/data'
+import { actions as dataActions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
 import { pushRoute, routeAnimations } from '@front/features/routing'
+import { getUserProfile } from '@front/domain/user/actions/getUserProfile'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -24,8 +25,8 @@ class CheckmoneyWeb extends App<WithReduxProps> {
       .flatMap(cookies => Option.of(cookies.token))
 
     if (token.nonEmpty()) {
-      ctx.reduxStore.dispatch(actions.setToken(token.get()))
-      // await ctx.reduxStore.dispatch(/* fetch default currency */)
+      ctx.reduxStore.dispatch(dataActions.setToken(token.get()))
+      await ctx.reduxStore.dispatch(getUserProfile() as any)
     }
 
     const isSecure = !!(appContext.Component as any).isSecure

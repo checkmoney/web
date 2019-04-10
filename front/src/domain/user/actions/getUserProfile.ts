@@ -7,6 +7,8 @@ const { getProfile } = userActions.data
 
 export const getUserProfile = () => {
   return fetchOrFail(userActions.fetching, async (dispatch, getApi) => {
+    // проверка чтобы не фетчил каждый раз?
+    // добавить поле userFetchingOnce
     const profile = await getUserProfileRequest(getApi())()
     dispatch(getProfile(profile))
   })

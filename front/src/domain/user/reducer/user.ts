@@ -5,6 +5,7 @@ import {
 } from 'redux-clear'
 import { Currency } from '@shared/enum/Currency'
 import { UserProfile } from '../actions/UserProfile'
+import { Option } from 'tsoption'
 
 interface State extends FetchingState {
   profile: { defaultCurrency: Currency }
@@ -22,16 +23,18 @@ const { reducer, actions } = createClearReduxWithFetching<State, Actions>(
         defaultCurrency,
       },
     }),
-    getProfile: state => (profile: UserProfile) => ({
-      ...state,
-      profile,
-    }),
+    getProfile: state => (profile: UserProfile) => {
+      return {
+        ...state,
+        profile,
+      }
+    },
   },
   {
     profile: {
       defaultCurrency: Currency.USD,
     },
-    error: Error as any,
+    error: Option.of(null),
     loading: false,
   },
   'user-data',
