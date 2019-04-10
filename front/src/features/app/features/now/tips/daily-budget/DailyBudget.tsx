@@ -1,6 +1,7 @@
 import { TipModel } from '@shared/models/mind/TipModel'
-import { DailyBudgetMeta } from './DailyBudgetMeta'
 import { displayMoney } from '@shared/helpers/displayMoney'
+
+import { DailyBudgetMeta } from './DailyBudgetMeta'
 
 interface Props {
   tip: TipModel<DailyBudgetMeta>
