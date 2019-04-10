@@ -13,7 +13,7 @@ export const DailyBudget = ({ tip: { meta } }: Props) => {
     <div className={styles.card}>
       <Card title={`Your daily budget`}>
         Your preferred budget today is{' '}
-        {displayMoney(meta.currency)(meta.amount)}
+        {displayMoney(meta.currency)(meta.amount, { withPenny: false })}
       </Card>
     </div>
   )
