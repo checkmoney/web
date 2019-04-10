@@ -8,7 +8,7 @@ const { setCurrency } = userActions.data
 
 export const setDefaultCurrency = (currency: Currency) => {
   return fetchOrFail(userActions.fetching, async (dispatch, getApi) => {
-    const defaultCurrency = await setCurrencyRequest(getApi())(currency)
-    dispatch(setCurrency(defaultCurrency!))
+    await setCurrencyRequest(getApi())(currency)
+    dispatch(setCurrency(currency))
   })
 }

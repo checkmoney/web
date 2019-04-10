@@ -5,6 +5,7 @@ import { useCallback } from 'react'
 
 import * as styles from './Hello.css'
 import { setDefaultCurrency } from '@front/domain/user/actions/setDefaultCurrency'
+import { getUserProfile } from '@front/domain/user/actions/getUserProfile'
 import { Currency } from '@shared/enum/Currency'
 
 export const Hello = () => {
@@ -15,11 +16,16 @@ export const Hello = () => {
     await dispatch(setDefaultCurrency(currency))
   }, [])
 
+  const getProfile = useCallback(async () => {
+    await dispatch(getUserProfile())
+  }, [])
+
   return (
     <section className={styles.container}>
       <h1>
         Checkmoney Space
         <br />
+        <button onClick={() => getProfile()}>get your profile</button>
         <button onClick={() => setCurrency(Currency.RUB)}>
           set your currency
         </button>

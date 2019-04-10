@@ -4,27 +4,37 @@ import {
   FetchingState,
 } from 'redux-clear'
 import { Currency } from '@shared/enum/Currency'
-interface State extends FetchingState {
-  defaultCurrency: Currency
-}
+import { UserProfile } from '../actions/UserProfile'
 
+interface State extends FetchingState {
+  profile: { defaultCurrency: Currency }
+}
 interface Actions {
   setCurrency: ClearAction<[Currency]>
+  getProfile: ClearAction<[UserProfile]>
 }
 
 const { reducer, actions } = createClearReduxWithFetching<State, Actions>(
   {
-    setCurrency: state => currency => ({
+    setCurrency: state => (defaultCurrency: Currency) => ({
       ...state,
-      currency,
+      profile: {
+        defaultCurrency,
+      },
+    }),
+    getProfile: state => (profile: UserProfile) => ({
+      ...state,
+      profile,
     }),
   },
   {
-    defaultCurrency: Currency.USD,
+    profile: {
+      defaultCurrency: Currency.USD,
+    },
     error: Error as any,
     loading: false,
   },
   'user-data',
 )
 
-export { reducer, actions, State }
+export { State, reducer, actions }
