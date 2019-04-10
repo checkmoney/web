@@ -51,18 +51,6 @@ export class ProfileController {
     return this.getResponseByLogin('email@email.com')
   }
 
-  @Get('/user/profile/currency')
-  @ApiOperation({ title: 'Show user currency' })
-  @ApiOkResponse({
-    description: 'Fetching user currency success',
-    type: ProfileResponse,
-  })
-  public async getUserCurrency(
-    @CurrentUser() user: TokenPayload,
-  ): Promise<ProfileResponse> {
-    return this.getResponseByLogin(user.login)
-  }
-
   @PostNoCreate('/set-currency/:currency')
   @ApiOperation({ title: 'Set default currency' })
   @ApiOkResponse({
