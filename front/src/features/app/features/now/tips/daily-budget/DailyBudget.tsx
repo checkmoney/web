@@ -4,6 +4,8 @@ import { Card } from '@front/ui/components/layout/card'
 import { DailyBudgetMeta } from './DailyBudgetMeta'
 import * as styles from '../components/merge/Merge.css'
 
+import { DailyBudgetMeta } from './DailyBudgetMeta'
+
 interface Props {
   tip: TipModel<DailyBudgetMeta>
 }
