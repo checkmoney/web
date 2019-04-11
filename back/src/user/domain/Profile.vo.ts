@@ -1,5 +1,6 @@
 import { Option } from 'tsoption'
 import { Column } from 'typeorm'
+
 import { Currency } from '@shared/enum/Currency'
 
 export class Profile {
