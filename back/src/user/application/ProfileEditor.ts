@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
 
 import { EntitySaver } from '@back/db/EntitySaver'
+import { Currency } from '@shared/enum/Currency'
 
 import { User } from '../domain/User.entity'
 import { UserRepository } from '../domain/UserRepository'
 import { ProfileFields } from './dto/ProfileFields'
-import { Currency } from '@shared/enum/Currency'
 
 @Injectable()
 export class ProfileEditor {
