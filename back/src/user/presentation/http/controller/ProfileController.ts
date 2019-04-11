@@ -33,30 +33,25 @@ export class ProfileController {
     description: 'Fetching profile success',
     type: ProfileResponse,
   })
-  public async showProfile(): Promise<ProfileResponse> {
-    return this.getResponseByLogin('email@email.com')
+  public async showProfile(
+    @CurrentUser() user: TokenPayload,
+  ): Promise<ProfileResponse> {
+    return this.getResponseByLogin(user.login)
   }
 
   @PostNoCreate()
   @ApiOperation({ title: 'Edit user profile' })
-  @ApiOkResponse({
-    description: 'Editing profile success',
-    type: ProfileResponse,
-  })
+  @ApiOkResponse({ description: 'Editing profile success' })
   public async editProfile(
     @Body() request: ProfileRequest,
-  ): Promise<ProfileResponse> {
-    await this.profileEditor.edit('email@email.com', request)
-
-    return this.getResponseByLogin('email@email.com')
+    @CurrentUser() user: TokenPayload,
+  ): Promise<void> {
+    await this.profileEditor.edit(user.login, request)
   }
 
   @PostNoCreate('/set-currency/:currency')
   @ApiOperation({ title: 'Set default currency' })
-  @ApiOkResponse({
-    description: 'Setting default currency',
-    type: ProfileResponse,
-  })
+  @ApiOkResponse({ description: 'Setting default currency' })
   public async setDefaultCurrency(
     @Param('currency') currency: Currency,
     @CurrentUser() user: TokenPayload,

@@ -27,7 +27,6 @@ class CheckmoneyWeb extends App<WithReduxProps> {
     if (token.nonEmpty()) {
       ctx.reduxStore.dispatch(dataActions.setToken(token.get()))
       await ctx.reduxStore.dispatch(getUserProfile() as any)
-      console.log('app.tsx')
     }
 
     const isSecure = !!(appContext.Component as any).isSecure
