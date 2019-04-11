@@ -9,20 +9,28 @@ import { getProfile } from '@front/domain/user/selectors/getProfile'
 import { fetchUserProfile } from '@front/domain/user/actions/fetchUserProfile'
 import { Label } from '@front/ui/components/form/label'
 import { setDefaultCurrency } from '@front/domain/user/actions/setDefaultCurrency'
+import { Card } from '@front/ui/components/layout/card'
+import { useNotifyAlert } from '@front/ui/hooks/useNotifyAlert'
 import { Currency } from '@shared/enum/Currency'
 
 import { pushRoute } from '../routing'
+import * as styles from './Profile.css'
 
 export const Profile = () => {
   const dispatch = useThunk()
+  const notify = useNotifyAlert()
 
-  const profile = useMemoState(() => getProfile, fetchUserProfile, [])
+  const { defaultCurrency } = useMemoState(
+    () => getProfile,
+    fetchUserProfile,
+    [],
+  )
 
-  const [currency, setCurrency] = useState<Currency>(profile.defaultCurrency)
+  const [currency, setCurrency] = useState<Currency>(defaultCurrency)
 
   useEffect(() => {
-    if (currency !== profile.defaultCurrency) {
-      dispatch(setDefaultCurrency(currency))
+    if (currency !== defaultCurrency) {
+      dispatch(setDefaultCurrency(currency)).then(() => notify('Saved'))
     }
   }, [currency])
 
@@ -30,12 +38,16 @@ export const Profile = () => {
     <Container>
       <PageHeader title="Profile" onBack={() => pushRoute('/app')} />
 
-      <section>
-        <p>jhon@snow.bastard</p>
+      <section className={styles.container}>
+        <Card title="Profile">
+          <p>Comming soon...</p>
+        </Card>
 
-        <Label text="Preferred currency">
-          <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
-        </Label>
+        <Card title="Settings">
+          <Label text="Preferred currency">
+            <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
+          </Label>
+        </Card>
       </section>
     </Container>
   )
