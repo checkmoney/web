@@ -1,15 +1,13 @@
 import { fetchOrFail } from '@front/domain/store'
 
 import { getUserProfileRequest } from '../api/getUserProfileRequest'
-import { actions as userActions } from '../reducer/user'
+import { actions } from '../reducer/profile'
 
-const { getProfile } = userActions.data
-
-export const getUserProfile = () => {
-  return fetchOrFail(userActions.fetching, async (dispatch, getApi) => {
+export const fetchUserProfile = () => {
+  return fetchOrFail(actions.fetching, async (dispatch, getApi) => {
     // TODO: проверка чтобы не фетчил каждый раз
     // добавить поле userFetchingOnce
     const profile = await getUserProfileRequest(getApi())()
-    dispatch(getProfile(profile))
+    dispatch(actions.data.setProfile(profile))
   })
 }

@@ -8,7 +8,7 @@ import { State } from './State'
 export const useThunk = () => {
   const dispatch = useDispatch()
 
-  return <Result = Promise<void>>(
+  return async <Result = Promise<void>>(
     action: ThunkAction<Result, State, ExtraArg, AnyAction>,
   ) => dispatch(action as any)
 }
