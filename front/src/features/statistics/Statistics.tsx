@@ -5,6 +5,8 @@ import { CurrencySwitch } from '@front/ui/components/controls/currency-switch'
 import { Container } from '@front/ui/components/layout/container'
 import { Tabs, Tab } from '@front/ui/components/layout/tabs'
 import { GroupBy } from '@shared/enum/GroupBy'
+import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
+import { PageHeader } from '@front/ui/components/layout/page-header'
 
 import { Yearly } from './features/yearly'
 import { Monthly } from './features/monthly'
@@ -12,9 +14,7 @@ import { Dynamics } from './features/dynamics'
 import { Categories } from './features/categories'
 import { Sources } from './features/sources'
 import * as styles from './Statistics.css'
-import { PageHeader } from '@front/ui/components/layout/page-header'
 import { pushRoute } from '../routing'
-import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
 
 const columnWidthPercent = 40
 const maxLength = 5
