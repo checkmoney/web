@@ -11,6 +11,7 @@ import { formatDate } from '@shared/helpers/formatDate'
 import { TipModel } from '@shared/models/mind/TipModel'
 import { TipAction } from '@shared/enum/TipAction'
 import { Statistician } from '@back/money/application/Statistician'
+import { UserRepository } from '@back/user/domain/UserRepository'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { Currency } from '@shared/enum/Currency'
 
@@ -19,14 +20,19 @@ import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
 
 @IsAdviser()
 export class BudgetAdviser implements Adviser {
-  public constructor(private readonly statistician: Statistician) {}
+  public constructor(
+    private readonly statistician: Statistician,
+    private readonly userRepo: UserRepository,
+  ) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const now = new Date()
 
+    const currency = await this.userRepo.getDefaultCurrency(userLogin)
+
     const [monthsStats, todaysStats] = await Promise.all([
-      this.getMonthsStats(userLogin),
-      this.getTodaysStats(userLogin),
+      this.getMonthsStats(userLogin, currency),
+      this.getTodaysStats(userLogin, currency),
     ])
 
     const amount = this.calculateAmount(
@@ -39,25 +45,25 @@ export class BudgetAdviser implements Adviser {
       {
         date: now,
         action: TipAction.DailyBudget,
-        meta: { amount: amount, currency: Currency.USD },
+        meta: { amount, currency },
         token: this.createToken(now, TipAction.DailyBudget),
       },
     ]
   }
 
-  private async getTodaysStats(userLogin: string) {
+  private async getTodaysStats(userLogin: string, currency: Currency) {
     const now = new Date()
 
     const todaysStats = await this.statistician.showDateRangeStats(
       userLogin,
       { from: now, to: now },
       GroupBy.Day,
-      Currency.USD,
+      currency,
     )
     return todaysStats
   }
 
-  private async getMonthsStats(userLogin: string) {
+  private async getMonthsStats(userLogin: string, currency: Currency) {
     const now = new Date()
     const startDate = startOfMonth(subMonths(now, 1))
 
@@ -65,7 +71,7 @@ export class BudgetAdviser implements Adviser {
       userLogin,
       { from: startDate, to: now },
       GroupBy.Month,
-      Currency.USD,
+      currency,
     )
     return monthsStats
   }

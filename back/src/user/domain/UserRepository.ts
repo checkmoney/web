@@ -4,6 +4,7 @@ import { Option } from 'tsoption'
 import { Repository } from 'typeorm'
 
 import { EntityNotFoundException } from '@back/utils/domain/EntityNotFoundException'
+import { Currency } from '@shared/enum/Currency'
 
 import { User } from './User.entity'
 
@@ -53,6 +54,12 @@ class UserRepo {
       .getOne()
 
     return Option.of(user)
+  }
+
+  public async getDefaultCurrency(login: string): Promise<Currency> {
+    const user = await this.getOne(login)
+
+    return user.profile.defaultCurrency
   }
 }
 

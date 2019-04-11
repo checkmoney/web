@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
 import { EntitySaver } from '@back/db/EntitySaver'
+import { Currency } from '@shared/enum/Currency'
 
 import { User } from '../domain/User.entity'
 import { UserRepository } from '../domain/UserRepository'
@@ -19,6 +20,14 @@ export class ProfileEditor {
     const { name } = fields
 
     user.profile.changeName(name)
+
+    await this.entitySaver.save(user)
+  }
+
+  public async changeCurrency(login: string, currency: Currency) {
+    const user = await this.userRepo.getOne(login)
+
+    user.profile.changeCurrency(currency)
 
     await this.entitySaver.save(user)
   }

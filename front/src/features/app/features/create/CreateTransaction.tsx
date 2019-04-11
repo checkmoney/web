@@ -19,15 +19,16 @@ import { Currency } from '@shared/enum/Currency'
 import { Variant } from '@front/ui/components/form/toggle/Variant'
 import { getCreateIncomeFetching } from '@front/domain/money/selectors/getCreateIncomeFetching'
 import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
+import { getSources } from '@front/domain/money/selectors/getSources'
+import { fetchSources } from '@front/domain/money/actions/fetchSources'
+import { getCategories } from '@front/domain/money/selectors/getCategories'
+import { fetchCategories } from '@front/domain/money/actions/fetchCategories'
+import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
 
 import * as styles from './CreateTransaction.css'
 import { Kind } from './helpers/Kind'
 import { getCommentByKind } from './helpers/getCommentByKind'
 import { getExampleByKind } from './helpers/getExampleByKind'
-import { getSources } from '@front/domain/money/selectors/getSources'
-import { fetchSources } from '@front/domain/money/actions/fetchSources'
-import { getCategories } from '@front/domain/money/selectors/getCategories'
-import { fetchCategories } from '@front/domain/money/actions/fetchCategories'
 import { useOnSubmit } from './helpers/useOnSubmit'
 
 interface Props {
@@ -38,6 +39,8 @@ export const CreateTransaction = ({ className }: Props) => {
   const dispatch = useThunk()
 
   const onSubmit = useOnSubmit()
+
+  const defaultCurrency = useMappedState(getDefaultCurrency)
 
   const outcomeFetching = useMappedState(getCreateOutcomeFetching)
   const incomeFetching = useMappedState(getCreateIncomeFetching)
@@ -63,7 +66,7 @@ export const CreateTransaction = ({ className }: Props) => {
     <Form
       onSubmit={onSubmit}
       initialValues={{
-        currency: Currency.RUB,
+        currency: defaultCurrency,
         date: new Date(),
         kind: Kind.Income,
       }}

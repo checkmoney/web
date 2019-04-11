@@ -5,12 +5,12 @@ import { AppContext } from '@front/domain/AppContext'
 import { fetchFirstTransactionDate } from '@front/domain/money/actions/fetchFirstTransactionDate'
 import { Statistics } from '@front/features/statistics'
 import { wantUTC } from '@front/helpers/wantUTC'
-import { Currency } from '@shared/enum/Currency'
 import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources'
 import { fetchStatsCategories } from '@front/domain/money/actions/fetchStatsCategories'
 import { fetchStatsAverage } from '@front/domain/money/actions/fetchStatsAverage'
 import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { GroupBy } from '@shared/enum/GroupBy'
+import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
 
 export default class StatsPage extends React.Component {
   public static isSecure = true
@@ -18,7 +18,7 @@ export default class StatsPage extends React.Component {
   public static async getInitialProps({ reduxStore }: AppContext) {
     const from = wantUTC(startOfMonth)(new Date())
     const to = wantUTC(endOfMonth)(new Date())
-    const currency = Currency.USD
+    const currency = getDefaultCurrency(reduxStore.getState())
 
     await Promise.all([
       reduxStore.dispatch(fetchFirstTransactionDate() as any),
