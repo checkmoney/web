@@ -32,12 +32,18 @@ export const Menu = ({ children, className }: Props) => {
     [onClickMap],
   )
 
+  // Ant not define this props in types, but accept
+  const additionalProps: any = {
+    overflowedIndicator: 'More',
+  }
+
   return (
     <AntMenu
       className={className}
       mode="horizontal"
       selectedKeys={selectedKeys}
       onSelect={handleSelect}
+      {...additionalProps}
     >
       {children.map(child => (
         <AntMenu.Item key={child.props.id}>{child}</AntMenu.Item>

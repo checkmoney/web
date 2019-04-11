@@ -33,20 +33,12 @@ export class ProfileController {
     description: 'Fetching profile success',
     type: ProfileResponse,
   })
-  public async showProfile(
-    @CurrentUser() user: TokenPayload,
-  ): Promise<ProfileResponse> {
-    return this.getResponseByLogin(user.login)
-  }
+  public async showProfile(@CurrentUser() { login }: TokenPayload): Promise<
+    ProfileResponse
+  > {
+    const user = await this.userRepo.getOne(login)
 
-  @PostNoCreate()
-  @ApiOperation({ title: 'Edit user profile' })
-  @ApiOkResponse({ description: 'Editing profile success' })
-  public async editProfile(
-    @Body() request: ProfileRequest,
-    @CurrentUser() user: TokenPayload,
-  ): Promise<void> {
-    await this.profileEditor.edit(user.login, request)
+    return ProfileResponse.fromProfile(user.profile)
   }
 
   @PostNoCreate('/set-currency/:currency')
@@ -57,11 +49,5 @@ export class ProfileController {
     @CurrentUser() user: TokenPayload,
   ): Promise<void> {
     await this.profileEditor.changeCurrency(user.login, currency)
-  }
-
-  private async getResponseByLogin(login: string): Promise<ProfileResponse> {
-    const user = await this.userRepo.getOne(login)
-
-    return ProfileResponse.fromProfile(user.profile)
   }
 }

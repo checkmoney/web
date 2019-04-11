@@ -17,5 +17,8 @@ export const Navigation = ({ className }: Props) => (
     <MenuItem id="history" onClick={() => pushRoute('/app/history')}>
       History
     </MenuItem>
+    <MenuItem id="profile" onClick={() => pushRoute('/app/profile')}>
+      Profile
+    </MenuItem>
   </Menu>
 )

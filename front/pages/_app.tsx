@@ -13,7 +13,7 @@ import { WithReduxProps, withReduxStore } from '@front/domain/store'
 import { actions as dataActions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
 import { pushRoute, routeAnimations } from '@front/features/routing'
-import { getUserProfile } from '@front/domain/user/actions/getUserProfile'
+import { fetchUserProfile } from '@front/domain/user/actions/fetchUserProfile'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -26,7 +26,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
 
     if (token.nonEmpty()) {
       ctx.reduxStore.dispatch(dataActions.setToken(token.get()))
-      await ctx.reduxStore.dispatch(getUserProfile() as any)
+      await ctx.reduxStore.dispatch(fetchUserProfile() as any)
     }
 
     const isSecure = !!(appContext.Component as any).isSecure
