@@ -3,9 +3,9 @@ import {
   WithFetchingState,
   createClearReduxWithFetching,
 } from 'redux-clear'
-import { uniqBy } from 'lodash'
 
 import { TipModel } from '@shared/models/mind/TipModel'
+import { uniqByWithRespect } from '@front/helpers/uniqByWithRespect'
 
 type InternalState = TipModel[]
 type State = WithFetchingState<InternalState>
@@ -20,7 +20,12 @@ const { actions, reducer } = createClearReduxWithFetching<
   Actions
 >(
   {
-    addTips: state => newTips => uniqBy([...state, ...newTips], 'token'),
+    addTips: state => newTips =>
+      uniqByWithRespect(
+        [...state, ...newTips],
+        tip => tip.token,
+        tip => tip.date.valueOf(),
+      ),
     removeTips: state => forRemove =>
       state.filter(tip => !forRemove.includes(tip.token)),
   },
