@@ -9,7 +9,7 @@ export const createMonthGroups = ({ from, to }: DateRange): DateGroup[] => {
 
   let now = startOfMonth(from)
   while (now < to) {
-    const next = addMonths(now, 1)
+    const next = startOfMonth(addMonths(now, 1))
     const nowYear = now.getFullYear()
     groups.push({
       title: `${nowYear}-${getRealMonth(now)}`,
