@@ -7,11 +7,10 @@ import { Currency } from '@shared/enum/Currency'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { useMemoState } from '@front/domain/store'
 import { getStatsSources } from '@front/domain/money/selectors/getStatsSources'
-import { wantUTC } from '@front/helpers/wantUTC'
-import { startOfMonth, endOfMonth, startOfYear, endOfYear } from 'date-fns'
 import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources'
 import { getStatsSourcesFetchingStatus } from '@front/domain/money/selectors/getStatsSourcesFetchingStatus'
 import { LoaderTable } from '@front/ui/components/layout/loader-table'
+import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
 
 interface Props {
   className?: string
@@ -44,12 +43,7 @@ export const Sources = ({
 
   const fetching = useMappedState(getStatsSourcesFetchingStatus)
 
-  const [from, to] = useMemo(() => {
-    const start = group === GroupBy.Month ? startOfMonth : startOfYear
-    const end = group === GroupBy.Month ? endOfMonth : endOfYear
-
-    return [wantUTC(start)(new Date()), wantUTC(end)(new Date())]
-  }, [group])
+  const { from, to } = useMemo(() => createRangeForGroup(group), [group])
 
   const stats = useMemoState(
     () => getStatsSources(from, to, currency),
