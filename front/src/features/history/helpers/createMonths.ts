@@ -9,7 +9,7 @@ export const createMonths = (from: Date, to: Date) => {
 
   let now = wantUTC(startOfMonth)(from)
   while (now < to) {
-    const next = wantUTC(addMonths)(now, 1)
+    const next = wantUTC(startOfMonth)(wantUTC(addMonths)(now, 1))
     groups.push({
       title: createMonthTitle(now),
       from: now,
