@@ -24,10 +24,10 @@ import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynami
 import { wantUTC } from '@front/helpers/wantUTC'
 import { Loader } from '@front/ui/components/layout/loader'
 import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
+import { calculateGroupProgress } from '@shared/helpers/calculateGroupProgress'
 
 import * as styles from './Dynamics.css'
 import { calculateGrowPercentage } from './helpers/calculateGrowPercentage'
-import { calculateGroupProgress } from './helpers/calculateGroupProgress'
 
 interface Props {
   className?: string
