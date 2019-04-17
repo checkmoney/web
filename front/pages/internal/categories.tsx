@@ -7,9 +7,10 @@ import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurre
 import { Categories } from '@front/features/categories'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
+import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 
 interface Query {
-  group: GroupBy
+  group?: GroupBy
 }
 
 export default class CateogiesPage extends React.Component<Query> {
@@ -20,14 +21,20 @@ export default class CateogiesPage extends React.Component<Query> {
     query,
   }: AppContext<Query>) {
     const { group } = query
-    const { from, to } = createRangeForGroup(group)
+
+    await reduxStore.dispatch(fetchFirstTransactionDate() as any)
+    const firstTransactionDate = getFirstTransactionDate(reduxStore.getState())
+
+    const { from, to } = !!group
+      ? createRangeForGroup(group)
+      : {
+          from: firstTransactionDate,
+          to: new Date(),
+        }
 
     const currency = getDefaultCurrency(reduxStore.getState())
 
-    await Promise.all([
-      reduxStore.dispatch(fetchFirstTransactionDate() as any),
-      reduxStore.dispatch(fetchStatsCategories(from, to, currency) as any),
-    ])
+    await reduxStore.dispatch(fetchStatsCategories(from, to, currency) as any)
 
     return { group }
   }

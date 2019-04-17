@@ -33,7 +33,7 @@ export const createOptions = (
     },
   },
   legend: {
-    position: maintainAspectRatio ? 'bottom' : 'right',
+    position: !maintainAspectRatio ? 'bottom' : 'right',
   },
   maintainAspectRatio,
 })

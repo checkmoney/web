@@ -12,4 +12,14 @@ export const routeAnimations = [
     nextRoute: '/app',
     styles: backwards,
   },
+  {
+    prevRoute: '/app/stats',
+    nextRoute: '/app/stats/(.+)',
+    styles: forwards,
+  },
+  {
+    prevRoute: '/app/stats/(.+)',
+    nextRoute: '/app/stats',
+    styles: backwards,
+  },
 ]
