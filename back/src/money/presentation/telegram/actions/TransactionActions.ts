@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { Context, PipeContext, TelegramActionHandler } from 'nest-telegram'
 
 import { CurrentSender } from '@back/user/presentation/telegram/transformer/CurrentSender'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { Accountant } from '@back/money/application/Accountant'
 import { Templating } from '@back/utils/infrastructure/Templating/Templating'
 import { parseCurrency } from '../helpers/parseCurrency'
@@ -18,7 +18,7 @@ export class TransactionActions {
   @TelegramActionHandler({ command: '/income' })
   public async income(
     ctx: Context,
-    @PipeContext(CurrentSender) { login }: TokenPayload,
+    @PipeContext(CurrentSender) { login }: TokenPayloadModel,
   ) {
     const [_, rawAmount, rawCurrency, ...source] = ctx.message.text.split(' ')
 
@@ -43,7 +43,7 @@ export class TransactionActions {
   @TelegramActionHandler({ command: '/outcome' })
   public async outcome(
     ctx: Context,
-    @PipeContext(CurrentSender) { login }: TokenPayload,
+    @PipeContext(CurrentSender) { login }: TokenPayloadModel,
   ) {
     const [_, rawAmount, rawCurrency, ...category] = ctx.message.text.split(' ')
 

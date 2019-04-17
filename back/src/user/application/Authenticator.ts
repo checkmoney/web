@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
+
 import { User } from '../domain/User.entity'
 import { UserRepository } from '../domain/UserRepository'
 import { PasswordEncoder } from '../infrastructure/PasswordEncoder/PasswordEncoder'
-import { TokenPayload } from './dto/TokenPayload'
 import { InvalidCredentialsException } from './exception/InvalidCredentialsException'
 import { InvalidTokenException } from './exception/InvalidTokenException'
 
@@ -16,11 +17,11 @@ export class Authenticator {
     private readonly jwt: JwtService,
   ) {}
 
-  public async decode(token: string): Promise<TokenPayload> {
+  public async decode(token: string): Promise<TokenPayloadModel> {
     try {
       this.jwt.verify(token)
 
-      return this.jwt.decode(token) as TokenPayload
+      return this.jwt.decode(token) as TokenPayloadModel
     } catch (e) {
       // token is invalid
       throw new InvalidTokenException(token)
@@ -44,9 +45,10 @@ export class Authenticator {
     return token
   }
 
-  private createTokenPayload(user: User): TokenPayload {
+  private createTokenPayload(user: User): TokenPayloadModel {
     return {
       login: user.login,
+      isManager: user.isManager,
     }
   }
 }

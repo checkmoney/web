@@ -8,7 +8,7 @@ import {
 } from '@nestjs/swagger'
 
 import { Accountant } from '@back/money/application/Accountant'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
 
@@ -32,7 +32,7 @@ export class TransactionController {
   })
   public async income(
     @Body() request: IncomeRequest,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<IncomeResponse> {
     await this.accountant.income(login, request)
 
@@ -47,7 +47,7 @@ export class TransactionController {
   })
   public async outcome(
     @Body() request: OutcomeRequest,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<OutcomeResponse> {
     await this.accountant.outcome(login, request)
 
@@ -59,7 +59,7 @@ export class TransactionController {
   @ApiOkResponse({ description: 'Transaction deleted' })
   public async remove(
     @Param('id') id: string,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ) {
     await this.accountant.remove(id, login)
   }

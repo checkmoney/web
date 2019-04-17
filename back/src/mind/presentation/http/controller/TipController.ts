@@ -7,7 +7,7 @@ import {
 } from '@nestjs/swagger'
 
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { AdviserUnity } from '@back/mind/infrastructure/adviser/AdviserUnity'
 import { TipsFilter } from '@back/mind/application/TipsFilter'
@@ -36,7 +36,7 @@ export class TipController {
   })
   public async showAll(
     @CurrentUser()
-    user: TokenPayload,
+    user: TokenPayloadModel,
   ): Promise<TipResponse[]> {
     const allTips = await this.adviser.giveAdvice(user.login)
 
@@ -49,7 +49,7 @@ export class TipController {
   @ApiOperation({ title: 'Disable tips' })
   @ApiOkResponse({ description: 'Disabled' })
   public async disable(
-    @CurrentUser() user: TokenPayload,
+    @CurrentUser() user: TokenPayloadModel,
     @Body() request: DisableTipRequest,
   ) {
     await this.tipsDisabler.disable(request.tokens, user.login)

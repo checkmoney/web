@@ -12,6 +12,9 @@ export class User {
   public readonly profile: Profile
 
   @Column()
+  public readonly isManager: boolean = false
+
+  @Column()
   private password: string | undefined
 
   @Column()

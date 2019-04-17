@@ -7,7 +7,7 @@ import {
 } from '@nestjs/swagger'
 
 import { Statistician } from '@back/money/application/Statistician'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
@@ -42,7 +42,7 @@ export class StatisticsController {
     @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy = GroupBy.Month,
     @Query('currency', createEnumValidationPipe(Currency))
     currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<DateGroupResponse[]> {
     const stats = await this.statistician.showDateRangeStats(
       login,
@@ -66,7 +66,7 @@ export class StatisticsController {
     @Query(ParseDateRangePipe) range: DateRange,
     @Query('currency', createEnumValidationPipe(Currency))
     currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<SourceGroupIncomeResponse[]> {
     const sources = await this.statistician.showSources(login, range, currency)
 
@@ -85,7 +85,7 @@ export class StatisticsController {
     @Query(ParseDateRangePipe) range: DateRange,
     @Query('currency', createEnumValidationPipe(Currency))
     currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<CategoryGroupOutcomeResponse[]> {
     const categories = await this.statistician.showCategories(
       login,
@@ -107,7 +107,7 @@ export class StatisticsController {
     @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy,
     @Query('currency', createEnumValidationPipe(Currency))
     currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<AverageAmountResponse[]> {
     const averages = await this.statistician.showAverage(login, by, currency)
 
