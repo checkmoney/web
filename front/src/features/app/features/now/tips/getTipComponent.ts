@@ -7,6 +7,7 @@ import { MergeSources } from './merge-sources'
 import { MergeCategories } from './merge-categories'
 import { DailyBudget } from './daily-budget'
 import { ExtraSpending } from './extra-spending'
+import { Custom } from './custom'
 
 interface Props {
   tip: TipModel
@@ -18,4 +19,5 @@ export const getTipComponent = (tip: TipModel): ComponentType<Props> =>
     [TipAction.MergeCategories]: MergeCategories,
     [TipAction.DailyBudget]: DailyBudget,
     [TipAction.ExtraSpending]: ExtraSpending,
+    [TipAction.Custom]: Custom,
   }[tip.action])

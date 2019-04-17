@@ -19,6 +19,9 @@ import { TypoMerger } from './application/TypoMerger'
 import { BudgetAdviser } from './application/adviser/BudgetAdviser'
 import { ExtraSpendingAdviser } from './application/adviser/ExtraSpendingAdviser'
 import { TipsCreator } from './application/TipsCreator'
+import { CustomAdviser } from './application/adviser/CustomAdviser'
+import { CustomTip } from './domain/CustomTip.entity'
+import { CustomTipRepository } from './domain/CustomTipRepository'
 
 @Module({
   imports: [
@@ -26,6 +29,7 @@ import { TipsCreator } from './application/TipsCreator'
     DbModule,
     MoneyModule,
     TypeOrmModule.forFeature([DisabledTip]),
+    TypeOrmModule.forFeature([CustomTip]),
   ],
   controllers: [TipController, TypoController],
   providers: [
@@ -33,12 +37,14 @@ import { TipsCreator } from './application/TipsCreator'
     TypoMerger,
     TypoAdviser,
     BudgetAdviser,
+    CustomAdviser,
     ExtraSpendingAdviser,
     AdviserUnity,
     TipsFilter,
     TipsDisabler,
     TipsCreator,
     DisabledTipRepository,
+    CustomTipRepository,
   ],
 })
 export class MindModule implements NestModule {

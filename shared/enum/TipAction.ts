@@ -3,4 +3,5 @@ export enum TipAction {
   MergeCategories,
   DailyBudget,
   ExtraSpending,
+  Custom,
 }
