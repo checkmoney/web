@@ -18,6 +18,7 @@ import { TypoController } from './presentation/http/controller/TypoController'
 import { TypoMerger } from './application/TypoMerger'
 import { BudgetAdviser } from './application/adviser/BudgetAdviser'
 import { ExtraSpendingAdviser } from './application/adviser/ExtraSpendingAdviser'
+import { TipsCreator } from './application/TipsCreator'
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { ExtraSpendingAdviser } from './application/adviser/ExtraSpendingAdviser
     AdviserUnity,
     TipsFilter,
     TipsDisabler,
+    TipsCreator,
     DisabledTipRepository,
   ],
 })
