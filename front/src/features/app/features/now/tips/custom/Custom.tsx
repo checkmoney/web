@@ -13,11 +13,11 @@ export const Custom = ({ tip: { meta, token } }: Props) => {
   const { title, text, link, important } = meta
 
   const actions = !!link && <ExternalLink href={link}>Open</ExternalLink>
-  const dismiss = important && <DismissButton token={token} />
+  const dismiss = !important && <DismissButton token={token} />
 
   return (
     <Card title={title} extra={dismiss} actions={[actions].filter(Boolean)}>
-      <p>{text}</p>
+      {text}
     </Card>
   )
 }
