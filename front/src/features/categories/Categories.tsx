@@ -1,6 +1,7 @@
 import useMedia from 'use-media'
 import { useMappedState } from 'redux-react-hook'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
+import { sortBy } from 'lodash'
 
 import { GroupBy } from '@shared/enum/GroupBy'
 import { Container } from '@front/ui/components/layout/container'
@@ -39,6 +40,17 @@ export const Categories = ({ group }: Props) => {
     [from, to, currency],
   )
 
+  const preparedData = useMemo(
+    () =>
+      stats.map(s =>
+        sortBy(s, t => -t.outcome).map(({ category, outcome }) => ({
+          name: category,
+          data: outcome,
+        })),
+      ),
+    [stats],
+  )
+
   return (
     <Container>
       <PageHeader title="Categories" onBack={() => pushRoute('/app/stats')} />
@@ -59,12 +71,9 @@ export const Categories = ({ group }: Props) => {
 
         <div className={styles.chart}>
           <Loader status={fetching}>
-            {stats.nonEmpty() && (
+            {preparedData.nonEmpty() && (
               <PieChart
-                dataSets={stats.get().map(({ category, outcome }) => ({
-                  name: category,
-                  data: outcome,
-                }))}
+                dataSets={preparedData.get()}
                 displayValue={value =>
                   displayMoney(currency)(value, { withPenny: false })
                 }
