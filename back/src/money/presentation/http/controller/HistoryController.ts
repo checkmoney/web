@@ -9,7 +9,7 @@ import { reverse, sortBy } from 'lodash'
 
 import { Historian } from '@back/money/application/Historian'
 import { AbstractTransaction } from '@back/money/domain/interfaces/AbstarctTransaction'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
 import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
@@ -44,7 +44,7 @@ export class HistoryController {
   public async showGrouped(
     @Query(ParseDateRangePipe) range: DateRange,
     @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy,
-    @CurrentUser() { login }: TokenPayload,
+    @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<HistoryGroupResponse[]> {
     const history = await this.historian.showGroupedHistory(login, range, by)
 
@@ -70,7 +70,7 @@ export class HistoryController {
   })
   public async showEarliestTransactionDate(
     @CurrentUser()
-    user: TokenPayload,
+    user: TokenPayloadModel,
   ): Promise<Date> {
     return this.historian.getDateOfEarliestTransaction(user.login)
   }
@@ -83,7 +83,7 @@ export class HistoryController {
     isArray: true,
   })
   public async showAllCategories(
-    @CurrentUser() user: TokenPayload,
+    @CurrentUser() user: TokenPayloadModel,
   ): Promise<string[]> {
     return this.outcomeRepo.findCategoriesForUser(user.login)
   }
@@ -96,7 +96,7 @@ export class HistoryController {
     isArray: true,
   })
   public async showAllSources(
-    @CurrentUser() user: TokenPayload,
+    @CurrentUser() user: TokenPayloadModel,
   ): Promise<string[]> {
     return this.incomeRepo.findSourcesForUser(user.login)
   }

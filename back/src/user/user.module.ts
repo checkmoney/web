@@ -26,6 +26,7 @@ import { Registrator } from './application/Registrator'
 import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory'
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder'
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder'
+import { JwtManagerGuard } from './presentation/http/security/JwtManagerGuard'
 
 @Module({
   imports: [
@@ -50,12 +51,19 @@ import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncode
     ProfileEditor,
     UserRepository,
     JwtGuard,
+    JwtManagerGuard,
     AuthActions,
     InvalidCredentialsCatcher,
     IsKnownUser,
     CurrentSender,
   ],
-  exports: [UserRepository, JwtGuard, Authenticator, CurrentSender],
+  exports: [
+    UserRepository,
+    JwtGuard,
+    JwtManagerGuard,
+    Authenticator,
+    CurrentSender,
+  ],
 })
 export class UserModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {

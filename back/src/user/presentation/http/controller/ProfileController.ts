@@ -14,7 +14,7 @@ import { ProfileRequest } from '../request/ProfileRequest'
 import { ProfileResponse } from '../response/ProfileResponse'
 import { OnlyForUsers } from '../security/OnlyForUsers'
 import { CurrentUser } from '../decorator/CurrentUser'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { Currency } from '@shared/enum/Currency'
 
 @Controller('user/profile')
@@ -33,9 +33,10 @@ export class ProfileController {
     description: 'Fetching profile success',
     type: ProfileResponse,
   })
-  public async showProfile(@CurrentUser() { login }: TokenPayload): Promise<
-    ProfileResponse
-  > {
+  public async showProfile(@CurrentUser()
+  {
+    login,
+  }: TokenPayloadModel): Promise<ProfileResponse> {
     const user = await this.userRepo.getOne(login)
 
     return ProfileResponse.fromProfile(user.profile)
@@ -46,7 +47,7 @@ export class ProfileController {
   @ApiOkResponse({ description: 'Setting default currency' })
   public async setDefaultCurrency(
     @Param('currency') currency: Currency,
-    @CurrentUser() user: TokenPayload,
+    @CurrentUser() user: TokenPayloadModel,
   ): Promise<void> {
     await this.profileEditor.changeCurrency(user.login, currency)
   }

@@ -7,7 +7,7 @@ import {
 } from '@nestjs/swagger'
 
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
-import { TokenPayload } from '@back/user/application/dto/TokenPayload'
+import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 
 import { MergeTypoRequest } from '../request/MergeTypoRequest'
@@ -24,7 +24,7 @@ export class TypoController {
   @ApiOperation({ title: 'Merge typos' })
   @ApiOkResponse({ description: 'Merges' })
   public async showAll(
-    @CurrentUser() user: TokenPayload,
+    @CurrentUser() user: TokenPayloadModel,
     @Body() request: MergeTypoRequest,
   ): Promise<void> {
     await this.merger.merge(request.primary, request.secondary, user.login)
