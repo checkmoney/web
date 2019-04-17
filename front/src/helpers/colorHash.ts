@@ -5,9 +5,9 @@ export function colorHash(inputString: string) {
     sum += i.charCodeAt(0)
   }
 
-  const r = ~~(Math.sin(sum + 1) * 256)
-  const g = ~~(Math.sin(sum + 2) * 256)
-  const b = ~~(Math.sin(sum + 3) * 256)
+  const r = Math.abs(~~(Math.sin(sum + 1) * 256))
+  const g = Math.abs(~~(Math.sin(sum + 2) * 256))
+  const b = Math.abs(~~(Math.sin(sum + 3) * 256))
 
   let hex = '#'
 
