@@ -1,4 +1,3 @@
-import { startOfMonth, startOfYear, endOfMonth, endOfYear } from 'date-fns'
 import { useMappedState } from 'redux-react-hook'
 import { sortBy, take } from 'lodash'
 import { useMemo } from 'react'
@@ -7,11 +6,13 @@ import { Currency } from '@shared/enum/Currency'
 import { displayMoney } from '@shared/helpers/displayMoney'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { getStatsCategoriesFetchingStatus } from '@front/domain/money/selectors/getStatsCategoriesFetchingStatus'
-import { wantUTC } from '@front/helpers/wantUTC'
 import { useMemoState } from '@front/domain/store'
 import { getStatsCategories } from '@front/domain/money/selectors/getStatsCategories'
 import { fetchStatsCategories } from '@front/domain/money/actions/fetchStatsCategories'
 import { LoaderTable } from '@front/ui/components/layout/loader-table'
+import { Button, ButtonType } from '@front/ui/components/form/button'
+import { pushRoute } from '@front/features/routing'
+import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
 
 interface Props {
   className?: string
@@ -44,12 +45,7 @@ export const Categories = ({
 
   const fetching = useMappedState(getStatsCategoriesFetchingStatus)
 
-  const [from, to] = useMemo(() => {
-    const start = group === GroupBy.Month ? startOfMonth : startOfYear
-    const end = group === GroupBy.Month ? endOfMonth : endOfYear
-
-    return [wantUTC(start)(new Date()), wantUTC(end)(new Date())]
-  }, [group])
+  const { from, to } = useMemo(() => createRangeForGroup(group), [group])
 
   const stats = useMemoState(
     () => getStatsCategories(from, to, currency),
@@ -72,6 +68,14 @@ export const Categories = ({
       expectedRows={maxLength}
       className={className}
       hideHeader
+      footer={
+        <Button
+          type={ButtonType.Text}
+          onClick={() => pushRoute(`/app/stats/categories/${group}`)}
+        >
+          Details
+        </Button>
+      }
     />
   )
 }

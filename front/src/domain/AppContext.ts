@@ -15,8 +15,9 @@ interface Request {
   cookies: Params
 }
 
-export interface AppContext {
+export interface AppContext<Query = never> {
   reduxStore: Store
   req: IncomingMessage & Request
   res: OutgoingMessage & Response
+  query: Query
 }
