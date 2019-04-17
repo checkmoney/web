@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { ReactNode } from 'react'
+import { ReactNode, cloneElement } from 'react'
 
 import { resolveContainerClassName } from './helpers/resolveContainerClassName'
 import { resolveTextClassName } from './helpers/resolveTextClassName'
@@ -10,11 +10,25 @@ interface Props {
   children: ReactNode
   className?: string
   inline?: boolean
+  inside?: boolean
 }
 
-export const Label = ({ text, children, className, inline = false }: Props) => (
-  <label className={cx(className, styles[resolveContainerClassName(inline)])}>
-    <span className={styles[resolveTextClassName(inline)]}>{text}</span>
-    {children}
-  </label>
-)
+export const Label = ({
+  text,
+  children,
+  className,
+  inline = false,
+  inside = false,
+}: Props) => {
+  if (inside) {
+    const anyChild = children as any
+    return cloneElement(anyChild, anyChild.props, text)
+  }
+
+  return (
+    <label className={cx(className, styles[resolveContainerClassName(inline)])}>
+      <span className={styles[resolveTextClassName(inline)]}>{text}</span>
+      {children}
+    </label>
+  )
+}

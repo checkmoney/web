@@ -6,15 +6,18 @@ import {
   ApiOkResponse,
 } from '@nestjs/swagger'
 
+import { OnlyForManager } from '@back/user/presentation/http/security/OnlyForManager'
 import { OnlyForUsers } from '@back/user/presentation/http/security/OnlyForUsers'
 import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { CurrentUser } from '@back/user/presentation/http/decorator/CurrentUser'
 import { AdviserUnity } from '@back/mind/infrastructure/adviser/AdviserUnity'
 import { TipsFilter } from '@back/mind/application/TipsFilter'
 import { TipsDisabler } from '@back/mind/application/TipsDisabler'
+import { TipsCreator } from '@back/mind/application/TipsCreator'
 
 import { TipResponse } from '../reponse/TipResponse'
 import { DisableTipRequest } from '../request/DisableTipRequest'
+import { CustomTipRequest } from '../request/CustomTipRequest'
 
 @Controller('mind/tip')
 @OnlyForUsers()
@@ -25,6 +28,7 @@ export class TipController {
     private readonly adviser: AdviserUnity,
     private readonly tipsFilter: TipsFilter,
     private readonly tipsDisabler: TipsDisabler,
+    private readonly tipsCreator: TipsCreator,
   ) {}
 
   @Get()
@@ -53,5 +57,13 @@ export class TipController {
     @Body() request: DisableTipRequest,
   ) {
     await this.tipsDisabler.disable(request.tokens, user.login)
+  }
+
+  @Post('create')
+  @OnlyForManager()
+  @ApiOperation({ title: 'Create custom tip' })
+  @ApiOkResponse({ description: 'Created' })
+  public async create(@Body() request: CustomTipRequest) {
+    await this.tipsCreator.createCustom(request)
   }
 }
