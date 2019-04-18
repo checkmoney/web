@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useCallback } from 'react'
 
 import { Container } from '@front/ui/components/layout/container'
 import { PageHeader } from '@front/ui/components/layout/page-header'
@@ -12,6 +13,8 @@ import { setDefaultCurrency } from '@front/domain/user/actions/setDefaultCurrenc
 import { Card } from '@front/ui/components/layout/card'
 import { useNotifyAlert } from '@front/ui/hooks/useNotifyAlert'
 import { Currency } from '@shared/enum/Currency'
+import { Button } from '@front/ui/components/form/button'
+import { signOut } from '@front/domain/user/actions/signOut'
 
 import { pushRoute } from '../routing'
 import * as styles from './Profile.css'
@@ -34,6 +37,11 @@ export const Profile = () => {
     }
   }, [currency])
 
+  const logout = useCallback(async () => {
+    dispatch(signOut())
+    await pushRoute('/')
+  }, [dispatch])
+
   return (
     <Container>
       <PageHeader title="Profile" onBack={() => pushRoute('/app')} />
@@ -41,6 +49,7 @@ export const Profile = () => {
       <section className={styles.container}>
         <Card title="Profile">
           <p>Comming soon...</p>
+          <Button onClick={logout}>Sign out</Button>
         </Card>
 
         <Card title="Settings">

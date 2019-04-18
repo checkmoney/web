@@ -7,6 +7,7 @@ interface State {
 
 interface Actions {
   setToken: ClearAction<[string]>
+  resetToken: ClearAction
 }
 
 const { reducer, actions } = createClearRedux<State, Actions>(
@@ -14,6 +15,10 @@ const { reducer, actions } = createClearRedux<State, Actions>(
     setToken: state => token => ({
       ...state,
       token: Option.of(token),
+    }),
+    resetToken: state => () => ({
+      ...state,
+      token: Option.of(null),
     }),
   },
   {
