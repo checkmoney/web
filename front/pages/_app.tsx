@@ -14,6 +14,7 @@ import { actions as dataActions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
 import { pushRoute, routeAnimations } from '@front/features/routing'
 import { fetchUserProfile } from '@front/domain/user/actions/fetchUserProfile'
+import { withModals } from '@front/features/modal'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -61,4 +62,4 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default withReduxStore(CheckmoneyWeb as any)
+export default withModals(withReduxStore(CheckmoneyWeb as any) as any)
