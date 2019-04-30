@@ -1,13 +1,13 @@
 import { createContext } from 'react'
 
 interface ModalContextValue {
-  openKeys: string[]
+  openKeys: Set<string>
   open: (key: string) => void
   close: (key: string) => void
 }
 
 export const ModalContext = createContext<ModalContextValue>({
-  openKeys: [],
+  openKeys: new Set(),
   open: () => null,
   close: () => null,
 })

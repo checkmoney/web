@@ -4,6 +4,7 @@ import { Menu } from '@front/ui/components/controls/menu/Menu'
 import { MenuItem } from '@front/ui/components/controls/menu/MenuItem'
 import { pushRoute } from '@front/features/routing'
 import { getUserIsManager } from '@front/domain/user/selectors/getUserIsManager'
+// import { useModalActions, useModalState } from '@front/features/modal'
 
 interface Props {
   className?: string
@@ -11,6 +12,17 @@ interface Props {
 
 export const Navigation = ({ className }: Props) => {
   const isManager = useMappedState(getUserIsManager)
+
+  // const a = useModalActions('kfd')
+  // const t = useModalState('kfd')
+  // console.log(t)
+
+  // return (
+  //   <>
+  //     <button onClick={a.open}>OPEN</button>
+  //     <button onClick={a.close}>CLOSE</button>
+  //   </>
+  // )
 
   const defaultMenu = [
     <MenuItem id="home" selected>
