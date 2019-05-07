@@ -1,7 +1,7 @@
 import 'antd/dist/antd.css?CSSModulesDisable'
 import App, { Container, NextAppContext } from 'next/app'
 import { Ampa } from '@ampa/nextjs'
-
+import { nextWithQuery } from '@breadhead/use-query'
 import Head from 'next/head'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -14,7 +14,7 @@ import { actions as dataActions } from '@front/domain/user/reducer/data'
 import { getToken } from '@front/domain/user/selectors/getToken'
 import { pushRoute, routeAnimations } from '@front/features/routing'
 import { fetchUserProfile } from '@front/domain/user/actions/fetchUserProfile'
-import { withModals } from '@front/features/modal'
+import { ModalContextProvider } from '@front/features/modal'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -49,12 +49,14 @@ class CheckmoneyWeb extends App<WithReduxProps> {
         </Head>
         <Provider store={reduxStore}>
           <StoreContext.Provider value={reduxStore}>
-            <Ampa
-              timeout={{ enter: 500, exit: 500 }}
-              routeAnimations={routeAnimations}
-            >
-              <Component {...pageProps} />
-            </Ampa>
+            <ModalContextProvider pushRoute={pushRoute}>
+              <Ampa
+                timeout={{ enter: 500, exit: 500 }}
+                routeAnimations={routeAnimations}
+              >
+                <Component {...pageProps} />
+              </Ampa>
+            </ModalContextProvider>
           </StoreContext.Provider>
         </Provider>
       </Container>
@@ -62,4 +64,4 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default withModals(withReduxStore(CheckmoneyWeb as any) as any)
+export default nextWithQuery(withReduxStore(CheckmoneyWeb as any) as any)

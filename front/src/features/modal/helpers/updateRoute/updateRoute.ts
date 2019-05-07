@@ -1,8 +1,11 @@
-import { pushRoute } from '@front/features/routing'
-
 import { getNewPathname } from './getNewPathname'
+import { PushRoute } from '../PushRoute'
 
-export const updateRoute = (keyName: string, keyValue?: string) => {
+export const updateRoute = (
+  pushRoute: PushRoute,
+  keyName: string,
+  keyValue?: string,
+) => {
   const { pathname, search } = window.location
   const newPathname = getNewPathname(search, keyName, keyValue, pathname)
 
