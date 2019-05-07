@@ -1,8 +1,9 @@
-import { useContext } from 'react'
-import { ModalContext } from './ModalContext'
+import { useQuery } from '@breadhead/use-query'
+
+import { getModalKeys } from './helpers/getModalKeys'
 
 export const useModalState = (key: string) => {
-  const { openKeys } = useContext(ModalContext)
+  const query = useQuery()
 
-  return openKeys.has(key)
+  return getModalKeys(query).has(key)
 }
