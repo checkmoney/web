@@ -1,7 +1,8 @@
 import 'antd/dist/antd.css?CSSModulesDisable'
 import App, { Container, NextAppContext } from 'next/app'
 import { Ampa } from '@ampa/nextjs'
-
+import { nextWithQuery } from '@breadhead/use-query'
+import { ModalContextProvider } from '@breadhead/use-modal'
 import Head from 'next/head'
 import React from 'react'
 import { Provider } from 'react-redux'
@@ -48,12 +49,14 @@ class CheckmoneyWeb extends App<WithReduxProps> {
         </Head>
         <Provider store={reduxStore}>
           <StoreContext.Provider value={reduxStore}>
-            <Ampa
-              timeout={{ enter: 500, exit: 500 }}
-              routeAnimations={routeAnimations}
-            >
-              <Component {...pageProps} />
-            </Ampa>
+            <ModalContextProvider pushRoute={pushRoute}>
+              <Ampa
+                timeout={{ enter: 500, exit: 500 }}
+                routeAnimations={routeAnimations}
+              >
+                <Component {...pageProps} />
+              </Ampa>
+            </ModalContextProvider>
           </StoreContext.Provider>
         </Provider>
       </Container>
@@ -61,4 +64,4 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default withReduxStore(CheckmoneyWeb as any)
+export default nextWithQuery(withReduxStore(CheckmoneyWeb as any) as any)

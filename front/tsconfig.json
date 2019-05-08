@@ -11,6 +11,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": true,
+    "noImplicitThis": false,
     "preserveConstEnums": true,
     "removeComments": false,
     "skipLibCheck": true,

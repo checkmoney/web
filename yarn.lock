@@ -785,6 +785,20 @@
   resolved "https://registry.yarnpkg.com/@breadhead/detil-ts/-/detil-ts-1.0.1.tgz#8a7a4a242258ffe66d73f526e62d829ddbd2e870"
   integrity sha512-7c3TbHj7npQeMO561o+aigkM7HKYZyOaOOQ+qMZbXR3gkfbAhtI7FXczcntbx51QEpOYlNtsJxiuFIKvETbojA==
 
+"@breadhead/use-modal@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@breadhead/use-modal/-/use-modal-1.0.3.tgz#dc211ef42804822889c65b8854da354b9c7e38ee"
+  integrity sha512-FWwUU4CfFbXefIEYGJxHMygAlHLJHnBjG3maI/3zJQn8B5BPEaBZgK/s1QTnUMzWCDgcDIdC8NCBDiH2AoO4Pw==
+
+"@breadhead/use-query@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@breadhead/use-query/-/use-query-0.3.0.tgz#e97c64c95a16018bc45ad507be851b398ec757f7"
+  integrity sha512-iu0LB0F6z2oC6cdaGPvyfhzoqZDqZxCXq78VEZ8tNJZHA8ncjJQvxELNXavZvGScfhbVJIO6+8Dbq43SOJKy3A==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    lodash.mapvalues "^4.6.0"
+    qs "^6.7.0"
+
 "@commitlint/cli@7":
   version "7.5.2"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.5.2.tgz#2475cd8f7ed3b2f9c2ab96c06bc24d61d23f8716"
@@ -7041,7 +7055,7 @@ lodash.isboolean@^3.0.3:
   resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
   integrity sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=
 
-lodash.isequal@^4.0.0:
+lodash.isequal@^4.0.0, lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
@@ -7084,6 +7098,11 @@ lodash.map@^4.5.1:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
   integrity sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=
+
+lodash.mapvalues@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
+  integrity sha1-G6+lAF3p3W9PJmaMMMo3IwzJaJw=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -9920,6 +9939,11 @@ qs@6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+
+qs@^6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
+  integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 query-string@^5.0.1:
   version "5.1.1"
