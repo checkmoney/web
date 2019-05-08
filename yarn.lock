@@ -785,10 +785,15 @@
   resolved "https://registry.yarnpkg.com/@breadhead/detil-ts/-/detil-ts-1.0.1.tgz#8a7a4a242258ffe66d73f526e62d829ddbd2e870"
   integrity sha512-7c3TbHj7npQeMO561o+aigkM7HKYZyOaOOQ+qMZbXR3gkfbAhtI7FXczcntbx51QEpOYlNtsJxiuFIKvETbojA==
 
-"@breadhead/use-query@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@breadhead/use-query/-/use-query-0.2.2.tgz#4ff6cd53f2d61958518ae9860336a605935617ee"
-  integrity sha512-tfBrXYKaGLjql5A//wa8+HVY/QWHiSwtim38JMiWOUEMXTWwITIIFqYjTB4hpn8e3y1YXQi9GYDSCUdTXyavxA==
+"@breadhead/use-modal@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@breadhead/use-modal/-/use-modal-1.0.3.tgz#dc211ef42804822889c65b8854da354b9c7e38ee"
+  integrity sha512-FWwUU4CfFbXefIEYGJxHMygAlHLJHnBjG3maI/3zJQn8B5BPEaBZgK/s1QTnUMzWCDgcDIdC8NCBDiH2AoO4Pw==
+
+"@breadhead/use-query@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@breadhead/use-query/-/use-query-0.3.0.tgz#e97c64c95a16018bc45ad507be851b398ec757f7"
+  integrity sha512-iu0LB0F6z2oC6cdaGPvyfhzoqZDqZxCXq78VEZ8tNJZHA8ncjJQvxELNXavZvGScfhbVJIO6+8Dbq43SOJKy3A==
   dependencies:
     lodash.isequal "^4.5.0"
     lodash.mapvalues "^4.6.0"
