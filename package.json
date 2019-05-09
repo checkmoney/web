@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf ./dist && cd back && yarn prestart:back:prod && cd ../front && yarn prestart:front:prod",
-    "lint": "yarn s lint && cd front && yarn lint:style",
+    "lint": "yarn s lint",
     "types": "tcm front && tsc --noEmit -p front && tsc --noEmit -p back",
     "circular": "madge --circular --extensions ts ./ --tsConfig tsconfig.json",
     "s": "yarn soda"
@@ -20,7 +20,7 @@
     "tsoption": "^0.7.0"
   },
   "devDependencies": {
-    "@solid-soda/scripts": "^1.2.4",
+    "@solid-soda/scripts": "^1.8.0",
     "madge": "^3.4.3",
     "pm2": "^3.2.4",
     "rimraf": "^2.6.2",
@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn soda lint-staged && yarn types && yarn circular && cd front && yarn lint:style",
+      "pre-commit": "yarn soda lint-staged && yarn types && yarn circular",
       "commit-msg": "yarn soda commitlint"
     }
   },

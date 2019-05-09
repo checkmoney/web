@@ -4,8 +4,7 @@
   "scripts": {
     "start:front:dev": "NODE_ENV=development node server.js",
     "prestart:front:prod": "next build",
-    "start:front:prod": "pm2 start ./pm2.json",
-    "lint:style": "stylelint --config .stylelintrc './**/*.css'"
+    "start:front:prod": "pm2 start ./pm2.json"
   },
   "dependencies": {
     "@ampa/nextjs": "^1.0.1",
@@ -62,11 +61,6 @@
     "postcss-nesting": "^7.0.0",
     "postcss-normalize": "^7.0.1",
     "postcss-preset-env": "^6.5.0",
-    "stylelint": "^9.10.1",
-    "stylelint-config-recess-order": "^2.0.1",
-    "stylelint-config-recommended": "^2.1.0",
-    "stylelint-order": "^2.0.0",
-    "stylelint-value-no-exposed-custom-properties": "^2.2.0",
     "typed-css-modules": "^0.3.7",
     "typescript-plugin-css-modules": "^1.0.5"
   }
