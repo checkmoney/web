@@ -7,9 +7,10 @@ interface Props {
   id: string
   title: string
   children: ReactNode
+  footer?: ReactNode
 }
 
-export const Modal = ({ id, children, title }: Props) => {
+export const Modal = ({ id, children, title, footer = null }: Props) => {
   const state = useModalState(id)
   const { close } = useModalActions(id)
 
@@ -21,7 +22,7 @@ export const Modal = ({ id, children, title }: Props) => {
       visible={true}
       onCancel={close}
       onOk={close}
-      footer={null}
+      footer={footer}
     >
       {children}
     </AntModal>
