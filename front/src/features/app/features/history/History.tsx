@@ -1,6 +1,6 @@
 import { endOfMonth, startOfMonth } from 'date-fns'
 import { useMappedState } from 'redux-react-hook'
-import { useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
 
 import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getHistory } from '@front/domain/money/selectors/getHistory'
@@ -10,6 +10,8 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { wantUTC } from '@front/helpers/wantUTC'
 import { LoaderTable } from '@front/ui/components/layout/loader-table'
 import { historyToTableData, createColumns } from '@front/features/history'
+import { useIncomeModal } from '@front/features/transaction/income'
+import { useOutcomeModal } from '@front/features/transaction/outcome'
 
 import { FullHistoryButton } from './components/full-history-button'
 
@@ -37,15 +39,34 @@ export const History = ({ className }: Props) => {
     [history],
   )
 
+  const { open: openIncome, IncomeModal } = useIncomeModal()
+  const { open: openOutcome, OutcomeModal } = useOutcomeModal()
+
+  const onRowClick = useCallback(
+    ({ id, rawAmount }) => {
+      if (rawAmount < 0) {
+        openOutcome(id)
+      } else {
+        openIncome(id)
+      }
+    },
+    [openIncome, openOutcome],
+  )
+
   return (
-    <LoaderTable
-      title="Last transactions"
-      className={className}
-      data={lastOutcomes}
-      columns={columns}
-      expectedRows={historyLength * 1.5}
-      fetching={fetching}
-      footer={<FullHistoryButton />}
-    />
+    <>
+      <LoaderTable
+        title="Last transactions"
+        className={className}
+        data={lastOutcomes}
+        columns={columns}
+        expectedRows={historyLength * 1.5}
+        fetching={fetching}
+        footer={<FullHistoryButton />}
+        onRowClick={onRowClick}
+      />
+      <IncomeModal />
+      <OutcomeModal />
+    </>
   )
 }

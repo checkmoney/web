@@ -1,5 +1,5 @@
 import { Table as AntTable } from 'antd'
-import { useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
 
 import { TableProps } from './TableProps'
 import * as styles from './Table.css'
@@ -12,6 +12,7 @@ export const Table = <Data extends Array<{}>>({
   title,
   hideHeader = false,
   footer,
+  onRowClick,
 }: TableProps<Data>) => {
   const adoptedData = useMemo(
     () =>
@@ -33,6 +34,13 @@ export const Table = <Data extends Array<{}>>({
     [columns],
   )
 
+  const onRow = useCallback(
+    record => ({
+      onClick: () => onRowClick && onRowClick(record),
+    }),
+    [onRowClick],
+  )
+
   return (
     <AntTable
       dataSource={adoptedData}
@@ -44,6 +52,7 @@ export const Table = <Data extends Array<{}>>({
       showHeader={!hideHeader}
       title={() => <div className={styles.title}>{title}</div>}
       footer={!!footer ? () => footer : undefined}
+      onRow={onRow}
     />
   )
 }

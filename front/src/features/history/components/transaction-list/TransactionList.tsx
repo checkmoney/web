@@ -7,6 +7,8 @@ import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
 import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
 import { Loader } from '@front/ui/components/layout/loader'
 import { Table } from '@front/ui/components/layout/table'
+import { useIncomeModal } from '@front/features/transaction/income'
+import { useOutcomeModal } from '@front/features/transaction/outcome'
 
 import { createColumns } from '../../helpers/createColumns'
 import { historyToTableData } from '../../helpers/historyToTableData'
@@ -41,24 +43,33 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
     filter: transaction => transaction.amount < 0,
   })
 
+  const { open: openIncome, IncomeModal } = useIncomeModal()
+  const { open: openOutcome, OutcomeModal } = useOutcomeModal()
+
   return (
-    <Loader status={fetching} dataAvaiable={history.nonEmpty()}>
-      {outcomes.nonEmpty() && (
-        <Table
-          className={classNames.outcomes}
-          title="Outcomes"
-          columns={outcomesColumns}
-          data={outcomes.get()}
-        />
-      )}
-      {incomes.nonEmpty() && (
-        <Table
-          className={classNames.incomes}
-          title="Incomes"
-          columns={incomeColumns}
-          data={incomes.get()}
-        />
-      )}
-    </Loader>
+    <>
+      <Loader status={fetching} dataAvaiable={history.nonEmpty()}>
+        {outcomes.nonEmpty() && (
+          <Table
+            className={classNames.outcomes}
+            title="Outcomes"
+            columns={outcomesColumns}
+            data={outcomes.get()}
+            onRowClick={({ id }) => openOutcome(id)}
+          />
+        )}
+        {incomes.nonEmpty() && (
+          <Table
+            className={classNames.incomes}
+            title="Incomes"
+            columns={incomeColumns}
+            data={incomes.get()}
+            onRowClick={({ id }) => openIncome(id)}
+          />
+        )}
+      </Loader>
+      <IncomeModal />
+      <OutcomeModal />
+    </>
   )
 }

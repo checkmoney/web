@@ -30,12 +30,14 @@ export const historyToTableData = (
     .map(item =>
       [
         ...item.incomes.map(income => ({
+          ...income,
           date: income.date,
           amount: income.amount,
           currency: income.currency,
           comment: income.source,
         })),
         ...item.outcomes.map(outcome => ({
+          ...outcome,
           date: outcome.date,
           amount: -outcome.amount,
           currency: outcome.currency,
@@ -55,6 +57,7 @@ export const historyToTableData = (
     .map(transactions =>
       transactions.map(transaction => ({
         ...transaction,
+        rawAmount: transaction.amount,
         amount: displayMoney(transaction.currency)(transaction.amount, {
           withSign: true,
         }),
