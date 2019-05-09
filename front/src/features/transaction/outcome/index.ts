@@ -1,0 +1,1 @@
+export { useOutcomeModal } from './useOutcomeModal'

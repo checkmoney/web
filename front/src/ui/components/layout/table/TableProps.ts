@@ -17,4 +17,5 @@ export interface TableProps<Data extends Array<{}>> {
   title: string
   hideHeader?: boolean
   footer?: ReactNode
+  onRowClick?: (row: any) => void
 }
