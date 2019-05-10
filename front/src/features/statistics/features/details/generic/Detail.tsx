@@ -4,7 +4,7 @@ import { Option } from 'tsoption'
 import useMedia from 'use-media'
 import { useMappedState } from 'redux-react-hook'
 import { useState, useMemo } from 'react'
-import { sortBy } from 'lodash'
+import { sortBy, capitalize } from 'lodash'
 
 import { GroupBy } from '@shared/enum/GroupBy'
 import { Container } from '@front/ui/components/layout/container'
@@ -79,7 +79,10 @@ export const Detail = <T extends object = any>({
 
   return (
     <Container>
-      <PageHeader title="Categories" onBack={() => pushRoute('/app/stats')} />
+      <PageHeader
+        title={capitalize(detailType)}
+        onBack={() => pushRoute('/app/stats')}
+      />
 
       <section className={styles.categories}>
         <aside className={styles.aside}>

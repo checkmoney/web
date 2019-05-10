@@ -35,7 +35,7 @@ export const GroupChooser = ({ group, detailType }: Props) => {
         ),
         showWhole && (
           <Button
-            onClick={() => pushRoute('/app/stats/categories')}
+            onClick={() => pushRoute(`/app/stats/${detailType}`)}
             type={ButtonType.Text}
           >
             Show all time
