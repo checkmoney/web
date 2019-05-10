@@ -4,4 +4,5 @@ export enum TipAction {
   DailyBudget,
   ExtraSpending,
   Custom,
+  RecurrentPayment,
 }
