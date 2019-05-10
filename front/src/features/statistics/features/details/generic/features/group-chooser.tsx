@@ -5,9 +5,10 @@ import { pushRoute } from '@front/features/routing'
 
 interface Props {
   group?: GroupBy
+  detailType: string
 }
 
-export const GroupChooser = ({ group }: Props) => {
+export const GroupChooser = ({ group, detailType }: Props) => {
   const showYear = !group || group !== GroupBy.Year
   const showMonth = !group || group !== GroupBy.Month
   const showWhole = !!group
@@ -18,7 +19,7 @@ export const GroupChooser = ({ group }: Props) => {
       actions={[
         showYear && (
           <Button
-            onClick={() => pushRoute('/app/stats/categories/year')}
+            onClick={() => pushRoute(`/app/stats/${detailType}/year`)}
             type={ButtonType.Text}
           >
             Show year
@@ -26,7 +27,7 @@ export const GroupChooser = ({ group }: Props) => {
         ),
         showMonth && (
           <Button
-            onClick={() => pushRoute('/app/stats/categories/month')}
+            onClick={() => pushRoute(`/app/stats/${detailType}/month`)}
             type={ButtonType.Text}
           >
             Show month

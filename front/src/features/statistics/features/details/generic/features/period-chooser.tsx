@@ -10,6 +10,7 @@ interface Props {
   from: Date
   to: Date
   group: GroupBy
+  detailType: string
 }
 
 export const PeriodChooser = ({
@@ -18,6 +19,7 @@ export const PeriodChooser = ({
   group,
   setPreviousPeriodNumber,
   previousPeriodNumber,
+  detailType,
 }: Props) => {
   const back = useCallback(() => setPreviousPeriodNumber(v => v + 1), [
     setPreviousPeriodNumber,
@@ -43,7 +45,7 @@ export const PeriodChooser = ({
       ].filter(Boolean)}
     >
       <p>
-        List of categories for the period from{' '}
+        List of {detailType} for the period from{' '}
         <b>{format(from, 'YYYY.MM.DD')}</b> to <b>{format(to, 'YYYY.MM.DD')}</b>
       </p>
     </Card>

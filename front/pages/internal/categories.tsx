@@ -4,10 +4,10 @@ import { AppContext } from '@front/domain/AppContext'
 import { fetchFirstTransactionDate } from '@front/domain/money/actions/fetchFirstTransactionDate'
 import { fetchStatsCategories } from '@front/domain/money/actions/fetchStatsCategories'
 import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
-import { Categories } from '@front/features/categories'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
+import { Categories } from '@front/features/statistics/features/details/categories'
 
 interface Query {
   group?: GroupBy
