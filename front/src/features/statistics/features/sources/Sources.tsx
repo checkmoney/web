@@ -11,6 +11,8 @@ import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources
 import { getStatsSourcesFetchingStatus } from '@front/domain/money/selectors/getStatsSourcesFetchingStatus'
 import { LoaderTable } from '@front/ui/components/layout/loader-table'
 import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
+import { Button, ButtonType } from '@front/ui/components/form/button'
+import { pushRoute } from '@front/features/routing'
 
 interface Props {
   className?: string
@@ -66,6 +68,14 @@ export const Sources = ({
       expectedRows={maxLength}
       className={className}
       hideHeader
+      footer={
+        <Button
+          type={ButtonType.Text}
+          onClick={() => pushRoute(`/app/stats/sources/${group}`)}
+        >
+          Details
+        </Button>
+      }
     />
   )
 }

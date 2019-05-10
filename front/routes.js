@@ -10,6 +10,10 @@ module.exports = nextRoutes()
     pattern: '/app/stats/categories/:group?',
     page: 'internal/categories',
   })
+  .add({
+    pattern: '/app/stats/sources/:group?',
+    page: 'internal/sources',
+  })
   .add({ pattern: '/app/history', page: 'internal/history' })
   .add({ pattern: '/app/profile', page: 'internal/profile' })
   .add({ pattern: '/manager', page: 'internal/manager' })
