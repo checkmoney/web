@@ -88,7 +88,7 @@ export class RecurrentPaymentAdviser implements Adviser {
 
       return {
         from: startValid ? start : 1,
-        end: endValid ? end : getDate(lastDayOfMonth(date)),
+        to: endValid ? end : getDate(lastDayOfMonth(date)),
       }
     }
 
