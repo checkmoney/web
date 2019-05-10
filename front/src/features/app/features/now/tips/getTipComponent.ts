@@ -20,4 +20,5 @@ export const getTipComponent = (tip: TipModel): ComponentType<Props> =>
     [TipAction.DailyBudget]: DailyBudget,
     [TipAction.ExtraSpending]: ExtraSpending,
     [TipAction.Custom]: Custom,
+    [TipAction.RecurrentPayment]: () => null,
   }[tip.action])
