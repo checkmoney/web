@@ -6,6 +6,8 @@ import {
   endOfMonth,
   subDays,
   addDays,
+  getDaysInMonth,
+  lastDayOfMonth,
 } from 'date-fns'
 
 import { TipModel } from '@shared/models/mind/TipModel'
@@ -24,7 +26,7 @@ export class RecurrentPaymentAdviser implements Adviser {
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const MONTH_FOR_RETROSPECTIVE = 3
-    const DAYS_GAP = 3
+    const DAYS_GAP = 5
 
     const now = new Date()
 
@@ -56,7 +58,7 @@ export class RecurrentPaymentAdviser implements Adviser {
         const sameAmount = t.amount === transaction.amount
         const sameCurrency = t.currency === transaction.currency
         const sameDate =
-          Math.abs(getDate(t.date) - getDate(transaction.date)) < DAYS_GAP
+          Math.abs(getDate(t.date) - getDate(transaction.date)) <= DAYS_GAP
         const sameCategory = t.category === transaction.category
 
         return sameAmount && sameCurrency && sameDate && sameCategory
@@ -77,6 +79,19 @@ export class RecurrentPaymentAdviser implements Adviser {
         return future && soon
       })
 
+    const getPeriod = (date: Date) => {
+      const start = getDate(subDays(date, DAYS_GAP))
+      const end = getDate(addDays(date, DAYS_GAP))
+
+      const startValid = start >= 1
+      const endValid = end <= getDaysInMonth(date)
+
+      return {
+        from: startValid ? start : 1,
+        end: endValid ? end : getDate(lastDayOfMonth(date)),
+      }
+    }
+
     return recurrentTransactions.map(
       ({ amount, category, currency, date }) => ({
         token: this.createToken(
@@ -91,10 +106,7 @@ export class RecurrentPaymentAdviser implements Adviser {
           amount,
           category,
           currency,
-          period: {
-            from: getDate(subDays(date, DAYS_GAP / 2)),
-            to: getDate(addDays(date, DAYS_GAP / 2)),
-          },
+          period: getPeriod(date),
         },
       }),
     )
