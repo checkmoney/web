@@ -1,3 +1,3 @@
 export interface I18nProps {
-  t: (key: string) => string
+  t: (key: string, context?: object) => string
 }

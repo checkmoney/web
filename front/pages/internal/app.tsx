@@ -4,8 +4,9 @@ import { AppContext } from '@front/domain/AppContext'
 import { fetchFirstTransactionDate } from '@front/domain/money/actions/fetchFirstTransactionDate'
 import { fetchTips } from '@front/domain/mind/actions/fetchTips'
 import { App } from '@front/features/app'
+import { pageWithTranslation, Namespace } from '@front/domain/i18n'
 
-export default class AppPage extends React.Component {
+class AppPage extends React.Component {
   public static isSecure = true
 
   public static async getInitialProps({ reduxStore }: AppContext) {
@@ -21,3 +22,5 @@ export default class AppPage extends React.Component {
     return <App />
   }
 }
+
+export default pageWithTranslation([Namespace.Tips])(AppPage)
