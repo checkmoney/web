@@ -15,12 +15,13 @@ import { useErrorAlert } from '@front/ui/hooks/useErrorAlert'
 import { Card } from '@front/ui/components/layout/card'
 
 import * as styles from '../SignForm.css'
+import { I18nProps, withNamespaces, Namespace } from '@front/domain/i18n'
 
 interface Props {
   className?: string
 }
 
-export const SignIn = ({ className }: Props) => {
+const SignInRaw = ({ className, t }: Props & I18nProps) => {
   const dispatch = useThunk()
 
   const onSubmit = useCallback(async ({ email, password }) => {
@@ -38,7 +39,7 @@ export const SignIn = ({ className }: Props) => {
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
-          <Card title="Sign-in" className={styles.card}>
+          <Card title={t('sign-in')} className={styles.card}>
             <Label text="Email">
               <Input
                 name="email"
@@ -60,3 +61,5 @@ export const SignIn = ({ className }: Props) => {
     </Form>
   )
 }
+
+export const SignIn = withNamespaces(Namespace.Landind)(SignInRaw)
