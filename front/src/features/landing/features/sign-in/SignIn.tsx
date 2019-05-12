@@ -41,7 +41,7 @@ export const SignIn = ({ className }: Props) => {
           className={cx(styles.container, className)}
         >
           <Card title={t('sign-in')} className={styles.card}>
-            <Label text="Email">
+            <Label text={t('email')}>
               <Input
                 name="email"
                 type={InputType.Email}
@@ -49,12 +49,12 @@ export const SignIn = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text="Password">
+            <Label text={t('password')}>
               <Input name="password" type={InputType.Password} />
             </Label>
 
             <LoadingButton fethcing={fetching} submit>
-              Sign-in
+              {t('sign-in-action')}
             </LoadingButton>
           </Card>
         </form>
