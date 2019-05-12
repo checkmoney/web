@@ -15,6 +15,7 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { useMemoState } from '@front/domain/store'
 import { wantUTC } from '@front/helpers/wantUTC'
+import { useTranslation } from '@front/domain/i18n'
 
 const groupBy = GroupBy.Year
 
@@ -27,6 +28,7 @@ export const Yearly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsDynamicsFetchingStatus)
   const isSmall = useMedia({ maxWidth: 768 })
+  const { t } = useTranslation()
 
   const from = useMemo(() => wantUTC(startOfYear)(firstTransactionDate), [
     firstTransactionDate,
@@ -41,7 +43,7 @@ export const Yearly = ({ className, currency }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title="Yearly dynamics" />
+      <ControlHeader title={t('stats:dynamics.yearly-title')} />
       <Loader status={fetching}>
         {stats.nonEmpty() && (
           <BarChart
@@ -49,8 +51,14 @@ export const Yearly = ({ className, currency }: Props) => {
             dataSets={stats.get().map(({ start, income, outcome }) => ({
               name: format(start, 'YYYY'),
               data: {
-                income,
-                outcome,
+                income: {
+                  label: t('history:incomes'),
+                  value: income,
+                },
+                outcome: {
+                  label: t('history:outcomes'),
+                  value: outcome,
+                },
               },
             }))}
             fitToContainer={isSmall}

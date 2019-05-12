@@ -11,8 +11,9 @@ import { fetchStatsAverage } from '@front/domain/money/actions/fetchStatsAverage
 import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
+import { pageWithTranslation, Namespace } from '@front/domain/i18n'
 
-export default class StatsPage extends React.Component {
+class StatsPage extends React.Component {
   public static isSecure = true
 
   public static async getInitialProps({ reduxStore }: AppContext) {
@@ -40,3 +41,10 @@ export default class StatsPage extends React.Component {
     return <Statistics />
   }
 }
+
+export default pageWithTranslation([
+  Namespace.History,
+  Namespace.Months,
+  Namespace.Stats,
+  Namespace.Currency,
+])(StatsPage)

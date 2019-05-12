@@ -25,6 +25,8 @@ import { wantUTC } from '@front/helpers/wantUTC'
 import { Loader } from '@front/ui/components/layout/loader'
 import { mergeFetchingState } from '@front/helpers/mergeFetchingState'
 import { calculateGroupProgress } from '@shared/helpers/calculateGroupProgress'
+import { translatedMonthTitle } from '@front/helpers/translatedMonthTitle'
+import { useTranslation } from '@front/domain/i18n'
 
 import * as styles from './Dynamics.css'
 import { calculateGrowPercentage } from './helpers/calculateGrowPercentage'
@@ -37,9 +39,11 @@ interface Props {
 
 // TODO: refactor it please
 export const Dynamics = ({ className, group, currency }: Props) => {
+  const { t } = useTranslation()
+
   const period =
     group === GroupBy.Month
-      ? format(new Date(), 'MMMM')
+      ? translatedMonthTitle(t, new Date())
       : format(new Date(), 'YYYY')
 
   const [from, to] = useMemo(() => {
@@ -92,12 +96,17 @@ export const Dynamics = ({ className, group, currency }: Props) => {
   // TODO: add info about calculation in tooltip
   return (
     <Card title={period} className={className}>
-      <p>Compared to the average {group}</p>
+      <p>{t(`stats:dynamics.compared-${group}`)}</p>
 
       <Loader skeleton expectedRows={2} status={fetching}>
         <div className={styles.diff}>
-          <Stat title="Income" value={incomeGrow} suffix="%" />
-          <Stat title="Outcome" value={outcomeGrow} suffix="%" decreaseIsGood />
+          <Stat title={t('history:incomes')} value={incomeGrow} suffix="%" />
+          <Stat
+            title={t('history:outcomes')}
+            value={outcomeGrow}
+            suffix="%"
+            decreaseIsGood
+          />
         </div>
       </Loader>
     </Card>

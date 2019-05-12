@@ -11,7 +11,7 @@ import { useWindowSize } from '@front/ui/hooks/useWindowSize'
 import { pushRoute } from '../routing'
 import * as styles from './History.css'
 import { createMonths } from './helpers/createMonths'
-import { createMonthTitle } from './helpers/createMonthTitle'
+import { translatedMonthTitle } from '@front/helpers/translatedMonthTitle'
 import { TransactionList } from './components/transaction-list'
 import { useTranslation } from '@front/domain/i18n'
 
@@ -24,7 +24,10 @@ export const History = () => {
     () => createMonths(t, firstTransactionDate, new Date()),
     [firstTransactionDate],
   )
-  const defaultMonthTitle = useMemo(() => createMonthTitle(t, new Date()), [])
+  const defaultMonthTitle = useMemo(
+    () => translatedMonthTitle(t, new Date()),
+    [],
+  )
 
   const { innerWidth } = useWindowSize()
   const isMobile = innerWidth && innerWidth < 768

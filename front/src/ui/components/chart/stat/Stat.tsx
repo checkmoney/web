@@ -1,6 +1,8 @@
 import { Statistic, Icon } from 'antd'
 import { Option } from 'tsoption'
 
+import { useTranslation } from '@front/domain/i18n'
+
 interface Props {
   title: string
   value: Option<number>
@@ -34,9 +36,11 @@ export const Stat = ({
     )
   }
 
+  const { t } = useTranslation()
+
   return (
     <Statistic
-      title={`${title}, no data`}
+      title={`${title}, ${t('common:ui.no-data')}`}
       value={0}
       precision={2}
       suffix={suffix}

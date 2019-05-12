@@ -1,4 +1,4 @@
-import { capitalize, flatten, uniq } from 'lodash'
+import { flatten, uniq } from 'lodash'
 import { Bar } from 'react-chartjs-2'
 import { useMemo } from 'react'
 
@@ -6,7 +6,10 @@ import { createOptions } from './helpers/createOptions'
 import { getColor } from './helpers/getColor'
 
 interface Data {
-  [key: string]: number
+  [key: string]: {
+    label: string
+    value: number
+  }
 }
 
 interface DataSet {
@@ -33,8 +36,8 @@ export const BarChart = ({
       labels: uniq(flatten(dataSets.map(set => set.name))),
       datasets: uniq(flatten(dataSets.map(set => Object.keys(set.data)))).map(
         (name, index) => ({
-          label: capitalize(name),
-          data: dataSets.map(set => set.data[name]),
+          label: dataSets[index].data[name].label,
+          data: dataSets.map(set => set.data[name].value),
           backgroundColor: getColor(index),
         }),
       ),

@@ -9,4 +9,5 @@ export enum Namespace {
   Common = 'common',
   Months = 'months',
   Profile = 'profile',
+  Stats = 'stats',
 }
