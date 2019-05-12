@@ -19,8 +19,8 @@ export const ExtraSpending = ({ tip: { token, meta } }: Props) => {
   })
 
   return (
-    <Card title={t('extra.title')} extra={<DismissButton token={token} />}>
-      {t('extra.content', { overrun })}
+    <Card title={t('tips:extra.title')} extra={<DismissButton token={token} />}>
+      {t('tips:extra.content', { overrun })}
     </Card>
   )
 }

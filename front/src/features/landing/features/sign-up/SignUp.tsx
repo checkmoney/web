@@ -40,8 +40,8 @@ export const SignUp = ({ className }: Props) => {
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
-          <Card title={t('sign-up')} className={styles.card}>
-            <Label text={t('email')}>
+          <Card title={t('landing:sign-up')} className={styles.card}>
+            <Label text={t('landing:email')}>
               <Input
                 name="email"
                 type={InputType.Email}
@@ -49,16 +49,16 @@ export const SignUp = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text={t('password')}>
+            <Label text={t('landing:password')}>
               <Input name="password" type={InputType.Password} />
             </Label>
 
-            <Label text={t('repeat-password')}>
+            <Label text={t('landing:repeat-password')}>
               <Input name="password-repeat" type={InputType.Password} />
             </Label>
 
             <LoadingButton fethcing={fetching} submit>
-              {t('sign-up-action')}
+              {t('landing:sign-up-action')}
             </LoadingButton>
           </Card>
         </form>

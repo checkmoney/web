@@ -7,5 +7,5 @@ interface Props {
 export const HelloMessage = ({ className }: Props) => {
   const { t } = useTranslation()
 
-  return <p className={className}>{t('hello')}</p>
+  return <p className={className}>{t('landing:hello')}</p>
 }

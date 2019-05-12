@@ -9,6 +9,8 @@ import { ComponentType } from 'react'
 export const pageWithTranslation = (namespaces: Namespace | Namespace[]) => (
   Page: ComponentType,
 ) => {
+  const namespacesRequired = [...flatten([namespaces]), Namespace.Common]
+
   return class PageWithTranslation extends Component {
     public static async getInitialProps(appContext: NextAppContext) {
       let appProps = {}
@@ -18,13 +20,13 @@ export const pageWithTranslation = (namespaces: Namespace | Namespace[]) => (
 
       return {
         ...appProps,
-        namespacesRequired: flatten([namespaces]),
+        namespacesRequired,
       }
     }
 
     public render() {
       return (
-        <I18nProvider namespaces={namespaces}>
+        <I18nProvider namespaces={namespacesRequired}>
           <Page />
         </I18nProvider>
       )

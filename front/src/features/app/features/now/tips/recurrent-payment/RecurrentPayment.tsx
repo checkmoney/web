@@ -30,8 +30,11 @@ export const RecurrentPayment = ({ tip: { meta, token } }: Props) => {
   }
 
   return (
-    <Card title={t('recurrent.title')} extra={<DismissButton token={token} />}>
-      {t('recurrent.content', context)}
+    <Card
+      title={t('tips:recurrent.title')}
+      extra={<DismissButton token={token} />}
+    >
+      {t('tips:recurrent.content', context)}
     </Card>
   )
 }

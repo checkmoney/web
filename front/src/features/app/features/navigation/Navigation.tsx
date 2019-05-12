@@ -4,6 +4,7 @@ import { Menu } from '@front/ui/components/controls/menu/Menu'
 import { MenuItem } from '@front/ui/components/controls/menu/MenuItem'
 import { pushRoute } from '@front/features/routing'
 import { getUserIsManager } from '@front/domain/user/selectors/getUserIsManager'
+import { useTranslation } from '@front/domain/i18n'
 
 interface Props {
   className?: string
@@ -11,27 +12,28 @@ interface Props {
 
 export const Navigation = ({ className }: Props) => {
   const isManager = useMappedState(getUserIsManager)
+  const { t } = useTranslation()
 
   const defaultMenu = [
     <MenuItem id="home" key="home" selected>
-      Home
+      {t('common:nav.home')}
     </MenuItem>,
     <MenuItem id="stats" key="stats" onClick={() => pushRoute('/app/stats')}>
-      Stats
+      {t('common:nav.stats')}
     </MenuItem>,
     <MenuItem
       id="history"
       key="history"
       onClick={() => pushRoute('/app/history')}
     >
-      History
+      {t('common:nav.history')}
     </MenuItem>,
     <MenuItem
       id="profile"
       key="profile"
       onClick={() => pushRoute('/app/profile')}
     >
-      Profile
+      {t('common:nav.profile')}
     </MenuItem>,
   ]
 
@@ -42,7 +44,7 @@ export const Navigation = ({ className }: Props) => {
           key="manager"
           onClick={() => pushRoute('/manager')}
         >
-          Manager
+          {t('common:nav.manager')}
         </MenuItem>,
       ]
     : []

@@ -23,4 +23,10 @@ class AppPage extends React.Component {
   }
 }
 
-export default pageWithTranslation([Namespace.Tips])(AppPage)
+export default pageWithTranslation([
+  Namespace.Tips,
+  Namespace.Transaction,
+  Namespace.CreateTransaction,
+  Namespace.Currency,
+  Namespace.ShortHistory,
+])(AppPage)

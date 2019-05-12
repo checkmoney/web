@@ -7,5 +7,5 @@ interface Props {
 export const ForbiddenMessage = ({ className }: Props) => {
   const { t } = useTranslation()
 
-  return <p className={className}>{t('forbidden')}</p>
+  return <p className={className}>{t('landing:forbidden')}</p>
 }

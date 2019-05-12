@@ -12,6 +12,7 @@ import { useOutcomeModal } from '@front/features/transaction/outcome'
 
 import { createColumns } from '../../helpers/createColumns'
 import { historyToTableData } from '../../helpers/historyToTableData'
+import { useTranslation } from '@front/domain/i18n'
 
 interface ClassNames {
   incomes: string
@@ -25,6 +26,8 @@ interface Props {
 }
 
 export const TransactionList = ({ from, to, classNames }: Props) => {
+  const { t } = useTranslation()
+
   const history = useMemoState(
     () => getHistory(from, to, GroupBy.Month),
     () => fetchHistory(from, to, GroupBy.Month),
@@ -33,12 +36,12 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
 
   const fetching = useMappedState(getHistoryFetchingStatus)
 
-  const incomeColumns = createColumns('comment', 'Source')
+  const incomeColumns = createColumns(t, 'comment', 'source')
   const incomes = historyToTableData(history, {
     filter: transaction => transaction.amount > 0,
   })
 
-  const outcomesColumns = createColumns('comment', 'Category')
+  const outcomesColumns = createColumns(t, 'comment', 'category')
   const outcomes = historyToTableData(history, {
     filter: transaction => transaction.amount < 0,
   })

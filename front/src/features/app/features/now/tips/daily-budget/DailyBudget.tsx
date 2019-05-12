@@ -14,8 +14,8 @@ export const DailyBudget = ({ tip: { meta } }: Props) => {
 
   if (meta.amount === 0) {
     return (
-      <Card title={t('daily-budget.title')}>
-        {t('daily-budget.content.empty')}
+      <Card title={t('tips:daily-budget.title')}>
+        {t('tips:daily-budget.content.empty')}
       </Card>
     )
   }
@@ -23,8 +23,8 @@ export const DailyBudget = ({ tip: { meta } }: Props) => {
   const budget = displayMoney(meta.currency)(meta.amount, { withPenny: false })
 
   return (
-    <Card title={t('daily-budget.title')}>
-      {t('daily-budget.content.full', { budget })}
+    <Card title={t('tips:daily-budget.title')}>
+      {t('tips:daily-budget.content.full', { budget })}
     </Card>
   )
 }

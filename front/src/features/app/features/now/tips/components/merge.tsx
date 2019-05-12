@@ -31,7 +31,7 @@ export const Merge = ({ token, variants }: Props) => {
 
   return (
     <Card
-      title={t('typo.title')}
+      title={t('tips:typo.title')}
       extra={<DismissButton token={token} />}
       actions={variants.map(variant => (
         <Button
@@ -43,7 +43,7 @@ export const Merge = ({ token, variants }: Props) => {
         </Button>
       ))}
     >
-      {t('typo.content')}
+      {t('tips:typo.content')}
     </Card>
   )
 }

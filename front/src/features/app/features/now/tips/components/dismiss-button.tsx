@@ -17,7 +17,7 @@ export const DismissButton = ({ token }: Props) => {
 
   return (
     <Button type={ButtonType.Text} onClick={onDismiss}>
-      {t('dismiss')}
+      {t('tips:dismiss')}
     </Button>
   )
 }
