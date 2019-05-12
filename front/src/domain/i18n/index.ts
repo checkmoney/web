@@ -1,12 +1,7 @@
-import NextI18Next from 'next-i18next'
-import { Language } from '@shared/enum/Language'
+import { Instance } from './Instance'
 
-const NextI18NextInstance = new NextI18Next({
-  defaultLanguage: Language.Ru,
-  otherLanguages: [Language.Never],
-})
-
-export const { appWithTranslation, withNamespaces, i18n } = NextI18NextInstance
+export const { i18n, appWithTranslation } = Instance
 
 export { Namespace } from './Namespace'
-export { I18nProps } from './I18nProps'
+export { I18nProvider } from './I18nProvider'
+export { useTranslation } from './useTranslation'

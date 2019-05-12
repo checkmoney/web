@@ -13,16 +13,17 @@ import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { useErrorAlert } from '@front/ui/hooks/useErrorAlert'
 import { Card } from '@front/ui/components/layout/card'
+import { useTranslation } from '@front/domain/i18n'
 
 import * as styles from '../SignForm.css'
-import { I18nProps, withNamespaces, Namespace } from '@front/domain/i18n'
 
 interface Props {
   className?: string
 }
 
-const SignInRaw = ({ className, t }: Props & I18nProps) => {
+export const SignIn = ({ className }: Props) => {
   const dispatch = useThunk()
+  const { t } = useTranslation()
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signIn(email, password))
@@ -61,5 +62,3 @@ const SignInRaw = ({ className, t }: Props & I18nProps) => {
     </Form>
   )
 }
-
-export const SignIn = withNamespaces(Namespace.Landind)(SignInRaw)
