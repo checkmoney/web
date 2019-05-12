@@ -13,6 +13,7 @@ import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { useErrorAlert } from '@front/ui/hooks/useErrorAlert'
 import { Card } from '@front/ui/components/layout/card'
+import { useTranslation } from '@front/domain/i18n'
 
 import * as styles from '../SignForm.css'
 
@@ -22,6 +23,7 @@ interface Props {
 
 export const SignUp = ({ className }: Props) => {
   const dispatch = useThunk()
+  const { t } = useTranslation()
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signUp(email, password))
@@ -38,7 +40,7 @@ export const SignUp = ({ className }: Props) => {
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
-          <Card title="Sign-up" className={styles.card}>
+          <Card title={t('sign-up')} className={styles.card}>
             <Label text="Email">
               <Input
                 name="email"
