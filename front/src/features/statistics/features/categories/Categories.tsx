@@ -13,6 +13,7 @@ import { LoaderTable } from '@front/ui/components/layout/loader-table'
 import { Button, ButtonType } from '@front/ui/components/form/button'
 import { pushRoute } from '@front/features/routing'
 import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
+import { useTranslation } from '@front/domain/i18n'
 
 interface Props {
   className?: string
@@ -29,6 +30,8 @@ export const Categories = ({
   widthPercent,
   maxLength,
 }: Props) => {
+  const { t } = useTranslation()
+
   const columns = useMemo(
     () => ({
       category: {
@@ -55,13 +58,16 @@ export const Categories = ({
 
   // sort by `income` and take `maxLength` top groups
   const preparedData = useMemo(
-    () => stats.map(s => take(sortBy(s, t => -t.outcome), maxLength)),
+    () =>
+      stats.map(s =>
+        take(sortBy(s, transaction => -transaction.outcome), maxLength),
+      ),
     [stats, maxLength],
   )
 
   return (
     <LoaderTable
-      title={`What did you spend money on this ${group}`}
+      title={t('stats:top.outcome')}
       columns={columns}
       data={preparedData}
       fetching={fetching}
@@ -73,7 +79,7 @@ export const Categories = ({
           type={ButtonType.Text}
           onClick={() => pushRoute(`/app/stats/categories/${group}`)}
         >
-          Details
+          {t('stats:actions.details')}
         </Button>
       }
     />

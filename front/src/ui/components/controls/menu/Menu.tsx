@@ -1,6 +1,8 @@
 import { Menu as AntMenu } from 'antd'
 import { ReactElement, useMemo, useCallback } from 'react'
 
+import { useTranslation } from '@front/domain/i18n'
+
 import { MenuItemProps } from './MenuItemProps'
 import { createOnClickMap } from './helpers/createOnClickMap'
 
@@ -10,6 +12,8 @@ interface Props {
 }
 
 export const Menu = ({ children, className }: Props) => {
+  const { t } = useTranslation()
+
   const selectedKeys = useMemo(
     () =>
       children
@@ -34,7 +38,7 @@ export const Menu = ({ children, className }: Props) => {
 
   // Ant not define this props in types, but accept
   const additionalProps: any = {
-    overflowedIndicator: 'More',
+    overflowedIndicator: t('common:nav.more'),
   }
 
   return (

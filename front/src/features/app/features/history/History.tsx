@@ -14,6 +14,7 @@ import { useIncomeModal } from '@front/features/transaction/income'
 import { useOutcomeModal } from '@front/features/transaction/outcome'
 
 import { FullHistoryButton } from './components/full-history-button'
+import { useTranslation } from '@front/domain/i18n'
 
 interface Props {
   className?: string
@@ -23,16 +24,18 @@ const groupBy = GroupBy.Month
 const historyLength = 10
 const from = wantUTC(startOfMonth)(new Date())
 const to = wantUTC(endOfMonth)(new Date())
-const columns = createColumns('comment', 'Comment')
 
 export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus)
+  const { t } = useTranslation()
 
   const history = useMemoState(
     () => getHistory(from, to, groupBy),
     () => fetchHistory(from, to, groupBy),
     [from, to],
   )
+
+  const columns = createColumns(t, 'comment')
 
   const lastOutcomes = useMemo(
     () => historyToTableData(history, { maxLength: historyLength }),
@@ -56,7 +59,7 @@ export const History = ({ className }: Props) => {
   return (
     <>
       <LoaderTable
-        title="Last transactions"
+        title={t('short-history:title')}
         className={className}
         data={lastOutcomes}
         columns={columns}

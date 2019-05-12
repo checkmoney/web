@@ -13,6 +13,7 @@ import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { useErrorAlert } from '@front/ui/hooks/useErrorAlert'
 import { Card } from '@front/ui/components/layout/card'
+import { useTranslation } from '@front/domain/i18n'
 
 import * as styles from '../SignForm.css'
 
@@ -22,6 +23,7 @@ interface Props {
 
 export const SignUp = ({ className }: Props) => {
   const dispatch = useThunk()
+  const { t } = useTranslation()
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signUp(email, password))
@@ -38,8 +40,8 @@ export const SignUp = ({ className }: Props) => {
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
-          <Card title="Sign-up" className={styles.card}>
-            <Label text="Email">
+          <Card title={t('landing:sign-up')} className={styles.card}>
+            <Label text={t('landing:email')}>
               <Input
                 name="email"
                 type={InputType.Email}
@@ -47,16 +49,16 @@ export const SignUp = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text="Password">
+            <Label text={t('landing:password')}>
               <Input name="password" type={InputType.Password} />
             </Label>
 
-            <Label text="Repeat password">
+            <Label text={t('landing:repeat-password')}>
               <Input name="password-repeat" type={InputType.Password} />
             </Label>
 
             <LoadingButton fethcing={fetching} submit>
-              Sign-up
+              {t('landing:sign-up-action')}
             </LoadingButton>
           </Card>
         </form>

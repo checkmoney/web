@@ -1,4 +1,4 @@
-import { endOfYear, format, startOfYear, getYear, parse } from 'date-fns'
+import { endOfYear, startOfYear, getYear, parse } from 'date-fns'
 import { useState, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 import { useMedia } from 'use-media'
@@ -16,6 +16,8 @@ import { ControlHeader } from '@front/ui/components/controls/control-header'
 import { YearPicker } from '@front/ui/components/form/year-picker'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { wantUTC } from '@front/helpers/wantUTC'
+import { useTranslation } from '@front/domain/i18n'
+import { translatedMonthTitle } from '@front/helpers/translatedMonthTitle'
 
 const groupBy = GroupBy.Month
 
@@ -28,6 +30,7 @@ export const Monthly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const fetching = useMappedState(getStatsDynamicsFetchingStatus)
   const isSmall = useMedia({ maxWidth: 768 })
+  const { t } = useTranslation()
 
   const [year, setYear] = useState(getYear(new Date()))
 
@@ -45,7 +48,7 @@ export const Monthly = ({ className, currency }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title="Monthly dynamics in">
+      <ControlHeader title={t('stats:dynamics.monthly-title')}>
         <YearPicker
           min={getYear(firstTransactionDate)}
           value={year}
@@ -58,10 +61,16 @@ export const Monthly = ({ className, currency }: Props) => {
           <BarChart
             displayValue={displayMoney(currency)}
             dataSets={stats.get().map(({ start, income, outcome }) => ({
-              name: format(start, 'MMMM'),
+              name: translatedMonthTitle(t, start, false),
               data: {
-                income,
-                outcome,
+                income: {
+                  label: t('history:incomes'),
+                  value: income,
+                },
+                outcome: {
+                  label: t('history:outcomes'),
+                  value: outcome,
+                },
               },
             }))}
             fitToContainer={isSmall}

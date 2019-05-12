@@ -7,5 +7,5 @@ interface Props {
 }
 
 export const MergeSources = ({ tip }: Props) => {
-  return <Merge target="sources" token={tip.token} variants={tip.meta} />
+  return <Merge token={tip.token} variants={tip.meta} />
 }

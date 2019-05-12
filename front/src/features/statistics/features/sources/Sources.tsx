@@ -13,6 +13,7 @@ import { LoaderTable } from '@front/ui/components/layout/loader-table'
 import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
 import { Button, ButtonType } from '@front/ui/components/form/button'
 import { pushRoute } from '@front/features/routing'
+import { useTranslation } from '@front/domain/i18n'
 
 interface Props {
   className?: string
@@ -29,6 +30,8 @@ export const Sources = ({
   widthPercent,
   maxLength,
 }: Props) => {
+  const { t } = useTranslation()
+
   const columns = useMemo(
     () => ({
       source: {
@@ -55,13 +58,16 @@ export const Sources = ({
 
   // sort by `income` and take `maxLength` top groups
   const preparedData = useMemo(
-    () => stats.map(s => take(sortBy(s, t => -t.income), maxLength)),
+    () =>
+      stats.map(s =>
+        take(sortBy(s, transaction => -transaction.income), maxLength),
+      ),
     [stats, maxLength],
   )
 
   return (
     <LoaderTable
-      title={`What brought you money this ${group}`}
+      title={t('stats:top.income')}
       columns={columns}
       data={preparedData}
       fetching={fetching}
@@ -73,7 +79,7 @@ export const Sources = ({
           type={ButtonType.Text}
           onClick={() => pushRoute(`/app/stats/sources/${group}`)}
         >
-          Details
+          {t('stats:actions.details')}
         </Button>
       }
     />

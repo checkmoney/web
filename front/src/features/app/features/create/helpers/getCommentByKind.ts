@@ -2,6 +2,6 @@ import { Kind } from './Kind'
 
 export const getCommentByKind = (kind: Kind) =>
   ({
-    [Kind.Income]: 'Source',
-    [Kind.Outcome]: 'Category',
+    [Kind.Income]: 'transaction:source',
+    [Kind.Outcome]: 'transaction:category',
   }[kind])

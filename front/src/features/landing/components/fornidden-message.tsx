@@ -1,10 +1,11 @@
+import { useTranslation } from '@front/domain/i18n'
+
 interface Props {
   className?: string
 }
 
-export const ForbiddenMessage = ({ className }: Props) => (
-  <p className={className}>
-    You try to access the internal application page. Please sign-in or sign-up
-    and try again.
-  </p>
-)
+export const ForbiddenMessage = ({ className }: Props) => {
+  const { t } = useTranslation()
+
+  return <p className={className}>{t('landing:forbidden')}</p>
+}

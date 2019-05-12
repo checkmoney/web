@@ -11,7 +11,6 @@ import {
   Toggle,
   AutoComplete,
 } from '@front/features/final-form'
-import { getCurrencyName } from '@shared/helpers/getCurrencyName'
 import { Label } from '@front/ui/components/form/label'
 import { LoadingButton } from '@front/ui/components/form/loading-button'
 import { Card } from '@front/ui/components/layout/card'
@@ -24,12 +23,14 @@ import { fetchSources } from '@front/domain/money/actions/fetchSources'
 import { getCategories } from '@front/domain/money/selectors/getCategories'
 import { fetchCategories } from '@front/domain/money/actions/fetchCategories'
 import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
+import { useTranslation } from '@front/domain/i18n'
 
 import * as styles from './CreateTransaction.css'
 import { Kind } from './helpers/Kind'
 import { getCommentByKind } from './helpers/getCommentByKind'
 import { getExampleByKind } from './helpers/getExampleByKind'
 import { useOnSubmit } from './helpers/useOnSubmit'
+import { translatedCurrency } from '@front/helpers/translatedCurrency'
 
 interface Props {
   className?: string
@@ -37,6 +38,7 @@ interface Props {
 
 export const CreateTransaction = ({ className }: Props) => {
   const dispatch = useThunk()
+  const { t } = useTranslation()
 
   const onSubmit = useOnSubmit()
 
@@ -76,13 +78,13 @@ export const CreateTransaction = ({ className }: Props) => {
           onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
           className={className}
         >
-          <Card title="Create new transaction" className={styles.form}>
-            <Label text="Amount" className={styles.amount}>
+          <Card title={t('create-transaction:title')} className={styles.form}>
+            <Label text={t('transaction:amount')} className={styles.amount}>
               <InputMoney name="amount" currency={values.currency} />
             </Label>
 
             <Label
-              text={getCommentByKind(values.kind)}
+              text={t(getCommentByKind(values.kind))}
               className={styles.comment}
             >
               <AutoComplete
@@ -92,26 +94,26 @@ export const CreateTransaction = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text="Currency" className={styles.currency}>
+            <Label text={t('transaction:currency')} className={styles.currency}>
               <EnumSelect
                 showSearch
                 name="currency"
                 options={Currency}
-                getLabel={getCurrencyName}
+                getLabel={translatedCurrency(t)}
               />
             </Label>
 
-            <Label text="Date" className={styles.date}>
+            <Label text={t('transaction:date')} className={styles.date}>
               <DatePicker name="date" />
             </Label>
 
             <Toggle name="kind" className={styles.kind}>
-              <Variant value={Kind.Outcome}>Outcome</Variant>
-              <Variant value={Kind.Income}>Income</Variant>
+              <Variant value={Kind.Outcome}>{t('transaction:outcome')}</Variant>
+              <Variant value={Kind.Income}>{t('transaction:income')}</Variant>
             </Toggle>
 
             <LoadingButton fethcing={fetching} submit className={styles.submit}>
-              Create
+              {t('create-transaction:action')}
             </LoadingButton>
           </Card>
         </form>

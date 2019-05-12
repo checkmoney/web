@@ -11,24 +11,33 @@ import { useWindowSize } from '@front/ui/hooks/useWindowSize'
 import { pushRoute } from '../routing'
 import * as styles from './History.css'
 import { createMonths } from './helpers/createMonths'
-import { createMonthTitle } from './helpers/createMonthTitle'
+import { translatedMonthTitle } from '@front/helpers/translatedMonthTitle'
 import { TransactionList } from './components/transaction-list'
+import { useTranslation } from '@front/domain/i18n'
 
 export const History = () => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate)
   const { isClient } = useEnvironment()
+  const { t } = useTranslation()
 
-  const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [
-    firstTransactionDate,
-  ])
-  const defaultMonthTitle = useMemo(() => createMonthTitle(new Date()), [])
+  const months = useMemo(
+    () => createMonths(t, firstTransactionDate, new Date()),
+    [firstTransactionDate],
+  )
+  const defaultMonthTitle = useMemo(
+    () => translatedMonthTitle(t, new Date()),
+    [],
+  )
 
   const { innerWidth } = useWindowSize()
   const isMobile = innerWidth && innerWidth < 768
 
   return (
     <Container>
-      <PageHeader title="History" onBack={() => pushRoute('/app')} />
+      <PageHeader
+        title={t('common:nav.history')}
+        onBack={() => pushRoute('/app')}
+      />
 
       {isClient && (
         <Tabs

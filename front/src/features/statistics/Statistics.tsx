@@ -7,6 +7,7 @@ import { Tabs, Tab } from '@front/ui/components/layout/tabs'
 import { GroupBy } from '@shared/enum/GroupBy'
 import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
 import { PageHeader } from '@front/ui/components/layout/page-header'
+import { useTranslation } from '@front/domain/i18n'
 
 import { Yearly } from './features/yearly'
 import { Monthly } from './features/monthly'
@@ -22,6 +23,7 @@ const maxLength = 5
 export const Statistics = () => {
   const defaultCurrency = useMappedState(getDefaultCurrency)
   const [currency, setCurrency] = useState(defaultCurrency)
+  const { t } = useTranslation()
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
@@ -53,15 +55,18 @@ export const Statistics = () => {
 
   return (
     <Container>
-      <PageHeader title="Statistics" onBack={() => pushRoute('/app')} />
+      <PageHeader
+        title={t('common:nav.stats')}
+        onBack={() => pushRoute('/app')}
+      />
 
       <Tabs
         tabBarExtraContent={
           <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
         }
       >
-        {renderContent('Monthly', GroupBy.Month)}
-        {renderContent('Yearly', GroupBy.Year)}
+        {renderContent(t('stats:monthly'), GroupBy.Month)}
+        {renderContent(t('stats:yearly'), GroupBy.Year)}
       </Tabs>
     </Container>
   )
