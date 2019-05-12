@@ -4,7 +4,7 @@ import { Option } from 'tsoption'
 import useMedia from 'use-media'
 import { useMappedState } from 'redux-react-hook'
 import { useState, useMemo } from 'react'
-import { sortBy, capitalize } from 'lodash'
+import { sortBy } from 'lodash'
 
 import { GroupBy } from '@shared/enum/GroupBy'
 import { Container } from '@front/ui/components/layout/container'
@@ -22,7 +22,6 @@ import { Api } from '@front/domain/api'
 import { PeriodChooser } from './features/period-chooser'
 import { useDateRange } from './helpers/useDateRange'
 import * as styles from './Detail.css'
-import { GroupChooser } from './features/group-chooser'
 
 interface Data {
   name: string
@@ -32,6 +31,7 @@ interface Data {
 interface Props<T> {
   group?: GroupBy
   detailType: string
+  detailTitle: string
   fetchData: (
     from: Date,
     to: Date,
@@ -53,6 +53,7 @@ interface Props<T> {
 export const Detail = <T extends object = any>({
   group,
   detailType,
+  detailTitle,
   fetchData,
   getData,
   toAmount,
@@ -79,24 +80,18 @@ export const Detail = <T extends object = any>({
 
   return (
     <Container>
-      <PageHeader
-        title={capitalize(detailType)}
-        onBack={() => pushRoute('/app/stats')}
-      />
+      <PageHeader title={detailTitle} onBack={() => pushRoute('/app/stats')} />
 
       <section className={styles.categories}>
         <aside className={styles.aside}>
-          <GroupChooser group={group} detailType={detailType} />
-          {group && (
-            <PeriodChooser
-              setPreviousPeriodNumber={setPreviousPeriodNumber}
-              previousPeriodNumber={previousPeriodNumber}
-              detailType={detailType}
-              from={from}
-              to={to}
-              group={group}
-            />
-          )}
+          <PeriodChooser
+            setPreviousPeriodNumber={setPreviousPeriodNumber}
+            previousPeriodNumber={previousPeriodNumber}
+            detailType={detailType}
+            from={from}
+            to={to}
+            group={group}
+          />
         </aside>
 
         <div className={styles.chart}>

@@ -27,7 +27,7 @@ export const pageWithTranslation = (namespaces: Namespace | Namespace[]) => (
     public render() {
       return (
         <I18nProvider namespaces={namespacesRequired}>
-          <Page />
+          <Page {...this.props} />
         </I18nProvider>
       )
     }

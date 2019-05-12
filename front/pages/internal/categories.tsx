@@ -8,12 +8,13 @@ import { GroupBy } from '@shared/enum/GroupBy'
 import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { Categories } from '@front/features/statistics/features/details/categories'
+import { pageWithTranslation, Namespace } from '@front/domain/i18n'
 
 interface Query {
   group?: GroupBy
 }
 
-export default class CateogiesPage extends React.Component<Query> {
+class CateogiesPage extends React.Component<Query> {
   public static isSecure = true
 
   public static async getInitialProps({
@@ -45,3 +46,7 @@ export default class CateogiesPage extends React.Component<Query> {
     return <Categories group={group} />
   }
 }
+
+export default pageWithTranslation([Namespace.Stats, Namespace.Months])(
+  CateogiesPage,
+)

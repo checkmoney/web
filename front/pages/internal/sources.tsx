@@ -8,12 +8,13 @@ import { createRangeForGroup } from '@front/helpers/createRangeForGroup'
 import { getFirstTransactionDate } from '@front/domain/money/selectors/getFirstTransactionDate'
 import { Sources } from '@front/features/statistics/features/details/sources'
 import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources'
+import { pageWithTranslation, Namespace } from '@front/domain/i18n'
 
 interface Query {
   group?: GroupBy
 }
 
-export default class SourcesPage extends React.Component<Query> {
+class SourcesPage extends React.Component<Query> {
   public static isSecure = true
 
   public static async getInitialProps({
@@ -45,3 +46,7 @@ export default class SourcesPage extends React.Component<Query> {
     return <Sources group={group} />
   }
 }
+
+export default pageWithTranslation([Namespace.Stats, Namespace.Months])(
+  SourcesPage,
+)
