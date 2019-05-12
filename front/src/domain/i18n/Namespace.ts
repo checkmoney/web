@@ -5,5 +5,7 @@ export enum Namespace {
   CreateTransaction = 'create-transaction',
   Currency = 'currency',
   ShortHistory = 'short-history',
+  History = 'history',
   Common = 'common',
+  Months = 'months',
 }

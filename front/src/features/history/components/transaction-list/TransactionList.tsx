@@ -55,7 +55,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
         {outcomes.nonEmpty() && (
           <Table
             className={classNames.outcomes}
-            title="Outcomes"
+            title={t('history:outcomes')}
             columns={outcomesColumns}
             data={outcomes.get()}
             onRowClick={({ id }) => openOutcome(id)}
@@ -64,7 +64,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
         {incomes.nonEmpty() && (
           <Table
             className={classNames.incomes}
-            title="Incomes"
+            title={t('history:incomes')}
             columns={incomeColumns}
             data={incomes.get()}
             onRowClick={({ id }) => openIncome(id)}
