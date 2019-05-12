@@ -99,7 +99,7 @@ export const CreateTransaction = ({ className }: Props) => {
                 showSearch
                 name="currency"
                 options={Currency}
-                getLabel={c => t(translatedCurrency(c))}
+                getLabel={translatedCurrency(t)}
               />
             </Label>
 

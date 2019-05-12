@@ -1,8 +1,9 @@
 import { useCallback } from 'react'
 
-import { getCurrencyName } from '@shared/helpers/getCurrencyName'
 import { EnumSelect } from '@front/ui/components/form/select'
 import { Currency } from '@shared/enum/Currency'
+import { useTranslation } from '@front/domain/i18n'
+import { translatedCurrency } from '@front/helpers/translatedCurrency'
 
 interface Props {
   currency: Currency
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export const CurrencySwitch = ({ currency, updateCurrency }: Props) => {
+  const { t } = useTranslation()
+
   const onChange = useCallback(
     (v?: string) => {
       updateCurrency((v as Currency) || currency)
@@ -23,7 +26,7 @@ export const CurrencySwitch = ({ currency, updateCurrency }: Props) => {
       value={currency}
       onChange={onChange}
       showSearch
-      getLabel={getCurrencyName}
+      getLabel={translatedCurrency(t)}
     />
   )
 }
