@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Put, Query, Param } from '@nestjs/common'
+import { Controller, Get, Param } from '@nestjs/common'
 import {
   ApiBearerAuth,
   ApiOkResponse,
@@ -10,12 +10,12 @@ import { ProfileEditor } from '@back/user/application/ProfileEditor'
 import { UserRepository } from '@back/user/domain/UserRepository'
 import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
 
-import { ProfileRequest } from '../request/ProfileRequest'
 import { ProfileResponse } from '../response/ProfileResponse'
 import { OnlyForUsers } from '../security/OnlyForUsers'
 import { CurrentUser } from '../decorator/CurrentUser'
 import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
 import { Currency } from '@shared/enum/Currency'
+import { JsonParsePipe } from '@back/utils/presentation/http/pipes/JsonParsePipe'
 
 @Controller('user/profile')
 @OnlyForUsers()
@@ -44,11 +44,21 @@ export class ProfileController {
 
   @PostNoCreate('/set-currency/:currency')
   @ApiOperation({ title: 'Set default currency' })
-  @ApiOkResponse({ description: 'Setting default currency' })
+  @ApiOkResponse({ description: 'Ok' })
   public async setDefaultCurrency(
     @Param('currency') currency: Currency,
     @CurrentUser() user: TokenPayloadModel,
   ): Promise<void> {
     await this.profileEditor.changeCurrency(user.login, currency)
+  }
+
+  @PostNoCreate('/set-week-start/:onMonday')
+  @ApiOperation({ title: 'Set week start' })
+  @ApiOkResponse({ description: 'Ok' })
+  public async setWeekStartsOnMonday(
+    @Param('onMonday', JsonParsePipe) onMonday: boolean,
+    @CurrentUser() user: TokenPayloadModel,
+  ): Promise<void> {
+    await this.profileEditor.changeWeekStart(user.login, onMonday)
   }
 }

@@ -9,6 +9,7 @@ import { DailyBudget } from './daily-budget'
 import { ExtraSpending } from './extra-spending'
 import { Custom } from './custom'
 import { RecurrentPayment } from './recurrent-payment'
+import { PastDaysBudget } from './past-days-budget'
 
 interface Props {
   tip: TipModel
@@ -22,4 +23,5 @@ export const getTipComponent = (tip: TipModel): ComponentType<Props> =>
     [TipAction.ExtraSpending]: ExtraSpending,
     [TipAction.Custom]: Custom,
     [TipAction.RecurrentPayment]: RecurrentPayment,
+    [TipAction.PastDaysBudget]: PastDaysBudget,
   }[tip.action])
