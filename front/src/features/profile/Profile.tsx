@@ -16,6 +16,8 @@ import { Currency } from '@shared/enum/Currency'
 import { Button } from '@front/ui/components/form/button'
 import { signOut } from '@front/domain/user/actions/signOut'
 import { useTranslation } from '@front/domain/i18n'
+import { Checkbox } from '@front/ui/components/form/checkbox'
+import { setWeekStart } from '@front/domain/user/actions/setWeekStart'
 
 import { pushRoute } from '../routing'
 import * as styles from './Profile.css'
@@ -25,19 +27,28 @@ export const Profile = () => {
   const notify = useNotifyAlert()
   const { t } = useTranslation()
 
-  const { defaultCurrency } = useMemoState(
+  const { defaultCurrency, weekStartsOnMonday } = useMemoState(
     () => getProfile,
     fetchUserProfile,
     [],
   )
 
   const [currency, setCurrency] = useState<Currency>(defaultCurrency)
+  const [onMonday, setOnMonday] = useState(weekStartsOnMonday)
+
+  const saved = () => notify('Saved')
 
   useEffect(() => {
     if (currency !== defaultCurrency) {
-      dispatch(setDefaultCurrency(currency)).then(() => notify('Saved'))
+      dispatch(setDefaultCurrency(currency)).then(saved)
     }
   }, [currency])
+
+  useEffect(() => {
+    if (onMonday !== weekStartsOnMonday) {
+      dispatch(setWeekStart(onMonday)).then(saved)
+    }
+  }, [onMonday])
 
   const logout = useCallback(async () => {
     dispatch(signOut())
@@ -60,6 +71,10 @@ export const Profile = () => {
         <Card title={t('profile:settings.title')}>
           <Label text={t('profile:settings.preferred-currency')}>
             <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
+          </Label>
+
+          <Label text={t('profile:settings.week-starts-on-monday')}>
+            <Checkbox value={onMonday} onChange={v => setOnMonday(!!v)} />
           </Label>
         </Card>
       </section>

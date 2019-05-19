@@ -5,10 +5,12 @@ import { NanoIdGenerator } from './infrastructure/IdGenerator/NanoIdGenerator'
 import { ParseDateRangePipe } from './presentation/http/pipes/dateRange/ParseDateRangePipe'
 import { Templating } from './infrastructure/Templating/Templating'
 import { HandlebarsTemplating } from './infrastructure/Templating/HandlebarsTemplating'
+import { JsonParsePipe } from './presentation/http/pipes/JsonParsePipe'
 
 @Module({
   providers: [
     ParseDateRangePipe,
+    JsonParsePipe,
     {
       provide: IdGenerator,
       useClass: NanoIdGenerator,

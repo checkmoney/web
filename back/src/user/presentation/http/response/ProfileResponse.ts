@@ -8,6 +8,7 @@ export class ProfileResponse implements ProfileModel {
   public static fromProfile(profile: Profile): ProfileResponse {
     return {
       defaultCurrency: profile.defaultCurrency,
+      weekStartsOnMonday: profile.weekStartsOnMonday,
     }
   }
 
@@ -16,4 +17,9 @@ export class ProfileResponse implements ProfileModel {
     enum: Object.values(Currency),
   })
   public readonly defaultCurrency: Currency
+
+  @ApiModelProperty({
+    example: true,
+  })
+  public readonly weekStartsOnMonday: boolean
 }

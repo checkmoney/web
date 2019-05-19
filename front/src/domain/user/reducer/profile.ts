@@ -22,6 +22,7 @@ const { reducer, actions } = createClearReduxWithFetching<
   },
   {
     defaultCurrency: Currency.USD,
+    weekStartsOnMonday: true,
   },
   'profile',
 )

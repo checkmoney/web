@@ -1,21 +1,12 @@
-import { Option } from 'tsoption'
 import { Column } from 'typeorm'
 
 import { Currency } from '@shared/enum/Currency'
+import { ProfileModel } from '@shared/models/user/ProfileModel'
 
-export class Profile {
-  public get defaultCurrency(): Currency {
-    return this._defaultCurrency
-  }
+export class Profile implements ProfileModel {
+  @Column()
+  public defaultCurrency: Currency = Currency.USD
 
   @Column()
-  private _defaultCurrency?: Currency = Currency.USD
-
-  public constructor(defaultCurrency = Currency.USD) {
-    this._defaultCurrency = defaultCurrency
-  }
-
-  public changeCurrency(currensy: Currency): void {
-    this._defaultCurrency = currensy
-  }
+  public weekStartsOnMonday: boolean = true
 }
