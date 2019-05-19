@@ -23,6 +23,7 @@ import { CustomAdviser } from './application/adviser/CustomAdviser'
 import { CustomTip } from './domain/CustomTip.entity'
 import { CustomTipRepository } from './domain/CustomTipRepository'
 import { RecurrentPaymentAdviser } from './application/adviser/RecurrentPaymentAdviser'
+import { PastDaysBudgetAdviser } from './application/adviser/PastDaysBudgetAdviser'
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { RecurrentPaymentAdviser } from './application/adviser/RecurrentPaymentA
     CustomAdviser,
     ExtraSpendingAdviser,
     RecurrentPaymentAdviser,
+    PastDaysBudgetAdviser,
     AdviserUnity,
     TipsFilter,
     TipsDisabler,

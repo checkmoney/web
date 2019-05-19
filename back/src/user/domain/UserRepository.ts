@@ -61,6 +61,12 @@ class UserRepo {
 
     return user.profile.defaultCurrency
   }
+
+  public async getWeekStartsOn(login: string): Promise<number> {
+    const user = await this.getOne(login)
+
+    return user.profile.weekStartsOnMonday ? 1 : 0
+  }
 }
 
 export const UserRepository = UserRepo
