@@ -41,18 +41,45 @@ export class TransactionActions {
   }
 
   @TelegramActionHandler({ command: '/outcome' })
-  public async outcome(
+  public async outcomeByCommand(
     ctx: Context,
     @PipeContext(CurrentSender) { login }: TokenPayloadModel,
   ) {
-    const [_, rawAmount, rawCurrency, ...category] = ctx.message.text.split(' ')
+    const [
+      _,
+      rawAmount,
+      rawCurrency,
+      ...categoryParts
+    ] = ctx.message.text.split(' ')
 
+    await this.createOutcome(ctx, login, rawAmount, rawCurrency, categoryParts)
+  }
+
+  @TelegramActionHandler({ message: /^(\d+) (\w+) (.+)/g })
+  public async outcomeByMessage(
+    ctx: Context,
+    @PipeContext(CurrentSender) { login }: TokenPayloadModel,
+  ) {
+    const [rawAmount, rawCurrency, ...categoryParts] = ctx.message.text.split(
+      ' ',
+    )
+
+    await this.createOutcome(ctx, login, rawAmount, rawCurrency, categoryParts)
+  }
+
+  private async createOutcome(
+    ctx: Context,
+    login: string,
+    rawAmount: string,
+    rawCurrency: string,
+    categoryParts: string[],
+  ) {
     // TODO: Add message parser to nest-telegram lib as decorator
     const outcomeFields = {
       amount: parseAmount(rawAmount),
       currency: parseCurrency(rawCurrency),
       date: new Date(),
-      category: category.join(' '),
+      category: categoryParts.join(' '),
     }
 
     await this.accountant.outcome(login, outcomeFields)
