@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm'
 
-import { CustomTipModel } from '@shared/models/mind/CustomTipModel'
+import { CustomTipModel } from '$shared/models/mind/CustomTipModel'
 
 @Entity()
 export class CustomTip implements CustomTipModel {

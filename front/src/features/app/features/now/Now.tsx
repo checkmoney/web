@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import cx from 'classnames'
 
-import { useMemoState } from '@front/domain/store'
-import { getTips } from '@front/domain/mind/selectors/getTips'
-import { fetchTips } from '@front/domain/mind/actions/fetchTips'
+import { useMemoState } from '$front/domain/store'
+import { getTips } from '$front/domain/mind/selectors/getTips'
+import { fetchTips } from '$front/domain/mind/actions/fetchTips'
 
 import { getTipComponent } from './tips/getTipComponent'
 import * as styles from './Now.css'

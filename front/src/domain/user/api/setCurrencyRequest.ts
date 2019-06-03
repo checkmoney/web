@@ -1,5 +1,5 @@
-import { Api } from '@front/domain/api'
-import { Currency } from '@shared/enum/Currency'
+import { Api } from '$front/domain/api'
+import { Currency } from '$shared/enum/Currency'
 
 export const setCurrencyRequest = (api: Api) => (
   defaultCurrency: Currency,

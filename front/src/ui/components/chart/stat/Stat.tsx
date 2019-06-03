@@ -1,7 +1,7 @@
 import { Statistic, Icon } from 'antd'
 import { Option } from 'tsoption'
 
-import { useTranslation } from '@front/domain/i18n'
+import { useTranslation } from '$front/domain/i18n'
 
 interface Props {
   title: string

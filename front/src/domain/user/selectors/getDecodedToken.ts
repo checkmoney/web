@@ -3,7 +3,7 @@ import { dropRight, flow } from 'lodash'
 import { Base64 } from 'js-base64'
 import { Option } from 'tsoption'
 
-import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
+import { TokenPayloadModel } from '$shared/models/user/TokenPayloadModel'
 
 import { getToken } from './getToken'
 

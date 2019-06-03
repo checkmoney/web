@@ -15,7 +15,7 @@ action "Install dependency" {
 action "Static analysis" {
   uses = "borales/actions-yarn@master"
   needs = ["Install dependency"]
-  args = "lint"
+  args = "s lint"
 }
 
 action "Check types" {

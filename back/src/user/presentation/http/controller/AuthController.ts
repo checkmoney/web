@@ -7,9 +7,9 @@ import {
   ApiUseTags,
 } from '@nestjs/swagger'
 
-import { Authenticator } from '@back/user/application/Authenticator'
-import { Registrator } from '@back/user/application/Registrator'
-import { PostNoCreate } from '@back/utils/presentation/http/PostNoCreate'
+import { Authenticator } from '$back/user/application/Authenticator'
+import { Registrator } from '$back/user/application/Registrator'
+import { PostNoCreate } from '$back/utils/presentation/http/PostNoCreate'
 
 import { AuthRequest } from '../request/AuthRequest'
 import { TokenResponse } from '../response/TokenResponse'

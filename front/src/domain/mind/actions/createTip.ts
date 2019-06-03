@@ -1,5 +1,5 @@
-import { fetchOrFail } from '@front/domain/store'
-import { CustomTipModel } from '@shared/models/mind/CustomTipModel'
+import { fetchOrFail } from '$front/domain/store'
+import { CustomTipModel } from '$shared/models/mind/CustomTipModel'
 
 import { createTipRequest } from '../api/createTipRequest'
 import { actions as tipFetchingActions } from '../reducer/createTipFetching'

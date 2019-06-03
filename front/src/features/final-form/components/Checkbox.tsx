@@ -4,7 +4,7 @@ import { Diff } from 'utility-types'
 import {
   Checkbox as JustCheckbox,
   CheckboxProps,
-} from '@front/ui/components/form/checkbox'
+} from '$front/ui/components/form/checkbox'
 
 interface OwnProps {
   name: string

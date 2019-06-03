@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { EntitySaver } from '@back/db/EntitySaver'
-import { UserRepository } from '@back/user/domain/UserRepository'
+import { EntitySaver } from '$back/db/EntitySaver'
+import { UserRepository } from '$back/user/domain/UserRepository'
 import { DisabledTip } from '../domain/DisabledTip.entity'
 
 @Injectable()

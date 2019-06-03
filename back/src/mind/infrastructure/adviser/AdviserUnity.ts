@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { flatten } from 'lodash'
 
-import { TipModel } from '@shared/models/mind/TipModel'
+import { TipModel } from '$shared/models/mind/TipModel'
 
 import { IsAdviser } from './helpers/IsAdviser'
 import { Adviser } from './helpers/Adviser'

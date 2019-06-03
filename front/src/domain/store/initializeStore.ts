@@ -2,7 +2,7 @@ import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-import { createApi } from '@front/domain/api'
+import { createApi } from '$front/domain/api'
 
 import { reducer } from './reducer'
 import { State } from './State'

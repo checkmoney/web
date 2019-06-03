@@ -1,6 +1,6 @@
 import { Option } from 'tsoption'
 
-import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
+import { DateRange } from '$back/utils/infrastructure/dto/DateRange'
 
 import { AbstractTransaction } from './AbstarctTransaction'
 

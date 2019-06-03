@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 
-import { EntitySaver } from '@back/db/EntitySaver'
-import { CustomTipModel } from '@shared/models/mind/CustomTipModel'
-import { IdGenerator } from '@back/utils/infrastructure/IdGenerator/IdGenerator'
+import { EntitySaver } from '$back/db/EntitySaver'
+import { CustomTipModel } from '$shared/models/mind/CustomTipModel'
+import { IdGenerator } from '$back/utils/infrastructure/IdGenerator/IdGenerator'
 
 import { DisabledTip } from '../domain/DisabledTip.entity'
 import { CustomTip } from '../domain/CustomTip.entity'

@@ -1,4 +1,4 @@
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '$shared/enum/Currency'
 
 export const getCurrencySign = (currency: Currency): string =>
   ({

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { findBestMatch } from 'string-similarity'
 
-import { IncomeRepository } from '@back/money/domain/IncomeRepository'
-import { OutcomeRepository } from '@back/money/domain/OutcomeRepository'
-import { tryOr } from '@shared/helpers/tryOr'
+import { IncomeRepository } from '$back/money/domain/IncomeRepository'
+import { OutcomeRepository } from '$back/money/domain/OutcomeRepository'
+import { tryOr } from '$shared/helpers/tryOr'
 
 @Injectable()
 export class TypoFinder {

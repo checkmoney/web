@@ -2,7 +2,7 @@ import { useMemo, useCallback } from 'react'
 import { getYear } from 'date-fns'
 import { range } from 'lodash'
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '$front/ui/hooks/useCustomInput'
 
 import { Select, Option } from './select'
 

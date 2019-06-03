@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store'
+import { fetchOrFail } from '$front/domain/store'
 
 import { actions } from '../reducer/listSources'
 import { fetchSourcesRequest } from '../api/fetchSourcesRequest'

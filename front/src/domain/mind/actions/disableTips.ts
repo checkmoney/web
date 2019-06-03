@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store'
+import { fetchOrFail } from '$front/domain/store'
 
 import { actions } from '../reducer/tips'
 import { disableTipsRequest } from '../api/disableTipsRequest'

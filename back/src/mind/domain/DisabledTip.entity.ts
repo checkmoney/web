@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn, ManyToOne } from 'typeorm'
 import { addYears } from 'date-fns'
-import { User } from '@back/user/domain/User.entity'
+import { User } from '$back/user/domain/User.entity'
 
 @Entity()
 export class DisabledTip {

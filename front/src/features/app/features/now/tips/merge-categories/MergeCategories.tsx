@@ -1,4 +1,4 @@
-import { TipModel } from '@shared/models/mind/TipModel'
+import { TipModel } from '$shared/models/mind/TipModel'
 
 import { MergeCategoriesMeta } from './MergeCategoriesMeta'
 import { Merge } from '../components/merge'

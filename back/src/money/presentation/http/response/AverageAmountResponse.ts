@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-import { Currency } from '@shared/enum/Currency'
-import { AverageAmountModel } from '@shared/models/money/AvergaeAmountModel'
+import { Currency } from '$shared/enum/Currency'
+import { AverageAmountModel } from '$shared/models/money/AvergaeAmountModel'
 
 export class AverageAmountResponse implements AverageAmountModel {
   @ApiModelProperty({ example: '2018' })

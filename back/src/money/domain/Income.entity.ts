@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm'
 
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '$shared/enum/Currency'
 
-import { User } from '@back/user/domain/User.entity'
+import { User } from '$back/user/domain/User.entity'
 import { AbstractTransaction } from './interfaces/AbstarctTransaction'
 
 @Entity()

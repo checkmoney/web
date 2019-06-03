@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { differenceInDays, startOfHour, startOfDay } from 'date-fns'
 
-import { EntitySaver } from '@back/db/EntitySaver'
-import { Currency } from '@shared/enum/Currency'
+import { EntitySaver } from '$back/db/EntitySaver'
+import { Currency } from '$shared/enum/Currency'
 
 import { ExchangeRate } from '../domain/ExchangeRate.entity'
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository'

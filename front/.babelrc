@@ -5,8 +5,8 @@
       {
         "root": ["./src/"],
         "alias": {
-          "@front": "./src",
-          "@shared": "./../shared"
+          "$front": "./src",
+          "$shared": "./../shared"
         }
       }
     ]

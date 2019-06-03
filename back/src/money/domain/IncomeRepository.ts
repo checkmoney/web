@@ -4,7 +4,7 @@ import { endOfDay, startOfDay } from 'date-fns'
 import { Option } from 'tsoption'
 import { Repository } from 'typeorm'
 
-import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
+import { DateRange } from '$back/utils/infrastructure/dto/DateRange'
 
 import { Income } from './Income.entity'
 import { TransactionRepository } from './interfaces/TransactionRepository'

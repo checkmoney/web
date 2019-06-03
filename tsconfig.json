@@ -2,11 +2,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@back/*": ["./back/src/*"],
-      "@front/*": ["./front/src/*"],
-      "@shared/*": ["./shared/*"]
+      "$back/*": ["./back/src/*"],
+      "$front/*": ["./front/src/*"],
+      "$landing/*": ["./landing/src/interactive/*"],
+      "$shared/*": ["./shared/*"]
     }
   },
-  "include": ["back/src/**/*", "front/src/**/*", "shared/**/*"],
+  "include": [
+    "back/src/**/*",
+    "front/src/**/*",
+    "landing/src/interactive/*",
+    "shared/**/*"
+  ],
   "exclude": ["node_modules/**/*", "front/node_modules/**/*"]
 }

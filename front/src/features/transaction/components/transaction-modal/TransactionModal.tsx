@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 
-import { deleteTransaction } from '@front/domain/money/actions/deleteTransaction'
-import { Modal } from '@front/ui/components/layout/modal'
-import { Button } from '@front/ui/components/form/button'
-import { useThunk } from '@front/domain/store'
+import { deleteTransaction } from '$front/domain/money/actions/deleteTransaction'
+import { Modal } from '$front/ui/components/layout/modal'
+import { Button } from '$front/ui/components/form/button'
+import { useThunk } from '$front/domain/store'
 import { useModalActions } from '@breadhead/use-modal'
 
 interface Props {

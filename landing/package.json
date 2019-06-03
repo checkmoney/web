@@ -1,0 +1,18 @@
+{
+  "name": "landing",
+  "version": "1.0.0",
+  "scripts": {
+    "prestart:landing:prod": "parcel build src/pages/* -d ../dist/landing"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "parcel-bundler": "^1.12.3",
+    "postcss-custom-media": "^7.0.8",
+    "pug": "^2.0.3",
+    "size-limit": "^1.3.5"
+  },
+  "alias": {
+    "$landing": "./src/interactive",
+    "$shared": "../shared"
+  }
+}

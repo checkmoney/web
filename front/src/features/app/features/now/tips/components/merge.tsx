@@ -1,10 +1,10 @@
 import { useCallback } from 'react'
 
-import { Card } from '@front/ui/components/layout/card'
-import { Button, ButtonType } from '@front/ui/components/form/button'
-import { useThunk } from '@front/domain/store'
-import { useTranslation } from '@front/domain/i18n'
-import { mergeTypos } from '@front/domain/mind/actions/mergeTypos'
+import { Card } from '$front/ui/components/layout/card'
+import { Button, ButtonType } from '$front/ui/components/form/button'
+import { useThunk } from '$front/domain/store'
+import { useTranslation } from '$front/domain/i18n'
+import { mergeTypos } from '$front/domain/mind/actions/mergeTypos'
 
 import { DismissButton } from './dismiss-button'
 

@@ -1,6 +1,6 @@
 import { Checkbox as AntCheckbox } from 'antd'
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '$front/ui/hooks/useCustomInput'
 
 import { CheckboxProps } from './CheckboxProps'
 import { useCallback } from 'react'

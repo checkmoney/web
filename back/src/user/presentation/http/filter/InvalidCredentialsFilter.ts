@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common'
 import { APP_FILTER } from '@nestjs/core'
 
-import { InvalidCredentialsException } from '@back/user/application/exception/InvalidCredentialsException'
+import { InvalidCredentialsException } from '$back/user/application/exception/InvalidCredentialsException'
 
 const HTTP_STATUS = 400
 

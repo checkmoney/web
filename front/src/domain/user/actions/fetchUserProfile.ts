@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store'
+import { fetchOrFail } from '$front/domain/store'
 
 import { getUserProfileRequest } from '../api/getUserProfileRequest'
 import { actions } from '../reducer/profile'

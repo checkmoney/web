@@ -1,7 +1,7 @@
 import { Menu as AntMenu } from 'antd'
 import { ReactElement, useMemo, useCallback } from 'react'
 
-import { useTranslation } from '@front/domain/i18n'
+import { useTranslation } from '$front/domain/i18n'
 
 import { MenuItemProps } from './MenuItemProps'
 import { createOnClickMap } from './helpers/createOnClickMap'

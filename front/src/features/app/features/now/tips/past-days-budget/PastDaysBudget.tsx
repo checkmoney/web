@@ -1,8 +1,8 @@
-import { TipModel } from '@shared/models/mind/TipModel'
+import { TipModel } from '$shared/models/mind/TipModel'
 
-import { displayMoney } from '@shared/helpers/displayMoney'
-import { Card } from '@front/ui/components/layout/card'
-import { useTranslation } from '@front/domain/i18n'
+import { displayMoney } from '$shared/helpers/displayMoney'
+import { Card } from '$front/ui/components/layout/card'
+import { useTranslation } from '$front/domain/i18n'
 
 import { DismissButton } from '../components/dismiss-button'
 import { PastDaysBudgetMeta } from './PastDaysBudgetMeta'

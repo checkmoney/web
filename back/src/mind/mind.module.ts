@@ -2,9 +2,9 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { ModuleRef } from '@nestjs/core'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { MoneyModule } from '@back/money/money.module'
-import { UserModule } from '@back/user/user.module'
-import { DbModule } from '@back/db/db.module'
+import { MoneyModule } from '$back/money/money.module'
+import { UserModule } from '$back/user/user.module'
+import { DbModule } from '$back/db/db.module'
 
 import { TypoFinder } from './application/TypoFinder'
 import { TipController } from './presentation/http/controller/TipController'

@@ -1,4 +1,4 @@
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '$shared/enum/Currency'
 
 export interface AbstractTransaction {
   amount: number

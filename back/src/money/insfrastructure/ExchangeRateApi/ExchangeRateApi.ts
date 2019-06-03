@@ -1,6 +1,6 @@
 import { Option } from 'tsoption'
 
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '$shared/enum/Currency'
 
 export abstract class ExchangeRateApi {
   public abstract getExchangeRate(

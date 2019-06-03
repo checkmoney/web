@@ -1,7 +1,7 @@
-import { GroupBy } from '@shared/enum/GroupBy'
-import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources'
-import { getStatsSources } from '@front/domain/money/selectors/getStatsSources'
-import { useTranslation } from '@front/domain/i18n'
+import { GroupBy } from '$shared/enum/GroupBy'
+import { fetchStatsSources } from '$front/domain/money/actions/fetchStatsSources'
+import { getStatsSources } from '$front/domain/money/selectors/getStatsSources'
+import { useTranslation } from '$front/domain/i18n'
 
 import { Detail } from '../generic'
 

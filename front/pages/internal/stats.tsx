@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { startOfMonth, endOfMonth } from 'date-fns'
 
-import { AppContext } from '@front/domain/AppContext'
-import { fetchFirstTransactionDate } from '@front/domain/money/actions/fetchFirstTransactionDate'
-import { Statistics } from '@front/features/statistics'
-import { wantUTC } from '@front/helpers/wantUTC'
-import { fetchStatsSources } from '@front/domain/money/actions/fetchStatsSources'
-import { fetchStatsCategories } from '@front/domain/money/actions/fetchStatsCategories'
-import { fetchStatsAverage } from '@front/domain/money/actions/fetchStatsAverage'
-import { fetchStatsDynamics } from '@front/domain/money/actions/fetchStatsDynamics'
-import { GroupBy } from '@shared/enum/GroupBy'
-import { getDefaultCurrency } from '@front/domain/user/selectors/getDefaultCurrency'
-import { pageWithTranslation, Namespace } from '@front/domain/i18n'
+import { AppContext } from '$front/domain/AppContext'
+import { fetchFirstTransactionDate } from '$front/domain/money/actions/fetchFirstTransactionDate'
+import { Statistics } from '$front/features/statistics'
+import { wantUTC } from '$front/helpers/wantUTC'
+import { fetchStatsSources } from '$front/domain/money/actions/fetchStatsSources'
+import { fetchStatsCategories } from '$front/domain/money/actions/fetchStatsCategories'
+import { fetchStatsAverage } from '$front/domain/money/actions/fetchStatsAverage'
+import { fetchStatsDynamics } from '$front/domain/money/actions/fetchStatsDynamics'
+import { GroupBy } from '$shared/enum/GroupBy'
+import { getDefaultCurrency } from '$front/domain/user/selectors/getDefaultCurrency'
+import { pageWithTranslation, Namespace } from '$front/domain/i18n'
 
 class StatsPage extends React.Component {
   public static isSecure = true

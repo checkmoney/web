@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Option } from 'tsoption'
 import { Repository } from 'typeorm'
 
-import { EntityNotFoundException } from '@back/utils/domain/EntityNotFoundException'
-import { Currency } from '@shared/enum/Currency'
+import { EntityNotFoundException } from '$back/utils/domain/EntityNotFoundException'
+import { Currency } from '$shared/enum/Currency'
 
 import { User } from './User.entity'
 

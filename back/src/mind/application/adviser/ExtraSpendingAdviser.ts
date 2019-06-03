@@ -7,12 +7,12 @@ import {
   getMonth,
 } from 'date-fns'
 
-import { TipModel } from '@shared/models/mind/TipModel'
-import { TipAction } from '@shared/enum/TipAction'
-import { GroupBy } from '@shared/enum/GroupBy'
-import { calculateGroupProgress } from '@shared/helpers/calculateGroupProgress'
-import { Statistician } from '@back/money/application/Statistician'
-import { UserRepository } from '@back/user/domain/UserRepository'
+import { TipModel } from '$shared/models/mind/TipModel'
+import { TipAction } from '$shared/enum/TipAction'
+import { GroupBy } from '$shared/enum/GroupBy'
+import { calculateGroupProgress } from '$shared/helpers/calculateGroupProgress'
+import { Statistician } from '$back/money/application/Statistician'
+import { UserRepository } from '$back/user/domain/UserRepository'
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'

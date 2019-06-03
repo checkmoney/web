@@ -9,8 +9,8 @@ import {
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '@front/domain/cached-data'
-import { AverageAmountModel } from '@shared/models/money/AvergaeAmountModel'
+} from '$front/domain/cached-data'
+import { AverageAmountModel } from '$shared/models/money/AvergaeAmountModel'
 
 type InternalState = CachedState<AverageAmountModel>
 type State = WithFetchingState<InternalState>

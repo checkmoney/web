@@ -1,4 +1,4 @@
-import { useTranslation } from '@front/domain/i18n'
+import { useTranslation } from '$front/domain/i18n'
 
 interface Props {
   className?: string

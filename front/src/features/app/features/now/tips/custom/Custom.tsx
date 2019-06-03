@@ -1,9 +1,9 @@
-import { TipModel } from '@shared/models/mind/TipModel'
-import { Card } from '@front/ui/components/layout/card'
+import { TipModel } from '$shared/models/mind/TipModel'
+import { Card } from '$front/ui/components/layout/card'
 
 import { CustomMeta } from './CustomMeta'
 import { DismissButton } from '../components/dismiss-button'
-import { ExternalLink } from '@front/ui/components/controls/external-link'
+import { ExternalLink } from '$front/ui/components/controls/external-link'
 
 interface Props {
   tip: TipModel<CustomMeta>

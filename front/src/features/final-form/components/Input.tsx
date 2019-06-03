@@ -1,7 +1,7 @@
 import { Field, FieldRenderProps } from 'react-final-form'
 import { Diff } from 'utility-types'
 
-import { Input as JustInput, InputProps } from '@front/ui/components/form/input'
+import { Input as JustInput, InputProps } from '$front/ui/components/form/input'
 
 interface OwnProps {
   name: string

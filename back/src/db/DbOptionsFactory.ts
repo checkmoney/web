@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm'
 import { readFileSync } from 'fs'
 import { dirname, join } from 'path'
 
-import { Configuration } from '@back/config/Configuration'
+import { Configuration } from '$back/config/Configuration'
 
 export class DbOptionsFactory implements TypeOrmOptionsFactory {
   public constructor(

@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm'
 
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '$shared/enum/Currency'
 
 @Entity()
 export class ExchangeRate {

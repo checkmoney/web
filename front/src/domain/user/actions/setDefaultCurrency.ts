@@ -1,5 +1,5 @@
-import { fetchOrFail } from '@front/domain/store'
-import { Currency } from '@shared/enum/Currency'
+import { fetchOrFail } from '$front/domain/store'
+import { Currency } from '$shared/enum/Currency'
 
 import { setCurrencyRequest } from '../api/setCurrencyRequest'
 import { actions } from '../reducer/profile'

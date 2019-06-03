@@ -1,4 +1,4 @@
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '$shared/enum/Currency'
 
 import { AbstractTransaction } from '../interfaces/AbstarctTransaction'
 

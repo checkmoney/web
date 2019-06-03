@@ -1,18 +1,18 @@
 import { useMappedState } from 'redux-react-hook'
 
-import { getHistory } from '@front/domain/money/selectors/getHistory'
-import { GroupBy } from '@shared/enum/GroupBy'
-import { useMemoState } from '@front/domain/store'
-import { fetchHistory } from '@front/domain/money/actions/fetchHistory'
-import { getHistoryFetchingStatus } from '@front/domain/money/selectors/getHistoryFetchingStatus'
-import { Loader } from '@front/ui/components/layout/loader'
-import { Table } from '@front/ui/components/layout/table'
-import { useIncomeModal } from '@front/features/transaction/income'
-import { useOutcomeModal } from '@front/features/transaction/outcome'
+import { getHistory } from '$front/domain/money/selectors/getHistory'
+import { GroupBy } from '$shared/enum/GroupBy'
+import { useMemoState } from '$front/domain/store'
+import { fetchHistory } from '$front/domain/money/actions/fetchHistory'
+import { getHistoryFetchingStatus } from '$front/domain/money/selectors/getHistoryFetchingStatus'
+import { Loader } from '$front/ui/components/layout/loader'
+import { Table } from '$front/ui/components/layout/table'
+import { useIncomeModal } from '$front/features/transaction/income'
+import { useOutcomeModal } from '$front/features/transaction/outcome'
 
 import { createColumns } from '../../helpers/createColumns'
 import { historyToTableData } from '../../helpers/historyToTableData'
-import { useTranslation } from '@front/domain/i18n'
+import { useTranslation } from '$front/domain/i18n'
 
 interface ClassNames {
   incomes: string
