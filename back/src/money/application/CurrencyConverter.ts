@@ -32,6 +32,7 @@ export class CurrencyConverter {
     const normalizedNowDate = startOfDay(new Date())
 
     const rate = await this.getExistRate(from, to, normalizedDate)
+      .catch(() => this.getExistRateFromReverse(from, to, when))
       .catch(() => this.getActualRate(from, to, normalizedDate))
       .catch(() => this.getClosestExistRate(from, to, normalizedDate))
       .catch(() => this.getActualRate(from, to, normalizedNowDate))
@@ -75,6 +76,20 @@ export class CurrencyConverter {
   ): Promise<number> {
     return this.getOrThrow(
       this.exchangeRateRepo.find(from, to, when),
+      new ConversationFailedException(from, to, when),
+    )
+  }
+
+  private async getExistRateFromReverse(
+    from: Currency,
+    to: Currency,
+    when: Date,
+  ): Promise<number> {
+    const revert = ({ to, from, collectAt, rate }: ExchangeRate) =>
+      new ExchangeRate(to, from, collectAt, 1 / rate)
+
+    return this.getOrThrow(
+      this.exchangeRateRepo.find(to, from, when).then(rate => rate.map(revert)),
       new ConversationFailedException(from, to, when),
     )
   }
