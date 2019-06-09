@@ -1,5 +1,5 @@
 import { addDays } from 'date-fns'
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { Form } from 'react-final-form'
 
 import {
@@ -27,7 +27,7 @@ export const CreateTip = () => {
 
       notify('Tip created')
     },
-    [dispatch],
+    [notify],
   )
 
   return (

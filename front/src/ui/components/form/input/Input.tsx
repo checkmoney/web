@@ -1,5 +1,5 @@
 import { Input as AntInput } from 'antd'
-import { ChangeEvent, useCallback } from 'react'
+import React, { ChangeEvent, useCallback } from 'react'
 
 import { resolveType } from './helpers/resolveType'
 import { InputProps } from './InputProps'

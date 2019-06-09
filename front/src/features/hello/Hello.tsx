@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { setDefaultCurrency } from '@front/domain/user/actions/setDefaultCurrency'

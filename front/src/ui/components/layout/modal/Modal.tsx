@@ -1,5 +1,5 @@
 import { Modal as AntModal } from 'antd'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { useModalState, useModalActions } from '@breadhead/use-modal'
 

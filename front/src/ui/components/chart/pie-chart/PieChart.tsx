@@ -1,8 +1,8 @@
+import React, { useMemo } from 'react'
 import { Pie } from 'react-chartjs-2'
 
 import { getColor } from './helpers/getColor'
 import { createOptions } from './helpers/createOptions'
-import { useMemo } from 'react'
 
 type Display = (value: number | string | undefined) => string
 const defaultDisplay: Display = v => `${v}`

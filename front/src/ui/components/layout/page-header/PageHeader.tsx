@@ -1,3 +1,4 @@
+import React from 'react'
 import { PageHeader as AntPageHeader } from 'antd'
 
 import './AntPageHeader.css?CSSModulesDisable'

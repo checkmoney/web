@@ -1,3 +1,4 @@
+import React from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { getHistory } from '@front/domain/money/selectors/getHistory'

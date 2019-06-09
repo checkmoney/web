@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { ReactNode, cloneElement } from 'react'
+import React, { ReactNode, cloneElement } from 'react'
 
 import { resolveContainerClassName } from './helpers/resolveContainerClassName'
 import { resolveTextClassName } from './helpers/resolveTextClassName'

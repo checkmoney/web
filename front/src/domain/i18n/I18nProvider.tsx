@@ -1,7 +1,8 @@
+import React, { ReactNode } from 'react'
+
 import { Namespace } from './Namespace'
 import { I18nProps } from './I18nProps'
 import { Instance } from './Instance'
-import { ReactNode } from 'react'
 import { I18nContext } from './I18nContext'
 
 interface ChildrenProps {

@@ -1,5 +1,6 @@
 import { Button as AntButton } from 'antd'
 import cx from 'classnames'
+import React from 'react'
 
 import { ButtonProps } from './ButtonProps'
 import { resolveType } from './helpers/resolveType'

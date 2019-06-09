@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { getCurrencySign } from '@shared/helpers/getCurrencySign'
 import { useCustomInput } from '@front/ui/hooks/useCustomInput'
 

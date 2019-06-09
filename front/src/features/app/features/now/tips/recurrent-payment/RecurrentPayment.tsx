@@ -1,3 +1,4 @@
+import React from 'react'
 import { setDate } from 'date-fns'
 
 import { TipModel } from '@shared/models/mind/TipModel'

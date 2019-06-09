@@ -1,5 +1,5 @@
 import { useMappedState } from 'redux-react-hook'
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { sortBy, take } from 'lodash'
 
 import { displayMoney } from '@shared/helpers/displayMoney'

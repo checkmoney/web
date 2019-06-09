@@ -1,5 +1,5 @@
 import { Table as AntTable } from 'antd'
-import { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback } from 'react'
 
 import { TableProps } from './TableProps'
 import * as styles from './Table.css'

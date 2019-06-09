@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 import { deleteTransaction } from '@front/domain/money/actions/deleteTransaction'
 import { Modal } from '@front/ui/components/layout/modal'

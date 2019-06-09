@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useModalState } from '@breadhead/use-modal'
 
 import { INCOME_KEY } from './INCOME_KEY'

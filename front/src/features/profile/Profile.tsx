@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 
 import { Container } from '@front/ui/components/layout/container'
 import { PageHeader } from '@front/ui/components/layout/page-header'
@@ -36,24 +34,24 @@ export const Profile = () => {
   const [currency, setCurrency] = useState<Currency>(defaultCurrency)
   const [onMonday, setOnMonday] = useState(weekStartsOnMonday)
 
-  const saved = () => notify('Saved')
+  const saved = useCallback(() => notify('Saved'), [notify])
 
   useEffect(() => {
     if (currency !== defaultCurrency) {
       dispatch(setDefaultCurrency(currency)).then(saved)
     }
-  }, [currency])
+  }, [currency, saved, defaultCurrency])
 
   useEffect(() => {
     if (onMonday !== weekStartsOnMonday) {
       dispatch(setWeekStart(onMonday)).then(saved)
     }
-  }, [onMonday])
+  }, [onMonday, saved, weekStartsOnMonday])
 
   const logout = useCallback(async () => {
     dispatch(signOut())
     await pushRoute('/')
-  }, [dispatch])
+  }, [])
 
   return (
     <Container>

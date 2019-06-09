@@ -20,7 +20,7 @@
     "tsoption": "^0.7.0"
   },
   "devDependencies": {
-    "@solid-soda/scripts": "^1.8.0",
+    "@solid-soda/scripts": "^1.11.13",
     "madge": "^3.4.3",
     "pm2": "^3.2.4",
     "rimraf": "^2.6.2",

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { TipModel } from '@shared/models/mind/TipModel'
 
 import { MergeCategoriesMeta } from './MergeCategoriesMeta'

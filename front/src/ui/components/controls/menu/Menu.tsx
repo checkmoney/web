@@ -1,5 +1,5 @@
 import { Menu as AntMenu } from 'antd'
-import { ReactElement, useMemo, useCallback } from 'react'
+import React, { ReactElement, useMemo, useCallback } from 'react'
 
 import { useTranslation } from '@front/domain/i18n'
 

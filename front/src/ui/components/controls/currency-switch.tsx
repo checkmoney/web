@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 import { EnumSelect } from '@front/ui/components/form/select'
 import { Currency } from '@shared/enum/Currency'

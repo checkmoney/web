@@ -26,7 +26,7 @@ export const useMemoState = <T>(
 
   useEffect(() => {
     dispatch(refetchAction())
-  }, [...deps, isEmpty()])
+  }, [...deps, isEmpty()]) // eslint-disable-line
 
   return state
 }

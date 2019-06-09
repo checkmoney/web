@@ -1,4 +1,4 @@
-import { ReactChild, ReactFragment } from 'react'
+import React, { ReactChild, ReactFragment } from 'react'
 
 import NextRoutes from '../../../routes'
 

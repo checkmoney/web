@@ -1,5 +1,5 @@
 import { Card as AntCard } from 'antd'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 interface Props {
   className?: string

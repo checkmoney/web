@@ -1,5 +1,6 @@
 import { Button } from 'antd'
-import { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
+
 import { ButtonProps } from './ButtonProps'
 
 const AntButtonGroup = Button.Group

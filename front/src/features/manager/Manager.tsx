@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Container } from '@front/ui/components/layout/container'
 
 import { CreateTip } from './features/create-tip'
