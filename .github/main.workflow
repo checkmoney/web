@@ -4,6 +4,7 @@ workflow "Check PR" {
     "Check types",
     "Static analysis",
     "Check circular dependency",
+    "Automated tests",
   ]
 }
 
@@ -28,6 +29,12 @@ action "Check circular dependency" {
   uses = "borales/actions-yarn@master"
   needs = ["Install dependency"]
   args = "circular"
+}
+
+action "Automated tests" {
+  uses = "borales/actions-yarn@master"
+  needs = ["Install dependency"]
+  args = "test"
 }
 
 workflow "Deploy" {
