@@ -5,6 +5,8 @@ import {
   subMonths,
   startOfMonth,
   format,
+  getDate,
+  getDaysInMonth,
 } from 'date-fns'
 
 import { formatDate } from '@shared/helpers/formatDate'
@@ -17,13 +19,14 @@ import { Currency } from '@shared/enum/Currency'
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
+import { calculateBudget } from '../calculator/calculateBudget'
 
 @IsAdviser()
 export class BudgetAdviser implements Adviser {
   public constructor(
     private readonly statistician: Statistician,
     private readonly userRepo: UserRepository,
-  ) {}
+  ) { }
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const now = new Date()
@@ -35,11 +38,18 @@ export class BudgetAdviser implements Adviser {
       this.getTodaysStats(userLogin, currency),
     ])
 
-    const amount = this.calculateAmount(
-      monthsStats[0].income,
-      monthsStats[1].outcome,
-      todaysStats[0].outcome,
-    )
+    const money = {
+      previousMonthIncome: monthsStats[0].income,
+      thisMonthOutcome: monthsStats[1].outcome,
+      todayOutcome: todaysStats[0].outcome,
+    }
+
+    const period = {
+      dayOfMonth: getDate(now),
+      daysInMonth: getDaysInMonth(now),
+    }
+
+    const amount = calculateBudget(money, period)
 
     return [
       {
@@ -67,49 +77,17 @@ export class BudgetAdviser implements Adviser {
     const now = new Date()
     const startDate = startOfMonth(subMonths(now, 1))
 
-    const monthsStats = await this.statistician.showDateRangeStats(
+    const [previousMonth, thisMonth] = await this.statistician.showDateRangeStats(
       userLogin,
       { from: startDate, to: now },
       GroupBy.Month,
       currency,
     )
-    return monthsStats
-  }
 
-  private calculateAmount(
-    prevMonthIncome: number,
-    thisMonthOutcome: number,
-    todaysOutcome: number,
-  ) {
-    const expectedProfit = prevMonthIncome - thisMonthOutcome
-    const daysRemainInMonth = this.getDaysRemainInMonth()
-
-    const amount = this.calculateRawAmount(
-      expectedProfit,
-      daysRemainInMonth,
-      todaysOutcome,
-    )
-    const roundedAmount = this.roundAmount(amount)
-
-    return roundedAmount
-  }
-
-  private getDaysRemainInMonth = () => {
-    const now = new Date()
-
-    return differenceInDays(lastDayOfMonth(now), now)
-  }
-
-  private calculateRawAmount(
-    expectedProfit: number,
-    daysRemainInMonth: number,
-    todaysOutcome: number,
-  ) {
-    return expectedProfit / daysRemainInMonth - todaysOutcome
-  }
-
-  private roundAmount(amount: number) {
-    return amount > 0 ? Math.round(amount) : 0
+    return {
+      previousMonthIncome: previousMonth.income,
+      thisMonthOutcome: thisMonth.outcome,
+    }
   }
 
   private createToken(date: Date, action: TipAction): string {
