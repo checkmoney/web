@@ -26,11 +26,9 @@ export class BudgetAdviser implements Adviser {
   public constructor(
     private readonly statistician: Statistician,
     private readonly userRepo: UserRepository,
-  ) { }
+  ) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
-    const now = new Date()
-
     const currency = await this.userRepo.getDefaultCurrency(userLogin)
 
     const [monthsStats, todaysStats] = await Promise.all([
@@ -39,11 +37,11 @@ export class BudgetAdviser implements Adviser {
     ])
 
     const money = {
-      previousMonthIncome: monthsStats[0].income,
-      thisMonthOutcome: monthsStats[1].outcome,
-      todayOutcome: todaysStats[0].outcome,
+      ...monthsStats,
+      ...todaysStats,
     }
 
+    const now = new Date()
     const period = {
       dayOfMonth: getDate(now),
       daysInMonth: getDaysInMonth(now),
@@ -64,20 +62,26 @@ export class BudgetAdviser implements Adviser {
   private async getTodaysStats(userLogin: string, currency: Currency) {
     const now = new Date()
 
-    const todaysStats = await this.statistician.showDateRangeStats(
+    const [todaysStats] = await this.statistician.showDateRangeStats(
       userLogin,
       { from: now, to: now },
       GroupBy.Day,
       currency,
     )
-    return todaysStats
+
+    return {
+      todayOutcome: todaysStats.outcome,
+    }
   }
 
   private async getMonthsStats(userLogin: string, currency: Currency) {
     const now = new Date()
     const startDate = startOfMonth(subMonths(now, 1))
 
-    const [previousMonth, thisMonth] = await this.statistician.showDateRangeStats(
+    const [
+      previousMonth,
+      thisMonth,
+    ] = await this.statistician.showDateRangeStats(
       userLogin,
       { from: startDate, to: now },
       GroupBy.Month,
