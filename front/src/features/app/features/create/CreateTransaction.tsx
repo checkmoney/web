@@ -70,7 +70,7 @@ export const CreateTransaction = ({ className }: Props) => {
       initialValues={{
         currency: defaultCurrency,
         date: new Date(),
-        kind: Kind.Income,
+        kind: Kind.Outcome,
       }}
     >
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
