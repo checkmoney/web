@@ -8,7 +8,7 @@ describe('calculateBudget#example', () => {
         thisMonthOutcome: 0,
         todayOutcome: 100,
       },
-      { dayOfMonth: 31, daysInMonth: 31 },
+      new Date('2019-12-31'),
     )
 
     expect(budget).toBe(900)
@@ -21,7 +21,7 @@ describe('calculateBudget#example', () => {
         thisMonthOutcome: 500,
         todayOutcome: 50,
       },
-      { dayOfMonth: 27, daysInMonth: 31 },
+      new Date('2019-12-27'),
     )
 
     expect(budget).toBe(50)
@@ -34,7 +34,7 @@ describe('calculateBudget#example', () => {
         thisMonthOutcome: 0,
         todayOutcome: 80,
       },
-      { dayOfMonth: 1, daysInMonth: 31 },
+      new Date('2019-12-1'),
     )
 
     expect(budget).toBe(20)

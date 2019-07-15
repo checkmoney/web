@@ -1,4 +1,5 @@
 import fc from 'fast-check'
+import { getDate, getDaysInMonth, getMonth } from 'date-fns'
 
 import { calculateBudget } from '../calculateBudget'
 
@@ -8,11 +9,6 @@ interface ExactMoney {
   previousMonthIncome?: ExactNumber
   thisMonthOutcome?: ExactNumber
   todayOutcome?: ExactNumber
-}
-
-interface ExactPeriod {
-  dayOfMonth?: number
-  daysInMonth?: number
 }
 
 interface MinMax {
@@ -49,16 +45,22 @@ const moneyArb = (exact: ExactMoney = {}) =>
       todayOutcome,
     }))
 
-const periodArb = (exact: ExactPeriod = {}) =>
+const periodArb = (exact?: Date) =>
   fc
     .tuple(
-      exactOrRandom(exact.dayOfMonth, { min: 1, max: 31 }),
-      exactOrRandom(exact.daysInMonth || 31),
+      exactOrRandom(exact ? getDate(exact) : null, { min: 1, max: 31 }),
+      fc.integer(1000, 5000),
     )
-    .map(([dayOfMonth, daysInMonth]) => ({
-      dayOfMonth,
-      daysInMonth,
-    }))
+    .map(([day, year]) => {
+      const date = new Date()
+
+      date.setFullYear(year)
+      date.setDate(day)
+
+      // TODO: add random generation of month
+      date.setMonth(date ? getMonth(date) : 11)
+      return date
+    })
 
 describe('calculateBudget#property', () => {
   test('should return zero for zero income', () => {
@@ -104,8 +106,8 @@ describe('calculateBudget#property', () => {
           calculateBudget(money, period) ===
           divideIncomeByDays(
             money.previousMonthIncome,
-            period.daysInMonth,
-            period.dayOfMonth,
+            getDate(period),
+            getDaysInMonth(period),
           ),
       ),
     )
@@ -118,10 +120,7 @@ describe('calculateBudget#property', () => {
           thisMonthOutcome: 0,
           todayOutcome: 0,
         }),
-        periodArb({
-          dayOfMonth: 31,
-          daysInMonth: 31,
-        }),
+        periodArb(new Date('2019-12-31')),
         (money, period) =>
           calculateBudget(money, period) === money.previousMonthIncome,
       ),
@@ -144,10 +143,7 @@ describe('calculateBudget#property', () => {
         moneyArb({
           thisMonthOutcome: 0,
         }),
-        periodArb({
-          dayOfMonth: 31,
-          daysInMonth: 31,
-        }),
+        periodArb(new Date('2019-12-31')),
         (money, period) => {
           const budget = calculateBudget(money, period)
           if (money.previousMonthIncome < money.todayOutcome) {

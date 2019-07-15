@@ -1,17 +1,15 @@
+import { getDate, getDaysInMonth } from 'date-fns'
+
 interface Money {
   previousMonthIncome: number
   thisMonthOutcome: number
   todayOutcome: number
 }
 
-interface Period {
-  dayOfMonth: number
-  daysInMonth: number
-}
-
-export const calculateBudget = (money: Money, period: Period) => {
+export const calculateBudget = (money: Money, date: Date) => {
   const { previousMonthIncome, thisMonthOutcome, todayOutcome } = money
-  const { daysInMonth, dayOfMonth } = period
+  const daysInMonth = getDaysInMonth(date)
+  const dayOfMonth = getDate(date)
 
   const expectedProfit = previousMonthIncome - thisMonthOutcome
   const daysRemainInMonth = daysInMonth - dayOfMonth + 1

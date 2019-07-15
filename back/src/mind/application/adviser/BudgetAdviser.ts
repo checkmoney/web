@@ -42,12 +42,8 @@ export class BudgetAdviser implements Adviser {
     }
 
     const now = new Date()
-    const period = {
-      dayOfMonth: getDate(now),
-      daysInMonth: getDaysInMonth(now),
-    }
 
-    const amount = calculateBudget(money, period)
+    const amount = calculateBudget(money, now)
 
     return [
       {
