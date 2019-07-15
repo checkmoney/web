@@ -1,20 +1,25 @@
 import * as md5 from 'md5'
 
+import { IncomeRepository } from '@back/money/domain/IncomeRepository'
+import { OutcomeRepository } from '@back/money/domain/OutcomeRepository'
 import { TipModel } from '@shared/models/mind/TipModel'
 import { TipAction } from '@shared/enum/TipAction'
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
-import { TypoFinder } from '../TypoFinder'
+import { findTypos } from '../calculator/findTypos'
 
 @IsAdviser()
 export class TypoAdviser implements Adviser {
-  public constructor(private readonly typoFinder: TypoFinder) {}
+  public constructor(
+    private readonly incomeRepo: IncomeRepository,
+    private readonly outcomeRepo: OutcomeRepository,
+  ) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const [sourceTypos, categoryTypos] = await Promise.all([
-      this.typoFinder.findTyposInSources(userLogin),
-      this.typoFinder.findTyposInCategories(userLogin),
+      this.incomeRepo.findSourcesForUser(userLogin).then(findTypos),
+      this.outcomeRepo.findCategoriesForUser(userLogin).then(findTypos),
     ])
 
     const now = new Date()
@@ -35,9 +40,9 @@ export class TypoAdviser implements Adviser {
     ]
   }
 
-  private createToken(variants: string[], action: TipAction): string {
+  private createToken(variants: Set<string>, action: TipAction): string {
     const payload = {
-      variants: variants.sort(),
+      variants: Array.from(variants).sort(),
       action,
     }
 

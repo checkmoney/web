@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["es2017", "dom"],
     "paths": {
       "@back/*": ["./back/src/*"],
       "@front/*": ["./front/src/*"],
