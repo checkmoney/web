@@ -64,11 +64,11 @@ export class RecurrentPaymentAdviser implements Adviser {
       GroupBy.Month,
     )
 
-    const outcomes = history.map(({ outcomes }) => outcomes)
+    const transactions = history.map(({ outcomes }) => outcomes)
 
     return {
-      thisMonth: last(outcomes),
-      previousMonths: dropRight(outcomes, 1),
+      thisMonth: last(transactions),
+      previousMonths: dropRight(transactions, 1),
     }
   }
 
