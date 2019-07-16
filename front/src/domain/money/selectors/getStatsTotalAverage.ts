@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect'
 
-import { createAverageReducer } from '@shared/helpers/createAverageReducer'
-import { Currency } from '@shared/enum/Currency'
-import { GroupBy } from '@shared/enum/GroupBy'
+import { createAverageReducer } from '&shared/helpers/createAverageReducer'
+import { Currency } from '&shared/enum/Currency'
+import { GroupBy } from '&shared/enum/GroupBy'
 
 import { getStatsAverage } from './getStatsAverage'
 

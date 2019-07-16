@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { TipModel } from '@shared/models/mind/TipModel'
+import { TipModel } from '&shared/models/mind/TipModel'
 
 import { DisabledTipRepository } from '../domain/DisabledTipRepository'
 

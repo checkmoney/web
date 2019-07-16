@@ -1,6 +1,6 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-import { CustomTipModel } from '@shared/models/mind/CustomTipModel'
+import { CustomTipModel } from '&shared/models/mind/CustomTipModel'
 
 export class CustomTipRequest implements CustomTipModel {
   @ApiModelProperty({ example: 'Alert' })

@@ -7,7 +7,7 @@ import {
   subMonths,
 } from 'date-fns'
 
-import { GroupBy } from '@shared/enum/GroupBy'
+import { GroupBy } from '&shared/enum/GroupBy'
 
 import { wantUTC } from './wantUTC'
 

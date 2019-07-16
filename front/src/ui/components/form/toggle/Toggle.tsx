@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import cx from 'classnames'
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput'
 
 import { ButtonGroup, Button, ButtonType } from '../button'
 import { VariantProps } from './VariantProps'

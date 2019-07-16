@@ -27,8 +27,8 @@
       }
     ],
     "paths": {
-      "@front/*": ["src/*"],
-      "@shared/*": ["./../shared/*"]
+      "&front/*": ["src/*"],
+      "&shared/*": ["./../shared/*"]
     }
   },
   "include": ["./src/**/*", "./../shared/**/*", "./pages/**/*", "./types.d.ts"]

@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { ConfigModule } from '@back/config/config.module'
+import { ConfigModule } from '&back/config/config.module'
 
 import { DbOptionsFactory } from './DbOptionsFactory'
 import { EntitySaver } from './EntitySaver'

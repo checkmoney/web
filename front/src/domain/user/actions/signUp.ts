@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store'
+import { fetchOrFail } from '&front/domain/store'
 
 import { signUp as signUpRequest } from '../api/signUp'
 import { setCookie } from '../helpers/setCookie'

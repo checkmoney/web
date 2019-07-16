@@ -1,6 +1,6 @@
 import { getDate } from 'date-fns'
 
-import { Outcome } from '@back/money/domain/Outcome.entity'
+import { Outcome } from '&back/money/domain/Outcome.entity'
 
 export const groupHasSameTransaction = (
   group: Outcome[],

@@ -1,4 +1,4 @@
-import { State } from '@front/domain/store'
+import { State } from '&front/domain/store'
 
 export const getStatsCachedPeriods = (state: State) =>
   state.money.statsDynamics.data.cachedPeriods

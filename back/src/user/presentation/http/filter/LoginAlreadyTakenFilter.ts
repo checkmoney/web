@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common'
 import { APP_FILTER } from '@nestjs/core'
 
-import { LoginAlreadyTakenException } from '@back/user/application/exception/LoginAlreadyTakenException'
+import { LoginAlreadyTakenException } from '&back/user/application/exception/LoginAlreadyTakenException'
 
 const HTTP_STATUS = 400
 

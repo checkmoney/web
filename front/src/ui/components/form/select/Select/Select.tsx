@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select as AntSelect } from 'antd'
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput'
 
 import { filterOption } from './helpers/filterOption'
 import { SelectProps } from './SelectProps'

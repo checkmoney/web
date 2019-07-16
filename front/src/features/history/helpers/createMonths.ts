@@ -1,7 +1,7 @@
 import { startOfMonth, addMonths, endOfMonth } from 'date-fns'
 
-import { wantUTC } from '@front/helpers/wantUTC'
-import { translatedMonthTitle } from '@front/helpers/translatedMonthTitle'
+import { wantUTC } from '&front/helpers/wantUTC'
+import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle'
 
 export const createMonths = (
   t: (key: string) => string,

@@ -1,4 +1,4 @@
-import { OutcomeModel } from '@shared/models/money/OutcomeModel'
+import { OutcomeModel } from '&shared/models/money/OutcomeModel'
 
 export const fieldsToOutcomeModel = ({
   amount,

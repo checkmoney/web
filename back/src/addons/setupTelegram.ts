@@ -1,7 +1,7 @@
 import { TelegramBot } from 'nest-telegram'
 import { INestApplication } from '@nestjs/common'
 
-import { Configuration } from '@back/config/Configuration'
+import { Configuration } from '&back/config/Configuration'
 
 export const setupTelegram = (app: INestApplication) => {
   const bot = app.get(TelegramBot)

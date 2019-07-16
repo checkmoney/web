@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store'
+import { fetchOrFail } from '&front/domain/store'
 
 import { fetchFirstTransactionDateRequest } from '../api/fetchFirstTransactionDateRequest'
 import { actions as dataActions } from '../reducer/firstTransactionDate'

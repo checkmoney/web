@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { AutoComplete as AntAutoComplete } from 'antd'
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput'
 
 import { AutoCompleteProps } from './AutoCompleteProps'
 import { filterOption } from './helpers/filterOption'

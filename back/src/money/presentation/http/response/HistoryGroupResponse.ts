@@ -1,9 +1,9 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-import { Income } from '@back/money/domain/Income.entity'
-import { Outcome } from '@back/money/domain/Outcome.entity'
-import { Currency } from '@shared/enum/Currency'
-import { HistoryGroupModel } from '@shared/models/money/HistoryGroupModel'
+import { Income } from '&back/money/domain/Income.entity'
+import { Outcome } from '&back/money/domain/Outcome.entity'
+import { Currency } from '&shared/enum/Currency'
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel'
 
 import { IncomeResponse } from './IncomeResponse'
 import { OutcomeResponse } from './OutcomeResponse'

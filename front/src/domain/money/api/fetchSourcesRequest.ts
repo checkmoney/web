@@ -1,5 +1,5 @@
-import { Api } from '@front/domain/api'
-import { actualizeStore } from '@front/domain/store/utils/actualizeStore'
+import { Api } from '&front/domain/api'
+import { actualizeStore } from '&front/domain/store/utils/actualizeStore'
 
 export const fetchSourcesRequest = (api: Api) => (): Promise<string[]> =>
   api.client

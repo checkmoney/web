@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 
-import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
 
 import { User } from '../domain/User.entity'
 import { UserRepository } from '../domain/UserRepository'

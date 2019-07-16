@@ -4,13 +4,13 @@ import {
   WithFetchingState,
 } from 'redux-clear'
 
-import { HistoryGroupModel } from '@shared/models/money/HistoryGroupModel'
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel'
 import {
   CachedPeriod,
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '@front/domain/cached-data'
+} from '&front/domain/cached-data'
 
 type InternalState = CachedState<HistoryGroupModel>
 type State = WithFetchingState<InternalState>

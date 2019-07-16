@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
 
-import { Button, ButtonType } from '@front/ui/components/form/button'
-import { useThunk } from '@front/domain/store'
-import { disableTips } from '@front/domain/mind/actions/disableTips'
-import { useTranslation } from '@front/domain/i18n'
+import { Button, ButtonType } from '&front/ui/components/form/button'
+import { useThunk } from '&front/domain/store'
+import { disableTips } from '&front/domain/mind/actions/disableTips'
+import { useTranslation } from '&front/domain/i18n'
 
 interface Props {
   token: string

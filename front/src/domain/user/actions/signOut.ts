@@ -1,4 +1,4 @@
-import { fetchOrFail } from '@front/domain/store'
+import { fetchOrFail } from '&front/domain/store'
 
 import { actions as dataActions } from '../reducer/data'
 import { resetCookie } from '../helpers/resetCookie'

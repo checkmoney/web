@@ -1,10 +1,10 @@
 import React from 'react'
 import { format } from 'date-fns'
 
-import { GroupBy } from '@shared/enum/GroupBy'
-import { Card } from '@front/ui/components/layout/card'
-import { useTranslation } from '@front/domain/i18n'
-import { translatedMonthTitle } from '@front/helpers/translatedMonthTitle'
+import { GroupBy } from '&shared/enum/GroupBy'
+import { Card } from '&front/ui/components/layout/card'
+import { useTranslation } from '&front/domain/i18n'
+import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle'
 
 import { ShowYear } from '../components/show-year'
 import { ShowMonth } from '../components/show-month'

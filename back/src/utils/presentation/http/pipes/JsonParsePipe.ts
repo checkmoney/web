@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform } from '@nestjs/common'
 
-import { LogicException } from '@back/utils/infrastructure/exception/LogicException'
+import { LogicException } from '&back/utils/infrastructure/exception/LogicException'
 
 @Injectable()
 export class JsonParsePipe implements PipeTransform<string, any> {

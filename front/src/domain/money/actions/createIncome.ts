@@ -1,5 +1,5 @@
-import { fetchOrFail } from '@front/domain/store'
-import { IncomeModel } from '@shared/models/money/IncomeModel'
+import { fetchOrFail } from '&front/domain/store'
+import { IncomeModel } from '&shared/models/money/IncomeModel'
 
 import { createIncomeRequest } from '../api/createIncomeRequest'
 import { actions as incomeFetchingActions } from '../reducer/createIncomeFetching'

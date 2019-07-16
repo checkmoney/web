@@ -7,13 +7,13 @@ import {
   DatePicker,
   Checkbox,
   TextArea,
-} from '@front/features/final-form'
-import { Button } from '@front/ui/components/form/button'
-import { Card } from '@front/ui/components/layout/card'
-import { Label } from '@front/ui/components/form/label'
-import { useThunk } from '@front/domain/store'
-import { createTip } from '@front/domain/mind/actions/createTip'
-import { useNotifyAlert } from '@front/ui/hooks/useNotifyAlert'
+} from '&front/features/final-form'
+import { Button } from '&front/ui/components/form/button'
+import { Card } from '&front/ui/components/layout/card'
+import { Label } from '&front/ui/components/form/label'
+import { useThunk } from '&front/domain/store'
+import { createTip } from '&front/domain/mind/actions/createTip'
+import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert'
 
 import * as styles from './CreateTip.css'
 

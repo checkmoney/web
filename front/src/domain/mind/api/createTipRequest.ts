@@ -1,5 +1,5 @@
-import { Api } from '@front/domain/api'
-import { CustomTipModel } from '@shared/models/mind/CustomTipModel'
+import { Api } from '&front/domain/api'
+import { CustomTipModel } from '&shared/models/mind/CustomTipModel'
 
 export const createTipRequest = (api: Api) => (
   tip: CustomTipModel,

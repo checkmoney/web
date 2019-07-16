@@ -1,4 +1,4 @@
-import { Currency } from '@shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency'
 
 import { getCurrencySign } from './getCurrencySign'
 import { NON_BREAKING_SPACE } from './NON_BREAKING_SPACE'

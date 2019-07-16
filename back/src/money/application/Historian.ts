@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { min } from 'date-fns'
 
-import { createGroups } from '@back/utils/infrastructure/dateGroups/createGroups'
-import { DateRange } from '@back/utils/infrastructure/dto/DateRange'
-import { GroupBy } from '@shared/enum/GroupBy'
+import { createGroups } from '&back/utils/infrastructure/dateGroups/createGroups'
+import { DateRange } from '&back/utils/infrastructure/dto/DateRange'
+import { GroupBy } from '&shared/enum/GroupBy'
 
 import { IncomeRepository } from '../domain/IncomeRepository'
 import { OutcomeRepository } from '../domain/OutcomeRepository'

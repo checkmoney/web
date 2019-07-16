@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { Context, PipeContext, TelegramActionHandler } from 'nest-telegram'
 
-import { CurrentSender } from '@back/user/presentation/telegram/transformer/CurrentSender'
-import { TokenPayloadModel } from '@shared/models/user/TokenPayloadModel'
-import { Accountant } from '@back/money/application/Accountant'
-import { Templating } from '@back/utils/infrastructure/Templating/Templating'
+import { CurrentSender } from '&back/user/presentation/telegram/transformer/CurrentSender'
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
+import { Accountant } from '&back/money/application/Accountant'
+import { Templating } from '&back/utils/infrastructure/Templating/Templating'
 import { parseCurrency } from '../helpers/parseCurrency'
 import { parseAmount } from '../helpers/parseAmount'
 

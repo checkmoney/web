@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { UserRepository } from '@back/user/domain/UserRepository'
+import { UserRepository } from '&back/user/domain/UserRepository'
 import { ContextTransformer, Context } from 'nest-telegram'
 
 @Injectable()

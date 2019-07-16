@@ -3,7 +3,7 @@ import {
   TelegramModuleOptionsFactory,
   TelegramModuleOptions,
 } from 'nest-telegram'
-import { Configuration } from '@back/config/Configuration'
+import { Configuration } from '&back/config/Configuration'
 
 @Injectable()
 export class TelegramOptionsFactory implements TelegramModuleOptionsFactory {

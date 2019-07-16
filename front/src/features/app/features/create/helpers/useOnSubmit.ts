@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 
-import { useThunk } from '@front/domain/store'
-import { createIncome } from '@front/domain/money/actions/createIncome'
-import { createOutcome } from '@front/domain/money/actions/createOutcome'
+import { useThunk } from '&front/domain/store'
+import { createIncome } from '&front/domain/money/actions/createIncome'
+import { createOutcome } from '&front/domain/money/actions/createOutcome'
 
 import { fieldsToIncomeModel } from './fieldsToIncomeModel'
 import { fieldsToOutcomeModel } from './fieldsToOutcomeModel'

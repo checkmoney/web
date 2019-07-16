@@ -1,4 +1,4 @@
-import { Outcome } from '@back/money/domain/Outcome.entity'
+import { Outcome } from '&back/money/domain/Outcome.entity'
 import { groupHasSameTransaction } from './helpers/groupHasSameTransaction'
 import { getDate } from 'date-fns'
 

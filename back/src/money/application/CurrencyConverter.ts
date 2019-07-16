@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { differenceInDays, startOfHour, startOfDay } from 'date-fns'
 
-import { EntitySaver } from '@back/db/EntitySaver'
-import { Currency } from '@shared/enum/Currency'
+import { EntitySaver } from '&back/db/EntitySaver'
+import { Currency } from '&shared/enum/Currency'
 
 import { ExchangeRate } from '../domain/ExchangeRate.entity'
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository'
@@ -81,16 +81,18 @@ export class CurrencyConverter {
   }
 
   private async getExistRateFromReverse(
-    from: Currency,
-    to: Currency,
+    originalFrom: Currency,
+    originalTo: Currency,
     when: Date,
   ): Promise<number> {
     const revert = ({ to, from, collectAt, rate }: ExchangeRate) =>
       new ExchangeRate(to, from, collectAt, 1 / rate)
 
     return this.getOrThrow(
-      this.exchangeRateRepo.find(to, from, when).then(rate => rate.map(revert)),
-      new ConversationFailedException(from, to, when),
+      this.exchangeRateRepo
+        .find(originalTo, originalFrom, when)
+        .then(rate => rate.map(revert)),
+      new ConversationFailedException(originalFrom, originalTo, when),
     )
   }
 

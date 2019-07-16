@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 
-import { Authenticator } from '@back/user/application/Authenticator'
+import { Authenticator } from '&back/user/application/Authenticator'
 import { addPayloadToRequest } from './helpers/addPayloadToRequest'
 import { getToken } from './helpers/getToken'
 

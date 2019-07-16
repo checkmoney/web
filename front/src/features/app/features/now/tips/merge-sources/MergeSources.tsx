@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TipModel } from '@shared/models/mind/TipModel'
+import { TipModel } from '&shared/models/mind/TipModel'
 
 import { MergeSourcesMeta } from './MergeSourcesMeta'
 import { Merge } from '../components/merge'

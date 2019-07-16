@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common'
 import { APP_FILTER } from '@nestjs/core'
 
-import { ConversationFailedException } from '@back/money/application/exception/ConversationFailedException'
+import { ConversationFailedException } from '&back/money/application/exception/ConversationFailedException'
 
 const HTTP_STATUS = 500
 

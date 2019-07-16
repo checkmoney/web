@@ -2,7 +2,7 @@ import { DatePicker as AntDatePicker } from 'antd'
 import moment, { Moment } from 'moment'
 import React, { useCallback, useMemo } from 'react'
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput'
 
 import * as styles from './DatePicker.css'
 import { DatePickerProps } from './DatePickerProps'

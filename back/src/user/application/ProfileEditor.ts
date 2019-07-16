@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
-import { EntitySaver } from '@back/db/EntitySaver'
-import { Currency } from '@shared/enum/Currency'
+import { EntitySaver } from '&back/db/EntitySaver'
+import { Currency } from '&shared/enum/Currency'
 
 import { UserRepository } from '../domain/UserRepository'
 

@@ -3,7 +3,7 @@ import { Input as AntInput } from 'antd'
 
 const AntTextArea = AntInput.TextArea
 
-import { useCustomInput } from '@front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput'
 
 import { TextAreaProps } from './TextAreaProps'
 import { useCallback, ChangeEvent } from 'react'

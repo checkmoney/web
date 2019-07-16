@@ -9,8 +9,8 @@ import {
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '@front/domain/cached-data'
-import { SourceGroupIncomeModel } from '@shared/models/money/SourceGroupIncomeModel'
+} from '&front/domain/cached-data'
+import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel'
 
 type InternalState = CachedState<SourceGroupIncomeModel>
 type State = WithFetchingState<InternalState>

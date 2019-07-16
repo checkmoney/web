@@ -1,5 +1,5 @@
-import { Currency } from '@shared/enum/Currency'
-import { UnexpectedParameterException } from '@back/utils/infrastructure/exception/UnexpectedParameterException'
+import { Currency } from '&shared/enum/Currency'
+import { UnexpectedParameterException } from '&back/utils/infrastructure/exception/UnexpectedParameterException'
 
 export const parseCurrency = (rawCurrency: string): Currency => {
   const transformedCurrency = rawCurrency.toUpperCase()

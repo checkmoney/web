@@ -1,5 +1,5 @@
-import { Api } from '@front/domain/api'
-import { DisableTipModel } from '@shared/models/mind/DisableTipModel'
+import { Api } from '&front/domain/api'
+import { DisableTipModel } from '&shared/models/mind/DisableTipModel'
 
 export const disableTipsRequest = (api: Api) => (
   disableTip: DisableTipModel,
