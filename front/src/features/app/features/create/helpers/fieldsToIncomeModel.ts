@@ -1,4 +1,4 @@
-import { IncomeModel } from '$shared/models/money/IncomeModel'
+import { IncomeModel } from '&shared/models/money/IncomeModel'
 
 export const fieldsToIncomeModel = ({
   amount,

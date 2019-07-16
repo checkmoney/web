@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-import { Currency } from '$shared/enum/Currency'
-import { CategoryGroupOutcomeModel } from '$shared/models/money/CategoryGroupOutcomeModel'
+import { Currency } from '&shared/enum/Currency'
+import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel'
 
 export class CategoryGroupOutcomeResponse implements CategoryGroupOutcomeModel {
   @ApiModelProperty({ example: 'NASA' })

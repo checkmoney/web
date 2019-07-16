@@ -9,14 +9,14 @@ import { Provider } from 'react-redux'
 import { StoreContext } from 'redux-react-hook'
 import { Option } from 'tsoption'
 
-import { AppContext } from '$front/domain/AppContext'
-import { WithReduxProps, withReduxStore } from '$front/domain/store'
-import { actions as dataActions } from '$front/domain/user/reducer/data'
-import { getToken } from '$front/domain/user/selectors/getToken'
-import { pushRoute, routeAnimations } from '$front/features/routing'
-import { fetchUserProfile } from '$front/domain/user/actions/fetchUserProfile'
-import { appWithTranslation, i18n } from '$front/domain/i18n'
-import { Language } from '$shared/enum/Language'
+import { AppContext } from '&front/domain/AppContext'
+import { WithReduxProps, withReduxStore } from '&front/domain/store'
+import { actions as dataActions } from '&front/domain/user/reducer/data'
+import { getToken } from '&front/domain/user/selectors/getToken'
+import { pushRoute, routeAnimations } from '&front/features/routing'
+import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile'
+import { appWithTranslation, i18n } from '&front/domain/i18n'
+import { Language } from '&shared/enum/Language'
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useMappedState } from 'redux-react-hook'
 
-import { Menu } from '$front/ui/components/controls/menu/Menu'
-import { MenuItem } from '$front/ui/components/controls/menu/MenuItem'
-import { pushRoute } from '$front/features/routing'
-import { getUserIsManager } from '$front/domain/user/selectors/getUserIsManager'
-import { useTranslation } from '$front/domain/i18n'
+import { Menu } from '&front/ui/components/controls/menu/Menu'
+import { MenuItem } from '&front/ui/components/controls/menu/MenuItem'
+import { pushRoute } from '&front/features/routing'
+import { getUserIsManager } from '&front/domain/user/selectors/getUserIsManager'
+import { useTranslation } from '&front/domain/i18n'
 
 interface Props {
   className?: string

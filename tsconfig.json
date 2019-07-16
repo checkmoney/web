@@ -5,10 +5,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "paths": {
-      "$back/*": ["./back/src/*"],
-      "$front/*": ["./front/src/*"],
-      "$landing/*": ["./landing/src/interactive/*"],
-      "$shared/*": ["./shared/*"]
+      "&back/*": ["./back/src/*"],
+      "&front/*": ["./front/src/*"],
+      "&landing/*": ["./landing/src/interactive/*"],
+      "&shared/*": ["./shared/*"]
     }
   },
   "include": [

@@ -1,7 +1,7 @@
 import { ComponentType } from 'react'
 
-import { TipModel } from '$shared/models/mind/TipModel'
-import { TipAction } from '$shared/enum/TipAction'
+import { TipModel } from '&shared/models/mind/TipModel'
+import { TipAction } from '&shared/enum/TipAction'
 
 import { MergeSources } from './merge-sources'
 import { MergeCategories } from './merge-categories'

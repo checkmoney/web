@@ -4,8 +4,8 @@ import {
   createClearReduxWithFetching,
 } from 'redux-clear'
 
-import { TipModel } from '$shared/models/mind/TipModel'
-import { uniqByWithRespect } from '$front/helpers/uniqByWithRespect'
+import { TipModel } from '&shared/models/mind/TipModel'
+import { uniqByWithRespect } from '&front/helpers/uniqByWithRespect'
 
 type InternalState = TipModel[]
 type State = WithFetchingState<InternalState>

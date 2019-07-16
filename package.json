@@ -20,7 +20,7 @@
     "tsoption": "^0.7.0"
   },
   "devDependencies": {
-    "@solid-soda/scripts": "^1.11.13",
+    "@solid-soda/scripts": "^1.12.5",
     "@types/jest": "^24.0.14",
     "fast-check": "^1.15.1",
     "jest": "^24.8.0",
@@ -34,7 +34,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn soda lint-staged && yarn types && yarn circular",
+      "pre-commit": "yarn soda lint-staged",
+      "pre-push": "yarn soda lint && yarn types && yarn circular && yarn types",
       "commit-msg": "yarn soda commitlint"
     }
   },

@@ -5,7 +5,7 @@ import { Diff } from 'utility-types'
 import {
   EnumSelect as JustEnumSelect,
   EnumSelectProps,
-} from '$front/ui/components/form/select'
+} from '&front/ui/components/form/select'
 
 interface OwnProps {
   name: string

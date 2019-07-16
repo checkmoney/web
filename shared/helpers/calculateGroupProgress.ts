@@ -1,6 +1,6 @@
 import { getDayOfYear, getDay, getDaysInYear, getDaysInMonth } from 'date-fns'
 
-import { GroupBy } from '$shared/enum/GroupBy'
+import { GroupBy } from '&shared/enum/GroupBy'
 
 export const calculateGroupProgress = (group: GroupBy): number => {
   const now = new Date()

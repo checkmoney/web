@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 
-import { Currency } from '$shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency'
 
 export class ConversationFailedException extends Error {
   public constructor(

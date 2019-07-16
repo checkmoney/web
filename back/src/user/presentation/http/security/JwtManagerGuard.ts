@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 
-import { Authenticator } from '$back/user/application/Authenticator'
-import { TokenPayloadModel } from '$shared/models/user/TokenPayloadModel'
+import { Authenticator } from '&back/user/application/Authenticator'
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
 
 import { addPayloadToRequest } from './helpers/addPayloadToRequest'
 import { getToken } from './helpers/getToken'

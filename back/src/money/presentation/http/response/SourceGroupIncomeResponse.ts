@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-import { Currency } from '$shared/enum/Currency'
-import { SourceGroupIncomeModel } from '$shared/models/money/SourceGroupIncomeModel'
+import { Currency } from '&shared/enum/Currency'
+import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel'
 
 export class SourceGroupIncomeResponse implements SourceGroupIncomeModel {
   @ApiModelProperty({ example: 'NASA' })

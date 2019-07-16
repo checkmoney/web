@@ -1,6 +1,6 @@
-import { MergeTypoModel } from '$shared/models/mind/MergeTypoModel'
-import { refetchData } from '$front/domain/money/actions/refetchData'
-import { fetchOrFail } from '$front/domain/store'
+import { MergeTypoModel } from '&shared/models/mind/MergeTypoModel'
+import { refetchData } from '&front/domain/money/actions/refetchData'
+import { fetchOrFail } from '&front/domain/store'
 
 import { actions } from '../reducer/tips'
 import { mergeTypoRequest } from '../api/mergeTypoRequest'

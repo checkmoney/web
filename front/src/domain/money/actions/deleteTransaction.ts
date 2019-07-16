@@ -1,4 +1,4 @@
-import { fetchOrFail } from '$front/domain/store'
+import { fetchOrFail } from '&front/domain/store'
 
 import { deleteTransactionRequest } from '../api/deleteTransactionRequest'
 import { actions as deleteTransactionFetchingActions } from '../reducer/deleteTransactionFetching'

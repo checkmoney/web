@@ -8,15 +8,15 @@ import {
   endOfMonth,
 } from 'date-fns'
 
-import { Adviser } from '$back/mind/infrastructure/adviser/helpers/Adviser'
-import { IsAdviser } from '$back/mind/infrastructure/adviser/helpers/IsAdviser'
-import { TipModel } from '$shared/models/mind/TipModel'
-import { Statistician } from '$back/money/application/Statistician'
-import { UserRepository } from '$back/user/domain/UserRepository'
-import { GroupBy } from '$shared/enum/GroupBy'
-import { Currency } from '$shared/enum/Currency'
-import { TipAction } from '$shared/enum/TipAction'
-import { formatDate } from '$shared/helpers/formatDate'
+import { Adviser } from '&back/mind/infrastructure/adviser/helpers/Adviser'
+import { IsAdviser } from '&back/mind/infrastructure/adviser/helpers/IsAdviser'
+import { TipModel } from '&shared/models/mind/TipModel'
+import { Statistician } from '&back/money/application/Statistician'
+import { UserRepository } from '&back/user/domain/UserRepository'
+import { GroupBy } from '&shared/enum/GroupBy'
+import { Currency } from '&shared/enum/Currency'
+import { TipAction } from '&shared/enum/TipAction'
+import { formatDate } from '&shared/helpers/formatDate'
 
 @IsAdviser()
 export class PastDaysBudgetAdviser implements Adviser {

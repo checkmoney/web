@@ -1,7 +1,7 @@
 import { createParamDecorator } from '@nestjs/common'
 
-import { TokenPayloadModel } from '$shared/models/user/TokenPayloadModel'
-import { LogicException } from '$back/utils/infrastructure/exception/LogicException'
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
+import { LogicException } from '&back/utils/infrastructure/exception/LogicException'
 
 export const CurrentUser = createParamDecorator(
   async (_, req): Promise<TokenPayloadModel> => {

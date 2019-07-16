@@ -1,6 +1,6 @@
-import { fetchOrFail } from '$front/domain/store'
-import { Currency } from '$shared/enum/Currency'
-import { GroupBy } from '$shared/enum/GroupBy'
+import { fetchOrFail } from '&front/domain/store'
+import { Currency } from '&shared/enum/Currency'
+import { GroupBy } from '&shared/enum/GroupBy'
 
 import { fetchStatsDynamicsRequest } from '../api/fetchStatsDynamicsRequest'
 import { actions } from '../reducer/statsDynamics'

@@ -1,7 +1,7 @@
 import { Column } from 'typeorm'
 
-import { Currency } from '$shared/enum/Currency'
-import { ProfileModel } from '$shared/models/user/ProfileModel'
+import { Currency } from '&shared/enum/Currency'
+import { ProfileModel } from '&shared/models/user/ProfileModel'
 
 export class Profile implements ProfileModel {
   @Column()

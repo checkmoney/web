@@ -1,8 +1,8 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
-import { UserModule } from '$back/user/user.module'
-import { UtilsModule } from '$back/utils/utils.module'
+import { UserModule } from '&back/user/user.module'
+import { UtilsModule } from '&back/utils/utils.module'
 
 import { Accountant } from './application/Accountant'
 import { CurrencyConverter } from './application/CurrencyConverter'

@@ -1,5 +1,5 @@
-import { GroupBy } from '$shared/enum/GroupBy'
-import { Currency } from '$shared/enum/Currency'
+import { GroupBy } from '&shared/enum/GroupBy'
+import { Currency } from '&shared/enum/Currency'
 
 export interface CachedPeriod {
   groupBy?: GroupBy

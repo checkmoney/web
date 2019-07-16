@@ -9,8 +9,8 @@ import {
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '$front/domain/cached-data'
-import { CategoryGroupOutcomeModel } from '$shared/models/money/CategoryGroupOutcomeModel'
+} from '&front/domain/cached-data'
+import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel'
 
 type InternalState = CachedState<CategoryGroupOutcomeModel>
 type State = WithFetchingState<InternalState>

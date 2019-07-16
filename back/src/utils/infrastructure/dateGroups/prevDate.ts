@@ -1,4 +1,4 @@
-import { GroupBy } from '$shared/enum/GroupBy'
+import { GroupBy } from '&shared/enum/GroupBy'
 import {
   subWeeks,
   endOfWeek,

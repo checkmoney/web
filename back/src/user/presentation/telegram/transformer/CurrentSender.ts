@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import { ContextTransformer, Context } from 'nest-telegram'
 
-import { UserRepository } from '$back/user/domain/UserRepository'
-import { TokenPayloadModel } from '$shared/models/user/TokenPayloadModel'
+import { UserRepository } from '&back/user/domain/UserRepository'
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
 
 @Injectable()
 export class CurrentSender implements ContextTransformer<TokenPayloadModel> {

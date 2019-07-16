@@ -5,8 +5,8 @@ import {
   PipeTransform,
 } from '@nestjs/common'
 
-import { DateRange } from '$back/utils/infrastructure/dto/DateRange'
-import { LogicException } from '$back/utils/infrastructure/exception/LogicException'
+import { DateRange } from '&back/utils/infrastructure/dto/DateRange'
+import { LogicException } from '&back/utils/infrastructure/exception/LogicException'
 
 import { DateRangeQuery } from './DateRangeQuery'
 

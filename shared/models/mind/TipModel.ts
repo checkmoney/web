@@ -1,4 +1,4 @@
-import { TipAction } from '$shared/enum/TipAction'
+import { TipAction } from '&shared/enum/TipAction'
 
 export interface TipModel<Meta = any> {
   token: string

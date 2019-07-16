@@ -1,7 +1,7 @@
 import { uniqWith } from 'lodash'
 
-import { correctObjectLength } from '$front/helpers/correctObjectLength'
-import { correctArrayLength } from '$front/helpers/correctArrayLength'
+import { correctObjectLength } from '&front/helpers/correctObjectLength'
+import { correctArrayLength } from '&front/helpers/correctArrayLength'
 
 import { CachedState } from './CachedState'
 import { CachedPeriod } from './CachedPeriod'

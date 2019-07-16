@@ -5,7 +5,7 @@ import { Diff } from 'utility-types'
 import {
   Toggle as JustToggle,
   ToggleProps,
-} from '$front/ui/components/form/toggle'
+} from '&front/ui/components/form/toggle'
 
 interface OwnProps {
   name: string

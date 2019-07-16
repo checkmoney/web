@@ -1,4 +1,4 @@
-import { Api } from '$front/domain/api'
+import { Api } from '&front/domain/api'
 
 export const deleteTransactionRequest = (api: Api) => (
   id: string,

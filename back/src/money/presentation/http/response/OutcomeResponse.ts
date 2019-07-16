@@ -1,8 +1,8 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger'
 
-import { Outcome } from '$back/money/domain/Outcome.entity'
-import { Currency } from '$shared/enum/Currency'
-import { OutcomeModel } from '$shared/models/money/OutcomeModel'
+import { Outcome } from '&back/money/domain/Outcome.entity'
+import { Currency } from '&shared/enum/Currency'
+import { OutcomeModel } from '&shared/models/money/OutcomeModel'
 
 export class OutcomeResponse implements OutcomeModel {
   public static fromEntity(outcome: Outcome): OutcomeResponse {

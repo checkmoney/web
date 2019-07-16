@@ -17,8 +17,8 @@
     "sourceMap": true,
     "strict": true,
     "paths": {
-      "$landing/*": ["src/interactive/*"],
-      "$shared/*": ["./../shared/*"]
+      "&landing/*": ["src/interactive/*"],
+      "&shared/*": ["./../shared/*"]
     }
   },
   "include": ["./src/interactive/**/*", "./../shared/**/*"]

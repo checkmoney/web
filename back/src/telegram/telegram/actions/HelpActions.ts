@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { Context, TelegramActionHandler } from 'nest-telegram'
 
-import { Templating } from '$back/utils/infrastructure/Templating/Templating'
+import { Templating } from '&back/utils/infrastructure/Templating/Templating'
 
 @Injectable()
 export class HelpActions {

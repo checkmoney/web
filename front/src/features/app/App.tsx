@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container } from '$front/ui/components/layout/container'
+import { Container } from '&front/ui/components/layout/container'
 
 import * as styles from './App.css'
 import { History } from './features/history'

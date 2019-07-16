@@ -1,6 +1,6 @@
 import { TelegramErrorHandler, TelegramCatch, Context } from 'nest-telegram'
 
-import { InvalidCredentialsException } from '$back/user/application/exception/InvalidCredentialsException'
+import { InvalidCredentialsException } from '&back/user/application/exception/InvalidCredentialsException'
 
 @TelegramCatch(InvalidCredentialsException)
 export class InvalidCredentialsCatcher

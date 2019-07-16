@@ -1,5 +1,5 @@
-import { fetchOrFail } from '$front/domain/store'
-import { fetchTips } from '$front/domain/mind/actions/fetchTips'
+import { fetchOrFail } from '&front/domain/store'
+import { fetchTips } from '&front/domain/mind/actions/fetchTips'
 
 import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods'
 import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods'

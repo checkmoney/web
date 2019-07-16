@@ -1,4 +1,4 @@
-import { fetchOrFail } from '$front/domain/store'
+import { fetchOrFail } from '&front/domain/store'
 
 import { setWeekStartRequest } from '../api/setWeekStartRequest'
 import { actions } from '../reducer/profile'

@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger'
 
-import { Currency } from '$shared/enum/Currency'
-import { DateGroupModel } from '$shared/models/money/DateGroupModel'
+import { Currency } from '&shared/enum/Currency'
+import { DateGroupModel } from '&shared/models/money/DateGroupModel'
 
 export class DateGroupResponse implements DateGroupModel {
   @ApiModelProperty({ example: new Date() })

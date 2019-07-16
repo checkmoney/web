@@ -1,6 +1,6 @@
 import { TelegramErrorHandler, TelegramCatch, Context } from 'nest-telegram'
 
-import { UnexpectedParameterException } from '$back/utils/infrastructure/exception/UnexpectedParameterException'
+import { UnexpectedParameterException } from '&back/utils/infrastructure/exception/UnexpectedParameterException'
 
 @TelegramCatch(UnexpectedParameterException)
 export class UnexpectedParameterCatcher

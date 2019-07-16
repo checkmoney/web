@@ -12,8 +12,8 @@
     "outDir": "../dist/back",
     "baseUrl": ".",
     "paths": {
-      "$back/*": ["./src/*"],
-      "$shared/*": ["./../shared/*"]
+      "&back/*": ["./src/*"],
+      "&shared/*": ["./../shared/*"]
     }
   },
   "include": ["src/**/*", "../shared/**/*"],

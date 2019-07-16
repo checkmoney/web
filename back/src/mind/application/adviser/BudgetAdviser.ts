@@ -9,13 +9,13 @@ import {
   getDaysInMonth,
 } from 'date-fns'
 
-import { formatDate } from '$shared/helpers/formatDate'
-import { TipModel } from '$shared/models/mind/TipModel'
-import { TipAction } from '$shared/enum/TipAction'
-import { Statistician } from '$back/money/application/Statistician'
-import { UserRepository } from '$back/user/domain/UserRepository'
-import { GroupBy } from '$shared/enum/GroupBy'
-import { Currency } from '$shared/enum/Currency'
+import { formatDate } from '&shared/helpers/formatDate'
+import { TipModel } from '&shared/models/mind/TipModel'
+import { TipAction } from '&shared/enum/TipAction'
+import { Statistician } from '&back/money/application/Statistician'
+import { UserRepository } from '&back/user/domain/UserRepository'
+import { GroupBy } from '&shared/enum/GroupBy'
+import { Currency } from '&shared/enum/Currency'
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'

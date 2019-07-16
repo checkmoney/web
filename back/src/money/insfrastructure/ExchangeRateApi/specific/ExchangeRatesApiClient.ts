@@ -2,8 +2,8 @@ import Axios from 'axios'
 import { Option } from 'tsoption'
 import { format, differenceInDays } from 'date-fns'
 
-import { Configuration } from '$back/config/Configuration'
-import { Currency } from '$shared/enum/Currency'
+import { Configuration } from '&back/config/Configuration'
+import { Currency } from '&shared/enum/Currency'
 import { ExchangeRateApi } from '../ExchangeRateApi'
 
 interface PromiseCacheMap {

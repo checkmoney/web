@@ -5,7 +5,7 @@ import { Diff } from 'utility-types'
 import {
   AutoComplete as JustAutoComplete,
   AutoCompleteProps,
-} from '$front/ui/components/form/auto-complete'
+} from '&front/ui/components/form/auto-complete'
 
 interface OwnProps {
   name: string
