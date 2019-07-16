@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import { getYear } from 'date-fns'
 import { range } from 'lodash'
 
@@ -31,7 +31,7 @@ export const YearPicker = ({
 
       handleChange(newValue)
     },
-    [onChange],
+    [handleChange],
   )
 
   const years = range(min, max + 1)

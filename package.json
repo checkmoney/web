@@ -11,6 +11,7 @@
   "scripts": {
     "types": "tcm front && tsc --noEmit -p front && tsc --noEmit -p back",
     "circular": "madge --circular --extensions ts ./ --tsConfig tsconfig.json",
+    "test": "jest",
     "s": "yarn soda"
   },
   "dependencies": {
@@ -19,10 +20,15 @@
     "tsoption": "^0.7.0"
   },
   "devDependencies": {
-    "@solid-soda/scripts": "^1.8.0",
+    "@solid-soda/scripts": "^1.11.13",
+    "@types/jest": "^24.0.14",
+    "fast-check": "^1.15.1",
+    "jest": "^24.8.0",
+    "jest-module-name-mapper": "^0.1.2",
     "madge": "^3.4.3",
     "pm2": "^3.2.4",
     "rimraf": "^2.6.2",
+    "ts-jest": "^24.0.2",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"
   },

@@ -17,7 +17,7 @@ export const useDateRange = (previousPeriodNumber: number, group?: GroupBy) => {
       from: firstTransactionDate,
       to: new Date(),
     }
-  }, [group, previousPeriodNumber])
+  }, [group, previousPeriodNumber, firstTransactionDate])
 
   return { from, to }
 }

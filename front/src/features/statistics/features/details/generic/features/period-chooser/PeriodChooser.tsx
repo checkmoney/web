@@ -1,3 +1,4 @@
+import React from 'react'
 import { format } from 'date-fns'
 
 import { GroupBy } from '$shared/enum/GroupBy'
@@ -44,7 +45,10 @@ export const PeriodChooser = ({
   return (
     <Card
       title={title}
-      actions={[<Prev {...actionProps} />, <Next {...actionProps} />]}
+      actions={[
+        <Prev key="prev" {...actionProps} />,
+        <Next key="next" {...actionProps} />,
+      ]}
       className={styles.card}
     >
       <ShowYear group={group} detailType={detailType} />

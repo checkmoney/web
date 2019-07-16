@@ -1,5 +1,6 @@
-import { TipModel } from '$shared/models/mind/TipModel'
+import React from 'react'
 
+import { TipModel } from '$shared/models/mind/TipModel'
 import { displayMoney } from '$shared/helpers/displayMoney'
 import { Card } from '$front/ui/components/layout/card'
 import { useTranslation } from '$front/domain/i18n'

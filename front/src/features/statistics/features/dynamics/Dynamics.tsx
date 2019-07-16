@@ -7,7 +7,7 @@ import {
   endOfMonth,
 } from 'date-fns'
 import { Option } from 'tsoption'
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { head } from 'lodash'
 
 import { Card } from '$front/ui/components/layout/card'

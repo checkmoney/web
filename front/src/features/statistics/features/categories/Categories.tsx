@@ -1,6 +1,6 @@
 import { useMappedState } from 'redux-react-hook'
 import { sortBy, take } from 'lodash'
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import { Currency } from '$shared/enum/Currency'
 import { displayMoney } from '$shared/helpers/displayMoney'
@@ -43,7 +43,7 @@ export const Categories = ({
         transform: displayMoney(currency),
       },
     }),
-    [currency],
+    [currency, widthPercent],
   )
 
   const fetching = useMappedState(getStatsCategoriesFetchingStatus)

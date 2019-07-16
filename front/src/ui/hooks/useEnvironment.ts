@@ -11,7 +11,7 @@ export const useEnvironment = () => {
     )
 
     setDom(canUseDOM)
-  })
+  }, [setDom])
 
   return {
     isServer: !dom,

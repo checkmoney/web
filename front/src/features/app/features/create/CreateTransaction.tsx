@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Form } from 'react-final-form'
 import { useMappedState } from 'redux-react-hook'
 
@@ -70,7 +70,7 @@ export const CreateTransaction = ({ className }: Props) => {
       initialValues={{
         currency: defaultCurrency,
         date: new Date(),
-        kind: Kind.Income,
+        kind: Kind.Outcome,
       }}
     >
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (

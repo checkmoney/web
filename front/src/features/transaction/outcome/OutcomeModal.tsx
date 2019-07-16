@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useModalState } from '@breadhead/use-modal'
 
 import { OUTCOME_KEY } from './OUTCOME_KEY'

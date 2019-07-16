@@ -1,3 +1,4 @@
+import React from 'react'
 import { Omit } from 'utility-types'
 import { FetchingState } from 'redux-clear'
 

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { NextAppContext } from 'next/app'
 import { flatten } from 'lodash'
 

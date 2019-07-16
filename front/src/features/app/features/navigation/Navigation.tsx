@@ -1,3 +1,4 @@
+import React from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { Menu } from '$front/ui/components/controls/menu/Menu'

@@ -1,6 +1,6 @@
 import { endOfMonth, startOfMonth } from 'date-fns'
 import { useMappedState } from 'redux-react-hook'
-import { useMemo, useCallback } from 'react'
+import React, { useMemo, useCallback } from 'react'
 
 import { fetchHistory } from '$front/domain/money/actions/fetchHistory'
 import { getHistory } from '$front/domain/money/selectors/getHistory'

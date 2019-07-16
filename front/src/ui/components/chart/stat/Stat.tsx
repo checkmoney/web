@@ -1,5 +1,6 @@
 import { Statistic, Icon } from 'antd'
 import { Option } from 'tsoption'
+import React from 'react'
 
 import { useTranslation } from '$front/domain/i18n'
 
@@ -16,6 +17,8 @@ export const Stat = ({
   suffix,
   decreaseIsGood = false,
 }: Props) => {
+  const { t } = useTranslation()
+
   if (value.nonEmpty()) {
     const positive = value.get() > 0
 
@@ -35,8 +38,6 @@ export const Stat = ({
       />
     )
   }
-
-  const { t } = useTranslation()
 
   return (
     <Statistic

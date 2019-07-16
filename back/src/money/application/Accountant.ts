@@ -12,6 +12,7 @@ import { Income } from '../domain/Income.entity'
 import { Outcome } from '../domain/Outcome.entity'
 import { IncomeRepository } from '../domain/IncomeRepository'
 import { OutcomeRepository } from '../domain/OutcomeRepository'
+import { normalizeComment } from './helpers/normalizeComment'
 
 @Injectable()
 export class Accountant {
@@ -38,7 +39,7 @@ export class Accountant {
       incomeId,
       amount,
       currency,
-      source,
+      normalizeComment(source),
       date || new Date(),
       user,
     )
@@ -61,7 +62,7 @@ export class Accountant {
       outcomeId,
       amount,
       currency,
-      category,
+      normalizeComment(category),
       date || new Date(),
       user,
     )

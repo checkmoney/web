@@ -3,7 +3,7 @@ import { AnyAction } from 'redux'
 import { Option } from 'tsoption'
 import useMedia from 'use-media'
 import { useMappedState } from 'redux-react-hook'
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { sortBy } from 'lodash'
 
 import { GroupBy } from '$shared/enum/GroupBy'
@@ -75,7 +75,7 @@ export const Detail = <T extends object = any>({
 
   const preparedData = useMemo(
     () => stats.map(s => sortBy(s, t => -toAmount(t)).map(toData)),
-    [stats],
+    [stats, toAmount, toData],
   )
 
   return (

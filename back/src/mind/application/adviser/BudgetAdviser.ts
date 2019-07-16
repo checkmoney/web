@@ -5,6 +5,8 @@ import {
   subMonths,
   startOfMonth,
   format,
+  getDate,
+  getDaysInMonth,
 } from 'date-fns'
 
 import { formatDate } from '$shared/helpers/formatDate'
@@ -17,6 +19,7 @@ import { Currency } from '$shared/enum/Currency'
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
+import { calculateBudget } from '../calculator/calculateBudget'
 
 @IsAdviser()
 export class BudgetAdviser implements Adviser {
@@ -26,8 +29,6 @@ export class BudgetAdviser implements Adviser {
   ) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
-    const now = new Date()
-
     const currency = await this.userRepo.getDefaultCurrency(userLogin)
 
     const [monthsStats, todaysStats] = await Promise.all([
@@ -35,11 +36,14 @@ export class BudgetAdviser implements Adviser {
       this.getTodaysStats(userLogin, currency),
     ])
 
-    const amount = this.calculateAmount(
-      monthsStats[0].income,
-      monthsStats[1].outcome,
-      todaysStats[0].outcome,
-    )
+    const money = {
+      ...monthsStats,
+      ...todaysStats,
+    }
+
+    const now = new Date()
+
+    const amount = calculateBudget(money, now)
 
     return [
       {
@@ -54,62 +58,36 @@ export class BudgetAdviser implements Adviser {
   private async getTodaysStats(userLogin: string, currency: Currency) {
     const now = new Date()
 
-    const todaysStats = await this.statistician.showDateRangeStats(
+    const [todaysStats] = await this.statistician.showDateRangeStats(
       userLogin,
       { from: now, to: now },
       GroupBy.Day,
       currency,
     )
-    return todaysStats
+
+    return {
+      todayOutcome: todaysStats.outcome,
+    }
   }
 
   private async getMonthsStats(userLogin: string, currency: Currency) {
     const now = new Date()
     const startDate = startOfMonth(subMonths(now, 1))
 
-    const monthsStats = await this.statistician.showDateRangeStats(
+    const [
+      previousMonth,
+      thisMonth,
+    ] = await this.statistician.showDateRangeStats(
       userLogin,
       { from: startDate, to: now },
       GroupBy.Month,
       currency,
     )
-    return monthsStats
-  }
 
-  private calculateAmount(
-    prevMonthIncome: number,
-    thisMonthOutcome: number,
-    todaysOutcome: number,
-  ) {
-    const expectedProfit = prevMonthIncome - thisMonthOutcome
-    const daysRemainInMonth = this.getDaysRemainInMonth()
-
-    const amount = this.calculateRawAmount(
-      expectedProfit,
-      daysRemainInMonth,
-      todaysOutcome,
-    )
-    const roundedAmount = this.roundAmount(amount)
-
-    return roundedAmount
-  }
-
-  private getDaysRemainInMonth = () => {
-    const now = new Date()
-
-    return differenceInDays(lastDayOfMonth(now), now)
-  }
-
-  private calculateRawAmount(
-    expectedProfit: number,
-    daysRemainInMonth: number,
-    todaysOutcome: number,
-  ) {
-    return expectedProfit / daysRemainInMonth - todaysOutcome
-  }
-
-  private roundAmount(amount: number) {
-    return amount > 0 ? Math.round(amount) : 0
+    return {
+      previousMonthIncome: previousMonth.income,
+      thisMonthOutcome: thisMonth.outcome,
+    }
   }
 
   private createToken(date: Date, action: TipAction): string {

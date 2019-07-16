@@ -11,7 +11,7 @@ export const useActualDateRange = (
 
   const [actualFrom, actualTo] = useMemo(
     () => [transfromFrom(from, to), transfromTo(to, from)],
-    [from, to],
+    [from, to, transfromFrom, transfromTo],
   )
 
   return {

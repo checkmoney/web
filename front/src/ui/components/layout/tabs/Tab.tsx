@@ -1,3 +1,4 @@
+import React from 'react'
 import { Tabs as AntTabs } from 'antd'
 
 import { TabProps } from './TabProps'

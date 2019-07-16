@@ -1,5 +1,5 @@
 import { endOfYear, startOfYear, getYear, parse } from 'date-fns'
-import { useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 import { useMedia } from 'use-media'
 

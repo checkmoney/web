@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { Container } from '$front/ui/components/layout/container'
@@ -22,12 +22,11 @@ export const History = () => {
 
   const months = useMemo(
     () => createMonths(t, firstTransactionDate, new Date()),
-    [firstTransactionDate],
+    [firstTransactionDate, t],
   )
-  const defaultMonthTitle = useMemo(
-    () => translatedMonthTitle(t, new Date()),
-    [],
-  )
+  const defaultMonthTitle = useMemo(() => translatedMonthTitle(t, new Date()), [
+    t,
+  ])
 
   const { innerWidth } = useWindowSize()
   const isMobile = innerWidth && innerWidth < 768

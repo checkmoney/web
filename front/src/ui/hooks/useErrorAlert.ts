@@ -14,5 +14,5 @@ export const useErrorAlert = (
         message,
       })
     }
-  }, [error])
+  }, [customMessage, error])
 }

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { useTranslation } from '$front/domain/i18n'
 
 interface Props {

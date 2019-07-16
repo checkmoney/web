@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import cx from 'classnames'
 
 import * as styles from './ControlHeader.css'

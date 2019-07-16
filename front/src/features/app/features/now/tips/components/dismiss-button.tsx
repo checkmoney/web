@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 import { Button, ButtonType } from '$front/ui/components/form/button'
 import { useThunk } from '$front/domain/store'

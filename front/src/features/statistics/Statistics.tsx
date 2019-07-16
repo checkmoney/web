@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useMappedState } from 'redux-react-hook'
 
 import { CurrencySwitch } from '$front/ui/components/controls/currency-switch'

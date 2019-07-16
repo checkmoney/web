@@ -1,5 +1,5 @@
 import { Tabs as AntTabs } from 'antd'
-import { ReactElement, useMemo, ReactNode } from 'react'
+import React, { ReactElement, useMemo, ReactNode } from 'react'
 import { head } from 'lodash'
 
 import { TabProps } from './TabProps'
@@ -36,7 +36,7 @@ export const Tabs = ({
     }
 
     return children
-  }, [children])
+  }, [vertical, children])
 
   return (
     <AntTabs
