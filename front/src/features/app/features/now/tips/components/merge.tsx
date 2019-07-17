@@ -29,6 +29,10 @@ export const Merge = ({ token, variants }: Props) => {
     [variants, token],
   )
 
+  if (!Array.isArray(variants)) {
+    return null
+  }
+
   return (
     <Card
       title={t('tips:typo.title')}
