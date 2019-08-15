@@ -1822,10 +1822,10 @@
     dotenv "^6.2.0"
     tsoption "^0.7.0"
 
-"@solid-soda/evolutions@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@solid-soda/evolutions/-/evolutions-0.0.13.tgz#9817d05e2bc432e1395355257f1ceff0a63721dd"
-  integrity sha512-Rl6tWGEKAlvO/YVTUVG21VjpeO/ghO7aWzsHOj9ZxM3VcS8PxmZXESrylrDuymvwGY+u5+OaiTI3bndBhcfYZg==
+"@solid-soda/evolutions@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@solid-soda/evolutions/-/evolutions-0.1.0.tgz#4cbba815d36afa91c44f38c8f3b1ac33a16d8070"
+  integrity sha512-7UPlf8TJg0f9fodPBlsCyNGqSoOuK/lpduUzUUah/7DvPEntyMIcvvmKStItrqmwkxogYtNtRwOQQc+dDTaBLg==
   dependencies:
     command-line-args "^5.0.2"
     fs "0.0.1-security"
