@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { GroupBy } from '&shared/enum/GroupBy';
-import { getStatsCategories } from '&front/domain/money/selectors/getStatsCategories';
-import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
 import { useTranslation } from '&front/domain/i18n';
+import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
+import { getStatsCategories } from '&front/domain/money/selectors/getStatsCategories';
+import { GroupBy } from '&shared/enum/GroupBy';
 
 import { Detail } from '../generic';
 

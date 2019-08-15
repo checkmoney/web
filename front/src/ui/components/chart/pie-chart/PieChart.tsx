@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-import { getColor } from './helpers/getColor';
 import { createOptions } from './helpers/createOptions';
+import { getColor } from './helpers/getColor';
 
 type Display = (value: number | string | undefined) => string;
 const defaultDisplay: Display = v => `${v}`;

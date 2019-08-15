@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { TipModel } from '&shared/models/mind/TipModel';
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { Card } from '&front/ui/components/layout/card';
 import { useTranslation } from '&front/domain/i18n';
+import { Card } from '&front/ui/components/layout/card';
+import { displayMoney } from '&shared/helpers/displayMoney';
+import { TipModel } from '&shared/models/mind/TipModel';
 
-import { ExtraSpendingMeta } from './ExtraSpendingMeta';
 import { DismissButton } from '../components/dismiss-button';
+import { ExtraSpendingMeta } from './ExtraSpendingMeta';
 
 interface Props {
   tip: TipModel<ExtraSpendingMeta>;

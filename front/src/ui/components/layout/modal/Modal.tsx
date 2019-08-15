@@ -1,7 +1,6 @@
+import { useModalState, useModalActions } from '@breadhead/use-modal';
 import { Modal as AntModal } from 'antd';
 import React, { ReactNode } from 'react';
-
-import { useModalState, useModalActions } from '@breadhead/use-modal';
 
 interface Props {
   id: string;

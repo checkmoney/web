@@ -6,8 +6,8 @@ import { Repository } from 'typeorm';
 
 import { DateRange } from '&back/utils/infrastructure/dto/DateRange';
 
-import { Outcome } from './Outcome.entity';
 import { TransactionRepository } from './interfaces/TransactionRepository';
+import { Outcome } from './Outcome.entity';
 
 @Injectable()
 class OutomeRepo implements TransactionRepository {

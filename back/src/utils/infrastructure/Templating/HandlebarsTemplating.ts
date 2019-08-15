@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import * as Handlebars from 'handlebars';
 import { readFile } from 'fs';
-import { promisify } from 'util';
+import * as Handlebars from 'handlebars';
 import { resolve } from 'path';
+import { promisify } from 'util';
 
-import { Templating } from './Templating';
 import { money } from './handlebarsHelpers/money';
+import { Templating } from './Templating';
 
 type PrecompiledTempltes = {
   [name: string]: Handlebars.TemplateDelegate;

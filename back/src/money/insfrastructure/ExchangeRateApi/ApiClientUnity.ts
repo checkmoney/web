@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Option } from 'tsoption';
 import { timeout } from 'promise-timeout';
+import { Option } from 'tsoption';
 
-import { Currency } from '&shared/enum/Currency';
 import { Configuration } from '&back/config/Configuration';
+import { Currency } from '&shared/enum/Currency';
+
 import { ExchangeRateApi } from './ExchangeRateApi';
-import { MannyApiClient } from './specific/MannyApiClient';
 import { ExchangeRatesApiClient } from './specific/ExchangeRatesApiClient';
+import { MannyApiClient } from './specific/MannyApiClient';
 
 @Injectable()
 export class ApiClientUnity implements ExchangeRateApi {

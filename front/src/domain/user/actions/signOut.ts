@@ -1,7 +1,7 @@
 import { fetchOrFail } from '&front/domain/store';
 
-import { actions as dataActions } from '../reducer/data';
 import { resetCookie } from '../helpers/resetCookie';
+import { actions as dataActions } from '../reducer/data';
 
 const { resetToken } = dataActions;
 

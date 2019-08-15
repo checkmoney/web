@@ -1,19 +1,19 @@
-import { useMappedState } from 'redux-react-hook';
 import { sortBy, take } from 'lodash';
 import React, { useMemo } from 'react';
+import { useMappedState } from 'redux-react-hook';
 
-import { Currency } from '&shared/enum/Currency';
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { useTranslation } from '&front/domain/i18n';
+import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
+import { getStatsCategories } from '&front/domain/money/selectors/getStatsCategories';
 import { getStatsCategoriesFetchingStatus } from '&front/domain/money/selectors/getStatsCategoriesFetchingStatus';
 import { useMemoState } from '&front/domain/store';
-import { getStatsCategories } from '&front/domain/money/selectors/getStatsCategories';
-import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
-import { LoaderTable } from '&front/ui/components/layout/loader-table';
-import { Button, ButtonType } from '&front/ui/components/form/button';
 import { pushRoute } from '&front/features/routing';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
-import { useTranslation } from '&front/domain/i18n';
+import { Button, ButtonType } from '&front/ui/components/form/button';
+import { LoaderTable } from '&front/ui/components/layout/loader-table';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { displayMoney } from '&shared/helpers/displayMoney';
 
 interface Props {
   className?: string;

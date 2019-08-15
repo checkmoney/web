@@ -1,12 +1,12 @@
-import React, { useCallback } from 'react';
 import cx from 'classnames';
+import React, { useCallback } from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
 import { ButtonGroup, Button, ButtonType } from '../button';
-import { VariantProps } from './VariantProps';
-import { ToggleProps } from './ToggleProps';
 import * as styles from './Toggle.css';
+import { ToggleProps } from './ToggleProps';
+import { VariantProps } from './VariantProps';
 
 export const Toggle = ({
   children,

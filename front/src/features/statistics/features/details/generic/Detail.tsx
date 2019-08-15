@@ -1,27 +1,27 @@
-import { ThunkDispatch } from 'redux-thunk';
+import { sortBy } from 'lodash';
+import React, { useState, useMemo } from 'react';
 import { AnyAction } from 'redux';
+import { useMappedState } from 'redux-react-hook';
+import { ThunkDispatch } from 'redux-thunk';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
-import { useMappedState } from 'redux-react-hook';
-import React, { useState, useMemo } from 'react';
-import { sortBy } from 'lodash';
 
-import { GroupBy } from '&shared/enum/GroupBy';
-import { Container } from '&front/ui/components/layout/container';
+import { Api } from '&front/domain/api';
 import { getStatsCategoriesFetchingStatus } from '&front/domain/money/selectors/getStatsCategoriesFetchingStatus';
 import { useMemoState, State, ExtraArg } from '&front/domain/store';
 import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
-import { PageHeader } from '&front/ui/components/layout/page-header';
-import { Loader } from '&front/ui/components/layout/loader';
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { pushRoute } from '&front/features/routing';
+import { PieChart } from '&front/ui/components/chart/pie-chart';
+import { Container } from '&front/ui/components/layout/container';
+import { Loader } from '&front/ui/components/layout/loader';
+import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Currency } from '&shared/enum/Currency';
-import { Api } from '&front/domain/api';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { displayMoney } from '&shared/helpers/displayMoney';
 
+import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
 import { useDateRange } from './helpers/useDateRange';
-import * as styles from './Detail.css';
 
 interface Data {
   name: string;

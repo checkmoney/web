@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+
 import { MenuItemProps } from '../MenuItemProps';
 
 type OnClickMap = {

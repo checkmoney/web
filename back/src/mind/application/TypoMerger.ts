@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
+import { EntitySaver } from '&back/db/EntitySaver';
 import { IncomeRepository } from '&back/money/domain/IncomeRepository';
 import { OutcomeRepository } from '&back/money/domain/OutcomeRepository';
-import { EntitySaver } from '&back/db/EntitySaver';
 
 @Injectable()
 export class TypoMerger {

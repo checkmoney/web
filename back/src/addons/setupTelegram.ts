@@ -1,5 +1,5 @@
-import { TelegramBot } from 'nest-telegram';
 import { INestApplication } from '@nestjs/common';
+import { TelegramBot } from 'nest-telegram';
 
 import { Configuration } from '&back/config/Configuration';
 

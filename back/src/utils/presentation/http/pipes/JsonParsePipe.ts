@@ -9,7 +9,7 @@ export class JsonParsePipe implements PipeTransform<string, any> {
       const parsed = JSON.parse(value);
 
       return parsed;
-    } catch (e) {
+    } catch (error) {
       throw new LogicException('Unexpected usage of JsonParsePipe');
     }
   }

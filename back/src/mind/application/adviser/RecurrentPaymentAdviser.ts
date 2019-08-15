@@ -1,5 +1,3 @@
-import * as md5 from 'md5';
-import { last, dropRight } from 'lodash';
 import {
   startOfMonth,
   subMonths,
@@ -10,17 +8,19 @@ import {
   getDaysInMonth,
   lastDayOfMonth,
 } from 'date-fns';
+import { last, dropRight } from 'lodash';
+import * as md5 from 'md5';
 
-import { TipModel } from '&shared/models/mind/TipModel';
-import { TipAction } from '&shared/enum/TipAction';
 import { Historian } from '&back/money/application/Historian';
-import { GroupBy } from '&shared/enum/GroupBy';
 import { Outcome } from '&back/money/domain/Outcome.entity';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { TipAction } from '&shared/enum/TipAction';
+import { TipModel } from '&shared/models/mind/TipModel';
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser';
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser';
-import { groupHasSameTransaction } from '../calculator/helpers/groupHasSameTransaction';
 import { findRecurrentTransactions } from '../calculator/findRecurrentTransactions';
+import { groupHasSameTransaction } from '../calculator/helpers/groupHasSameTransaction';
 
 const MONTH_FOR_RETROSPECTIVE = 3;
 const DAYS_GAP = 5;

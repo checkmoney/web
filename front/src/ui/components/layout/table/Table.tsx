@@ -1,8 +1,8 @@
 import { Table as AntTable } from 'antd';
 import React, { useMemo, useCallback } from 'react';
 
-import { TableProps } from './TableProps';
 import * as styles from './Table.css';
+import { TableProps } from './TableProps';
 import './AntTable.css?CSSModulesDisable';
 
 export const Table = <Data extends Array<{}>>({

@@ -1,12 +1,11 @@
-import React from 'react';
 import { Input as AntInput } from 'antd';
-
-const AntTextArea = AntInput.TextArea;
+import React, { useCallback, ChangeEvent } from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
 import { TextAreaProps } from './TextAreaProps';
-import { useCallback, ChangeEvent } from 'react';
+
+const AntTextArea = AntInput.TextArea;
 
 export const TextArea = ({ value, onChange, rows }: TextAreaProps) => {
   const { currentValue, handleChange } = useCustomInput(value, onChange);

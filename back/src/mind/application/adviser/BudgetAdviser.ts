@@ -1,4 +1,3 @@
-import * as md5 from 'md5';
 import {
   lastDayOfMonth,
   differenceInDays,
@@ -8,14 +7,15 @@ import {
   getDate,
   getDaysInMonth,
 } from 'date-fns';
+import * as md5 from 'md5';
 
-import { formatDate } from '&shared/helpers/formatDate';
-import { TipModel } from '&shared/models/mind/TipModel';
-import { TipAction } from '&shared/enum/TipAction';
 import { Statistician } from '&back/money/application/Statistician';
 import { UserRepository } from '&back/user/domain/UserRepository';
-import { GroupBy } from '&shared/enum/GroupBy';
 import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { TipAction } from '&shared/enum/TipAction';
+import { formatDate } from '&shared/helpers/formatDate';
+import { TipModel } from '&shared/models/mind/TipModel';
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser';
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser';

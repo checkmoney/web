@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { NextAppContext } from 'next/app';
 import { flatten } from 'lodash';
-
-import { Namespace } from './Namespace';
-import { I18nProvider } from './I18nProvider';
+import { NextAppContext } from 'next/app';
+import React, { Component } from 'react';
 import { ComponentType } from 'react';
+
+import { I18nProvider } from './I18nProvider';
+import { Namespace } from './Namespace';
 
 export const pageWithTranslation = (namespaces: Namespace | Namespace[]) => (
   Page: ComponentType,

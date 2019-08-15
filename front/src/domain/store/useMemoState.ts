@@ -1,6 +1,6 @@
+import { isFunction } from 'lodash';
 import { useCallback, useEffect } from 'react';
 import { useMappedState } from 'redux-react-hook';
-import { isFunction } from 'lodash';
 
 import { State } from './State';
 import { useThunk } from './useThunk';
@@ -26,7 +26,7 @@ export const useMemoState = <T>(
 
   useEffect(() => {
     dispatch(refetchAction());
-  }, [...deps, isEmpty()]); // eslint-disable-line
+  }, [...deps, isEmpty()]);
 
   return state;
 };

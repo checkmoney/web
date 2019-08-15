@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn, ManyToOne } from 'typeorm';
 import { addYears } from 'date-fns';
+import { Column, Entity, PrimaryColumn, ManyToOne } from 'typeorm';
+
 import { User } from '&back/user/domain/User.entity';
 
 @Entity()

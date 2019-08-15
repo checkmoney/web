@@ -7,7 +7,6 @@ import {
 } from '@nestjs/swagger';
 
 import { Statistician } from '&back/money/application/Statistician';
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
 import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
 import { DateRange } from '&back/utils/infrastructure/dto/DateRange';
@@ -16,11 +15,12 @@ import { createEnumValidationPipe } from '&back/utils/presentation/http/pipes/ac
 import { ParseDateRangePipe } from '&back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
+import { AverageAmountResponse } from '../response/AverageAmountResponse';
 import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse';
 import { DateGroupResponse } from '../response/DateGroupResponse';
 import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse';
-import { AverageAmountResponse } from '../response/AverageAmountResponse';
 
 @Controller('money/statistics')
 @OnlyForUsers()

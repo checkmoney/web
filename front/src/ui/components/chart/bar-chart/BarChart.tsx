@@ -1,6 +1,6 @@
 import { flatten, uniq } from 'lodash';
-import { Bar } from 'react-chartjs-2';
 import React, { useMemo } from 'react';
+import { Bar } from 'react-chartjs-2';
 
 import { createOptions } from './helpers/createOptions';
 import { getColor } from './helpers/getColor';

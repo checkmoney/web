@@ -1,14 +1,14 @@
-import React from 'react';
 import { setDate } from 'date-fns';
+import React from 'react';
 
-import { TipModel } from '&shared/models/mind/TipModel';
+import { useTranslation } from '&front/domain/i18n';
 import { Card } from '&front/ui/components/layout/card';
 import { displayMoney } from '&shared/helpers/displayMoney';
 import { formatDate } from '&shared/helpers/formatDate';
-import { useTranslation } from '&front/domain/i18n';
+import { TipModel } from '&shared/models/mind/TipModel';
 
-import { RecurrentPaymentMeta } from './RecurrentPaymentMeta';
 import { DismissButton } from '../components/dismiss-button';
+import { RecurrentPaymentMeta } from './RecurrentPaymentMeta';
 
 interface Props {
   tip: TipModel<RecurrentPaymentMeta>;

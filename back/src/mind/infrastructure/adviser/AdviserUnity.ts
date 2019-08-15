@@ -4,8 +4,8 @@ import { flatten } from 'lodash';
 
 import { TipModel } from '&shared/models/mind/TipModel';
 
-import { IsAdviser } from './helpers/IsAdviser';
 import { Adviser } from './helpers/Adviser';
+import { IsAdviser } from './helpers/IsAdviser';
 
 @Injectable()
 export class AdviserUnity implements Adviser {

@@ -1,3 +1,4 @@
+import { getDate } from 'date-fns';
 import fc from 'fast-check';
 
 import { Outcome } from '&back/money/domain/Outcome.entity';
@@ -5,7 +6,6 @@ import { User } from '&back/user/domain/User.entity';
 import { Currency } from '&shared/enum/Currency';
 
 import { groupHasSameTransaction } from '../groupHasSameTransaction';
-import { getDay, getDate } from 'date-fns';
 
 const dateArb = (exactDay?: number) =>
   fc

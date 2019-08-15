@@ -3,8 +3,8 @@ import React, { ReactElement, useMemo, useCallback } from 'react';
 
 import { useTranslation } from '&front/domain/i18n';
 
-import { MenuItemProps } from './MenuItemProps';
 import { createOnClickMap } from './helpers/createOnClickMap';
+import { MenuItemProps } from './MenuItemProps';
 
 interface Props {
   children: Array<ReactElement<MenuItemProps>>;

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Select as AntSelect } from 'antd';
+import React from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 

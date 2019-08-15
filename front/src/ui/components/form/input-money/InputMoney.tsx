@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { getCurrencySign } from '&shared/helpers/getCurrencySign';
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
+import { getCurrencySign } from '&shared/helpers/getCurrencySign';
 
 import { Input } from '../input';
 import { format } from './helpers/format';

@@ -1,6 +1,6 @@
-import { Option } from 'tsoption';
-import { useEffect } from 'react';
 import { notification } from 'antd';
+import { useEffect } from 'react';
+import { Option } from 'tsoption';
 
 export const useErrorAlert = (
   error: Option<string>,

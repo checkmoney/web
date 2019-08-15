@@ -1,10 +1,11 @@
-const next = require('next');
-const express = require('express');
-const cookieParser = require('cookie-parser');
 const args = require('args-parser')(process.argv);
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const next = require('next');
 const nextI18NextMiddleware = require('next-i18next/middleware');
-const routes = require('./routes');
+
 const i18n = require('./i18n');
+const routes = require('./routes');
 
 const FALLBACK_PORT = 3001;
 const PORT = args.p || FALLBACK_PORT;

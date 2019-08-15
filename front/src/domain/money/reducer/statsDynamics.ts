@@ -4,13 +4,13 @@ import {
   createClearReduxWithFetching,
 } from 'redux-clear';
 
-import { DateGroupModel } from '&shared/models/money/DateGroupModel';
 import {
   CachedPeriod,
   CachedState,
   createInitialState,
   newItemProcessor,
 } from '&front/domain/cached-data';
+import { DateGroupModel } from '&shared/models/money/DateGroupModel';
 
 type InternalState = CachedState<DateGroupModel>;
 type State = WithFetchingState<InternalState>;

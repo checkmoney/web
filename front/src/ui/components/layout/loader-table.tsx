@@ -1,11 +1,11 @@
 import React from 'react';
-import { Option } from 'tsoption';
 import { FetchingState } from 'redux-clear';
+import { Option } from 'tsoption';
 import { Omit } from 'utility-types';
 
-import { Table, TableProps } from './table';
-import { Card } from './card';
 import { Skeleton } from '../controls/skeleton/Skeleton';
+import { Card } from './card';
+import { Table, TableProps } from './table';
 
 interface OwnProps<Data extends Array<{}>> {
   fetching: FetchingState;

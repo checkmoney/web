@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { TipModel } from '&shared/models/mind/TipModel';
-import { Card } from '&front/ui/components/layout/card';
 import { ExternalLink } from '&front/ui/components/controls/external-link';
+import { Card } from '&front/ui/components/layout/card';
+import { TipModel } from '&shared/models/mind/TipModel';
 
-import { CustomMeta } from './CustomMeta';
 import { DismissButton } from '../components/dismiss-button';
+import { CustomMeta } from './CustomMeta';
 
 interface Props {
   tip: TipModel<CustomMeta>;

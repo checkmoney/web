@@ -19,7 +19,7 @@ export class JwtManagerGuard implements CanActivate {
       addPayloadToRequest(payload, context);
 
       return payload.isManager;
-    } catch (e) {
+    } catch (error) {
       return false;
     }
   }

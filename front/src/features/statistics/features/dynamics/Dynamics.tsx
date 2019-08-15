@@ -1,4 +1,3 @@
-import { useMappedState } from 'redux-react-hook';
 import {
   format,
   startOfMonth,
@@ -6,27 +5,28 @@ import {
   endOfYear,
   endOfMonth,
 } from 'date-fns';
-import { Option } from 'tsoption';
-import React, { useMemo } from 'react';
 import { head } from 'lodash';
+import React, { useMemo } from 'react';
+import { useMappedState } from 'redux-react-hook';
+import { Option } from 'tsoption';
 
-import { Card } from '&front/ui/components/layout/card';
-import { Stat } from '&front/ui/components/chart/stat';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { useMemoState } from '&front/domain/store';
-import { Currency } from '&shared/enum/Currency';
-import { fetchStatsAverage } from '&front/domain/money/actions/fetchStatsAverage';
-import { getStatsDynamics } from '&front/domain/money/selectors/getStatsDynamics';
-import { getStatsTotalAverage } from '&front/domain/money/selectors/getStatsTotalAverage';
-import { getStatsAverageFetchingStatus } from '&front/domain/money/selectors/getStatsAverageFetchingStatus';
-import { getStatsDynamicsFetchingStatus } from '&front/domain/money/selectors/getStatsDynamicsFetchingStatus';
-import { fetchStatsDynamics } from '&front/domain/money/actions/fetchStatsDynamics';
-import { wantUTC } from '&front/helpers/wantUTC';
-import { Loader } from '&front/ui/components/layout/loader';
-import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
-import { calculateGroupProgress } from '&shared/helpers/calculateGroupProgress';
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { useTranslation } from '&front/domain/i18n';
+import { fetchStatsAverage } from '&front/domain/money/actions/fetchStatsAverage';
+import { fetchStatsDynamics } from '&front/domain/money/actions/fetchStatsDynamics';
+import { getStatsAverageFetchingStatus } from '&front/domain/money/selectors/getStatsAverageFetchingStatus';
+import { getStatsDynamics } from '&front/domain/money/selectors/getStatsDynamics';
+import { getStatsDynamicsFetchingStatus } from '&front/domain/money/selectors/getStatsDynamicsFetchingStatus';
+import { getStatsTotalAverage } from '&front/domain/money/selectors/getStatsTotalAverage';
+import { useMemoState } from '&front/domain/store';
+import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
+import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
+import { wantUTC } from '&front/helpers/wantUTC';
+import { Stat } from '&front/ui/components/chart/stat';
+import { Card } from '&front/ui/components/layout/card';
+import { Loader } from '&front/ui/components/layout/loader';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { calculateGroupProgress } from '&shared/helpers/calculateGroupProgress';
 
 import * as styles from './Dynamics.css';
 import { calculateGrowPercentage } from './helpers/calculateGrowPercentage';

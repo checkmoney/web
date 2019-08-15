@@ -1,9 +1,9 @@
 import { Tabs as AntTabs } from 'antd';
-import React, { ReactElement, useMemo, ReactNode } from 'react';
 import { head } from 'lodash';
+import React, { ReactElement, useMemo, ReactNode } from 'react';
 
-import { TabProps } from './TabProps';
 import { getMode } from './helpers/getMode';
+import { TabProps } from './TabProps';
 
 interface Props {
   children: Array<ReactElement<TabProps>>;

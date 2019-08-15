@@ -1,4 +1,3 @@
-import * as md5 from 'md5';
 import {
   startOfMonth,
   subMonths,
@@ -6,13 +5,14 @@ import {
   getYear,
   getMonth,
 } from 'date-fns';
+import * as md5 from 'md5';
 
-import { TipModel } from '&shared/models/mind/TipModel';
-import { TipAction } from '&shared/enum/TipAction';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { calculateGroupProgress } from '&shared/helpers/calculateGroupProgress';
 import { Statistician } from '&back/money/application/Statistician';
 import { UserRepository } from '&back/user/domain/UserRepository';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { TipAction } from '&shared/enum/TipAction';
+import { calculateGroupProgress } from '&shared/helpers/calculateGroupProgress';
+import { TipModel } from '&shared/models/mind/TipModel';
 
 import { Adviser } from '../../infrastructure/adviser/helpers/Adviser';
 import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser';

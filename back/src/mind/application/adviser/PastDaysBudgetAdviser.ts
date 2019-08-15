@@ -1,4 +1,3 @@
-import * as md5 from 'md5';
 import {
   startOfWeek,
   subWeeks,
@@ -7,16 +6,17 @@ import {
   startOfMonth,
   endOfMonth,
 } from 'date-fns';
+import * as md5 from 'md5';
 
 import { Adviser } from '&back/mind/infrastructure/adviser/helpers/Adviser';
 import { IsAdviser } from '&back/mind/infrastructure/adviser/helpers/IsAdviser';
-import { TipModel } from '&shared/models/mind/TipModel';
 import { Statistician } from '&back/money/application/Statistician';
 import { UserRepository } from '&back/user/domain/UserRepository';
-import { GroupBy } from '&shared/enum/GroupBy';
 import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
 import { TipAction } from '&shared/enum/TipAction';
 import { formatDate } from '&shared/helpers/formatDate';
+import { TipModel } from '&shared/models/mind/TipModel';
 
 @IsAdviser()
 export class PastDaysBudgetAdviser implements Adviser {

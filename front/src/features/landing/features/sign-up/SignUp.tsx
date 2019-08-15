@@ -1,8 +1,9 @@
+import cx from 'classnames';
 import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useMappedState } from 'redux-react-hook';
-import cx from 'classnames';
 
+import { useTranslation } from '&front/domain/i18n';
 import { useThunk } from '&front/domain/store';
 import { signUp } from '&front/domain/user/actions/signUp';
 import { getSignUpFetching } from '&front/domain/user/selectors/getSignUpFetching';
@@ -11,9 +12,8 @@ import { pushRoute } from '&front/features/routing';
 import { InputType } from '&front/ui/components/form/input/InputType';
 import { Label } from '&front/ui/components/form/label';
 import { LoadingButton } from '&front/ui/components/form/loading-button';
-import { useErrorAlert } from '&front/ui/hooks/useErrorAlert';
 import { Card } from '&front/ui/components/layout/card';
-import { useTranslation } from '&front/domain/i18n';
+import { useErrorAlert } from '&front/ui/hooks/useErrorAlert';
 
 import * as styles from '../SignForm.css';
 

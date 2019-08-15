@@ -1,28 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { groupBy, flow, curryRight, mapValues, flatMap } from 'lodash';
 
-import { dateGroupByCallback } from '&back/utils/infrastructure/dateGroups/dateGroupByCallback';
-import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel';
-import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel';
 import { createGroups } from '&back/utils/infrastructure/dateGroups/createGroups';
-import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel';
-import { createAverageReducer } from '&shared/helpers/createAverageReducer';
+import { dateGroupByCallback } from '&back/utils/infrastructure/dateGroups/dateGroupByCallback';
 import { prevDate } from '&back/utils/infrastructure/dateGroups/prevDate';
 import { DateRange } from '&back/utils/infrastructure/dto/DateRange';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
+import { createAverageReducer } from '&shared/helpers/createAverageReducer';
+import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel';
+import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel';
+import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel';
 
-import { TransactionRepository } from '../domain/interfaces/TransactionRepository';
-import { AbstractTransaction } from '../domain/interfaces/AbstarctTransaction';
-import { OutcomeRepository } from '../domain/OutcomeRepository';
-import { IncomeRepository } from '../domain/IncomeRepository';
-import { CurrencyConverter } from './CurrencyConverter';
 import { Transaction } from '../domain/dto/Transaction';
+import { IncomeRepository } from '../domain/IncomeRepository';
+import { AbstractTransaction } from '../domain/interfaces/AbstarctTransaction';
+import { TransactionRepository } from '../domain/interfaces/TransactionRepository';
+import { OutcomeRepository } from '../domain/OutcomeRepository';
+import { CurrencyConverter } from './CurrencyConverter';
 import { amountMapper } from './helpers/amountMapper';
 import { rangeFilter } from './helpers/rangeFilter';
 import { sumReducer } from './helpers/sumReducer';
-import { SummedGroup } from './types/SummedGroup';
 import { Historian } from './Historian';
+import { SummedGroup } from './types/SummedGroup';
 
 @Injectable()
 export class Statistician {

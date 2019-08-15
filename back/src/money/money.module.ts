@@ -14,14 +14,14 @@ import { Income } from './domain/Income.entity';
 import { IncomeRepository } from './domain/IncomeRepository';
 import { Outcome } from './domain/Outcome.entity';
 import { OutcomeRepository } from './domain/OutcomeRepository';
+import { ApiClientUnity } from './insfrastructure/ExchangeRateApi/ApiClientUnity';
 import { ExchangeRateApi } from './insfrastructure/ExchangeRateApi/ExchangeRateApi';
 import { HistoryController } from './presentation/http/controller/HistoryController';
 import { StatisticsController } from './presentation/http/controller/StatisticsController';
 import { TransactionController } from './presentation/http/controller/TransactionController';
+import { ConversationFailedFilter } from './presentation/http/filter/ConversationFailedFilter';
 import { TransactionActions } from './presentation/telegram/actions/TransactionActions';
 import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/UnexpectedParameterCatcher';
-import { ConversationFailedFilter } from './presentation/http/filter/ConversationFailedFilter';
-import { ApiClientUnity } from './insfrastructure/ExchangeRateApi/ApiClientUnity';
 
 @Module({
   imports: [

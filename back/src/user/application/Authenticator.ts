@@ -22,7 +22,7 @@ export class Authenticator {
       this.jwt.verify(token);
 
       return this.jwt.decode(token) as TokenPayloadModel;
-    } catch (e) {
+    } catch (error) {
       // token is invalid
       throw new InvalidTokenException(token);
     }

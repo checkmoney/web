@@ -1,21 +1,21 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
+import { useTranslation } from '&front/domain/i18n';
+import { useMemoState, useThunk } from '&front/domain/store';
+import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
+import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
+import { setWeekStart } from '&front/domain/user/actions/setWeekStart';
+import { signOut } from '&front/domain/user/actions/signOut';
+import { getProfile } from '&front/domain/user/selectors/getProfile';
+import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
+import { Button } from '&front/ui/components/form/button';
+import { Checkbox } from '&front/ui/components/form/checkbox';
+import { Label } from '&front/ui/components/form/label';
+import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
-import { useMemoState, useThunk } from '&front/domain/store';
-import { getProfile } from '&front/domain/user/selectors/getProfile';
-import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
-import { Label } from '&front/ui/components/form/label';
-import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
-import { Card } from '&front/ui/components/layout/card';
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
 import { Currency } from '&shared/enum/Currency';
-import { Button } from '&front/ui/components/form/button';
-import { signOut } from '&front/domain/user/actions/signOut';
-import { useTranslation } from '&front/domain/i18n';
-import { Checkbox } from '&front/ui/components/form/checkbox';
-import { setWeekStart } from '&front/domain/user/actions/setWeekStart';
 
 import { pushRoute } from '../routing';
 import * as styles from './Profile.css';

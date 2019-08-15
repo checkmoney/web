@@ -1,8 +1,9 @@
-import { Option } from 'tsoption';
 import { take, head, sortBy } from 'lodash';
+import { Option } from 'tsoption';
 
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
 import { displayMoney } from '&shared/helpers/displayMoney';
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
+
 import { UnifiedTransaction } from './UnifiedTransaction';
 
 type Filter = (transaction: UnifiedTransaction) => boolean;

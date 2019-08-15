@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
+import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
+import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
 import { Categories } from '&front/features/statistics/features/details/categories';
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
+import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
+import { GroupBy } from '&shared/enum/GroupBy';
 
 interface Query {
   group?: GroupBy;

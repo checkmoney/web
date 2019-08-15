@@ -1,4 +1,3 @@
-import { GroupBy } from '&shared/enum/GroupBy';
 import {
   subWeeks,
   endOfWeek,
@@ -9,6 +8,9 @@ import {
   subYears,
   subDays,
 } from 'date-fns';
+
+import { GroupBy } from '&shared/enum/GroupBy';
+
 import { LogicException } from '../exception/LogicException';
 
 export const prevDate = (groupBy: GroupBy) => {

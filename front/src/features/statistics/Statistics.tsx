@@ -1,21 +1,21 @@
 import React, { useState, useCallback } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
+import { useTranslation } from '&front/domain/i18n';
+import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Container } from '&front/ui/components/layout/container';
+import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
 import { GroupBy } from '&shared/enum/GroupBy';
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
-import { PageHeader } from '&front/ui/components/layout/page-header';
-import { useTranslation } from '&front/domain/i18n';
 
-import { Yearly } from './features/yearly';
-import { Monthly } from './features/monthly';
-import { Dynamics } from './features/dynamics';
-import { Categories } from './features/categories';
-import { Sources } from './features/sources';
-import * as styles from './Statistics.css';
 import { pushRoute } from '../routing';
+import { Categories } from './features/categories';
+import { Dynamics } from './features/dynamics';
+import { Monthly } from './features/monthly';
+import { Sources } from './features/sources';
+import { Yearly } from './features/yearly';
+import * as styles from './Statistics.css';
 
 const columnWidthPercent = 40;
 const maxLength = 5;

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useRoutePrefetching } from '../routing';
 import { ForbiddenMessage } from './components/fornidden-message';
+import { HelloMessage } from './components/hello-message';
 import { SignIn } from './features/sign-in';
 import { SignUp } from './features/sign-up';
 import * as styles from './Landing.css';
-import { HelloMessage } from './components/hello-message';
 
 interface Props {
   forbidden?: boolean;

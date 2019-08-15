@@ -9,10 +9,30 @@ import {
   State as OutcomeFetchingState,
 } from './createOutcomeFetching';
 import {
+  reducer as deleteTransactionFetchingReducer,
+  State as DeleteTransactionFetching,
+} from './deleteTransactionFetching';
+import {
   reducer as firstTransactionDateReducer,
   State as FirstTransactionDateState,
 } from './firstTransactionDate';
 import { reducer as historyReducer, State as HistoryState } from './history';
+import {
+  reducer as listCategoriesReducer,
+  State as ListCategoriesState,
+} from './listCategories';
+import {
+  reducer as listSourceReducer,
+  State as ListSourcesState,
+} from './listSources';
+import {
+  reducer as statsAverageReducer,
+  State as StatsAverageState,
+} from './statsAverage';
+import {
+  reducer as statsCategoriesReducer,
+  State as StatsCategoriesState,
+} from './statsCategories';
 import {
   reducer as statsDynamicsReducer,
   State as StatsDynamicsState,
@@ -21,26 +41,6 @@ import {
   reducer as statsSourcesReducer,
   State as StatsSourcesState,
 } from './statsSources';
-import {
-  reducer as statsCategoriesReducer,
-  State as StatsCategoriesState,
-} from './statsCategories';
-import {
-  reducer as statsAverageReducer,
-  State as StatsAverageState,
-} from './statsAverage';
-import {
-  reducer as deleteTransactionFetchingReducer,
-  State as DeleteTransactionFetching,
-} from './deleteTransactionFetching';
-import {
-  reducer as listSourceReducer,
-  State as ListSourcesState,
-} from './listSources';
-import {
-  reducer as listCategoriesReducer,
-  State as ListCategoriesState,
-} from './listCategories';
 
 interface State {
   createIncomeFetching: IncomeFetchingState;

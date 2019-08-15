@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
-import { fetchTips } from '&front/domain/mind/actions/fetchTips';
-import { App } from '&front/features/app';
 import { pageWithTranslation, Namespace } from '&front/domain/i18n';
+import { fetchTips } from '&front/domain/mind/actions/fetchTips';
+import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
+import { App } from '&front/features/app';
 
 class AppPage extends React.Component {
   public static isSecure = true;

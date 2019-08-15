@@ -1,9 +1,9 @@
 import { fetchOrFail } from '&front/domain/store';
 import { Currency } from '&shared/enum/Currency';
 
+import { fetchStatsSourcesRequest } from '../api/fetchStatsSourcesRequest';
 import { actions } from '../reducer/statsSources';
 import { getStatsSources } from '../selectors/getStatsSources';
-import { fetchStatsSourcesRequest } from '../api/fetchStatsSourcesRequest';
 
 export const fetchStatsSources = (from: Date, to: Date, currency: Currency) =>
   fetchOrFail(actions.fetching, async (dispatch, getApi, getState) => {

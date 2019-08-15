@@ -1,6 +1,6 @@
-import { createSelector } from 'reselect';
-import { dropRight, flow } from 'lodash';
 import { Base64 } from 'js-base64';
+import { dropRight, flow } from 'lodash';
+import { createSelector } from 'reselect';
 import { Option } from 'tsoption';
 
 import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';

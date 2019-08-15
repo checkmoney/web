@@ -1,10 +1,10 @@
 import { uniqWith } from 'lodash';
 
-import { correctObjectLength } from '&front/helpers/correctObjectLength';
 import { correctArrayLength } from '&front/helpers/correctArrayLength';
+import { correctObjectLength } from '&front/helpers/correctObjectLength';
 
-import { CachedState } from './CachedState';
 import { CachedPeriod } from './CachedPeriod';
+import { CachedState } from './CachedState';
 import { createCachedPeriodKey } from './createCachedPeriodKey';
 import { isEqualCachedPeriods } from './isEqualCachedPeriods';
 

@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 
-import { TipModel } from '&shared/models/mind/TipModel';
 import { TipAction } from '&shared/enum/TipAction';
+import { TipModel } from '&shared/models/mind/TipModel';
 
 export class TipResponse implements TipModel {
   @ApiModelProperty({ example: '1fhkjsdhfsj23' })

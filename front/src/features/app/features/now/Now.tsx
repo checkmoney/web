@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
 import cx from 'classnames';
+import React, { useMemo } from 'react';
 
-import { useMemoState } from '&front/domain/store';
-import { getTips } from '&front/domain/mind/selectors/getTips';
 import { fetchTips } from '&front/domain/mind/actions/fetchTips';
+import { getTips } from '&front/domain/mind/selectors/getTips';
+import { useMemoState } from '&front/domain/store';
 
-import { getTipComponent } from './tips/getTipComponent';
 import * as styles from './Now.css';
+import { getTipComponent } from './tips/getTipComponent';
 
 interface Props {
   className?: string;

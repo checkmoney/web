@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Button, ButtonType } from '&front/ui/components/form/button';
-import { pushRoute } from '&front/features/routing';
-import { GroupBy } from '&shared/enum/GroupBy';
 import { useTranslation } from '&front/domain/i18n';
+import { pushRoute } from '&front/features/routing';
+import { Button, ButtonType } from '&front/ui/components/form/button';
+import { GroupBy } from '&shared/enum/GroupBy';
 
 interface Props {
   group?: GroupBy;

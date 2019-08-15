@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
 import { AutoComplete as AntAutoComplete } from 'antd';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
 import { AutoCompleteProps } from './AutoCompleteProps';
-import { filterOption } from './helpers/filterOption';
 import { createHandleAutoComplete } from './helpers/createHandleAutoComplete';
+import { filterOption } from './helpers/filterOption';
 
 export const AutoComplete = ({
   value,
@@ -23,7 +23,9 @@ export const AutoComplete = ({
   // hide hint if `currentValue` is empty
   const [dataSource, setDataSource] = useState<string[]>([]);
   useEffect(() => {
-    setDataSource(currentValue && currentValue.length ? variants : []);
+    const valueExists = currentValue && currentValue.length !== 0;
+
+    setDataSource(valueExists ? variants : []);
   }, [currentValue, variants]);
 
   return (

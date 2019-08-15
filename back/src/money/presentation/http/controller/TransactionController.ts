@@ -8,9 +8,9 @@ import {
 } from '@nestjs/swagger';
 
 import { Accountant } from '&back/money/application/Accountant';
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
 import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
 import { IncomeRequest } from '../request/IncomeRequest';
 import { OutcomeRequest } from '../request/OutcomeRequest';

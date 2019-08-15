@@ -1,6 +1,6 @@
 import { Statistic, Icon } from 'antd';
-import { Option } from 'tsoption';
 import React from 'react';
+import { Option } from 'tsoption';
 
 import { useTranslation } from '&front/domain/i18n';
 

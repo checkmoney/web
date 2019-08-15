@@ -1,5 +1,5 @@
-import fc from 'fast-check';
 import { getDate, getDaysInMonth, getMonth } from 'date-fns';
+import fc from 'fast-check';
 
 import { calculateBudget } from '../calculateBudget';
 

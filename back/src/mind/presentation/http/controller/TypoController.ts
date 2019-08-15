@@ -6,12 +6,12 @@ import {
   ApiOkResponse,
 } from '@nestjs/swagger';
 
+import { TypoMerger } from '&back/mind/application/TypoMerger';
+import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
 import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
 import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
-import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
 
 import { MergeTypoRequest } from '../request/MergeTypoRequest';
-import { TypoMerger } from '&back/mind/application/TypoMerger';
 
 @Controller('mind/typo')
 @OnlyForUsers()

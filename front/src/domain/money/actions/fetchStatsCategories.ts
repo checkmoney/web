@@ -1,9 +1,9 @@
 import { fetchOrFail } from '&front/domain/store';
 import { Currency } from '&shared/enum/Currency';
 
+import { fetchStatsCategoriesRequest } from '../api/fetchStatsCategoriesRequest';
 import { actions } from '../reducer/statsCategories';
 import { getStatsCategories } from '../selectors/getStatsCategories';
-import { fetchStatsCategoriesRequest } from '../api/fetchStatsCategoriesRequest';
 
 export const fetchStatsCategories = (
   from: Date,

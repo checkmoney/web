@@ -8,14 +8,14 @@ import {
 
 import { ProfileEditor } from '&back/user/application/ProfileEditor';
 import { UserRepository } from '&back/user/domain/UserRepository';
+import { JsonParsePipe } from '&back/utils/presentation/http/pipes/JsonParsePipe';
 import { PostNoCreate } from '&back/utils/presentation/http/PostNoCreate';
+import { Currency } from '&shared/enum/Currency';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
+import { CurrentUser } from '../decorator/CurrentUser';
 import { ProfileResponse } from '../response/ProfileResponse';
 import { OnlyForUsers } from '../security/OnlyForUsers';
-import { CurrentUser } from '../decorator/CurrentUser';
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
-import { Currency } from '&shared/enum/Currency';
-import { JsonParsePipe } from '&back/utils/presentation/http/pipes/JsonParsePipe';
 
 @Controller('user/profile')
 @OnlyForUsers()

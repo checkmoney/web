@@ -1,15 +1,15 @@
 import { ComponentType } from 'react';
 
-import { TipModel } from '&shared/models/mind/TipModel';
 import { TipAction } from '&shared/enum/TipAction';
+import { TipModel } from '&shared/models/mind/TipModel';
 
-import { MergeSources } from './merge-sources';
-import { MergeCategories } from './merge-categories';
+import { Custom } from './custom';
 import { DailyBudget } from './daily-budget';
 import { ExtraSpending } from './extra-spending';
-import { Custom } from './custom';
-import { RecurrentPayment } from './recurrent-payment';
+import { MergeCategories } from './merge-categories';
+import { MergeSources } from './merge-sources';
 import { PastDaysBudget } from './past-days-budget';
+import { RecurrentPayment } from './recurrent-payment';
 
 interface Props {
   tip: TipModel;

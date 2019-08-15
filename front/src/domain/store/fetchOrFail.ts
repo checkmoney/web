@@ -41,9 +41,9 @@ export const fetchOrFail = (
     await execute(dispatch, () => createApi(getToken(getState())), getState);
 
     dispatch(success());
-  } catch (e) {
-    dispatch(failure(tryOr(() => e.response.data.message, e.message)));
+  } catch (error) {
+    dispatch(failure(tryOr(() => error.response.data.message, error.message)));
 
-    throw e;
+    throw error;
   }
 };

@@ -2,8 +2,15 @@ import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
 import { useMappedState } from 'redux-react-hook';
 
+import { useTranslation } from '&front/domain/i18n';
+import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
+import { fetchSources } from '&front/domain/money/actions/fetchSources';
+import { getCategories } from '&front/domain/money/selectors/getCategories';
+import { getCreateIncomeFetching } from '&front/domain/money/selectors/getCreateIncomeFetching';
 import { getCreateOutcomeFetching } from '&front/domain/money/selectors/getCreateOutcomeFetching';
+import { getSources } from '&front/domain/money/selectors/getSources';
 import { useThunk } from '&front/domain/store';
+import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
 import {
   DatePicker,
   EnumSelect,
@@ -11,26 +18,19 @@ import {
   Toggle,
   AutoComplete,
 } from '&front/features/final-form';
+import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
+import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { Label } from '&front/ui/components/form/label';
 import { LoadingButton } from '&front/ui/components/form/loading-button';
+import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
 import { Currency } from '&shared/enum/Currency';
-import { Variant } from '&front/ui/components/form/toggle/Variant';
-import { getCreateIncomeFetching } from '&front/domain/money/selectors/getCreateIncomeFetching';
-import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
-import { getSources } from '&front/domain/money/selectors/getSources';
-import { fetchSources } from '&front/domain/money/actions/fetchSources';
-import { getCategories } from '&front/domain/money/selectors/getCategories';
-import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
-import { useTranslation } from '&front/domain/i18n';
 
 import * as styles from './CreateTransaction.css';
-import { Kind } from './helpers/Kind';
 import { getCommentByKind } from './helpers/getCommentByKind';
 import { getExampleByKind } from './helpers/getExampleByKind';
+import { Kind } from './helpers/Kind';
 import { useOnSubmit } from './helpers/useOnSubmit';
-import { translatedCurrency } from '&front/helpers/translatedCurrency';
 
 interface Props {
   className?: string;

@@ -3,14 +3,13 @@ import { ModuleRef } from '@nestjs/core';
 import { TelegramBot } from 'nest-telegram';
 
 import { ConfigModule } from './config/config.module';
+import { Configuration } from './config/Configuration';
 import { DbModule } from './db/db.module';
+import { MindModule } from './mind/mind.module';
 import { MoneyModule } from './money/money.module';
+import { TelegramModule } from './telegram/telegram.module';
 import { UserModule } from './user/user.module';
 import { UtilsModule } from './utils/utils.module';
-import { TelegramModule } from './telegram/telegram.module';
-import { MindModule } from './mind/mind.module';
-
-import { Configuration } from './config/Configuration';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
 import { OptionProps } from 'antd/lib/select';
+import { ReactElement } from 'react';
 
 export const filterOption = (
   inputValue: string,

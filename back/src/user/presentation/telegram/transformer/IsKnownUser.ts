@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from '&back/user/domain/UserRepository';
 import { ContextTransformer, Context } from 'nest-telegram';
+
+import { UserRepository } from '&back/user/domain/UserRepository';
 
 @Injectable()
 export class IsKnownUser implements ContextTransformer<boolean> {

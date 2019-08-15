@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { differenceInDays, startOfHour, startOfDay } from 'date-fns';
+import { differenceInDays, startOfDay } from 'date-fns';
+import { Option } from 'tsoption';
 
 import { EntitySaver } from '&back/db/EntitySaver';
 import { Currency } from '&shared/enum/Currency';
@@ -7,7 +8,6 @@ import { Currency } from '&shared/enum/Currency';
 import { ExchangeRate } from '../domain/ExchangeRate.entity';
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository';
 import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi/ExchangeRateApi';
-import { Option } from 'tsoption';
 import { ConversationFailedException } from './exception/ConversationFailedException';
 
 @Injectable()

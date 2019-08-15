@@ -1,15 +1,15 @@
-import React from 'react';
 import { format } from 'date-fns';
+import React from 'react';
 
-import { GroupBy } from '&shared/enum/GroupBy';
-import { Card } from '&front/ui/components/layout/card';
 import { useTranslation } from '&front/domain/i18n';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
+import { Card } from '&front/ui/components/layout/card';
+import { GroupBy } from '&shared/enum/GroupBy';
 
-import { ShowYear } from '../components/show-year';
+import { Next, Prev } from '../components/next-prev';
 import { ShowMonth } from '../components/show-month';
 import { ShowWhole } from '../components/show-whole';
-import { Next, Prev } from '../components/next-prev';
+import { ShowYear } from '../components/show-year';
 import * as styles from './PeriodChooser.css';
 
 interface Props {

@@ -1,7 +1,7 @@
 import { useModalActions } from '@breadhead/use-modal';
 
-import { OutcomeModal } from './OutcomeModal';
 import { OUTCOME_KEY } from './OUTCOME_KEY';
+import { OutcomeModal } from './OutcomeModal';
 
 export const useOutcomeModal = () => {
   const { open } = useModalActions(OUTCOME_KEY);

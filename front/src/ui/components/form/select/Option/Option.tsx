@@ -1,5 +1,5 @@
-import React from 'react';
 import { Select as AntSelect } from 'antd';
+import React from 'react';
 
 import { OptionProps } from './OptionProps';
 

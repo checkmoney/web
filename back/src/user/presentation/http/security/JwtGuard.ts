@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 
 import { Authenticator } from '&back/user/application/Authenticator';
+
 import { addPayloadToRequest } from './helpers/addPayloadToRequest';
 import { getToken } from './helpers/getToken';
 
@@ -17,7 +18,7 @@ export class JwtGuard implements CanActivate {
       addPayloadToRequest(payload, context);
 
       return true;
-    } catch (e) {
+    } catch (error) {
       return false;
     }
   }

@@ -1,7 +1,7 @@
 import { fetchOrFail } from '&front/domain/store';
 
-import { actions } from '../reducer/tips';
 import { fetchTipsRequest } from '../api/fetchTipsRequest';
+import { actions } from '../reducer/tips';
 
 export const fetchTips = () =>
   fetchOrFail(actions.fetching, async (dispatch, getApi) => {

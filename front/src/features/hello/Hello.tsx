@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
-import { pushRoute, useRoutePrefetching } from '&front/features/routing';
-import { Button } from '&front/ui/components/form/button';
 import { useThunk } from '&front/domain/store';
-import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
+import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
 import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
+import { pushRoute, useRoutePrefetching } from '&front/features/routing';
+import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
+import { Button } from '&front/ui/components/form/button';
 
 import * as styles from './Hello.css';
 

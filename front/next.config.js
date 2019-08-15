@@ -1,10 +1,9 @@
+const withTypescript = require('@zeit/next-typescript');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const withPlugins = require('next-compose-plugins');
 const withCSS = require('next-css-unpluggable');
-const withTypescript = require('@zeit/next-typescript');
 
 const tsIncludes = require('./.workarounds/ts-includes');
-
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = withPlugins(
   [

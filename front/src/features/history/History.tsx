@@ -1,19 +1,19 @@
 import React, { useMemo } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
+import { useTranslation } from '&front/domain/i18n';
+import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
+import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
-import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { useEnvironment } from '&front/ui/hooks/useEnvironment';
 import { useWindowSize } from '&front/ui/hooks/useWindowSize';
 
 import { pushRoute } from '../routing';
-import * as styles from './History.css';
-import { createMonths } from './helpers/createMonths';
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { TransactionList } from './components/transaction-list';
-import { useTranslation } from '&front/domain/i18n';
+import { createMonths } from './helpers/createMonths';
+import * as styles from './History.css';
 
 export const History = () => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate);

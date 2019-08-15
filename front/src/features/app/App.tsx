@@ -3,9 +3,9 @@ import React from 'react';
 import { Container } from '&front/ui/components/layout/container';
 
 import * as styles from './App.css';
+import { CreateTransaction } from './features/create/CreateTransaction';
 import { History } from './features/history';
 import { Navigation } from './features/navigation';
-import { CreateTransaction } from './features/create/CreateTransaction';
 import { Now } from './features/now';
 
 export const App = () => (

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { reducer as tipsReducer, State as TipsState } from './tips';
 import {
   reducer as createTipFetchingReducer,
   State as CreateTipTipState,
 } from './createTipFetching';
+import { reducer as tipsReducer, State as TipsState } from './tips';
 
 interface State {
   tips: TipsState;

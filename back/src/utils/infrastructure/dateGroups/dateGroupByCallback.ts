@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 
 import { GroupBy } from '&shared/enum/GroupBy';
+
 import { LogicException } from '../exception/LogicException';
 
 export const dateGroupByCallback = (groupBy: GroupBy) => (date: Date) => {
