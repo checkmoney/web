@@ -1,14 +1,14 @@
-import { Injectable } from '@nestjs/common'
-import { differenceInDays, startOfHour, startOfDay } from 'date-fns'
+import { Injectable } from '@nestjs/common';
+import { differenceInDays, startOfHour, startOfDay } from 'date-fns';
 
-import { EntitySaver } from '&back/db/EntitySaver'
-import { Currency } from '&shared/enum/Currency'
+import { EntitySaver } from '&back/db/EntitySaver';
+import { Currency } from '&shared/enum/Currency';
 
-import { ExchangeRate } from '../domain/ExchangeRate.entity'
-import { ExchangeRateRepository } from '../domain/ExchangeRateRepository'
-import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi/ExchangeRateApi'
-import { Option } from 'tsoption'
-import { ConversationFailedException } from './exception/ConversationFailedException'
+import { ExchangeRate } from '../domain/ExchangeRate.entity';
+import { ExchangeRateRepository } from '../domain/ExchangeRateRepository';
+import { ExchangeRateApi } from '../insfrastructure/ExchangeRateApi/ExchangeRateApi';
+import { Option } from 'tsoption';
+import { ConversationFailedException } from './exception/ConversationFailedException';
 
 @Injectable()
 export class CurrencyConverter {
@@ -25,20 +25,20 @@ export class CurrencyConverter {
     when: Date,
   ): Promise<number> {
     if (from === to) {
-      return amount
+      return amount;
     }
 
-    const normalizedDate = startOfDay(when)
-    const normalizedNowDate = startOfDay(new Date())
+    const normalizedDate = startOfDay(when);
+    const normalizedNowDate = startOfDay(new Date());
 
     const rate = await this.getExistRate(from, to, normalizedDate)
       .catch(() => this.getExistRateFromReverse(from, to, when))
       .catch(() => this.getActualRate(from, to, normalizedDate))
       .catch(() => this.getClosestExistRate(from, to, normalizedDate))
       .catch(() => this.getActualRate(from, to, normalizedNowDate))
-      .catch(() => this.getLastExistRate(from, to))
+      .catch(() => this.getLastExistRate(from, to));
 
-    return Math.round(amount * rate)
+    return Math.round(amount * rate);
   }
 
   private async getActualRate(
@@ -46,27 +46,27 @@ export class CurrencyConverter {
     to: Currency,
     when: Date,
   ): Promise<number> {
-    const MIN_DAY_FOR_HISTORY_TRANSACTION = 2
+    const MIN_DAY_FOR_HISTORY_TRANSACTION = 2;
 
     const rateIsOld =
       Math.abs(differenceInDays(when, new Date())) >
-      MIN_DAY_FOR_HISTORY_TRANSACTION
+      MIN_DAY_FOR_HISTORY_TRANSACTION;
 
     const actualRate = await (rateIsOld
       ? this.exchangeRateApi.getHistoryExchangeRate(from, to, when)
-      : this.exchangeRateApi.getExchangeRate(from, to))
+      : this.exchangeRateApi.getExchangeRate(from, to));
 
     if (actualRate.nonEmpty()) {
-      const newRate = new ExchangeRate(from, to, when, actualRate.get())
+      const newRate = new ExchangeRate(from, to, when, actualRate.get());
 
       await this.entitySaver.save(newRate).catch(() => {
         // Okay, rate not saved
-      })
+      });
 
-      return newRate.rate
+      return newRate.rate;
     }
 
-    throw new ConversationFailedException(from, to, when)
+    throw new ConversationFailedException(from, to, when);
   }
 
   private async getExistRate(
@@ -77,7 +77,7 @@ export class CurrencyConverter {
     return this.getOrThrow(
       this.exchangeRateRepo.find(from, to, when),
       new ConversationFailedException(from, to, when),
-    )
+    );
   }
 
   private async getExistRateFromReverse(
@@ -86,14 +86,14 @@ export class CurrencyConverter {
     when: Date,
   ): Promise<number> {
     const revert = ({ to, from, collectAt, rate }: ExchangeRate) =>
-      new ExchangeRate(to, from, collectAt, 1 / rate)
+      new ExchangeRate(to, from, collectAt, 1 / rate);
 
     return this.getOrThrow(
       this.exchangeRateRepo
         .find(originalTo, originalFrom, when)
         .then(rate => rate.map(revert)),
       new ConversationFailedException(originalFrom, originalTo, when),
-    )
+    );
   }
 
   private async getClosestExistRate(
@@ -104,7 +104,7 @@ export class CurrencyConverter {
     return this.getOrThrow(
       this.exchangeRateRepo.findClosest(from, to, when),
       new ConversationFailedException(from, to, when),
-    )
+    );
   }
 
   private async getLastExistRate(
@@ -114,19 +114,19 @@ export class CurrencyConverter {
     return this.getOrThrow(
       this.exchangeRateRepo.findLast(from, to),
       new ConversationFailedException(from, to, new Date()),
-    )
+    );
   }
 
   private async getOrThrow(
     promiseRate: Promise<Option<ExchangeRate>>,
     error: ConversationFailedException,
   ): Promise<number> {
-    const rate = await promiseRate
+    const rate = await promiseRate;
 
     if (rate.nonEmpty()) {
-      return rate.get().rate
+      return rate.get().rate;
     }
 
-    throw error
+    throw error;
   }
 }

@@ -1,1 +1,1 @@
-export { IncomeResponse as IncomeRequest } from '../response/IncomeResponse'
+export { IncomeResponse as IncomeRequest } from '../response/IncomeResponse';

@@ -1,1 +1,1 @@
-export const OUTCOME_KEY = 'outcome'
+export const OUTCOME_KEY = 'outcome';

@@ -1,11 +1,11 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
-import { TelegramModule as OriginalTelegramModule } from 'nest-telegram'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { TelegramModule as OriginalTelegramModule } from 'nest-telegram';
 
-import { ConfigModule } from '&back/config/config.module'
-import { UtilsModule } from '&back/utils/utils.module'
+import { ConfigModule } from '&back/config/config.module';
+import { UtilsModule } from '&back/utils/utils.module';
 
-import { TelegramOptionsFactory } from './TelegramOptionsFactory'
-import { HelpActions } from './telegram/actions/HelpActions'
+import { TelegramOptionsFactory } from './TelegramOptionsFactory';
+import { HelpActions } from './telegram/actions/HelpActions';
 
 @Module({
   imports: [

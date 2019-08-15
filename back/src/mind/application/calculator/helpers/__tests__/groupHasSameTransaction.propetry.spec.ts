@@ -1,18 +1,18 @@
-import fc from 'fast-check'
+import fc from 'fast-check';
 
-import { Outcome } from '&back/money/domain/Outcome.entity'
-import { User } from '&back/user/domain/User.entity'
-import { Currency } from '&shared/enum/Currency'
+import { Outcome } from '&back/money/domain/Outcome.entity';
+import { User } from '&back/user/domain/User.entity';
+import { Currency } from '&shared/enum/Currency';
 
-import { groupHasSameTransaction } from '../groupHasSameTransaction'
-import { getDay, getDate } from 'date-fns'
+import { groupHasSameTransaction } from '../groupHasSameTransaction';
+import { getDay, getDate } from 'date-fns';
 
 const dateArb = (exactDay?: number) =>
   fc
     .tuple(fc.integer(1000, 3000), fc.integer(0, 12), fc.integer(1, 28))
-    .map(([year, month, day]) => new Date(year, month, exactDay || day))
+    .map(([year, month, day]) => new Date(year, month, exactDay || day));
 
-const daysGapArb = () => fc.integer(1, Number.MAX_SAFE_INTEGER)
+const daysGapArb = () => fc.integer(1, Number.MAX_SAFE_INTEGER);
 
 const outcomeArb = (exactDay?: number) =>
   fc
@@ -27,7 +27,7 @@ const outcomeArb = (exactDay?: number) =>
     .map(
       ([id, amount, currency, category, login, date]) =>
         new Outcome(id, amount, currency, category, date, new User(login)),
-    )
+    );
 
 const groupWithSameOutcomeArb = ({
   amount,
@@ -41,7 +41,7 @@ const groupWithSameOutcomeArb = ({
     .map(([group, id, newDate]) => [
       ...group,
       new Outcome(id, amount, currency, category, newDate, author),
-    ])
+    ]);
 
 describe('groupHasSameTransaction#property', () => {
   test('should return false for empty group', () => {
@@ -52,8 +52,8 @@ describe('groupHasSameTransaction#property', () => {
         (daysGap, transaction) =>
           !groupHasSameTransaction([], transaction, daysGap),
       ),
-    )
-  })
+    );
+  });
 
   test('should return true for group with exactly that transaction', () => {
     fc.assert(
@@ -64,8 +64,8 @@ describe('groupHasSameTransaction#property', () => {
         (daysGap, outcome, group) =>
           groupHasSameTransaction([...group, outcome], outcome, daysGap),
       ),
-    )
-  })
+    );
+  });
 
   test('should return true for group with same transaction', () => {
     fc.assert(
@@ -77,6 +77,6 @@ describe('groupHasSameTransaction#property', () => {
         (daysGap, [outcome, group]) =>
           groupHasSameTransaction(group, outcome, daysGap),
       ),
-    )
-  })
-})
+    );
+  });
+});

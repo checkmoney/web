@@ -1,11 +1,11 @@
-import { fetchOrFail } from '&front/domain/store'
+import { fetchOrFail } from '&front/domain/store';
 
-import { actions } from '../reducer/tips'
-import { disableTipsRequest } from '../api/disableTipsRequest'
+import { actions } from '../reducer/tips';
+import { disableTipsRequest } from '../api/disableTipsRequest';
 
 export const disableTips = (tokens: string[]) =>
   fetchOrFail(undefined, async (dispatch, getApi) => {
-    dispatch(actions.data.removeTips(tokens))
+    dispatch(actions.data.removeTips(tokens));
 
-    await disableTipsRequest(getApi())({ tokens })
-  })
+    await disableTipsRequest(getApi())({ tokens });
+  });

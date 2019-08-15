@@ -1,7 +1,7 @@
-import { Api } from '&front/domain/api'
-import { actualizeStore } from '&front/domain/store/utils/actualizeStore'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel'
+import { Api } from '&front/domain/api';
+import { actualizeStore } from '&front/domain/store/utils/actualizeStore';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
 
 export const fetchHistoryRequest = (api: Api) => (
   from: Date,
@@ -16,4 +16,4 @@ export const fetchHistoryRequest = (api: Api) => (
         by,
       },
     })
-    .then(response => actualizeStore(response.data))
+    .then(response => actualizeStore(response.data));

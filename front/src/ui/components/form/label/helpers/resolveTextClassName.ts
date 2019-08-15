@@ -1,2 +1,2 @@
 export const resolveTextClassName = (inline: boolean) =>
-  inline ? 'textInline' : 'text'
+  inline ? 'textInline' : 'text';

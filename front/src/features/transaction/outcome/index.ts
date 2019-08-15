@@ -1,1 +1,1 @@
-export { useOutcomeModal } from './useOutcomeModal'
+export { useOutcomeModal } from './useOutcomeModal';

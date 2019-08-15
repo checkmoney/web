@@ -1,17 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
 import {
   Select as JustSelect,
   SelectProps,
-} from '&front/ui/components/form/select'
+} from '&front/ui/components/form/select';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<SelectProps, FieldRenderProps['input']>
+type ComponentProps = Diff<SelectProps, FieldRenderProps['input']>;
 
 export const Select = ({
   name,
@@ -21,4 +21,4 @@ export const Select = ({
     name={name}
     render={({ input }) => <JustSelect {...componentProps} {...input} />}
   />
-)
+);

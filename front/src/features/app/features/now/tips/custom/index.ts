@@ -1,1 +1,1 @@
-export { Custom } from './Custom'
+export { Custom } from './Custom';

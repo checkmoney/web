@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react'
+import React, { useCallback } from 'react';
 
-import { Option } from '../Option/Option'
-import { Select } from '../Select/Select'
-import { EnumSelectProps } from './EnumSelectProps'
+import { Option } from '../Option/Option';
+import { Select } from '../Select/Select';
+import { EnumSelectProps } from './EnumSelectProps';
 
 export const EnumSelect = ({
   options,
@@ -12,13 +12,13 @@ export const EnumSelect = ({
   const createLabel = useCallback(
     (value: string) => {
       if (getLabel) {
-        return getLabel(value)
+        return getLabel(value);
       }
 
-      return value
+      return value;
     },
     [getLabel],
-  )
+  );
 
   return (
     <Select {...props}>
@@ -28,5 +28,5 @@ export const EnumSelect = ({
         </Option>
       ))}
     </Select>
-  )
-}
+  );
+};

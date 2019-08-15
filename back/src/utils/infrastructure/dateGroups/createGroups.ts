@@ -1,9 +1,9 @@
-import { GroupBy } from '&shared/enum/GroupBy'
+import { GroupBy } from '&shared/enum/GroupBy';
 
-import { createMonthGroups } from './createMonthGroups'
-import { createWeekGroups } from './createWeekGroups'
-import { createYearGroups } from './createYearGroups'
-import { createDayGroups } from './createDayGroups'
+import { createMonthGroups } from './createMonthGroups';
+import { createWeekGroups } from './createWeekGroups';
+import { createYearGroups } from './createYearGroups';
+import { createDayGroups } from './createDayGroups';
 
 export const createGroups = (groupBy: GroupBy) =>
   ({
@@ -11,4 +11,4 @@ export const createGroups = (groupBy: GroupBy) =>
     [GroupBy.Month]: createMonthGroups,
     [GroupBy.Week]: createWeekGroups,
     [GroupBy.Day]: createDayGroups,
-  }[groupBy])
+  }[groupBy]);

@@ -1,24 +1,24 @@
-import { Option } from 'tsoption'
-import { take, head, sortBy } from 'lodash'
+import { Option } from 'tsoption';
+import { take, head, sortBy } from 'lodash';
 
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel'
-import { displayMoney } from '&shared/helpers/displayMoney'
-import { UnifiedTransaction } from './UnifiedTransaction'
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
+import { displayMoney } from '&shared/helpers/displayMoney';
+import { UnifiedTransaction } from './UnifiedTransaction';
 
-type Filter = (transaction: UnifiedTransaction) => boolean
+type Filter = (transaction: UnifiedTransaction) => boolean;
 const normalizedFilter = (filter?: Filter) => (
   transaction: UnifiedTransaction,
 ) => {
   if (filter) {
-    return filter(transaction)
+    return filter(transaction);
   }
 
-  return true
-}
+  return true;
+};
 
 interface Options {
-  maxLength?: number
-  filter?: (transaction: UnifiedTransaction) => boolean
+  maxLength?: number;
+  filter?: (transaction: UnifiedTransaction) => boolean;
 }
 
 export const historyToTableData = (
@@ -62,4 +62,4 @@ export const historyToTableData = (
           withSign: true,
         }),
       })),
-    )
+    );

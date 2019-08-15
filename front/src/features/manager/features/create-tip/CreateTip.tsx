@@ -1,34 +1,34 @@
-import { addDays } from 'date-fns'
-import React, { useCallback } from 'react'
-import { Form } from 'react-final-form'
+import { addDays } from 'date-fns';
+import React, { useCallback } from 'react';
+import { Form } from 'react-final-form';
 
 import {
   Input,
   DatePicker,
   Checkbox,
   TextArea,
-} from '&front/features/final-form'
-import { Button } from '&front/ui/components/form/button'
-import { Card } from '&front/ui/components/layout/card'
-import { Label } from '&front/ui/components/form/label'
-import { useThunk } from '&front/domain/store'
-import { createTip } from '&front/domain/mind/actions/createTip'
-import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert'
+} from '&front/features/final-form';
+import { Button } from '&front/ui/components/form/button';
+import { Card } from '&front/ui/components/layout/card';
+import { Label } from '&front/ui/components/form/label';
+import { useThunk } from '&front/domain/store';
+import { createTip } from '&front/domain/mind/actions/createTip';
+import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
 
-import * as styles from './CreateTip.css'
+import * as styles from './CreateTip.css';
 
 export const CreateTip = () => {
-  const dispatch = useThunk()
-  const notify = useNotifyAlert()
+  const dispatch = useThunk();
+  const notify = useNotifyAlert();
 
   const onSubmit = useCallback(
     async (fields: any) => {
-      await dispatch(createTip(fields))
+      await dispatch(createTip(fields));
 
-      notify('Tip created')
+      notify('Tip created');
     },
     [notify],
-  )
+  );
 
   return (
     <Form
@@ -65,5 +65,5 @@ export const CreateTip = () => {
         </form>
       )}
     </Form>
-  )
-}
+  );
+};

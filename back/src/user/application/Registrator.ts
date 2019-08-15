@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common';
 
-import { EntitySaver } from '&back/db/EntitySaver'
+import { EntitySaver } from '&back/db/EntitySaver';
 
-import { User } from '../domain/User.entity'
-import { UserRepository } from '../domain/UserRepository'
-import { PasswordEncoder } from '../infrastructure/PasswordEncoder/PasswordEncoder'
-import { LoginAlreadyTakenException } from './exception/LoginAlreadyTakenException'
+import { User } from '../domain/User.entity';
+import { UserRepository } from '../domain/UserRepository';
+import { PasswordEncoder } from '../infrastructure/PasswordEncoder/PasswordEncoder';
+import { LoginAlreadyTakenException } from './exception/LoginAlreadyTakenException';
 
 @Injectable()
 export class Registrator {
@@ -16,31 +16,31 @@ export class Registrator {
   ) {}
 
   public async signUp(login: string, password: string): Promise<void> {
-    const existUser = await this.userRepo.findOne(login)
+    const existUser = await this.userRepo.findOne(login);
     if (existUser.nonEmpty()) {
-      throw new LoginAlreadyTakenException(login)
+      throw new LoginAlreadyTakenException(login);
     }
 
-    const user = new User(login)
+    const user = new User(login);
 
-    await user.changePassword(password, this.passwordEncoder)
+    await user.changePassword(password, this.passwordEncoder);
 
-    await this.entitySaver.save(user)
+    await this.entitySaver.save(user);
   }
 
   public async addTelegramAccount(
     login: string,
     telegramId: number,
   ): Promise<void> {
-    const attachedUser = await this.userRepo.findOneByTelegram(telegramId)
+    const attachedUser = await this.userRepo.findOneByTelegram(telegramId);
     if (attachedUser.nonEmpty()) {
-      throw new LoginAlreadyTakenException(login)
+      throw new LoginAlreadyTakenException(login);
     }
 
-    const user = await this.userRepo.getOne(login)
+    const user = await this.userRepo.getOne(login);
 
-    user.attachTelegram(telegramId)
+    user.attachTelegram(telegramId);
 
-    await this.entitySaver.save(user)
+    await this.entitySaver.save(user);
   }
 }

@@ -1,11 +1,11 @@
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
 export type RecurrentPaymentMeta = {
-  amount: number
-  category: string
-  currency: Currency
+  amount: number;
+  category: string;
+  currency: Currency;
   period: {
-    from: number
-    to: number
-  }
-}
+    from: number;
+    to: number;
+  };
+};

@@ -1,8 +1,8 @@
-import { IncomeModel } from './IncomeModel'
-import { OutcomeModel } from './OutcomeModel'
+import { IncomeModel } from './IncomeModel';
+import { OutcomeModel } from './OutcomeModel';
 
 export interface HistoryGroupModel {
-  title: string
-  incomes: IncomeModel[]
-  outcomes: OutcomeModel[]
+  title: string;
+  incomes: IncomeModel[];
+  outcomes: OutcomeModel[];
 }

@@ -1,35 +1,35 @@
-import React, { useMemo } from 'react'
-import { useMappedState } from 'redux-react-hook'
+import React, { useMemo } from 'react';
+import { useMappedState } from 'redux-react-hook';
 
-import { Container } from '&front/ui/components/layout/container'
-import { PageHeader } from '&front/ui/components/layout/page-header'
-import { Tab, Tabs } from '&front/ui/components/layout/tabs'
-import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate'
-import { useEnvironment } from '&front/ui/hooks/useEnvironment'
-import { useWindowSize } from '&front/ui/hooks/useWindowSize'
+import { Container } from '&front/ui/components/layout/container';
+import { PageHeader } from '&front/ui/components/layout/page-header';
+import { Tab, Tabs } from '&front/ui/components/layout/tabs';
+import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
+import { useEnvironment } from '&front/ui/hooks/useEnvironment';
+import { useWindowSize } from '&front/ui/hooks/useWindowSize';
 
-import { pushRoute } from '../routing'
-import * as styles from './History.css'
-import { createMonths } from './helpers/createMonths'
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle'
-import { TransactionList } from './components/transaction-list'
-import { useTranslation } from '&front/domain/i18n'
+import { pushRoute } from '../routing';
+import * as styles from './History.css';
+import { createMonths } from './helpers/createMonths';
+import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
+import { TransactionList } from './components/transaction-list';
+import { useTranslation } from '&front/domain/i18n';
 
 export const History = () => {
-  const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const { isClient } = useEnvironment()
-  const { t } = useTranslation()
+  const firstTransactionDate = useMappedState(getFirstTransactionDate);
+  const { isClient } = useEnvironment();
+  const { t } = useTranslation();
 
   const months = useMemo(
     () => createMonths(t, firstTransactionDate, new Date()),
     [firstTransactionDate, t],
-  )
+  );
   const defaultMonthTitle = useMemo(() => translatedMonthTitle(t, new Date()), [
     t,
-  ])
+  ]);
 
-  const { innerWidth } = useWindowSize()
-  const isMobile = innerWidth && innerWidth < 768
+  const { innerWidth } = useWindowSize();
+  const isMobile = innerWidth && innerWidth < 768;
 
   return (
     <Container>
@@ -60,5 +60,5 @@ export const History = () => {
         </Tabs>
       )}
     </Container>
-  )
-}
+  );
+};

@@ -1,1 +1,1 @@
-export { RecurrentPayment } from './RecurrentPayment'
+export { RecurrentPayment } from './RecurrentPayment';

@@ -1,5 +1,5 @@
-import { ChartOptions } from 'chart.js'
-import { isUndefined } from 'lodash'
+import { ChartOptions } from 'chart.js';
+import { isUndefined } from 'lodash';
 
 export const createOptions = (
   displayValue: (value: number | string | undefined) => string,
@@ -22,10 +22,10 @@ export const createOptions = (
         if (!isUndefined(data.datasets) && !isUndefined(item.datasetIndex)) {
           return `${data.datasets[item.datasetIndex].label}: ${displayValue(
             item.yLabel,
-          )}`
+          )}`;
         }
 
-        return displayValue(item.yLabel)
+        return displayValue(item.yLabel);
       },
     },
   },
@@ -40,4 +40,4 @@ export const createOptions = (
   },
   responsive: true,
   maintainAspectRatio,
-})
+});

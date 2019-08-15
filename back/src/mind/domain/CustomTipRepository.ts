@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-import { CustomTip } from './CustomTip.entity'
+import { CustomTip } from './CustomTip.entity';
 
 @Injectable()
 class CustomTipRepo {
@@ -12,14 +12,14 @@ class CustomTipRepo {
   ) {}
 
   public async findActual(): Promise<CustomTip[]> {
-    const now = new Date().toISOString()
+    const now = new Date().toISOString();
 
     return this.customTipRepo
       .createQueryBuilder('tip')
       .where('tip.expireAt >= :now', { now })
-      .getMany()
+      .getMany();
   }
 }
 
-export const CustomTipRepository = CustomTipRepo
-export type CustomTipRepository = CustomTipRepo
+export const CustomTipRepository = CustomTipRepo;
+export type CustomTipRepository = CustomTipRepo;

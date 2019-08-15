@@ -1,1 +1,1 @@
-export { Period } from './Period'
+export { Period } from './Period';

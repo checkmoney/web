@@ -1,1 +1,1 @@
-export { ControlHeader } from './ControlHeader'
+export { ControlHeader } from './ControlHeader';

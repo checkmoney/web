@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 
 export const formatDate = (date: Date, template = 'DD/MM/YYYY') =>
-  format(date, template)
+  format(date, template);

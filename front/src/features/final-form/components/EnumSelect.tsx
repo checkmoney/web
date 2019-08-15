@@ -1,17 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
 import {
   EnumSelect as JustEnumSelect,
   EnumSelectProps,
-} from '&front/ui/components/form/select'
+} from '&front/ui/components/form/select';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<EnumSelectProps, FieldRenderProps['input']>
+type ComponentProps = Diff<EnumSelectProps, FieldRenderProps['input']>;
 
 export const EnumSelect = ({
   name,
@@ -21,4 +21,4 @@ export const EnumSelect = ({
     name={name}
     render={({ input }) => <JustEnumSelect {...componentProps} {...input} />}
   />
-)
+);

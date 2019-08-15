@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-import { useTranslation } from '&front/domain/i18n'
+import { useTranslation } from '&front/domain/i18n';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
 export const ForbiddenMessage = ({ className }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  return <p className={className}>{t('landing:forbidden')}</p>
-}
+  return <p className={className}>{t('landing:forbidden')}</p>;
+};

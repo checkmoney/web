@@ -1,7 +1,7 @@
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
 export interface AbstractTransaction {
-  amount: number
-  currency: Currency
-  date: Date
+  amount: number;
+  currency: Currency;
+  date: Date;
 }

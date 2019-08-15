@@ -1,13 +1,13 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { endOfDay, startOfDay } from 'date-fns'
-import { Option } from 'tsoption'
-import { Repository } from 'typeorm'
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { endOfDay, startOfDay } from 'date-fns';
+import { Option } from 'tsoption';
+import { Repository } from 'typeorm';
 
-import { DateRange } from '&back/utils/infrastructure/dto/DateRange'
+import { DateRange } from '&back/utils/infrastructure/dto/DateRange';
 
-import { Outcome } from './Outcome.entity'
-import { TransactionRepository } from './interfaces/TransactionRepository'
+import { Outcome } from './Outcome.entity';
+import { TransactionRepository } from './interfaces/TransactionRepository';
 
 @Injectable()
 class OutomeRepo implements TransactionRepository {
@@ -26,9 +26,9 @@ class OutomeRepo implements TransactionRepository {
         userLogin,
       })
       .where('outcome.id = :id', { id })
-      .getOne()
+      .getOne();
 
-    return Option.of(outcome)
+    return Option.of(outcome);
   }
 
   public async findEarliest(userLogin: string): Promise<Option<Outcome>> {
@@ -38,19 +38,19 @@ class OutomeRepo implements TransactionRepository {
         userLogin,
       })
       .orderBy('outcome.date')
-      .getOne()
+      .getOne();
 
-    return Option.of(income)
+    return Option.of(income);
   }
 
   public async findByRangeForUser(
     userLogin: string,
     range: DateRange,
   ): Promise<Outcome[]> {
-    const { from, to } = range
+    const { from, to } = range;
 
-    const start = startOfDay(from).toISOString()
-    const end = endOfDay(to).toISOString()
+    const start = startOfDay(from).toISOString();
+    const end = endOfDay(to).toISOString();
 
     return this.outcomeRepo
       .createQueryBuilder('outcome')
@@ -59,7 +59,7 @@ class OutomeRepo implements TransactionRepository {
       })
       .where('outcome.date >= :start', { start })
       .andWhere('outcome.date < :end', { end })
-      .getMany()
+      .getMany();
   }
 
   public async findCategoriesForUser(userLogin: string): Promise<string[]> {
@@ -69,9 +69,9 @@ class OutomeRepo implements TransactionRepository {
       .innerJoin('outcome.author', 'author', 'author.login = :userLogin', {
         userLogin,
       })
-      .getRawMany()
+      .getRawMany();
 
-    return result.map(({ category }) => category)
+    return result.map(({ category }) => category);
   }
 
   public async findByCategoriesForUser(
@@ -84,9 +84,9 @@ class OutomeRepo implements TransactionRepository {
       .innerJoin('outcome.author', 'author', 'author.login = :userLogin', {
         userLogin,
       })
-      .getMany()
+      .getMany();
   }
 }
 
-export const OutcomeRepository = OutomeRepo
-export type OutcomeRepository = OutomeRepo
+export const OutcomeRepository = OutomeRepo;
+export type OutcomeRepository = OutomeRepo;

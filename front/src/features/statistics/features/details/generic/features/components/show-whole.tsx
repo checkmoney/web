@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import { Button, ButtonType } from '&front/ui/components/form/button'
-import { pushRoute } from '&front/features/routing'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { useTranslation } from '&front/domain/i18n'
+import { Button, ButtonType } from '&front/ui/components/form/button';
+import { pushRoute } from '&front/features/routing';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { useTranslation } from '&front/domain/i18n';
 
 interface Props {
-  group?: GroupBy
-  detailType: string
+  group?: GroupBy;
+  detailType: string;
 }
 
 export const ShowWhole = ({ group, detailType }: Props) => {
-  const showWhole = !!group
-  const { t } = useTranslation()
+  const showWhole = !!group;
+  const { t } = useTranslation();
 
   return showWhole ? (
     <Button
@@ -21,5 +21,5 @@ export const ShowWhole = ({ group, detailType }: Props) => {
     >
       {t('stats:details.show-whole')}
     </Button>
-  ) : null
-}
+  ) : null;
+};

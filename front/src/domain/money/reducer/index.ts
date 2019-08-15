@@ -1,59 +1,59 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
 import {
   reducer as incomeFetchingReducer,
   State as IncomeFetchingState,
-} from './createIncomeFetching'
+} from './createIncomeFetching';
 import {
   reducer as outcomeFetchingReducer,
   State as OutcomeFetchingState,
-} from './createOutcomeFetching'
+} from './createOutcomeFetching';
 import {
   reducer as firstTransactionDateReducer,
   State as FirstTransactionDateState,
-} from './firstTransactionDate'
-import { reducer as historyReducer, State as HistoryState } from './history'
+} from './firstTransactionDate';
+import { reducer as historyReducer, State as HistoryState } from './history';
 import {
   reducer as statsDynamicsReducer,
   State as StatsDynamicsState,
-} from './statsDynamics'
+} from './statsDynamics';
 import {
   reducer as statsSourcesReducer,
   State as StatsSourcesState,
-} from './statsSources'
+} from './statsSources';
 import {
   reducer as statsCategoriesReducer,
   State as StatsCategoriesState,
-} from './statsCategories'
+} from './statsCategories';
 import {
   reducer as statsAverageReducer,
   State as StatsAverageState,
-} from './statsAverage'
+} from './statsAverage';
 import {
   reducer as deleteTransactionFetchingReducer,
   State as DeleteTransactionFetching,
-} from './deleteTransactionFetching'
+} from './deleteTransactionFetching';
 import {
   reducer as listSourceReducer,
   State as ListSourcesState,
-} from './listSources'
+} from './listSources';
 import {
   reducer as listCategoriesReducer,
   State as ListCategoriesState,
-} from './listCategories'
+} from './listCategories';
 
 interface State {
-  createIncomeFetching: IncomeFetchingState
-  createOutcomeFetching: OutcomeFetchingState
-  statsDynamics: StatsDynamicsState
-  statsSources: StatsSourcesState
-  statsCategories: StatsCategoriesState
-  statsAverage: StatsAverageState
-  history: HistoryState
-  firstTransactionDate: FirstTransactionDateState
-  deleteTransactionFetching: DeleteTransactionFetching
-  listSources: ListSourcesState
-  listCategories: ListCategoriesState
+  createIncomeFetching: IncomeFetchingState;
+  createOutcomeFetching: OutcomeFetchingState;
+  statsDynamics: StatsDynamicsState;
+  statsSources: StatsSourcesState;
+  statsCategories: StatsCategoriesState;
+  statsAverage: StatsAverageState;
+  history: HistoryState;
+  firstTransactionDate: FirstTransactionDateState;
+  deleteTransactionFetching: DeleteTransactionFetching;
+  listSources: ListSourcesState;
+  listCategories: ListCategoriesState;
 }
 
 const reducer = combineReducers<State>({
@@ -68,6 +68,6 @@ const reducer = combineReducers<State>({
   deleteTransactionFetching: deleteTransactionFetchingReducer,
   listSources: listSourceReducer,
   listCategories: listCategoriesReducer,
-})
+});
 
-export { reducer, State }
+export { reducer, State };

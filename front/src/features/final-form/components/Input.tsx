@@ -1,14 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
-import { Input as JustInput, InputProps } from '&front/ui/components/form/input'
+import {
+  Input as JustInput,
+  InputProps,
+} from '&front/ui/components/form/input';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<InputProps, FieldRenderProps['input']>
+type ComponentProps = Diff<InputProps, FieldRenderProps['input']>;
 
 export const Input = ({
   name,
@@ -18,4 +21,4 @@ export const Input = ({
     name={name}
     render={({ input }) => <JustInput {...componentProps} {...input} />}
   />
-)
+);

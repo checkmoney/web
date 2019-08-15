@@ -1,7 +1,7 @@
-import { createFetchingRedux, FetchingState } from 'redux-clear'
+import { createFetchingRedux, FetchingState } from 'redux-clear';
 
-type State = FetchingState
+type State = FetchingState;
 
-const { reducer, actions } = createFetchingRedux('manager/create-tip-fetching')
+const { reducer, actions } = createFetchingRedux('manager/create-tip-fetching');
 
-export { reducer, actions, State }
+export { reducer, actions, State };

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Omit } from 'utility-types'
-import { FetchingState } from 'redux-clear'
+import React from 'react';
+import { Omit } from 'utility-types';
+import { FetchingState } from 'redux-clear';
 
-import { Button, ButtonProps } from '../button'
+import { Button, ButtonProps } from '../button';
 
-type CompatibleButtonProps = Omit<ButtonProps, 'disabled'>
+type CompatibleButtonProps = Omit<ButtonProps, 'disabled'>;
 
 interface OwnProps {
-  fethcing: FetchingState
+  fethcing: FetchingState;
 }
 
 export const LoadingButton = ({
@@ -15,11 +15,11 @@ export const LoadingButton = ({
   children,
   ...props
 }: OwnProps & CompatibleButtonProps) => {
-  const disabled = fethcing.loading
+  const disabled = fethcing.loading;
 
   return (
     <Button {...props} disabled={disabled}>
       {children}
     </Button>
-  )
-}
+  );
+};

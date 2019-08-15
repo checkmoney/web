@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common';
 
-import { IncomeRepository } from '&back/money/domain/IncomeRepository'
-import { OutcomeRepository } from '&back/money/domain/OutcomeRepository'
-import { EntitySaver } from '&back/db/EntitySaver'
+import { IncomeRepository } from '&back/money/domain/IncomeRepository';
+import { OutcomeRepository } from '&back/money/domain/OutcomeRepository';
+import { EntitySaver } from '&back/db/EntitySaver';
 
 @Injectable()
 export class TypoMerger {
@@ -20,7 +20,7 @@ export class TypoMerger {
     await Promise.all([
       this.mergeInIncomes(primary, secondary, userLogin),
       this.mergeInOutcomes(primary, secondary, userLogin),
-    ])
+    ]);
   }
 
   private async mergeInIncomes(
@@ -31,17 +31,17 @@ export class TypoMerger {
     const [mainIncomes, incomes] = await Promise.all([
       this.incomeRepo.findBySourcesForUser([primary], userLogin),
       this.incomeRepo.findBySourcesForUser(secondary, userLogin),
-    ])
+    ]);
 
     if (mainIncomes.length === 0) {
-      return
+      return;
     }
 
     incomes.forEach(income => {
-      income.source = primary
-    })
+      income.source = primary;
+    });
 
-    await this.entitySaver.save(...incomes)
+    await this.entitySaver.save(...incomes);
   }
 
   private async mergeInOutcomes(
@@ -52,16 +52,16 @@ export class TypoMerger {
     const [mainOutcomes, outcomes] = await Promise.all([
       this.outcomeRepo.findByCategoriesForUser([primary], userLogin),
       this.outcomeRepo.findByCategoriesForUser(secondary, userLogin),
-    ])
+    ]);
 
     if (mainOutcomes.length === 0) {
-      return
+      return;
     }
 
     outcomes.forEach(outcome => {
-      outcome.category = primary
-    })
+      outcome.category = primary;
+    });
 
-    await this.entitySaver.save(...outcomes)
+    await this.entitySaver.save(...outcomes);
   }
 }

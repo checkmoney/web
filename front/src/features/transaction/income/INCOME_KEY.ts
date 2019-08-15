@@ -1,1 +1,1 @@
-export const INCOME_KEY = 'income'
+export const INCOME_KEY = 'income';

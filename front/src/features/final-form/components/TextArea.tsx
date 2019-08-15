@@ -1,17 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
 import {
   TextArea as JustTextArea,
   TextAreaProps,
-} from '&front/ui/components/form/text-area'
+} from '&front/ui/components/form/text-area';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<TextAreaProps, FieldRenderProps['input']>
+type ComponentProps = Diff<TextAreaProps, FieldRenderProps['input']>;
 
 export const TextArea = ({
   name,
@@ -21,4 +21,4 @@ export const TextArea = ({
     name={name}
     render={({ input }) => <JustTextArea {...componentProps} {...input} />}
   />
-)
+);

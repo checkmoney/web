@@ -1,1 +1,1 @@
-export { Sources } from './Sources'
+export { Sources } from './Sources';

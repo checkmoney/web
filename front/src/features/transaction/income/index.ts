@@ -1,1 +1,1 @@
-export { useIncomeModal } from './useIncomeModal'
+export { useIncomeModal } from './useIncomeModal';

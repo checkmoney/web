@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Option } from 'tsoption'
-import { Repository } from 'typeorm'
-import { startOfDay, endOfDay, differenceInMilliseconds } from 'date-fns'
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Option } from 'tsoption';
+import { Repository } from 'typeorm';
+import { startOfDay, endOfDay, differenceInMilliseconds } from 'date-fns';
 
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
-import { ExchangeRate } from './ExchangeRate.entity'
+import { ExchangeRate } from './ExchangeRate.entity';
 
 @Injectable()
 class ExchangeRateRepo {
@@ -20,15 +20,15 @@ class ExchangeRateRepo {
     to: Currency,
     forWhen: Date = new Date(),
   ): Promise<Option<ExchangeRate>> {
-    const startDate = startOfDay(forWhen)
-    const endDate = endOfDay(forWhen)
+    const startDate = startOfDay(forWhen);
+    const endDate = endOfDay(forWhen);
 
     return this.createFromToQueryBuilder('rate')
       .andWhere('rate.collectAt >= :startDate')
       .andWhere('rate.collectAt <= :endDate')
       .setParameters({ from, to, startDate, endDate })
       .getOne()
-      .then(this.toOption)
+      .then(this.toOption);
   }
 
   public async findLast(
@@ -39,7 +39,7 @@ class ExchangeRateRepo {
       .orderBy('rate.collectAt', 'DESC')
       .setParameters({ from, to })
       .getOne()
-      .then(this.toOption)
+      .then(this.toOption);
   }
 
   public async findClosest(
@@ -53,7 +53,7 @@ class ExchangeRateRepo {
         .orderBy('rate.collectAt', 'DESC')
         .setParameters({ from, to, forWhen })
         .getOne()
-        .then(this.toOption)
+        .then(this.toOption);
 
     const findAfter = () =>
       this.createFromToQueryBuilder('rate')
@@ -61,33 +61,33 @@ class ExchangeRateRepo {
         .orderBy('rate.collectAt', 'ASC')
         .setParameters({ from, to, forWhen })
         .getOne()
-        .then(this.toOption)
+        .then(this.toOption);
 
-    const [before, after] = await Promise.all([findBefore(), findAfter()])
+    const [before, after] = await Promise.all([findBefore(), findAfter()]);
 
     const rateToDiff = (rate: Option<ExchangeRate>) =>
       rate
         .map(r => differenceInMilliseconds(r.collectAt, forWhen))
         .map(Math.abs)
-        .getOrElse(Infinity)
+        .getOrElse(Infinity);
 
-    const beforeDiff = rateToDiff(before)
-    const afterDiff = rateToDiff(after)
+    const beforeDiff = rateToDiff(before);
+    const afterDiff = rateToDiff(after);
 
-    return afterDiff < beforeDiff ? after : before
+    return afterDiff < beforeDiff ? after : before;
   }
 
   private createFromToQueryBuilder(alias: string) {
     return this.exchageRateRepo
       .createQueryBuilder(alias)
       .where(`${alias}.from = :from`)
-      .andWhere(`${alias}.to = :to`)
+      .andWhere(`${alias}.to = :to`);
   }
 
   private toOption(rate: ExchangeRate): Option<ExchangeRate> {
-    return Option.of(rate)
+    return Option.of(rate);
   }
 }
 
-export const ExchangeRateRepository = ExchangeRateRepo
-export type ExchangeRateRepository = ExchangeRateRepo
+export const ExchangeRateRepository = ExchangeRateRepo;
+export type ExchangeRateRepository = ExchangeRateRepo;

@@ -1,1 +1,1 @@
-export const normalizeComment = (comment: string) => comment.trim()
+export const normalizeComment = (comment: string) => comment.trim();

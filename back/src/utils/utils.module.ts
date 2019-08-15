@@ -1,11 +1,11 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
-import { IdGenerator } from './infrastructure/IdGenerator/IdGenerator'
-import { NanoIdGenerator } from './infrastructure/IdGenerator/NanoIdGenerator'
-import { ParseDateRangePipe } from './presentation/http/pipes/dateRange/ParseDateRangePipe'
-import { Templating } from './infrastructure/Templating/Templating'
-import { HandlebarsTemplating } from './infrastructure/Templating/HandlebarsTemplating'
-import { JsonParsePipe } from './presentation/http/pipes/JsonParsePipe'
+import { IdGenerator } from './infrastructure/IdGenerator/IdGenerator';
+import { NanoIdGenerator } from './infrastructure/IdGenerator/NanoIdGenerator';
+import { ParseDateRangePipe } from './presentation/http/pipes/dateRange/ParseDateRangePipe';
+import { Templating } from './infrastructure/Templating/Templating';
+import { HandlebarsTemplating } from './infrastructure/Templating/HandlebarsTemplating';
+import { JsonParsePipe } from './presentation/http/pipes/JsonParsePipe';
 
 @Module({
   providers: [

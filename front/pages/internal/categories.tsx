@@ -1,52 +1,52 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import { AppContext } from '&front/domain/AppContext'
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate'
-import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories'
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { createRangeForGroup } from '&front/helpers/createRangeForGroup'
-import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate'
-import { Categories } from '&front/features/statistics/features/details/categories'
-import { pageWithTranslation, Namespace } from '&front/domain/i18n'
+import { AppContext } from '&front/domain/AppContext';
+import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
+import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
+import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
+import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
+import { Categories } from '&front/features/statistics/features/details/categories';
+import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 
 interface Query {
-  group?: GroupBy
+  group?: GroupBy;
 }
 
 class CateogiesPage extends React.Component<Query> {
-  public static isSecure = true
+  public static isSecure = true;
 
   public static async getInitialProps({
     reduxStore,
     query,
   }: AppContext<Query>) {
-    const { group } = query
+    const { group } = query;
 
-    await reduxStore.dispatch(fetchFirstTransactionDate() as any)
-    const firstTransactionDate = getFirstTransactionDate(reduxStore.getState())
+    await reduxStore.dispatch(fetchFirstTransactionDate() as any);
+    const firstTransactionDate = getFirstTransactionDate(reduxStore.getState());
 
     const { from, to } = !!group
       ? createRangeForGroup(group)
       : {
           from: firstTransactionDate,
           to: new Date(),
-        }
+        };
 
-    const currency = getDefaultCurrency(reduxStore.getState())
+    const currency = getDefaultCurrency(reduxStore.getState());
 
-    await reduxStore.dispatch(fetchStatsCategories(from, to, currency) as any)
+    await reduxStore.dispatch(fetchStatsCategories(from, to, currency) as any);
 
-    return { group }
+    return { group };
   }
 
   public render() {
-    const { group } = this.props
+    const { group } = this.props;
 
-    return <Categories group={group} />
+    return <Categories group={group} />;
   }
 }
 
 export default pageWithTranslation([Namespace.Stats, Namespace.Months])(
   CateogiesPage,
-)
+);

@@ -1,4 +1,4 @@
-import { State } from '&front/domain/store'
+import { State } from '&front/domain/store';
 
 export const getCreateIncomeFetching = (state: State) =>
-  state.money.createIncomeFetching
+  state.money.createIncomeFetching;

@@ -1,1 +1,1 @@
-export { PastDaysBudget } from './PastDaysBudget'
+export { PastDaysBudget } from './PastDaysBudget';

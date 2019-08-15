@@ -1,1 +1,1 @@
-export type MergeSourcesMeta = string[]
+export type MergeSourcesMeta = string[];

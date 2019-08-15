@@ -1,21 +1,21 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import { AppContext } from '&front/domain/AppContext'
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate'
-import { History } from '&front/features/history'
-import { pageWithTranslation, Namespace } from '&front/domain/i18n'
+import { AppContext } from '&front/domain/AppContext';
+import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
+import { History } from '&front/features/history';
+import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 
 class HisotryPage extends React.Component {
-  public static isSecure = true
+  public static isSecure = true;
 
   public static async getInitialProps({ reduxStore }: AppContext) {
-    await reduxStore.dispatch(fetchFirstTransactionDate() as any)
+    await reduxStore.dispatch(fetchFirstTransactionDate() as any);
 
-    return {}
+    return {};
   }
 
   public render() {
-    return <History />
+    return <History />;
   }
 }
 
@@ -23,4 +23,4 @@ export default pageWithTranslation([
   Namespace.Transaction,
   Namespace.History,
   Namespace.Months,
-])(HisotryPage)
+])(HisotryPage);

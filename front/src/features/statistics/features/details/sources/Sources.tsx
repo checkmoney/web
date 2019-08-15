@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import { GroupBy } from '&shared/enum/GroupBy'
-import { fetchStatsSources } from '&front/domain/money/actions/fetchStatsSources'
-import { getStatsSources } from '&front/domain/money/selectors/getStatsSources'
-import { useTranslation } from '&front/domain/i18n'
+import { GroupBy } from '&shared/enum/GroupBy';
+import { fetchStatsSources } from '&front/domain/money/actions/fetchStatsSources';
+import { getStatsSources } from '&front/domain/money/selectors/getStatsSources';
+import { useTranslation } from '&front/domain/i18n';
 
-import { Detail } from '../generic'
+import { Detail } from '../generic';
 
 interface Props {
-  group?: GroupBy
+  group?: GroupBy;
 }
 
 export const Sources = ({ group }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Detail
@@ -27,5 +27,5 @@ export const Sources = ({ group }: Props) => {
       })}
       group={group}
     />
-  )
-}
+  );
+};

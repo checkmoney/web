@@ -1,12 +1,12 @@
-import { Omit } from 'utility-types'
+import { Omit } from 'utility-types';
 
-import { SelectProps } from '../Select/SelectProps'
+import { SelectProps } from '../Select/SelectProps';
 
-type PropsFromSelect = Omit<SelectProps, 'children'>
+type PropsFromSelect = Omit<SelectProps, 'children'>;
 
 interface OwnProps {
-  options: object
-  getLabel?: (value: any) => string
+  options: object;
+  getLabel?: (value: any) => string;
 }
 
-export type EnumSelectProps = PropsFromSelect & OwnProps
+export type EnumSelectProps = PropsFromSelect & OwnProps;

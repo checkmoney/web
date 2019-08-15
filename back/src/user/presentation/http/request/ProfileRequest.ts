@@ -1,1 +1,1 @@
-export { ProfileResponse as ProfileRequest } from '../response/ProfileResponse'
+export { ProfileResponse as ProfileRequest } from '../response/ProfileResponse';

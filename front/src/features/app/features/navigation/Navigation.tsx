@@ -1,19 +1,19 @@
-import React from 'react'
-import { useMappedState } from 'redux-react-hook'
+import React from 'react';
+import { useMappedState } from 'redux-react-hook';
 
-import { Menu } from '&front/ui/components/controls/menu/Menu'
-import { MenuItem } from '&front/ui/components/controls/menu/MenuItem'
-import { pushRoute } from '&front/features/routing'
-import { getUserIsManager } from '&front/domain/user/selectors/getUserIsManager'
-import { useTranslation } from '&front/domain/i18n'
+import { Menu } from '&front/ui/components/controls/menu/Menu';
+import { MenuItem } from '&front/ui/components/controls/menu/MenuItem';
+import { pushRoute } from '&front/features/routing';
+import { getUserIsManager } from '&front/domain/user/selectors/getUserIsManager';
+import { useTranslation } from '&front/domain/i18n';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
 export const Navigation = ({ className }: Props) => {
-  const isManager = useMappedState(getUserIsManager)
-  const { t } = useTranslation()
+  const isManager = useMappedState(getUserIsManager);
+  const { t } = useTranslation();
 
   const defaultMenu = [
     <MenuItem id="home" key="home" selected>
@@ -36,7 +36,7 @@ export const Navigation = ({ className }: Props) => {
     >
       {t('common:nav.profile')}
     </MenuItem>,
-  ]
+  ];
 
   const managerMenu = isManager
     ? [
@@ -48,9 +48,9 @@ export const Navigation = ({ className }: Props) => {
           {t('common:nav.manager')}
         </MenuItem>,
       ]
-    : []
+    : [];
 
-  const menu = [...defaultMenu, ...managerMenu]
+  const menu = [...defaultMenu, ...managerMenu];
 
-  return <Menu className={className}>{menu}</Menu>
-}
+  return <Menu className={className}>{menu}</Menu>;
+};

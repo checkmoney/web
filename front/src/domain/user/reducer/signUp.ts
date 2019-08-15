@@ -1,7 +1,7 @@
-import { createFetchingRedux, FetchingState } from 'redux-clear'
+import { createFetchingRedux, FetchingState } from 'redux-clear';
 
-type State = FetchingState
+type State = FetchingState;
 
-const { reducer, actions } = createFetchingRedux('user/sign-up')
+const { reducer, actions } = createFetchingRedux('user/sign-up');
 
-export { reducer, actions, State }
+export { reducer, actions, State };

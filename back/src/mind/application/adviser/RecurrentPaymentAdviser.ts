@@ -1,5 +1,5 @@
-import * as md5 from 'md5'
-import { last, dropRight } from 'lodash'
+import * as md5 from 'md5';
+import { last, dropRight } from 'lodash';
 import {
   startOfMonth,
   subMonths,
@@ -9,37 +9,39 @@ import {
   addDays,
   getDaysInMonth,
   lastDayOfMonth,
-} from 'date-fns'
+} from 'date-fns';
 
-import { TipModel } from '&shared/models/mind/TipModel'
-import { TipAction } from '&shared/enum/TipAction'
-import { Historian } from '&back/money/application/Historian'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { Outcome } from '&back/money/domain/Outcome.entity'
+import { TipModel } from '&shared/models/mind/TipModel';
+import { TipAction } from '&shared/enum/TipAction';
+import { Historian } from '&back/money/application/Historian';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { Outcome } from '&back/money/domain/Outcome.entity';
 
-import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
-import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
-import { groupHasSameTransaction } from '../calculator/helpers/groupHasSameTransaction'
-import { findRecurrentTransactions } from '../calculator/findRecurrentTransactions'
+import { Adviser } from '../../infrastructure/adviser/helpers/Adviser';
+import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser';
+import { groupHasSameTransaction } from '../calculator/helpers/groupHasSameTransaction';
+import { findRecurrentTransactions } from '../calculator/findRecurrentTransactions';
 
-const MONTH_FOR_RETROSPECTIVE = 3
-const DAYS_GAP = 5
+const MONTH_FOR_RETROSPECTIVE = 3;
+const DAYS_GAP = 5;
 
 @IsAdviser()
 export class RecurrentPaymentAdviser implements Adviser {
   public constructor(private readonly historian: Historian) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
-    const { thisMonth, previousMonths } = await this.getMonthsHistory(userLogin)
+    const { thisMonth, previousMonths } = await this.getMonthsHistory(
+      userLogin,
+    );
 
     const recurrentTransactions = findRecurrentTransactions(
       previousMonths,
       DAYS_GAP,
     ).filter(
       transaction => !groupHasSameTransaction(thisMonth, transaction, DAYS_GAP),
-    )
+    );
 
-    const now = new Date()
+    const now = new Date();
 
     return recurrentTransactions.map(outcome => ({
       token: this.createToken(outcome),
@@ -49,41 +51,41 @@ export class RecurrentPaymentAdviser implements Adviser {
         ...outcome,
         period: this.getPeriod(outcome.date),
       },
-    }))
+    }));
   }
 
   private async getMonthsHistory(userLogin: string) {
-    const now = new Date()
+    const now = new Date();
 
-    const from = startOfMonth(subMonths(now, MONTH_FOR_RETROSPECTIVE))
-    const to = endOfMonth(now)
+    const from = startOfMonth(subMonths(now, MONTH_FOR_RETROSPECTIVE));
+    const to = endOfMonth(now);
 
     const history = await this.historian.showGroupedHistory(
       userLogin,
       { from, to },
       GroupBy.Month,
-    )
+    );
 
-    const transactions = history.map(({ outcomes }) => outcomes)
+    const transactions = history.map(({ outcomes }) => outcomes);
 
     return {
       thisMonth: last(transactions),
       previousMonths: dropRight(transactions, 1),
-    }
+    };
   }
 
   private getPeriod = (date: Date) => {
-    const start = getDate(subDays(date, DAYS_GAP / 2))
-    const end = getDate(addDays(date, DAYS_GAP / 2))
+    const start = getDate(subDays(date, DAYS_GAP / 2));
+    const end = getDate(addDays(date, DAYS_GAP / 2));
 
-    const startValid = start >= 1
-    const endValid = end <= getDaysInMonth(date)
+    const startValid = start >= 1;
+    const endValid = end <= getDaysInMonth(date);
 
     return {
       from: startValid ? start : 1,
       to: endValid ? end : getDate(lastDayOfMonth(date)),
-    }
-  }
+    };
+  };
 
   private createToken({ category, amount, currency }: Outcome): string {
     const payload = {
@@ -91,8 +93,8 @@ export class RecurrentPaymentAdviser implements Adviser {
       amount,
       currency,
       action: TipAction.RecurrentPayment,
-    }
+    };
 
-    return md5(JSON.stringify(payload))
+    return md5(JSON.stringify(payload));
   }
 }

@@ -1,9 +1,9 @@
-import { Table as AntTable } from 'antd'
-import React, { useMemo, useCallback } from 'react'
+import { Table as AntTable } from 'antd';
+import React, { useMemo, useCallback } from 'react';
 
-import { TableProps } from './TableProps'
-import * as styles from './Table.css'
-import './AntTable.css?CSSModulesDisable'
+import { TableProps } from './TableProps';
+import * as styles from './Table.css';
+import './AntTable.css?CSSModulesDisable';
 
 export const Table = <Data extends Array<{}>>({
   className,
@@ -21,7 +21,7 @@ export const Table = <Data extends Array<{}>>({
         ...dataItem,
       })),
     [data],
-  )
+  );
 
   const adoptedColumns = useMemo(
     () =>
@@ -32,14 +32,14 @@ export const Table = <Data extends Array<{}>>({
         width: value.widthPercent && `${value.widthPercent}%`,
       })),
     [columns],
-  )
+  );
 
   const onRow = useCallback(
     record => ({
       onClick: () => onRowClick && onRowClick(record),
     }),
     [onRowClick],
-  )
+  );
 
   return (
     <AntTable
@@ -54,5 +54,5 @@ export const Table = <Data extends Array<{}>>({
       footer={!!footer ? () => footer : undefined}
       onRow={onRow}
     />
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-const nextRoutes = require('next-routes')
+const nextRoutes = require('next-routes');
 
 module.exports = nextRoutes()
   .add({ pattern: '/', page: 'index' })
@@ -16,4 +16,4 @@ module.exports = nextRoutes()
   })
   .add({ pattern: '/app/history', page: 'internal/history' })
   .add({ pattern: '/app/profile', page: 'internal/profile' })
-  .add({ pattern: '/manager', page: 'internal/manager' })
+  .add({ pattern: '/manager', page: 'internal/manager' });

@@ -1,8 +1,8 @@
-import { CachedPeriod } from './CachedPeriod'
+import { CachedPeriod } from './CachedPeriod';
 
 export interface CachedState<T> {
   data: {
-    [key: string]: T[]
-  }
-  cachedPeriods: CachedPeriod[]
+    [key: string]: T[];
+  };
+  cachedPeriods: CachedPeriod[];
 }

@@ -1,17 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
 import {
   Checkbox as JustCheckbox,
   CheckboxProps,
-} from '&front/ui/components/form/checkbox'
+} from '&front/ui/components/form/checkbox';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<CheckboxProps, FieldRenderProps['input']>
+type ComponentProps = Diff<CheckboxProps, FieldRenderProps['input']>;
 
 export const Checkbox = ({
   name,
@@ -21,4 +21,4 @@ export const Checkbox = ({
     name={name}
     render={({ input }) => <JustCheckbox {...componentProps} {...input} />}
   />
-)
+);

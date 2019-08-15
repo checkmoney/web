@@ -1,4 +1,4 @@
 export interface TokenPayloadModel {
-  login: string
-  isManager: boolean
+  login: string;
+  isManager: boolean;
 }

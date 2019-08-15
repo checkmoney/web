@@ -1,57 +1,57 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react';
 
-import { Container } from '&front/ui/components/layout/container'
-import { PageHeader } from '&front/ui/components/layout/page-header'
-import { CurrencySwitch } from '&front/ui/components/controls/currency-switch'
-import { useMemoState, useThunk } from '&front/domain/store'
-import { getProfile } from '&front/domain/user/selectors/getProfile'
-import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile'
-import { Label } from '&front/ui/components/form/label'
-import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency'
-import { Card } from '&front/ui/components/layout/card'
-import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert'
-import { Currency } from '&shared/enum/Currency'
-import { Button } from '&front/ui/components/form/button'
-import { signOut } from '&front/domain/user/actions/signOut'
-import { useTranslation } from '&front/domain/i18n'
-import { Checkbox } from '&front/ui/components/form/checkbox'
-import { setWeekStart } from '&front/domain/user/actions/setWeekStart'
+import { Container } from '&front/ui/components/layout/container';
+import { PageHeader } from '&front/ui/components/layout/page-header';
+import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
+import { useMemoState, useThunk } from '&front/domain/store';
+import { getProfile } from '&front/domain/user/selectors/getProfile';
+import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
+import { Label } from '&front/ui/components/form/label';
+import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
+import { Card } from '&front/ui/components/layout/card';
+import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
+import { Currency } from '&shared/enum/Currency';
+import { Button } from '&front/ui/components/form/button';
+import { signOut } from '&front/domain/user/actions/signOut';
+import { useTranslation } from '&front/domain/i18n';
+import { Checkbox } from '&front/ui/components/form/checkbox';
+import { setWeekStart } from '&front/domain/user/actions/setWeekStart';
 
-import { pushRoute } from '../routing'
-import * as styles from './Profile.css'
+import { pushRoute } from '../routing';
+import * as styles from './Profile.css';
 
 export const Profile = () => {
-  const dispatch = useThunk()
-  const notify = useNotifyAlert()
-  const { t } = useTranslation()
+  const dispatch = useThunk();
+  const notify = useNotifyAlert();
+  const { t } = useTranslation();
 
   const { defaultCurrency, weekStartsOnMonday } = useMemoState(
     () => getProfile,
     fetchUserProfile,
     [],
-  )
+  );
 
-  const [currency, setCurrency] = useState<Currency>(defaultCurrency)
-  const [onMonday, setOnMonday] = useState(weekStartsOnMonday)
+  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
+  const [onMonday, setOnMonday] = useState(weekStartsOnMonday);
 
-  const saved = useCallback(() => notify('Saved'), [notify])
+  const saved = useCallback(() => notify('Saved'), [notify]);
 
   useEffect(() => {
     if (currency !== defaultCurrency) {
-      dispatch(setDefaultCurrency(currency)).then(saved)
+      dispatch(setDefaultCurrency(currency)).then(saved);
     }
-  }, [currency, saved, defaultCurrency])
+  }, [currency, saved, defaultCurrency]);
 
   useEffect(() => {
     if (onMonday !== weekStartsOnMonday) {
-      dispatch(setWeekStart(onMonday)).then(saved)
+      dispatch(setWeekStart(onMonday)).then(saved);
     }
-  }, [onMonday, saved, weekStartsOnMonday])
+  }, [onMonday, saved, weekStartsOnMonday]);
 
   const logout = useCallback(async () => {
-    dispatch(signOut())
-    await pushRoute('/')
-  }, [])
+    dispatch(signOut());
+    await pushRoute('/');
+  }, []);
 
   return (
     <Container>
@@ -77,5 +77,5 @@ export const Profile = () => {
         </Card>
       </section>
     </Container>
-  )
-}
+  );
+};

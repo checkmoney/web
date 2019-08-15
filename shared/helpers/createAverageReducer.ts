@@ -1,10 +1,10 @@
 export const createAverageReducer = () =>
   ((sum: number, count: number) => (_: number, amount: number) => {
     // eslint-disable-next-line no-param-reassign
-    sum += amount
+    sum += amount;
 
     // eslint-disable-next-line no-param-reassign
-    count++
+    count++;
 
-    return sum / count
-  })(0, 0)
+    return sum / count;
+  })(0, 0);

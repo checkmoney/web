@@ -1,4 +1,4 @@
-import { IncomeModel } from '&shared/models/money/IncomeModel'
+import { IncomeModel } from '&shared/models/money/IncomeModel';
 
 export const fieldsToIncomeModel = ({
   amount,
@@ -10,4 +10,4 @@ export const fieldsToIncomeModel = ({
   currency,
   source: comment,
   date,
-})
+});

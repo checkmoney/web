@@ -1,13 +1,13 @@
-import { Skeleton as AntSkeleton } from 'antd'
-import React from 'react'
+import { Skeleton as AntSkeleton } from 'antd';
+import React from 'react';
 
-import './AntSkeleton.css?CSSModulesDisable'
+import './AntSkeleton.css?CSSModulesDisable';
 
 interface Props {
-  showTitle?: boolean
-  rows?: number
+  showTitle?: boolean;
+  rows?: number;
 }
 
 export const Skeleton = ({ showTitle = false, rows = 2 }: Props) => {
-  return <AntSkeleton title={showTitle} paragraph={{ rows }} />
-}
+  return <AntSkeleton title={showTitle} paragraph={{ rows }} />;
+};

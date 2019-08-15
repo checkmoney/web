@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import { useRoutePrefetching } from '../routing'
-import { ForbiddenMessage } from './components/fornidden-message'
-import { SignIn } from './features/sign-in'
-import { SignUp } from './features/sign-up'
-import * as styles from './Landing.css'
-import { HelloMessage } from './components/hello-message'
+import { useRoutePrefetching } from '../routing';
+import { ForbiddenMessage } from './components/fornidden-message';
+import { SignIn } from './features/sign-in';
+import { SignUp } from './features/sign-up';
+import * as styles from './Landing.css';
+import { HelloMessage } from './components/hello-message';
 
 interface Props {
-  forbidden?: boolean
+  forbidden?: boolean;
 }
 
 export const Landing = ({ forbidden = false }: Props) => {
-  useRoutePrefetching(['/hello', '/app'])
+  useRoutePrefetching(['/hello', '/app']);
 
   return (
     <section className={styles.container}>
@@ -24,5 +24,5 @@ export const Landing = ({ forbidden = false }: Props) => {
       <SignIn className={styles.signIn} />
       <SignUp className={styles.signUp} />
     </section>
-  )
-}
+  );
+};

@@ -1,13 +1,13 @@
-import { ClearAction, createClearRedux } from 'redux-clear'
-import { Option } from 'tsoption'
+import { ClearAction, createClearRedux } from 'redux-clear';
+import { Option } from 'tsoption';
 
 interface State {
-  token: Option<string>
+  token: Option<string>;
 }
 
 interface Actions {
-  setToken: ClearAction<[string]>
-  resetToken: ClearAction
+  setToken: ClearAction<[string]>;
+  resetToken: ClearAction;
 }
 
 const { reducer, actions } = createClearRedux<State, Actions>(
@@ -25,6 +25,6 @@ const { reducer, actions } = createClearRedux<State, Actions>(
     token: Option.of(null),
   },
   'user',
-)
+);
 
-export { reducer, actions, State }
+export { reducer, actions, State };

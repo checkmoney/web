@@ -1,13 +1,13 @@
-import { Outcome } from '&back/money/domain/Outcome.entity'
-import { groupHasSameTransaction } from './helpers/groupHasSameTransaction'
-import { getDate } from 'date-fns'
+import { Outcome } from '&back/money/domain/Outcome.entity';
+import { groupHasSameTransaction } from './helpers/groupHasSameTransaction';
+import { getDate } from 'date-fns';
 
 export const findRecurrentTransactions = (
   previousMonths: Outcome[][],
   daysGap: number,
 ) => {
-  const [initialGroup, ...otherGroups] = previousMonths
-  const now = new Date()
+  const [initialGroup, ...otherGroups] = previousMonths;
+  const now = new Date();
 
   return initialGroup
     .filter(transaction =>
@@ -16,12 +16,12 @@ export const findRecurrentTransactions = (
       ),
     )
     .filter(transaction => {
-      const transactionDate = getDate(transaction.date)
-      const nowDate = getDate(now)
+      const transactionDate = getDate(transaction.date);
+      const nowDate = getDate(now);
 
-      const future = transactionDate >= nowDate
-      const soon = Math.abs(transactionDate - nowDate) < daysGap
+      const future = transactionDate >= nowDate;
+      const soon = Math.abs(transactionDate - nowDate) < daysGap;
 
-      return future && soon
-    })
-}
+      return future && soon;
+    });
+};

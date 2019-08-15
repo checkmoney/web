@@ -1,1 +1,1 @@
-export const lol = () => 'lol'
+export const lol = () => 'lol';

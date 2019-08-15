@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { getCurrencySign } from '&shared/helpers/getCurrencySign'
-import { useCustomInput } from '&front/ui/hooks/useCustomInput'
+import { getCurrencySign } from '&shared/helpers/getCurrencySign';
+import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
-import { Input } from '../input'
-import { format } from './helpers/format'
-import { InputMoneyProps } from './InputMoneyProps'
+import { Input } from '../input';
+import { format } from './helpers/format';
+import { InputMoneyProps } from './InputMoneyProps';
 
 export const InputMoney = ({
   currency,
@@ -13,7 +13,7 @@ export const InputMoney = ({
   onChange,
   ...props
 }: InputMoneyProps) => {
-  const { currentValue, handleChange } = useCustomInput(value, onChange)
+  const { currentValue, handleChange } = useCustomInput(value, onChange);
 
   return (
     <Input
@@ -22,5 +22,5 @@ export const InputMoney = ({
       addonBefore={getCurrencySign(currency)}
       {...props}
     />
-  )
-}
+  );
+};

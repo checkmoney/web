@@ -3,6 +3,6 @@ export class InvalidCredentialsException extends Error {
     public readonly login: string,
     public readonly password: string,
   ) {
-    super('Invalid credentials')
+    super('Invalid credentials');
   }
 }

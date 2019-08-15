@@ -1,5 +1,5 @@
 export interface DateGroup {
-  title: string
-  from: Date
-  to: Date
+  title: string;
+  from: Date;
+  to: Date;
 }

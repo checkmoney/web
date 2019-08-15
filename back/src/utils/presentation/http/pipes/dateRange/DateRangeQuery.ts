@@ -1,4 +1,4 @@
 export interface DateRangeQuery {
-  from?: string
-  to?: string
+  from?: string;
+  to?: string;
 }

@@ -1,13 +1,13 @@
-import React, { ReactNode } from 'react'
-import { FetchingState } from 'redux-clear'
-import { Skeleton } from '../../controls/skeleton/Skeleton'
+import React, { ReactNode } from 'react';
+import { FetchingState } from 'redux-clear';
+import { Skeleton } from '../../controls/skeleton/Skeleton';
 
 interface Props {
-  status: FetchingState
-  children: ReactNode
-  skeleton?: boolean
-  expectedRows?: number
-  dataAvaiable?: boolean
+  status: FetchingState;
+  children: ReactNode;
+  skeleton?: boolean;
+  expectedRows?: number;
+  dataAvaiable?: boolean;
 }
 
 export const Loader = ({
@@ -17,19 +17,19 @@ export const Loader = ({
   skeleton = false,
   dataAvaiable = true,
 }: Props) => {
-  const showLoader = loading || !dataAvaiable
+  const showLoader = loading || !dataAvaiable;
 
   if (skeleton && showLoader) {
-    return <Skeleton rows={expectedRows} />
+    return <Skeleton rows={expectedRows} />;
   }
 
   if (showLoader) {
-    return <p>loading...</p>
+    return <p>loading...</p>;
   }
 
   if (error.nonEmpty()) {
-    return <p>error: {error.get()}</p>
+    return <p>error: {error.get()}</p>;
   }
 
-  return <>{children}</>
-}
+  return <>{children}</>;
+};

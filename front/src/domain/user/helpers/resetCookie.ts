@@ -1,3 +1,3 @@
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
 
-export const resetCookie = () => Cookies.remove('token')
+export const resetCookie = () => Cookies.remove('token');

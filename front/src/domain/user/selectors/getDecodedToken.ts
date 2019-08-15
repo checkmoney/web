@@ -1,17 +1,17 @@
-import { createSelector } from 'reselect'
-import { dropRight, flow } from 'lodash'
-import { Base64 } from 'js-base64'
-import { Option } from 'tsoption'
+import { createSelector } from 'reselect';
+import { dropRight, flow } from 'lodash';
+import { Base64 } from 'js-base64';
+import { Option } from 'tsoption';
 
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
-import { getToken } from './getToken'
+import { getToken } from './getToken';
 
 const removeSignature = (token: string) =>
-  dropRight(token.split('.'), 1).join('.')
+  dropRight(token.split('.'), 1).join('.');
 const getJsonMatches = (decoded: string) =>
-  decoded.match(new RegExp('{.+?}', 'gi')) || []
-const parseJson = (matches: string[]) => matches.map(item => JSON.parse(item))
+  decoded.match(new RegExp('{.+?}', 'gi')) || [];
+const parseJson = (matches: string[]) => matches.map(item => JSON.parse(item));
 const mergeObjects = (objects: object[]) =>
   objects.reduce(
     (acc, cur) => ({
@@ -19,7 +19,7 @@ const mergeObjects = (objects: object[]) =>
       ...cur,
     }),
     {},
-  )
+  );
 
 export const getDecodedToken = createSelector(
   getToken,
@@ -33,4 +33,4 @@ export const getDecodedToken = createSelector(
         mergeObjects,
       ]),
     ),
-)
+);

@@ -1,1 +1,1 @@
-export { CreateTip } from './CreateTip'
+export { CreateTip } from './CreateTip';

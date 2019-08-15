@@ -1,32 +1,32 @@
-import React from 'react'
+import React from 'react';
 
-import { TipModel } from '&shared/models/mind/TipModel'
-import { displayMoney } from '&shared/helpers/displayMoney'
-import { Card } from '&front/ui/components/layout/card'
-import { useTranslation } from '&front/domain/i18n'
+import { TipModel } from '&shared/models/mind/TipModel';
+import { displayMoney } from '&shared/helpers/displayMoney';
+import { Card } from '&front/ui/components/layout/card';
+import { useTranslation } from '&front/domain/i18n';
 
-import { DailyBudgetMeta } from './DailyBudgetMeta'
+import { DailyBudgetMeta } from './DailyBudgetMeta';
 
 interface Props {
-  tip: TipModel<DailyBudgetMeta>
+  tip: TipModel<DailyBudgetMeta>;
 }
 
 export const DailyBudget = ({ tip: { meta } }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   if (meta.amount === 0) {
     return (
       <Card title={t('tips:daily-budget.title')}>
         {t('tips:daily-budget.content.empty')}
       </Card>
-    )
+    );
   }
 
-  const budget = displayMoney(meta.currency)(meta.amount, { withPenny: false })
+  const budget = displayMoney(meta.currency)(meta.amount, { withPenny: false });
 
   return (
     <Card title={t('tips:daily-budget.title')}>
       {t('tips:daily-budget.content.full', { budget })}
     </Card>
-  )
-}
+  );
+};

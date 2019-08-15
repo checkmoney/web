@@ -1,45 +1,45 @@
-import { Injectable } from '@nestjs/common'
-import * as Handlebars from 'handlebars'
-import { readFile } from 'fs'
-import { promisify } from 'util'
-import { resolve } from 'path'
+import { Injectable } from '@nestjs/common';
+import * as Handlebars from 'handlebars';
+import { readFile } from 'fs';
+import { promisify } from 'util';
+import { resolve } from 'path';
 
-import { Templating } from './Templating'
-import { money } from './handlebarsHelpers/money'
+import { Templating } from './Templating';
+import { money } from './handlebarsHelpers/money';
 
 type PrecompiledTempltes = {
-  [name: string]: Handlebars.TemplateDelegate
-}
+  [name: string]: Handlebars.TemplateDelegate;
+};
 
 @Injectable()
 export class HandlebarsTemplating implements Templating {
-  private readonly precompiledTemplates = {}
+  private readonly precompiledTemplates = {};
 
   public constructor() {
-    Handlebars.registerHelper('money', money)
+    Handlebars.registerHelper('money', money);
   }
 
   public async render(templateName: string, context: object) {
-    const compiled = await this.compile(templateName)
+    const compiled = await this.compile(templateName);
 
-    return compiled(context)
+    return compiled(context);
   }
 
   private async compile(
     templateName: string,
   ): Promise<Handlebars.TemplateDelegate> {
     if (this.precompiledTemplates[templateName]) {
-      return this.precompiledTemplates[templateName]
+      return this.precompiledTemplates[templateName];
     }
 
     const templateContent = (await promisify(readFile)(
       resolve(__dirname, '../../../../templates', `${templateName}.hbs`),
-    )).toString()
+    )).toString();
 
-    const compiled = Handlebars.compile(templateContent)
+    const compiled = Handlebars.compile(templateContent);
 
-    this.precompiledTemplates[templateName] = compiled
+    this.precompiledTemplates[templateName] = compiled;
 
-    return compiled
+    return compiled;
   }
 }

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-import { VariantProps } from './VariantProps'
+import { VariantProps } from './VariantProps';
 
 export const Variant = ({ children, value }: VariantProps) => {
-  return <>{children || value}</>
-}
+  return <>{children || value}</>;
+};

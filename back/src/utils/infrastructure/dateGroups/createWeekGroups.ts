@@ -1,22 +1,22 @@
-import { addWeeks, startOfWeek, format } from 'date-fns'
+import { addWeeks, startOfWeek, format } from 'date-fns';
 
-import { DateRange } from '../dto/DateRange'
-import { DateGroup } from './DateGroup'
+import { DateRange } from '../dto/DateRange';
+import { DateGroup } from './DateGroup';
 
 export const createWeekGroups = ({ from, to }: DateRange): DateGroup[] => {
-  const groups = []
+  const groups = [];
 
-  let now = startOfWeek(from)
+  let now = startOfWeek(from);
   while (now < to) {
-    const next = startOfWeek(addWeeks(now, 1))
+    const next = startOfWeek(addWeeks(now, 1));
     groups.push({
       title: format(now, 'YYYY-MM-DD'),
       from: now,
       to: next,
-    })
+    });
 
-    now = next
+    now = next;
   }
 
-  return groups
-}
+  return groups;
+};

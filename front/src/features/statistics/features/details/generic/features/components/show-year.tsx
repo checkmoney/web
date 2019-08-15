@@ -1,18 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import { Button, ButtonType } from '&front/ui/components/form/button'
-import { pushRoute } from '&front/features/routing'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { useTranslation } from '&front/domain/i18n'
+import { Button, ButtonType } from '&front/ui/components/form/button';
+import { pushRoute } from '&front/features/routing';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { useTranslation } from '&front/domain/i18n';
 
 interface Props {
-  group?: GroupBy
-  detailType: string
+  group?: GroupBy;
+  detailType: string;
 }
 
 export const ShowYear = ({ group, detailType }: Props) => {
-  const showYear = !group || group !== GroupBy.Year
-  const { t } = useTranslation()
+  const showYear = !group || group !== GroupBy.Year;
+  const { t } = useTranslation();
 
   return showYear ? (
     <Button
@@ -21,5 +21,5 @@ export const ShowYear = ({ group, detailType }: Props) => {
     >
       {t('stats:details.show-year')}
     </Button>
-  ) : null
-}
+  ) : null;
+};

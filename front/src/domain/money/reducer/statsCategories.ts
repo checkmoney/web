@@ -2,21 +2,21 @@ import {
   ClearAction,
   WithFetchingState,
   createClearReduxWithFetching,
-} from 'redux-clear'
+} from 'redux-clear';
 
 import {
   CachedPeriod,
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '&front/domain/cached-data'
-import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel'
+} from '&front/domain/cached-data';
+import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel';
 
-type InternalState = CachedState<CategoryGroupOutcomeModel>
-type State = WithFetchingState<InternalState>
+type InternalState = CachedState<CategoryGroupOutcomeModel>;
+type State = WithFetchingState<InternalState>;
 
 interface Actions {
-  addStats: ClearAction<[CachedPeriod, CategoryGroupOutcomeModel[]]>
+  addStats: ClearAction<[CachedPeriod, CategoryGroupOutcomeModel[]]>;
 }
 
 const { actions, reducer } = createClearReduxWithFetching<
@@ -27,6 +27,6 @@ const { actions, reducer } = createClearReduxWithFetching<
     addStats: newItemProcessor,
   },
   createInitialState(),
-)
+);
 
-export { State, actions, reducer }
+export { State, actions, reducer };

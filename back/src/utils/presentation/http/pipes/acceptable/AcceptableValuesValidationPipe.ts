@@ -3,7 +3,7 @@ import {
   BadRequestException,
   Injectable,
   PipeTransform,
-} from '@nestjs/common'
+} from '@nestjs/common';
 
 @Injectable()
 export class AcceptableValuesValidationPipe
@@ -14,9 +14,9 @@ export class AcceptableValuesValidationPipe
     if (!this.acceptableValues.includes(value)) {
       throw new BadRequestException(
         `Not acceptable value, expected: [${this.acceptableValues.join(', ')}]`,
-      )
+      );
     }
 
-    return value
+    return value;
   }
 }

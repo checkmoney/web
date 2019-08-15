@@ -1,5 +1,5 @@
-import { UseGuards } from '@nestjs/common'
+import { UseGuards } from '@nestjs/common';
 
-import { JwtGuard } from './JwtGuard'
+import { JwtGuard } from './JwtGuard';
 
-export const OnlyForUsers = () => UseGuards(JwtGuard)
+export const OnlyForUsers = () => UseGuards(JwtGuard);

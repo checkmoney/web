@@ -1,17 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
 import {
   AutoComplete as JustAutoComplete,
   AutoCompleteProps,
-} from '&front/ui/components/form/auto-complete'
+} from '&front/ui/components/form/auto-complete';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<AutoCompleteProps, FieldRenderProps['input']>
+type ComponentProps = Diff<AutoCompleteProps, FieldRenderProps['input']>;
 
 export const AutoComplete = ({
   name,
@@ -21,4 +21,4 @@ export const AutoComplete = ({
     name={name}
     render={({ input }) => <JustAutoComplete {...input} {...componentProps} />}
   />
-)
+);

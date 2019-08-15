@@ -1,2 +1,2 @@
 export const parseAmount = (rawAmount: string): number =>
-  parseFloat(rawAmount.replace(/,/g, '.')) * 100
+  parseFloat(rawAmount.replace(/,/g, '.')) * 100;

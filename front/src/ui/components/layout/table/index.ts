@@ -1,2 +1,2 @@
-export { Table } from './Table'
-export { TableProps } from './TableProps'
+export { Table } from './Table';
+export { TableProps } from './TableProps';

@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common';
 
-import { EntitySaver } from '&back/db/EntitySaver'
-import { CustomTipModel } from '&shared/models/mind/CustomTipModel'
-import { IdGenerator } from '&back/utils/infrastructure/IdGenerator/IdGenerator'
+import { EntitySaver } from '&back/db/EntitySaver';
+import { CustomTipModel } from '&shared/models/mind/CustomTipModel';
+import { IdGenerator } from '&back/utils/infrastructure/IdGenerator/IdGenerator';
 
-import { DisabledTip } from '../domain/DisabledTip.entity'
-import { CustomTip } from '../domain/CustomTip.entity'
+import { DisabledTip } from '../domain/DisabledTip.entity';
+import { CustomTip } from '../domain/CustomTip.entity';
 
 @Injectable()
 export class TipsCreator {
@@ -15,11 +15,11 @@ export class TipsCreator {
   ) {}
 
   public async createCustom(fields: CustomTipModel): Promise<void> {
-    const id = await this.idGenerator.getId()
-    const { title, text, expireAt, important, link } = fields
+    const id = await this.idGenerator.getId();
+    const { title, text, expireAt, important, link } = fields;
 
-    const tip = new CustomTip(id, title, text, expireAt, important, link)
+    const tip = new CustomTip(id, title, text, expireAt, important, link);
 
-    await this.entitySaver.save(tip)
+    await this.entitySaver.save(tip);
   }
 }

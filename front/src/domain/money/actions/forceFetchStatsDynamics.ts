@@ -1,9 +1,9 @@
-import { fetchOrFail } from '&front/domain/store'
-import { Currency } from '&shared/enum/Currency'
-import { GroupBy } from '&shared/enum/GroupBy'
+import { fetchOrFail } from '&front/domain/store';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
 
-import { fetchStatsDynamicsRequest } from '../api/fetchStatsDynamicsRequest'
-import { actions } from '../reducer/statsDynamics'
+import { fetchStatsDynamicsRequest } from '../api/fetchStatsDynamicsRequest';
+import { actions } from '../reducer/statsDynamics';
 
 export const forceFetchStatsDynamics = (
   from: Date,
@@ -17,7 +17,7 @@ export const forceFetchStatsDynamics = (
       to,
       groupBy,
       currency,
-    )
+    );
 
-    dispatch(actions.data.addStats({ from, to, groupBy, currency }, stats))
-  })
+    dispatch(actions.data.addStats({ from, to, groupBy, currency }, stats));
+  });

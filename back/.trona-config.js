@@ -1,9 +1,9 @@
-const { Client } = require('pg')
-const { readFileSync } = require('fs')
-const { join } = require('path')
+const { Client } = require('pg');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
+  require('dotenv').config();
 }
 
 const getSslConfig =
@@ -13,7 +13,7 @@ const getSslConfig =
         ca: readFileSync(
           join(__dirname, '..', '.secure', 'ca-certificate.txt'),
         ),
-      })
+      });
 
 const client = new Client({
   user: process.env.DB_USER,
@@ -22,15 +22,15 @@ const client = new Client({
   port: process.env.DB_PORT,
   host: process.env.DB_HOST,
   ssl: getSslConfig(),
-})
+});
 
 client.connect().then(() => {
-  console.log(`Connected to ${process.env.DB_NAME}`)
-})
+  console.log(`Connected to ${process.env.DB_NAME}`);
+});
 
 module.exports = {
   evolutionsFolderPath: ['evolutions'],
   runQuery(query) {
-    return client.query(query).then(result => result.rows)
+    return client.query(query).then(result => result.rows);
   },
-}
+};

@@ -1,37 +1,37 @@
-import React, { useCallback } from 'react'
-import { Form } from 'react-final-form'
-import { useMappedState } from 'redux-react-hook'
-import cx from 'classnames'
+import React, { useCallback } from 'react';
+import { Form } from 'react-final-form';
+import { useMappedState } from 'redux-react-hook';
+import cx from 'classnames';
 
-import { useThunk } from '&front/domain/store'
-import { signUp } from '&front/domain/user/actions/signUp'
-import { getSignUpFetching } from '&front/domain/user/selectors/getSignUpFetching'
-import { Input } from '&front/features/final-form'
-import { pushRoute } from '&front/features/routing'
-import { InputType } from '&front/ui/components/form/input/InputType'
-import { Label } from '&front/ui/components/form/label'
-import { LoadingButton } from '&front/ui/components/form/loading-button'
-import { useErrorAlert } from '&front/ui/hooks/useErrorAlert'
-import { Card } from '&front/ui/components/layout/card'
-import { useTranslation } from '&front/domain/i18n'
+import { useThunk } from '&front/domain/store';
+import { signUp } from '&front/domain/user/actions/signUp';
+import { getSignUpFetching } from '&front/domain/user/selectors/getSignUpFetching';
+import { Input } from '&front/features/final-form';
+import { pushRoute } from '&front/features/routing';
+import { InputType } from '&front/ui/components/form/input/InputType';
+import { Label } from '&front/ui/components/form/label';
+import { LoadingButton } from '&front/ui/components/form/loading-button';
+import { useErrorAlert } from '&front/ui/hooks/useErrorAlert';
+import { Card } from '&front/ui/components/layout/card';
+import { useTranslation } from '&front/domain/i18n';
 
-import * as styles from '../SignForm.css'
+import * as styles from '../SignForm.css';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
 export const SignUp = ({ className }: Props) => {
-  const dispatch = useThunk()
-  const { t } = useTranslation()
+  const dispatch = useThunk();
+  const { t } = useTranslation();
 
   const onSubmit = useCallback(async ({ email, password }) => {
-    await dispatch(signUp(email, password))
-    await pushRoute('/hello')
-  }, [])
+    await dispatch(signUp(email, password));
+    await pushRoute('/hello');
+  }, []);
 
-  const fetching = useMappedState(getSignUpFetching)
-  useErrorAlert(fetching.error)
+  const fetching = useMappedState(getSignUpFetching);
+  useErrorAlert(fetching.error);
 
   return (
     <Form onSubmit={onSubmit}>
@@ -64,5 +64,5 @@ export const SignUp = ({ className }: Props) => {
         </form>
       )}
     </Form>
-  )
-}
+  );
+};

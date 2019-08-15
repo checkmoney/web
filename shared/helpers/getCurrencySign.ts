@@ -1,4 +1,4 @@
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
 export const getCurrencySign = (currency: Currency): string =>
   ({
@@ -8,4 +8,4 @@ export const getCurrencySign = (currency: Currency): string =>
     [Currency.SEK]: 'kr',
     [Currency.NOK]: 'kr',
     [Currency.DKK]: 'kr.',
-  }[currency])
+  }[currency]);

@@ -1,1 +1,1 @@
-export { Now } from './Now'
+export { Now } from './Now';

@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import { DatePicker } from '../date-picker'
-import { Label } from '../label'
+import { DatePicker } from '../date-picker';
+import { Label } from '../label';
 
 interface Props {
-  start: Date
-  updateStart: (newStart: Date) => void
-  end: Date
-  updateEnd: (newEnd: Date) => void
+  start: Date;
+  updateStart: (newStart: Date) => void;
+  end: Date;
+  updateEnd: (newEnd: Date) => void;
 }
 
 const createHandle = (update: (d: Date) => void) => (date?: Date) =>
-  update(date ? new Date(date) : new Date())
+  update(date ? new Date(date) : new Date());
 
 export const Period = ({ start, end, updateStart, updateEnd }: Props) => {
   return (
@@ -24,5 +24,5 @@ export const Period = ({ start, end, updateStart, updateEnd }: Props) => {
         <DatePicker value={end} onChange={createHandle(updateEnd)} />
       </Label>
     </>
-  )
-}
+  );
+};

@@ -1,29 +1,29 @@
-import { flatten, uniq } from 'lodash'
-import { Bar } from 'react-chartjs-2'
-import React, { useMemo } from 'react'
+import { flatten, uniq } from 'lodash';
+import { Bar } from 'react-chartjs-2';
+import React, { useMemo } from 'react';
 
-import { createOptions } from './helpers/createOptions'
-import { getColor } from './helpers/getColor'
+import { createOptions } from './helpers/createOptions';
+import { getColor } from './helpers/getColor';
 
 interface Data {
   [key: string]: {
-    label: string
-    value: number
-  }
+    label: string;
+    value: number;
+  };
 }
 
 interface DataSet {
-  name: string
-  data: Data
+  name: string;
+  data: Data;
 }
 
-type Display = (value: number | string | undefined) => string
-const defaultDisplay: Display = v => `${v}`
+type Display = (value: number | string | undefined) => string;
+const defaultDisplay: Display = v => `${v}`;
 
 interface Props {
-  dataSets: DataSet[]
-  displayValue?: Display
-  fitToContainer?: boolean
+  dataSets: DataSet[];
+  displayValue?: Display;
+  fitToContainer?: boolean;
 }
 
 export const BarChart = ({
@@ -43,9 +43,9 @@ export const BarChart = ({
       ),
     }),
     [dataSets],
-  )
+  );
 
   return (
     <Bar data={data} options={createOptions(displayValue, !fitToContainer)} />
-  )
-}
+  );
+};

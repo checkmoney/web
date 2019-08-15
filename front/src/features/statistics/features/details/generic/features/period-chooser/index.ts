@@ -1,1 +1,1 @@
-export { PeriodChooser } from './PeriodChooser'
+export { PeriodChooser } from './PeriodChooser';

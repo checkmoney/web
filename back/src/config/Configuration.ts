@@ -1,1 +1,1 @@
-export { AbstractConfiguration as Configuration } from '@solid-soda/config'
+export { AbstractConfiguration as Configuration } from '@solid-soda/config';

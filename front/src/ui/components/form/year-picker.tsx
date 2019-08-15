@@ -1,16 +1,16 @@
-import React, { useMemo, useCallback } from 'react'
-import { getYear } from 'date-fns'
-import { range } from 'lodash'
+import React, { useMemo, useCallback } from 'react';
+import { getYear } from 'date-fns';
+import { range } from 'lodash';
 
-import { useCustomInput } from '&front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
-import { Select, Option } from './select'
+import { Select, Option } from './select';
 
 interface Props {
-  min?: number
-  max?: number
-  value?: number
-  onChange?: (value: number | undefined) => void
+  min?: number;
+  max?: number;
+  value?: number;
+  onChange?: (value: number | undefined) => void;
 }
 
 export const YearPicker = ({
@@ -19,22 +19,22 @@ export const YearPicker = ({
   value,
   onChange,
 }: Props) => {
-  const { currentValue, handleChange } = useCustomInput(value, onChange)
+  const { currentValue, handleChange } = useCustomInput(value, onChange);
 
   const stringValue = useMemo(
     () => (currentValue !== undefined ? currentValue.toString() : undefined),
     [currentValue],
-  )
+  );
   const stringOnChange = useCallback(
     (v: string | undefined) => {
-      const newValue = v !== undefined ? parseInt(v, 10) : v
+      const newValue = v !== undefined ? parseInt(v, 10) : v;
 
-      handleChange(newValue)
+      handleChange(newValue);
     },
     [handleChange],
-  )
+  );
 
-  const years = range(min, max + 1)
+  const years = range(min, max + 1);
 
   return (
     <Select value={stringValue} onChange={stringOnChange}>
@@ -44,5 +44,5 @@ export const YearPicker = ({
         </Option>
       ))}
     </Select>
-  )
-}
+  );
+};

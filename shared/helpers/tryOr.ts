@@ -1,7 +1,7 @@
 export const tryOr = <T>(calculate: () => T, or: T): T => {
   try {
-    return calculate()
+    return calculate();
   } catch (e) {
-    return or
+    return or;
   }
-}
+};

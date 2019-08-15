@@ -1,4 +1,4 @@
-import { AcceptableValuesValidationPipe } from './AcceptableValuesValidationPipe'
+import { AcceptableValuesValidationPipe } from './AcceptableValuesValidationPipe';
 
 export const createEnumValidationPipe = (e: object) =>
-  new AcceptableValuesValidationPipe(Object.values(e))
+  new AcceptableValuesValidationPipe(Object.values(e));

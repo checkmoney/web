@@ -1,50 +1,50 @@
-import { endOfYear, startOfYear, getYear, parse } from 'date-fns'
-import React, { useState, useMemo } from 'react'
-import { useMappedState } from 'redux-react-hook'
-import { useMedia } from 'use-media'
+import { endOfYear, startOfYear, getYear, parse } from 'date-fns';
+import React, { useState, useMemo } from 'react';
+import { useMappedState } from 'redux-react-hook';
+import { useMedia } from 'use-media';
 
-import { fetchStatsDynamics } from '&front/domain/money/actions/fetchStatsDynamics'
-import { getStatsDynamics } from '&front/domain/money/selectors/getStatsDynamics'
-import { getStatsDynamicsFetchingStatus } from '&front/domain/money/selectors/getStatsDynamicsFetchingStatus'
-import { useMemoState } from '&front/domain/store'
-import { displayMoney } from '&shared/helpers/displayMoney'
-import { BarChart } from '&front/ui/components/chart/bar-chart'
-import { Loader } from '&front/ui/components/layout/loader'
-import { Currency } from '&shared/enum/Currency'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { ControlHeader } from '&front/ui/components/controls/control-header'
-import { YearPicker } from '&front/ui/components/form/year-picker'
-import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate'
-import { wantUTC } from '&front/helpers/wantUTC'
-import { useTranslation } from '&front/domain/i18n'
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle'
+import { fetchStatsDynamics } from '&front/domain/money/actions/fetchStatsDynamics';
+import { getStatsDynamics } from '&front/domain/money/selectors/getStatsDynamics';
+import { getStatsDynamicsFetchingStatus } from '&front/domain/money/selectors/getStatsDynamicsFetchingStatus';
+import { useMemoState } from '&front/domain/store';
+import { displayMoney } from '&shared/helpers/displayMoney';
+import { BarChart } from '&front/ui/components/chart/bar-chart';
+import { Loader } from '&front/ui/components/layout/loader';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { ControlHeader } from '&front/ui/components/controls/control-header';
+import { YearPicker } from '&front/ui/components/form/year-picker';
+import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
+import { wantUTC } from '&front/helpers/wantUTC';
+import { useTranslation } from '&front/domain/i18n';
+import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 
-const groupBy = GroupBy.Month
+const groupBy = GroupBy.Month;
 
 interface Props {
-  className?: string
-  currency: Currency
+  className?: string;
+  currency: Currency;
 }
 
 export const Monthly = ({ className, currency }: Props) => {
-  const firstTransactionDate = useMappedState(getFirstTransactionDate)
-  const fetching = useMappedState(getStatsDynamicsFetchingStatus)
-  const isSmall = useMedia({ maxWidth: 768 })
-  const { t } = useTranslation()
+  const firstTransactionDate = useMappedState(getFirstTransactionDate);
+  const fetching = useMappedState(getStatsDynamicsFetchingStatus);
+  const isSmall = useMedia({ maxWidth: 768 });
+  const { t } = useTranslation();
 
-  const [year, setYear] = useState(getYear(new Date()))
+  const [year, setYear] = useState(getYear(new Date()));
 
   const [from, to] = useMemo(() => {
-    const date = parse(`${year}-01-01`)
+    const date = parse(`${year}-01-01`);
 
-    return [wantUTC(startOfYear)(date), wantUTC(endOfYear)(date)]
-  }, [year])
+    return [wantUTC(startOfYear)(date), wantUTC(endOfYear)(date)];
+  }, [year]);
 
   const stats = useMemoState(
     () => getStatsDynamics(from, to, groupBy, currency),
     () => fetchStatsDynamics(from, to, groupBy, currency),
     [from, to, currency],
-  )
+  );
 
   return (
     <section className={className}>
@@ -78,5 +78,5 @@ export const Monthly = ({ className, currency }: Props) => {
         )}
       </Loader>
     </section>
-  )
-}
+  );
+};

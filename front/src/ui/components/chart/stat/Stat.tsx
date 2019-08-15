@@ -1,14 +1,14 @@
-import { Statistic, Icon } from 'antd'
-import { Option } from 'tsoption'
-import React from 'react'
+import { Statistic, Icon } from 'antd';
+import { Option } from 'tsoption';
+import React from 'react';
 
-import { useTranslation } from '&front/domain/i18n'
+import { useTranslation } from '&front/domain/i18n';
 
 interface Props {
-  title: string
-  value: Option<number>
-  suffix?: string
-  decreaseIsGood?: boolean
+  title: string;
+  value: Option<number>;
+  suffix?: string;
+  decreaseIsGood?: boolean;
 }
 
 export const Stat = ({
@@ -17,15 +17,15 @@ export const Stat = ({
   suffix,
   decreaseIsGood = false,
 }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   if (value.nonEmpty()) {
-    const positive = value.get() > 0
+    const positive = value.get() > 0;
 
-    const green = !decreaseIsGood ? positive : !positive
+    const green = !decreaseIsGood ? positive : !positive;
 
-    const color = green ? '#3f8600' : '#cf1322'
-    const iconType = positive ? 'arrow-up' : 'arrow-down'
+    const color = green ? '#3f8600' : '#cf1322';
+    const iconType = positive ? 'arrow-up' : 'arrow-down';
 
     return (
       <Statistic
@@ -36,7 +36,7 @@ export const Stat = ({
         prefix={<Icon type={iconType} />}
         suffix={suffix}
       />
-    )
+    );
   }
 
   return (
@@ -46,5 +46,5 @@ export const Stat = ({
       precision={2}
       suffix={suffix}
     />
-  )
-}
+  );
+};

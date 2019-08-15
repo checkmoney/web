@@ -1,1 +1,1 @@
-export { ExtraSpending } from './ExtraSpending'
+export { ExtraSpending } from './ExtraSpending';

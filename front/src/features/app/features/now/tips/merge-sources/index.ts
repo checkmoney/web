@@ -1,1 +1,1 @@
-export { MergeSources } from './MergeSources'
+export { MergeSources } from './MergeSources';

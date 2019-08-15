@@ -1,6 +1,6 @@
-import { TokenModel } from '&shared/models/user/TokenModel'
+import { TokenModel } from '&shared/models/user/TokenModel';
 
-import { Api } from '&front/domain/api'
+import { Api } from '&front/domain/api';
 
 export const signUp = (api: Api) => (
   email: string,
@@ -11,4 +11,4 @@ export const signUp = (api: Api) => (
       email,
       password,
     })
-    .then(response => response.data)
+    .then(response => response.data);

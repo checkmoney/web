@@ -1,10 +1,10 @@
-import { subYears } from 'date-fns'
-import { ClearAction, createClearRedux } from 'redux-clear'
+import { subYears } from 'date-fns';
+import { ClearAction, createClearRedux } from 'redux-clear';
 
-type State = Date
+type State = Date;
 
 interface Actions {
-  set: ClearAction<[Date]>
+  set: ClearAction<[Date]>;
 }
 
 const { actions, reducer } = createClearRedux<State, Actions>(
@@ -13,6 +13,6 @@ const { actions, reducer } = createClearRedux<State, Actions>(
   },
   subYears(new Date(), 1),
   'money/first-transaction-date',
-)
+);
 
-export { actions, reducer, State }
+export { actions, reducer, State };

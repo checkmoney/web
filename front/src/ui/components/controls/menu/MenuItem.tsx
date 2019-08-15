@@ -1,5 +1,5 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import { MenuItemProps } from './MenuItemProps'
+import { MenuItemProps } from './MenuItemProps';
 
-export const MenuItem = ({ children }: MenuItemProps) => <>{children}</>
+export const MenuItem = ({ children }: MenuItemProps) => <>{children}</>;

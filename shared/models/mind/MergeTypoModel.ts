@@ -1,4 +1,4 @@
 export interface MergeTypoModel {
-  primary: string
-  secondary: string[]
+  primary: string;
+  secondary: string[];
 }

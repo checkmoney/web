@@ -1,21 +1,21 @@
-import React, { useMemo } from 'react'
-import { Pie } from 'react-chartjs-2'
+import React, { useMemo } from 'react';
+import { Pie } from 'react-chartjs-2';
 
-import { getColor } from './helpers/getColor'
-import { createOptions } from './helpers/createOptions'
+import { getColor } from './helpers/getColor';
+import { createOptions } from './helpers/createOptions';
 
-type Display = (value: number | string | undefined) => string
-const defaultDisplay: Display = v => `${v}`
+type Display = (value: number | string | undefined) => string;
+const defaultDisplay: Display = v => `${v}`;
 
 interface DataSet {
-  name: string
-  data: number
+  name: string;
+  data: number;
 }
 
 interface Props {
-  dataSets: DataSet[]
-  displayValue?: Display
-  fitToContainer?: boolean
+  dataSets: DataSet[];
+  displayValue?: Display;
+  fitToContainer?: boolean;
 }
 
 export const PieChart = ({
@@ -35,9 +35,9 @@ export const PieChart = ({
       ],
     }),
     [dataSets],
-  )
+  );
 
   return (
     <Pie data={data} options={createOptions(displayValue, !fitToContainer)} />
-  )
-}
+  );
+};

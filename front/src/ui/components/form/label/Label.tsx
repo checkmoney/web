@@ -1,16 +1,16 @@
-import cx from 'classnames'
-import React, { ReactNode, cloneElement } from 'react'
+import cx from 'classnames';
+import React, { ReactNode, cloneElement } from 'react';
 
-import { resolveContainerClassName } from './helpers/resolveContainerClassName'
-import { resolveTextClassName } from './helpers/resolveTextClassName'
-import * as styles from './Label.css'
+import { resolveContainerClassName } from './helpers/resolveContainerClassName';
+import { resolveTextClassName } from './helpers/resolveTextClassName';
+import * as styles from './Label.css';
 
 interface Props {
-  text: string
-  children: ReactNode
-  className?: string
-  inline?: boolean
-  inside?: boolean
+  text: string;
+  children: ReactNode;
+  className?: string;
+  inline?: boolean;
+  inside?: boolean;
 }
 
 export const Label = ({
@@ -21,8 +21,8 @@ export const Label = ({
   inside = false,
 }: Props) => {
   if (inside) {
-    const anyChild = children as any
-    return cloneElement(anyChild, anyChild.props, text)
+    const anyChild = children as any;
+    return cloneElement(anyChild, anyChild.props, text);
   }
 
   return (
@@ -30,5 +30,5 @@ export const Label = ({
       <span className={styles[resolveTextClassName(inline)]}>{text}</span>
       {children}
     </label>
-  )
-}
+  );
+};

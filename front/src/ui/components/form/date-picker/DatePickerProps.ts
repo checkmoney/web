@@ -1,4 +1,4 @@
 export interface DatePickerProps {
-  value?: Date
-  onChange?: (date?: Date) => void
+  value?: Date;
+  onChange?: (date?: Date) => void;
 }

@@ -1,8 +1,8 @@
-import { Api } from '&front/domain/api'
-import { actualizeStore } from '&front/domain/store/utils/actualizeStore'
-import { Currency } from '&shared/enum/Currency'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel'
+import { Api } from '&front/domain/api';
+import { actualizeStore } from '&front/domain/store/utils/actualizeStore';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel';
 
 export const fetchStatsAverageRequest = (api: Api) => (
   currency: Currency,
@@ -15,4 +15,4 @@ export const fetchStatsAverageRequest = (api: Api) => (
         currency,
       },
     })
-    .then(response => actualizeStore(response.data))
+    .then(response => actualizeStore(response.data));

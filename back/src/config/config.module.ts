@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common'
+import { Module } from '@nestjs/common';
 
-import ConfigurationFactory from './ConfigationFactory'
+import ConfigurationFactory from './ConfigationFactory';
 
-const configProvider = ConfigurationFactory.provider()
+const configProvider = ConfigurationFactory.provider();
 
 @Module({
   providers: [configProvider],

@@ -5,4 +5,4 @@ module.exports = {
       importFrom: './src/custom-media.css',
     }),
   ],
-}
+};

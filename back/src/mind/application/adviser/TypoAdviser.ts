@@ -1,13 +1,13 @@
-import * as md5 from 'md5'
+import * as md5 from 'md5';
 
-import { IncomeRepository } from '&back/money/domain/IncomeRepository'
-import { OutcomeRepository } from '&back/money/domain/OutcomeRepository'
-import { TipModel } from '&shared/models/mind/TipModel'
-import { TipAction } from '&shared/enum/TipAction'
+import { IncomeRepository } from '&back/money/domain/IncomeRepository';
+import { OutcomeRepository } from '&back/money/domain/OutcomeRepository';
+import { TipModel } from '&shared/models/mind/TipModel';
+import { TipAction } from '&shared/enum/TipAction';
 
-import { Adviser } from '../../infrastructure/adviser/helpers/Adviser'
-import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser'
-import { findTypos } from '../calculator/findTypos'
+import { Adviser } from '../../infrastructure/adviser/helpers/Adviser';
+import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser';
+import { findTypos } from '../calculator/findTypos';
 
 @IsAdviser()
 export class TypoAdviser implements Adviser {
@@ -20,9 +20,9 @@ export class TypoAdviser implements Adviser {
     const [sourceTypos, categoryTypos] = await Promise.all([
       this.incomeRepo.findSourcesForUser(userLogin).then(findTypos),
       this.outcomeRepo.findCategoriesForUser(userLogin).then(findTypos),
-    ])
+    ]);
 
-    const now = new Date()
+    const now = new Date();
 
     return [
       ...sourceTypos.map(sources => ({
@@ -37,15 +37,15 @@ export class TypoAdviser implements Adviser {
         meta: categories,
         token: this.createToken(categories, TipAction.MergeCategories),
       })),
-    ]
+    ];
   }
 
   private createToken(variants: Set<string>, action: TipAction): string {
     const payload = {
       variants: Array.from(variants).sort(),
       action,
-    }
+    };
 
-    return md5(JSON.stringify(payload))
+    return md5(JSON.stringify(payload));
   }
 }

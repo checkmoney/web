@@ -1,4 +1,4 @@
-import { displayNullableDate } from '&front/helpers/displayNullableDtae'
+import { displayNullableDate } from '&front/helpers/displayNullableDtae';
 
 export const createColumns = (
   t: (key: string) => string,
@@ -18,4 +18,4 @@ export const createColumns = (
     title: t(`transaction:${commentTitle}`),
     widthPercent: 40,
   },
-})
+});

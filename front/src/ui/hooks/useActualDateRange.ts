@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo } from 'react';
 
 export const useActualDateRange = (
   initialFrom: Date,
@@ -6,13 +6,13 @@ export const useActualDateRange = (
   transfromFrom: (from: Date, to: Date) => Date,
   transfromTo: (to: Date, from: Date) => Date,
 ) => {
-  const [from, setFrom] = useState(initialFrom)
-  const [to, setTo] = useState(initialTo)
+  const [from, setFrom] = useState(initialFrom);
+  const [to, setTo] = useState(initialTo);
 
   const [actualFrom, actualTo] = useMemo(
     () => [transfromFrom(from, to), transfromTo(to, from)],
     [from, to, transfromFrom, transfromTo],
-  )
+  );
 
   return {
     from,
@@ -21,5 +21,5 @@ export const useActualDateRange = (
     setTo,
     actualFrom,
     actualTo,
-  }
-}
+  };
+};

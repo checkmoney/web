@@ -1,8 +1,8 @@
-import { Api } from '&front/domain/api'
-import { actualizeStore } from '&front/domain/store/utils/actualizeStore'
-import { Currency } from '&shared/enum/Currency'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { DateGroupModel } from '&shared/models/money/DateGroupModel'
+import { Api } from '&front/domain/api';
+import { actualizeStore } from '&front/domain/store/utils/actualizeStore';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { DateGroupModel } from '&shared/models/money/DateGroupModel';
 
 export const fetchStatsDynamicsRequest = (api: Api) => (
   from: Date,
@@ -19,4 +19,4 @@ export const fetchStatsDynamicsRequest = (api: Api) => (
         currency,
       },
     })
-    .then(response => actualizeStore(response.data))
+    .then(response => actualizeStore(response.data));

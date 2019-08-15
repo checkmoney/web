@@ -1,23 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-import { TipModel } from '&shared/models/mind/TipModel'
-import { displayMoney } from '&shared/helpers/displayMoney'
-import { Card } from '&front/ui/components/layout/card'
-import { useTranslation } from '&front/domain/i18n'
+import { TipModel } from '&shared/models/mind/TipModel';
+import { displayMoney } from '&shared/helpers/displayMoney';
+import { Card } from '&front/ui/components/layout/card';
+import { useTranslation } from '&front/domain/i18n';
 
-import { DismissButton } from '../components/dismiss-button'
-import { PastDaysBudgetMeta } from './PastDaysBudgetMeta'
+import { DismissButton } from '../components/dismiss-button';
+import { PastDaysBudgetMeta } from './PastDaysBudgetMeta';
 
 interface Props {
-  tip: TipModel<PastDaysBudgetMeta>
+  tip: TipModel<PastDaysBudgetMeta>;
 }
 
 export const PastDaysBudget = ({ tip: { token, meta } }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const amount = displayMoney(meta.currency)(meta.outcome, {
     withPenny: false,
-  })
+  });
 
   return (
     <Card
@@ -26,5 +26,5 @@ export const PastDaysBudget = ({ tip: { token, meta } }: Props) => {
     >
       {t(`tips:past-days.content-${meta.group}`, { amount })}
     </Card>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
 export interface OptionProps {
-  value: string
-  children: string
+  value: string;
+  children: string;
 }

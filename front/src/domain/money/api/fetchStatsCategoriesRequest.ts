@@ -1,7 +1,7 @@
-import { Api } from '&front/domain/api'
-import { actualizeStore } from '&front/domain/store/utils/actualizeStore'
-import { Currency } from '&shared/enum/Currency'
-import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel'
+import { Api } from '&front/domain/api';
+import { actualizeStore } from '&front/domain/store/utils/actualizeStore';
+import { Currency } from '&shared/enum/Currency';
+import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel';
 
 export const fetchStatsCategoriesRequest = (api: Api) => (
   from: Date,
@@ -16,4 +16,4 @@ export const fetchStatsCategoriesRequest = (api: Api) => (
         currency,
       },
     })
-    .then(response => actualizeStore(response.data))
+    .then(response => actualizeStore(response.data));

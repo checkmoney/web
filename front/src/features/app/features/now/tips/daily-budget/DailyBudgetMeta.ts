@@ -1,6 +1,6 @@
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
 export interface DailyBudgetMeta {
-  amount: number
-  currency: Currency
+  amount: number;
+  currency: Currency;
 }

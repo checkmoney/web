@@ -1,6 +1,6 @@
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
 export interface ExtraSpendingMeta {
-  difference: number
-  currency: Currency
+  difference: number;
+  currency: Currency;
 }

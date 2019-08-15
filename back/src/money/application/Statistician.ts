@@ -1,28 +1,28 @@
-import { Injectable } from '@nestjs/common'
-import { groupBy, flow, curryRight, mapValues, flatMap } from 'lodash'
+import { Injectable } from '@nestjs/common';
+import { groupBy, flow, curryRight, mapValues, flatMap } from 'lodash';
 
-import { dateGroupByCallback } from '&back/utils/infrastructure/dateGroups/dateGroupByCallback'
-import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel'
-import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel'
-import { createGroups } from '&back/utils/infrastructure/dateGroups/createGroups'
-import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel'
-import { createAverageReducer } from '&shared/helpers/createAverageReducer'
-import { prevDate } from '&back/utils/infrastructure/dateGroups/prevDate'
-import { DateRange } from '&back/utils/infrastructure/dto/DateRange'
-import { Currency } from '&shared/enum/Currency'
-import { GroupBy } from '&shared/enum/GroupBy'
+import { dateGroupByCallback } from '&back/utils/infrastructure/dateGroups/dateGroupByCallback';
+import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel';
+import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel';
+import { createGroups } from '&back/utils/infrastructure/dateGroups/createGroups';
+import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel';
+import { createAverageReducer } from '&shared/helpers/createAverageReducer';
+import { prevDate } from '&back/utils/infrastructure/dateGroups/prevDate';
+import { DateRange } from '&back/utils/infrastructure/dto/DateRange';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
 
-import { TransactionRepository } from '../domain/interfaces/TransactionRepository'
-import { AbstractTransaction } from '../domain/interfaces/AbstarctTransaction'
-import { OutcomeRepository } from '../domain/OutcomeRepository'
-import { IncomeRepository } from '../domain/IncomeRepository'
-import { CurrencyConverter } from './CurrencyConverter'
-import { Transaction } from '../domain/dto/Transaction'
-import { amountMapper } from './helpers/amountMapper'
-import { rangeFilter } from './helpers/rangeFilter'
-import { sumReducer } from './helpers/sumReducer'
-import { SummedGroup } from './types/SummedGroup'
-import { Historian } from './Historian'
+import { TransactionRepository } from '../domain/interfaces/TransactionRepository';
+import { AbstractTransaction } from '../domain/interfaces/AbstarctTransaction';
+import { OutcomeRepository } from '../domain/OutcomeRepository';
+import { IncomeRepository } from '../domain/IncomeRepository';
+import { CurrencyConverter } from './CurrencyConverter';
+import { Transaction } from '../domain/dto/Transaction';
+import { amountMapper } from './helpers/amountMapper';
+import { rangeFilter } from './helpers/rangeFilter';
+import { sumReducer } from './helpers/sumReducer';
+import { SummedGroup } from './types/SummedGroup';
+import { Historian } from './Historian';
 
 @Injectable()
 export class Statistician {
@@ -38,14 +38,14 @@ export class Statistician {
     statsGroupBy: GroupBy,
     currency: Currency,
   ): Promise<AverageAmountModel[]> {
-    const from = await this.historian.getDateOfEarliestTransaction(userLogin)
-    const to = prevDate(statsGroupBy) // to exclude current period
+    const from = await this.historian.getDateOfEarliestTransaction(userLogin);
+    const to = prevDate(statsGroupBy); // to exclude current period
 
     const groups = await this.historian.showGroupedHistory(
       userLogin,
       { from, to },
       statsGroupBy,
-    )
+    );
 
     const convertedGroups = await Promise.all(
       groups.map(async ({ title, incomes, outcomes }) => ({
@@ -53,7 +53,7 @@ export class Statistician {
         incomes: await this.convertItems(currency)(incomes),
         outcomes: await this.convertItems(currency)(outcomes),
       })),
-    )
+    );
 
     const summedGroups = convertedGroups.map(
       ({ incomes, outcomes, period }) => ({
@@ -61,7 +61,7 @@ export class Statistician {
         income: incomes.map(amountMapper).reduce(sumReducer, 0),
         outcome: outcomes.map(amountMapper).reduce(sumReducer, 0),
       }),
-    )
+    );
 
     const groupedGroups = mapValues(
       groupBy(summedGroups, group =>
@@ -78,12 +78,12 @@ export class Statistician {
           .filter(Boolean)
           .reduce(createAverageReducer(), 0),
       }),
-    )
+    );
 
     return Object.values(groupedGroups).map(group => ({
       ...group,
       currency,
-    }))
+    }));
   }
 
   public async showDateRangeStats(
@@ -95,14 +95,14 @@ export class Statistician {
     const [incomes, outcomes] = await Promise.all([
       this.incomeRepo.findByRangeForUser(userLogin, dateRange),
       this.outcomeRepo.findByRangeForUser(userLogin, dateRange),
-    ])
+    ]);
 
     const [convertedIncomes, convertedOutcomes] = await Promise.all([
       this.convertItems(currency)(incomes),
       this.convertItems(currency)(outcomes),
-    ])
+    ]);
 
-    const groups = createGroups(statsGroupBy)(dateRange)
+    const groups = createGroups(statsGroupBy)(dateRange);
 
     return groups.map(group => ({
       currency,
@@ -116,7 +116,7 @@ export class Statistician {
         .filter(rangeFilter(group))
         .map(amountMapper)
         .reduce(sumReducer, 0),
-    }))
+    }));
   }
 
   public async showCategories(
@@ -131,7 +131,7 @@ export class Statistician {
       this.outcomeRepo,
       'category',
       'outcome',
-    )
+    );
   }
 
   public async showSources(
@@ -146,7 +146,7 @@ export class Statistician {
       this.incomeRepo,
       'source',
       'income',
-    )
+    );
   }
 
   private async showGrouped<T extends string, K extends string>(
@@ -157,21 +157,21 @@ export class Statistician {
     groupKey: T,
     sumKey: K,
   ): Promise<SummedGroup<T, K>[]> {
-    const rawTransactions = await repo.findByRangeForUser(userLogin, dateRange)
+    const rawTransactions = await repo.findByRangeForUser(userLogin, dateRange);
 
     const groups = Object.entries(groupBy(rawTransactions, groupKey)).map(
       ([key, transactions]) => ({
         key,
         transactions,
       }),
-    )
+    );
 
     const convertedGroups = await Promise.all(
       groups.map(async ({ key, transactions }) => ({
         key,
         transactions: await this.convertItems(currency)(transactions),
       })),
-    )
+    );
 
     const summedGroups = convertedGroups.map(
       ({ key, transactions }) =>
@@ -180,9 +180,9 @@ export class Statistician {
           [sumKey]: transactions.map(amountMapper).reduce(sumReducer, 0),
           currency,
         } as SummedGroup<T, K>),
-    )
+    );
 
-    return summedGroups
+    return summedGroups;
   }
 
   private convertItems(targetCurrency: Currency) {
@@ -194,10 +194,10 @@ export class Statistician {
             targetCurrency,
             item.amount,
             item.date,
-          )
+          );
 
-          return new Transaction(newAmount, targetCurrency, item.date)
+          return new Transaction(newAmount, targetCurrency, item.date);
         }),
-      )
+      );
   }
 }

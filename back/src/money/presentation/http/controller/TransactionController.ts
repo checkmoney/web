@@ -1,21 +1,21 @@
-import { Body, Controller, Post, Query, Delete, Param } from '@nestjs/common'
+import { Body, Controller, Post, Query, Delete, Param } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
   ApiOperation,
   ApiUseTags,
   ApiOkResponse,
-} from '@nestjs/swagger'
+} from '@nestjs/swagger';
 
-import { Accountant } from '&back/money/application/Accountant'
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
-import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser'
-import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers'
+import { Accountant } from '&back/money/application/Accountant';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
+import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
 
-import { IncomeRequest } from '../request/IncomeRequest'
-import { OutcomeRequest } from '../request/OutcomeRequest'
-import { IncomeResponse } from '../response/IncomeResponse'
-import { OutcomeResponse } from '../response/OutcomeResponse'
+import { IncomeRequest } from '../request/IncomeRequest';
+import { OutcomeRequest } from '../request/OutcomeRequest';
+import { IncomeResponse } from '../response/IncomeResponse';
+import { OutcomeResponse } from '../response/OutcomeResponse';
 
 @Controller('money/transaction')
 @OnlyForUsers()
@@ -34,9 +34,9 @@ export class TransactionController {
     @Body() request: IncomeRequest,
     @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<IncomeResponse> {
-    await this.accountant.income(login, request)
+    await this.accountant.income(login, request);
 
-    return request
+    return request;
   }
 
   @Post('outcome')
@@ -49,9 +49,9 @@ export class TransactionController {
     @Body() request: OutcomeRequest,
     @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<OutcomeResponse> {
-    await this.accountant.outcome(login, request)
+    await this.accountant.outcome(login, request);
 
-    return request
+    return request;
   }
 
   @Delete('/:id')
@@ -61,6 +61,6 @@ export class TransactionController {
     @Param('id') id: string,
     @CurrentUser() { login }: TokenPayloadModel,
   ) {
-    await this.accountant.remove(id, login)
+    await this.accountant.remove(id, login);
   }
 }

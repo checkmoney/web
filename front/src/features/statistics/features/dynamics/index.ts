@@ -1,1 +1,1 @@
-export { Dynamics } from './Dynamics'
+export { Dynamics } from './Dynamics';

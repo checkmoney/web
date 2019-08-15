@@ -1,16 +1,16 @@
-import { fetchOrFail } from '&front/domain/store'
-import { fetchTips } from '&front/domain/mind/actions/fetchTips'
+import { fetchOrFail } from '&front/domain/store';
+import { fetchTips } from '&front/domain/mind/actions/fetchTips';
 
-import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods'
-import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods'
-import { fetchFirstTransactionDate } from './fetchFirstTransactionDate'
-import { forceFetchHistory } from './forceFetchHistory'
-import { forceFetchStatsDynamics } from './forceFetchStatsDynamics'
+import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods';
+import { getStatsCachedPeriods } from '../selectors/getStatsCachedPeriods';
+import { fetchFirstTransactionDate } from './fetchFirstTransactionDate';
+import { forceFetchHistory } from './forceFetchHistory';
+import { forceFetchStatsDynamics } from './forceFetchStatsDynamics';
 
 export const refetchData = () =>
   fetchOrFail(undefined, async (dispatch, _, getState) => {
-    const historyCachedPeriods = getHistoryCachedPeriods(getState())
-    const statsCachedPeriods = getStatsCachedPeriods(getState())
+    const historyCachedPeriods = getHistoryCachedPeriods(getState());
+    const statsCachedPeriods = getStatsCachedPeriods(getState());
 
     await Promise.all([
       dispatch(fetchFirstTransactionDate()),
@@ -30,5 +30,5 @@ export const refetchData = () =>
           to &&
           dispatch(forceFetchStatsDynamics(from, to, groupBy, currency)),
       ),
-    ])
-  })
+    ]);
+  });

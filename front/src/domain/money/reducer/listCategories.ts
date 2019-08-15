@@ -2,13 +2,13 @@ import {
   ClearAction,
   WithFetchingState,
   createClearReduxWithFetching,
-} from 'redux-clear'
+} from 'redux-clear';
 
-type InternalState = string[]
-type State = WithFetchingState<InternalState>
+type InternalState = string[];
+type State = WithFetchingState<InternalState>;
 
 interface Actions {
-  addCategories: ClearAction<[string[]]>
+  addCategories: ClearAction<[string[]]>;
 }
 
 const { actions, reducer } = createClearReduxWithFetching<
@@ -21,6 +21,6 @@ const { actions, reducer } = createClearReduxWithFetching<
     ],
   },
   [],
-)
+);
 
-export { State, actions, reducer }
+export { State, actions, reducer };

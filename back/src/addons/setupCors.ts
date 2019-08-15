@@ -1,6 +1,6 @@
-import { INestApplication } from '@nestjs/common'
-import * as cors from 'cors'
+import { INestApplication } from '@nestjs/common';
+import * as cors from 'cors';
 
 export const setupCors = (app: INestApplication) => {
-  app.use(cors())
-}
+  app.use(cors());
+};

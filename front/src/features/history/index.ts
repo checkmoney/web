@@ -1,4 +1,4 @@
-export { History } from './History'
+export { History } from './History';
 
-export { createColumns } from './helpers/createColumns'
-export { historyToTableData } from './helpers/historyToTableData'
+export { createColumns } from './helpers/createColumns';
+export { historyToTableData } from './helpers/historyToTableData';

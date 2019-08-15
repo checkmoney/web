@@ -1,10 +1,10 @@
-const withPlugins = require('next-compose-plugins')
-const withCSS = require('next-css-unpluggable')
-const withTypescript = require('@zeit/next-typescript')
+const withPlugins = require('next-compose-plugins');
+const withCSS = require('next-css-unpluggable');
+const withTypescript = require('@zeit/next-typescript');
 
-const tsIncludes = require('./.workarounds/ts-includes')
+const tsIncludes = require('./.workarounds/ts-includes');
 
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = withPlugins(
   [
@@ -31,11 +31,11 @@ module.exports = withPlugins(
     webpack(config, options) {
       // Do not run type checking twice:
       if (options.isServer) {
-        config.plugins.push(new ForkTsCheckerWebpackPlugin())
+        config.plugins.push(new ForkTsCheckerWebpackPlugin());
       }
 
-      return config
+      return config;
     },
     distDir: '../dist/front',
   },
-)
+);

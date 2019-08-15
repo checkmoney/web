@@ -1,1 +1,1 @@
-export { DailyBudget } from './DailyBudget'
+export { DailyBudget } from './DailyBudget';

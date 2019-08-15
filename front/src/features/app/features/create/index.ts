@@ -1,1 +1,1 @@
-export { CreateTransaction } from './CreateTransaction'
+export { CreateTransaction } from './CreateTransaction';

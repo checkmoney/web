@@ -1,3 +1,3 @@
 export abstract class IdGenerator {
-  public abstract getId(): Promise<string>
+  public abstract getId(): Promise<string>;
 }

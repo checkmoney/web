@@ -1,1 +1,1 @@
-export { FullHistoryButton } from './FullHistoryButton'
+export { FullHistoryButton } from './FullHistoryButton';

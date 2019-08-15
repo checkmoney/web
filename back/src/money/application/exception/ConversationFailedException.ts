@@ -1,6 +1,6 @@
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 
-import { Currency } from '&shared/enum/Currency'
+import { Currency } from '&shared/enum/Currency';
 
 export class ConversationFailedException extends Error {
   public constructor(
@@ -13,6 +13,6 @@ export class ConversationFailedException extends Error {
         at,
         'YYYY-MM-DD',
       )}`,
-    )
+    );
   }
 }

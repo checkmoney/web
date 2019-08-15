@@ -1,10 +1,10 @@
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
 
-import { OptionProps } from '../Option/OptionProps'
+import { OptionProps } from '../Option/OptionProps';
 
 export interface SelectProps {
-  showSearch?: boolean
-  children: Array<ReactElement<OptionProps>>
-  value?: string
-  onChange?: (value: string | undefined) => void
+  showSearch?: boolean;
+  children: Array<ReactElement<OptionProps>>;
+  value?: string;
+  onChange?: (value: string | undefined) => void;
 }

@@ -1,12 +1,12 @@
-import { ApiModelProperty } from '@nestjs/swagger'
+import { ApiModelProperty } from '@nestjs/swagger';
 
-import { Income } from '&back/money/domain/Income.entity'
-import { Outcome } from '&back/money/domain/Outcome.entity'
-import { Currency } from '&shared/enum/Currency'
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel'
+import { Income } from '&back/money/domain/Income.entity';
+import { Outcome } from '&back/money/domain/Outcome.entity';
+import { Currency } from '&shared/enum/Currency';
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
 
-import { IncomeResponse } from './IncomeResponse'
-import { OutcomeResponse } from './OutcomeResponse'
+import { IncomeResponse } from './IncomeResponse';
+import { OutcomeResponse } from './OutcomeResponse';
 
 const incomesExample: IncomeResponse[] = [
   {
@@ -15,7 +15,7 @@ const incomesExample: IncomeResponse[] = [
     source: 'NASA',
     date: new Date(),
   },
-]
+];
 
 const outcomeExample: OutcomeResponse[] = [
   {
@@ -24,7 +24,7 @@ const outcomeExample: OutcomeResponse[] = [
     category: 'Cafes',
     date: new Date(),
   },
-]
+];
 
 export class HistoryGroupResponse implements HistoryGroupModel {
   public static fromPair(
@@ -36,15 +36,15 @@ export class HistoryGroupResponse implements HistoryGroupModel {
       title,
       incomes: incomes.map(IncomeResponse.fromEntity),
       outcomes: outcomes.map(OutcomeResponse.fromEntity),
-    }
+    };
   }
 
   @ApiModelProperty({ example: 'Jan' })
-  public readonly title: string
+  public readonly title: string;
 
   @ApiModelProperty({ example: incomesExample })
-  public readonly incomes: IncomeResponse[]
+  public readonly incomes: IncomeResponse[];
 
   @ApiModelProperty({ example: outcomeExample })
-  public readonly outcomes: OutcomeResponse[]
+  public readonly outcomes: OutcomeResponse[];
 }

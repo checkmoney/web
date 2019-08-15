@@ -1,17 +1,17 @@
-import { Controller, Get, Body, Post } from '@nestjs/common'
+import { Controller, Get, Body, Post } from '@nestjs/common';
 import {
   ApiUseTags,
   ApiBearerAuth,
   ApiOperation,
   ApiOkResponse,
-} from '@nestjs/swagger'
+} from '@nestjs/swagger';
 
-import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers'
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
-import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser'
+import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
 
-import { MergeTypoRequest } from '../request/MergeTypoRequest'
-import { TypoMerger } from '&back/mind/application/TypoMerger'
+import { MergeTypoRequest } from '../request/MergeTypoRequest';
+import { TypoMerger } from '&back/mind/application/TypoMerger';
 
 @Controller('mind/typo')
 @OnlyForUsers()
@@ -27,6 +27,6 @@ export class TypoController {
     @CurrentUser() user: TokenPayloadModel,
     @Body() request: MergeTypoRequest,
   ): Promise<void> {
-    await this.merger.merge(request.primary, request.secondary, user.login)
+    await this.merger.merge(request.primary, request.secondary, user.login);
   }
 }

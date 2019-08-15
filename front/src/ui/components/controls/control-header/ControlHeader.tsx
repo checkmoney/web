@@ -1,12 +1,12 @@
-import React, { ReactNode } from 'react'
-import cx from 'classnames'
+import React, { ReactNode } from 'react';
+import cx from 'classnames';
 
-import * as styles from './ControlHeader.css'
+import * as styles from './ControlHeader.css';
 
 interface Props {
-  title: string
-  children?: ReactNode
-  className?: string
+  title: string;
+  children?: ReactNode;
+  className?: string;
 }
 
 export const ControlHeader = ({ title, children, className }: Props) => (
@@ -14,4 +14,4 @@ export const ControlHeader = ({ title, children, className }: Props) => (
     <h2 className={styles.title}>{title}</h2>
     {children}
   </header>
-)
+);

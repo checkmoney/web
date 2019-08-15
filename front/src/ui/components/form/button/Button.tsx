@@ -1,13 +1,13 @@
-import { Button as AntButton } from 'antd'
-import cx from 'classnames'
-import React from 'react'
+import { Button as AntButton } from 'antd';
+import cx from 'classnames';
+import React from 'react';
 
-import { ButtonProps } from './ButtonProps'
-import { resolveType } from './helpers/resolveType'
-import { resolveClassName } from './helpers/resolveClassName'
-import { ButtonType } from './ButtonType'
-import * as styles from './Button.css'
-import { resolveAntdType } from './helpers/resolveAntdType'
+import { ButtonProps } from './ButtonProps';
+import { resolveType } from './helpers/resolveType';
+import { resolveClassName } from './helpers/resolveClassName';
+import { ButtonType } from './ButtonType';
+import * as styles from './Button.css';
+import { resolveAntdType } from './helpers/resolveAntdType';
 
 export const Button = ({
   submit = false,
@@ -26,4 +26,4 @@ export const Button = ({
   >
     {children}
   </AntButton>
-)
+);

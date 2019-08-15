@@ -1,6 +1,6 @@
-import { notification } from 'antd'
+import { notification } from 'antd';
 
 export const useNotifyAlert = () => (message: string) =>
   notification.info({
     message,
-  })
+  });

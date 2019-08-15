@@ -1,25 +1,25 @@
-import * as React from 'react'
-import { startOfMonth, endOfMonth } from 'date-fns'
+import * as React from 'react';
+import { startOfMonth, endOfMonth } from 'date-fns';
 
-import { AppContext } from '&front/domain/AppContext'
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate'
-import { Statistics } from '&front/features/statistics'
-import { wantUTC } from '&front/helpers/wantUTC'
-import { fetchStatsSources } from '&front/domain/money/actions/fetchStatsSources'
-import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories'
-import { fetchStatsAverage } from '&front/domain/money/actions/fetchStatsAverage'
-import { fetchStatsDynamics } from '&front/domain/money/actions/fetchStatsDynamics'
-import { GroupBy } from '&shared/enum/GroupBy'
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency'
-import { pageWithTranslation, Namespace } from '&front/domain/i18n'
+import { AppContext } from '&front/domain/AppContext';
+import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
+import { Statistics } from '&front/features/statistics';
+import { wantUTC } from '&front/helpers/wantUTC';
+import { fetchStatsSources } from '&front/domain/money/actions/fetchStatsSources';
+import { fetchStatsCategories } from '&front/domain/money/actions/fetchStatsCategories';
+import { fetchStatsAverage } from '&front/domain/money/actions/fetchStatsAverage';
+import { fetchStatsDynamics } from '&front/domain/money/actions/fetchStatsDynamics';
+import { GroupBy } from '&shared/enum/GroupBy';
+import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
+import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 
 class StatsPage extends React.Component {
-  public static isSecure = true
+  public static isSecure = true;
 
   public static async getInitialProps({ reduxStore }: AppContext) {
-    const from = wantUTC(startOfMonth)(new Date())
-    const to = wantUTC(endOfMonth)(new Date())
-    const currency = getDefaultCurrency(reduxStore.getState())
+    const from = wantUTC(startOfMonth)(new Date());
+    const to = wantUTC(endOfMonth)(new Date());
+    const currency = getDefaultCurrency(reduxStore.getState());
 
     await Promise.all([
       reduxStore.dispatch(fetchFirstTransactionDate() as any),
@@ -32,13 +32,13 @@ class StatsPage extends React.Component {
         GroupBy.Month,
         currency,
       ) as any),
-    ])
+    ]);
 
-    return {}
+    return {};
   }
 
   public render() {
-    return <Statistics />
+    return <Statistics />;
   }
 }
 
@@ -47,4 +47,4 @@ export default pageWithTranslation([
   Namespace.Months,
   Namespace.Stats,
   Namespace.Currency,
-])(StatsPage)
+])(StatsPage);

@@ -1,16 +1,16 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
-import { ModuleRef } from '@nestjs/core'
-import { TelegramBot } from 'nest-telegram'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ModuleRef } from '@nestjs/core';
+import { TelegramBot } from 'nest-telegram';
 
-import { ConfigModule } from './config/config.module'
-import { DbModule } from './db/db.module'
-import { MoneyModule } from './money/money.module'
-import { UserModule } from './user/user.module'
-import { UtilsModule } from './utils/utils.module'
-import { TelegramModule } from './telegram/telegram.module'
-import { MindModule } from './mind/mind.module'
+import { ConfigModule } from './config/config.module';
+import { DbModule } from './db/db.module';
+import { MoneyModule } from './money/money.module';
+import { UserModule } from './user/user.module';
+import { UtilsModule } from './utils/utils.module';
+import { TelegramModule } from './telegram/telegram.module';
+import { MindModule } from './mind/mind.module';
 
-import { Configuration } from './config/Configuration'
+import { Configuration } from './config/Configuration';
 
 @Module({
   imports: [
@@ -31,11 +31,11 @@ export class AppModule implements NestModule {
   ) {}
 
   public configure(consumer: MiddlewareConsumer) {
-    this.telegramBot.init(this.moduleRef)
+    this.telegramBot.init(this.moduleRef);
 
     if (this.config.isDev()) {
       // in dev use long poll
-      this.telegramBot.startPolling()
+      this.telegramBot.startPolling();
     }
   }
 }

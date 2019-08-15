@@ -1,5 +1,5 @@
-import { Store } from './Store'
+import { Store } from './Store';
 
 export interface WithReduxProps {
-  reduxStore: Store
+  reduxStore: Store;
 }

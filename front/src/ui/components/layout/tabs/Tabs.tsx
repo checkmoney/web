@@ -1,16 +1,16 @@
-import { Tabs as AntTabs } from 'antd'
-import React, { ReactElement, useMemo, ReactNode } from 'react'
-import { head } from 'lodash'
+import { Tabs as AntTabs } from 'antd';
+import React, { ReactElement, useMemo, ReactNode } from 'react';
+import { head } from 'lodash';
 
-import { TabProps } from './TabProps'
-import { getMode } from './helpers/getMode'
+import { TabProps } from './TabProps';
+import { getMode } from './helpers/getMode';
 
 interface Props {
-  children: Array<ReactElement<TabProps>>
-  className?: string
-  tabBarExtraContent?: ReactNode
-  defaultSelected?: string
-  vertical?: boolean
+  children: Array<ReactElement<TabProps>>;
+  className?: string;
+  tabBarExtraContent?: ReactNode;
+  defaultSelected?: string;
+  vertical?: boolean;
 }
 
 export const Tabs = ({
@@ -22,21 +22,21 @@ export const Tabs = ({
 }: Props) => {
   const defaultActiveKey = useMemo(() => {
     if (defaultSelected !== undefined) {
-      return defaultSelected
+      return defaultSelected;
     }
 
-    const firstChild = head(children)
+    const firstChild = head(children);
 
-    return firstChild ? firstChild.props.title : undefined
-  }, [children, defaultSelected])
+    return firstChild ? firstChild.props.title : undefined;
+  }, [children, defaultSelected]);
 
   const actualChildren = useMemo(() => {
     if (vertical) {
-      return children.reverse()
+      return children.reverse();
     }
 
-    return children
-  }, [vertical, children])
+    return children;
+  }, [vertical, children]);
 
   return (
     <AntTabs
@@ -53,5 +53,5 @@ export const Tabs = ({
         />
       ))}
     </AntTabs>
-  )
-}
+  );
+};

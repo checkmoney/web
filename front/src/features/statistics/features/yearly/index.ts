@@ -1,1 +1,1 @@
-export { Yearly } from './Yearly'
+export { Yearly } from './Yearly';

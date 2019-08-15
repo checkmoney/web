@@ -1,5 +1,5 @@
-import backwards from './backwards.css'
-import forwards from './forwards.css'
+import backwards from './backwards.css';
+import forwards from './forwards.css';
 
 export const routeAnimations = [
   {
@@ -22,4 +22,4 @@ export const routeAnimations = [
     nextRoute: '/app/stats',
     styles: backwards,
   },
-]
+];

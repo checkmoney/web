@@ -2,21 +2,21 @@ import {
   ClearAction,
   WithFetchingState,
   createClearReduxWithFetching,
-} from 'redux-clear'
+} from 'redux-clear';
 
 import {
   CachedPeriod,
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '&front/domain/cached-data'
-import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel'
+} from '&front/domain/cached-data';
+import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel';
 
-type InternalState = CachedState<AverageAmountModel>
-type State = WithFetchingState<InternalState>
+type InternalState = CachedState<AverageAmountModel>;
+type State = WithFetchingState<InternalState>;
 
 interface Actions {
-  addStats: ClearAction<[CachedPeriod, AverageAmountModel[]]>
+  addStats: ClearAction<[CachedPeriod, AverageAmountModel[]]>;
 }
 
 const { actions, reducer } = createClearReduxWithFetching<
@@ -27,6 +27,6 @@ const { actions, reducer } = createClearReduxWithFetching<
     addStats: newItemProcessor,
   },
   createInitialState(),
-)
+);
 
-export { State, actions, reducer }
+export { State, actions, reducer };

@@ -1,20 +1,20 @@
-import { Modal as AntModal } from 'antd'
-import React, { ReactNode } from 'react'
+import { Modal as AntModal } from 'antd';
+import React, { ReactNode } from 'react';
 
-import { useModalState, useModalActions } from '@breadhead/use-modal'
+import { useModalState, useModalActions } from '@breadhead/use-modal';
 
 interface Props {
-  id: string
-  title: string
-  children: ReactNode
-  footer?: ReactNode
+  id: string;
+  title: string;
+  children: ReactNode;
+  footer?: ReactNode;
 }
 
 export const Modal = ({ id, children, title, footer = null }: Props) => {
-  const state = useModalState(id)
-  const { close } = useModalActions(id)
+  const state = useModalState(id);
+  const { close } = useModalActions(id);
 
-  const visible = !!state
+  const visible = !!state;
 
   return visible ? (
     <AntModal
@@ -26,5 +26,5 @@ export const Modal = ({ id, children, title, footer = null }: Props) => {
     >
       {children}
     </AntModal>
-  ) : null
-}
+  ) : null;
+};

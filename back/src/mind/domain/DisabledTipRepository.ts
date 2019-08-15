@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-import { DisabledTip } from './DisabledTip.entity'
+import { DisabledTip } from './DisabledTip.entity';
 
 @Injectable()
 class DisabledTipRepo {
@@ -12,7 +12,7 @@ class DisabledTipRepo {
   ) {}
 
   public async findTokens(userLogin: string): Promise<string[]> {
-    const now = new Date().toISOString()
+    const now = new Date().toISOString();
 
     const result = await this.disabledTipRepo
       .createQueryBuilder('tip')
@@ -20,11 +20,11 @@ class DisabledTipRepo {
         userLogin,
       })
       .where('tip.expireAt >= :now', { now })
-      .getMany()
+      .getMany();
 
-    return result.map(({ token }) => token)
+    return result.map(({ token }) => token);
   }
 }
 
-export const DisabledTipRepository = DisabledTipRepo
-export type DisabledTipRepository = DisabledTipRepo
+export const DisabledTipRepository = DisabledTipRepo;
+export type DisabledTipRepository = DisabledTipRepo;

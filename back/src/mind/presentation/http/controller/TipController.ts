@@ -1,23 +1,23 @@
-import { Controller, Get, Body, Post } from '@nestjs/common'
+import { Controller, Get, Body, Post } from '@nestjs/common';
 import {
   ApiUseTags,
   ApiBearerAuth,
   ApiOperation,
   ApiOkResponse,
-} from '@nestjs/swagger'
+} from '@nestjs/swagger';
 
-import { OnlyForManager } from '&back/user/presentation/http/security/OnlyForManager'
-import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers'
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
-import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser'
-import { AdviserUnity } from '&back/mind/infrastructure/adviser/AdviserUnity'
-import { TipsFilter } from '&back/mind/application/TipsFilter'
-import { TipsDisabler } from '&back/mind/application/TipsDisabler'
-import { TipsCreator } from '&back/mind/application/TipsCreator'
+import { OnlyForManager } from '&back/user/presentation/http/security/OnlyForManager';
+import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
+import { AdviserUnity } from '&back/mind/infrastructure/adviser/AdviserUnity';
+import { TipsFilter } from '&back/mind/application/TipsFilter';
+import { TipsDisabler } from '&back/mind/application/TipsDisabler';
+import { TipsCreator } from '&back/mind/application/TipsCreator';
 
-import { TipResponse } from '../reponse/TipResponse'
-import { DisableTipRequest } from '../request/DisableTipRequest'
-import { CustomTipRequest } from '../request/CustomTipRequest'
+import { TipResponse } from '../reponse/TipResponse';
+import { DisableTipRequest } from '../request/DisableTipRequest';
+import { CustomTipRequest } from '../request/CustomTipRequest';
 
 @Controller('mind/tip')
 @OnlyForUsers()
@@ -42,11 +42,11 @@ export class TipController {
     @CurrentUser()
     user: TokenPayloadModel,
   ): Promise<TipResponse[]> {
-    const allTips = await this.adviser.giveAdvice(user.login)
+    const allTips = await this.adviser.giveAdvice(user.login);
 
-    const activeTips = await this.tipsFilter.filter(allTips, user.login)
+    const activeTips = await this.tipsFilter.filter(allTips, user.login);
 
-    return activeTips
+    return activeTips;
   }
 
   @Post('disable')
@@ -56,7 +56,7 @@ export class TipController {
     @CurrentUser() user: TokenPayloadModel,
     @Body() request: DisableTipRequest,
   ) {
-    await this.tipsDisabler.disable(request.tokens, user.login)
+    await this.tipsDisabler.disable(request.tokens, user.login);
   }
 
   @Post('create')
@@ -64,6 +64,6 @@ export class TipController {
   @ApiOperation({ title: 'Create custom tip' })
   @ApiOkResponse({ description: 'Created' })
   public async create(@Body() request: CustomTipRequest) {
-    await this.tipsCreator.createCustom(request)
+    await this.tipsCreator.createCustom(request);
   }
 }

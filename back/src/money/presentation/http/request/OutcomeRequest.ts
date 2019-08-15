@@ -1,1 +1,1 @@
-export { OutcomeResponse as OutcomeRequest } from '../response/OutcomeResponse'
+export { OutcomeResponse as OutcomeRequest } from '../response/OutcomeResponse';

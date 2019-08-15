@@ -1,36 +1,36 @@
-import fc from 'fast-check'
-import { getDate, getDaysInMonth, getMonth } from 'date-fns'
+import fc from 'fast-check';
+import { getDate, getDaysInMonth, getMonth } from 'date-fns';
 
-import { calculateBudget } from '../calculateBudget'
+import { calculateBudget } from '../calculateBudget';
 
-type ExactNumber = number | fc.Arbitrary<number>
+type ExactNumber = number | fc.Arbitrary<number>;
 
 interface ExactMoney {
-  previousMonthIncome?: ExactNumber
-  thisMonthOutcome?: ExactNumber
-  todayOutcome?: ExactNumber
+  previousMonthIncome?: ExactNumber;
+  thisMonthOutcome?: ExactNumber;
+  todayOutcome?: ExactNumber;
 }
 
 interface MinMax {
-  min: number
-  max: number
+  min: number;
+  max: number;
 }
 
 const exactOrRandom = (exact?: ExactNumber, options?: MinMax) => {
   if (exact instanceof fc.Arbitrary) {
-    return exact
+    return exact;
   }
 
   if (typeof exact !== 'undefined') {
-    return fc.constant(exact)
+    return fc.constant(exact);
   }
 
   if (options) {
-    return fc.integer(options.min, options.max)
+    return fc.integer(options.min, options.max);
   }
 
-  return fc.integer(0, Number.MAX_VALUE)
-}
+  return fc.integer(0, Number.MAX_VALUE);
+};
 
 const moneyArb = (exact: ExactMoney = {}) =>
   fc
@@ -43,7 +43,7 @@ const moneyArb = (exact: ExactMoney = {}) =>
       previousMonthIncome,
       thisMonthOutcome,
       todayOutcome,
-    }))
+    }));
 
 const periodArb = (exact?: Date) =>
   fc
@@ -52,15 +52,15 @@ const periodArb = (exact?: Date) =>
       fc.integer(1000, 5000),
     )
     .map(([day, year]) => {
-      const date = new Date()
+      const date = new Date();
 
-      date.setFullYear(year)
-      date.setDate(day)
+      date.setFullYear(year);
+      date.setDate(day);
 
       // TODO: add random generation of month
-      date.setMonth(date ? getMonth(date) : 11)
-      return date
-    })
+      date.setMonth(date ? getMonth(date) : 11);
+      return date;
+    });
 
 describe('calculateBudget#property', () => {
   test('should return zero for zero income', () => {
@@ -70,8 +70,8 @@ describe('calculateBudget#property', () => {
         periodArb(),
         (money, period) => calculateBudget(money, period) === 0,
       ),
-    )
-  })
+    );
+  });
 
   test('should return zero for outcome large than income', () => {
     fc.assert(
@@ -85,15 +85,15 @@ describe('calculateBudget#property', () => {
         periodArb(),
         (money, period) => calculateBudget(money, period) === 0,
       ),
-    )
-  })
+    );
+  });
 
   test('should return proportional income for zero outcome', () => {
     const divideIncomeByDays = (
       income: number,
       day: number,
       daysCount: number,
-    ) => Math.round(income / (day + 1 - daysCount))
+    ) => Math.round(income / (day + 1 - daysCount));
 
     fc.assert(
       fc.property(
@@ -110,8 +110,8 @@ describe('calculateBudget#property', () => {
             getDaysInMonth(period),
           ),
       ),
-    )
-  })
+    );
+  });
 
   test('should return all income for zero outcome and last day', () => {
     fc.assert(
@@ -124,8 +124,8 @@ describe('calculateBudget#property', () => {
         (money, period) =>
           calculateBudget(money, period) === money.previousMonthIncome,
       ),
-    )
-  })
+    );
+  });
 
   test('should never return negative values', () => {
     fc.assert(
@@ -134,8 +134,8 @@ describe('calculateBudget#property', () => {
         periodArb(),
         (money, period) => calculateBudget(money, period) >= 0,
       ),
-    )
-  })
+    );
+  });
 
   test('should return all budget for empty previous month outcome', () => {
     fc.assert(
@@ -145,13 +145,13 @@ describe('calculateBudget#property', () => {
         }),
         periodArb(new Date('2019-12-31')),
         (money, period) => {
-          const budget = calculateBudget(money, period)
+          const budget = calculateBudget(money, period);
           if (money.previousMonthIncome < money.todayOutcome) {
-            return budget === 0
+            return budget === 0;
           }
-          return budget === money.previousMonthIncome - money.todayOutcome
+          return budget === money.previousMonthIncome - money.todayOutcome;
         },
       ),
-    )
-  })
-})
+    );
+  });
+});

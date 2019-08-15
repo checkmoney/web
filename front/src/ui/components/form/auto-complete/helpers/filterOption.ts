@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
-import { OptionProps } from 'antd/lib/select'
+import { ReactElement } from 'react';
+import { OptionProps } from 'antd/lib/select';
 
 export const filterOption = (
   inputValue: string,
@@ -8,8 +8,8 @@ export const filterOption = (
   if (option && option.props && option.props.children) {
     return `${option.props.children}`
       .toUpperCase()
-      .includes(inputValue.toUpperCase())
+      .includes(inputValue.toUpperCase());
   }
 
-  return false
-}
+  return false;
+};

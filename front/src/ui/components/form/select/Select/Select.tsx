@@ -1,12 +1,12 @@
-import React from 'react'
-import { Select as AntSelect } from 'antd'
+import React from 'react';
+import { Select as AntSelect } from 'antd';
 
-import { useCustomInput } from '&front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
-import { filterOption } from './helpers/filterOption'
-import { SelectProps } from './SelectProps'
+import { filterOption } from './helpers/filterOption';
+import { SelectProps } from './SelectProps';
 
-const AntOption = AntSelect.Option
+const AntOption = AntSelect.Option;
 
 export const Select = ({
   children,
@@ -14,7 +14,7 @@ export const Select = ({
   value,
   onChange,
 }: SelectProps) => {
-  const { currentValue, handleChange } = useCustomInput(value, onChange)
+  const { currentValue, handleChange } = useCustomInput(value, onChange);
 
   return (
     <AntSelect
@@ -27,5 +27,5 @@ export const Select = ({
         <AntOption key={child.props.value} {...child.props} />
       ))}
     </AntSelect>
-  )
-}
+  );
+};

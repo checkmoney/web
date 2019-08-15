@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common'
-import { EntitySaver } from '&back/db/EntitySaver'
-import { UserRepository } from '&back/user/domain/UserRepository'
-import { DisabledTip } from '../domain/DisabledTip.entity'
+import { Injectable } from '@nestjs/common';
+import { EntitySaver } from '&back/db/EntitySaver';
+import { UserRepository } from '&back/user/domain/UserRepository';
+import { DisabledTip } from '../domain/DisabledTip.entity';
 
 @Injectable()
 export class TipsDisabler {
@@ -11,10 +11,10 @@ export class TipsDisabler {
   ) {}
 
   public async disable(tokens: string[], userLogin: string): Promise<void> {
-    const user = await this.userRepo.getOne(userLogin)
+    const user = await this.userRepo.getOne(userLogin);
 
-    const disabledTips = tokens.map(token => new DisabledTip(token, user))
+    const disabledTips = tokens.map(token => new DisabledTip(token, user));
 
-    await this.entitySaver.save(...disabledTips)
+    await this.entitySaver.save(...disabledTips);
   }
 }

@@ -1,4 +1,4 @@
-import { FetchingState } from 'redux-clear'
+import { FetchingState } from 'redux-clear';
 
 export const mergeFetchingState = (
   one: FetchingState,
@@ -7,5 +7,5 @@ export const mergeFetchingState = (
   return {
     loading: one.loading || two.loading,
     error: one.error.nonEmpty() ? one.error : two.error,
-  }
-}
+  };
+};

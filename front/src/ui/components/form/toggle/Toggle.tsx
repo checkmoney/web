@@ -1,12 +1,12 @@
-import React, { useCallback } from 'react'
-import cx from 'classnames'
+import React, { useCallback } from 'react';
+import cx from 'classnames';
 
-import { useCustomInput } from '&front/ui/hooks/useCustomInput'
+import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 
-import { ButtonGroup, Button, ButtonType } from '../button'
-import { VariantProps } from './VariantProps'
-import { ToggleProps } from './ToggleProps'
-import * as styles from './Toggle.css'
+import { ButtonGroup, Button, ButtonType } from '../button';
+import { VariantProps } from './VariantProps';
+import { ToggleProps } from './ToggleProps';
+import * as styles from './Toggle.css';
 
 export const Toggle = ({
   children,
@@ -14,13 +14,13 @@ export const Toggle = ({
   onChange,
   className,
 }: ToggleProps) => {
-  const { currentValue, handleChange } = useCustomInput(value, onChange)
+  const { currentValue, handleChange } = useCustomInput(value, onChange);
 
   const resolveType = useCallback(
     (props: VariantProps) =>
       props.value === currentValue ? ButtonType.Primary : ButtonType.Secondary,
     [currentValue],
-  )
+  );
 
   return (
     <ButtonGroup className={cx(styles.group, className)}>
@@ -34,5 +34,5 @@ export const Toggle = ({
         </Button>
       ))}
     </ButtonGroup>
-  )
-}
+  );
+};

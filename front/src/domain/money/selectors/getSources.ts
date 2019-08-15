@@ -1,3 +1,3 @@
-import { State } from '&front/domain/store'
+import { State } from '&front/domain/store';
 
-export const getSources = (state: State) => state.money.listSources.data
+export const getSources = (state: State) => state.money.listSources.data;

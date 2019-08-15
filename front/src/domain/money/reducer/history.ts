@@ -2,21 +2,21 @@ import {
   ClearAction,
   createClearReduxWithFetching,
   WithFetchingState,
-} from 'redux-clear'
+} from 'redux-clear';
 
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel'
+import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
 import {
   CachedPeriod,
   CachedState,
   createInitialState,
   newItemProcessor,
-} from '&front/domain/cached-data'
+} from '&front/domain/cached-data';
 
-type InternalState = CachedState<HistoryGroupModel>
-type State = WithFetchingState<InternalState>
+type InternalState = CachedState<HistoryGroupModel>;
+type State = WithFetchingState<InternalState>;
 
 interface Actions {
-  addHistory: ClearAction<[CachedPeriod, HistoryGroupModel[]]>
+  addHistory: ClearAction<[CachedPeriod, HistoryGroupModel[]]>;
 }
 
 const { actions, reducer } = createClearReduxWithFetching<
@@ -27,6 +27,6 @@ const { actions, reducer } = createClearReduxWithFetching<
     addHistory: newItemProcessor,
   },
   createInitialState(),
-)
+);
 
-export { State, actions, reducer }
+export { State, actions, reducer };

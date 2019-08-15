@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common'
-import { InjectEntityManager } from '@nestjs/typeorm'
-import { EntityManager } from 'typeorm'
+import { Injectable } from '@nestjs/common';
+import { InjectEntityManager } from '@nestjs/typeorm';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class EntitySaver {
@@ -9,10 +9,10 @@ export class EntitySaver {
   ) {}
 
   public async save<Entity>(...entities: Entity[]): Promise<void> {
-    await this.em.save(entities)
+    await this.em.save(entities);
   }
 
   public async remove<Entity>(...entities: Entity[]): Promise<void> {
-    await this.em.remove(entities)
+    await this.em.remove(entities);
   }
 }

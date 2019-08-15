@@ -1,17 +1,17 @@
-import React from 'react'
-import { Field, FieldRenderProps } from 'react-final-form'
-import { Diff } from 'utility-types'
+import React from 'react';
+import { Field, FieldRenderProps } from 'react-final-form';
+import { Diff } from 'utility-types';
 
 import {
   Toggle as JustToggle,
   ToggleProps,
-} from '&front/ui/components/form/toggle'
+} from '&front/ui/components/form/toggle';
 
 interface OwnProps {
-  name: string
+  name: string;
 }
 
-type ComponentProps = Diff<ToggleProps, FieldRenderProps['input']>
+type ComponentProps = Diff<ToggleProps, FieldRenderProps['input']>;
 
 export const Toggle = ({
   name,
@@ -21,4 +21,4 @@ export const Toggle = ({
     name={name}
     render={({ input }) => <JustToggle {...componentProps} {...input} />}
   />
-)
+);

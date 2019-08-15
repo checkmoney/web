@@ -1,5 +1,5 @@
-import { UseGuards } from '@nestjs/common'
+import { UseGuards } from '@nestjs/common';
 
-import { JwtManagerGuard } from './JwtManagerGuard'
+import { JwtManagerGuard } from './JwtManagerGuard';
 
-export const OnlyForManager = () => UseGuards(JwtManagerGuard)
+export const OnlyForManager = () => UseGuards(JwtManagerGuard);

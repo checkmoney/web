@@ -1,26 +1,26 @@
-import { Controller, Get, Query } from '@nestjs/common'
+import { Controller, Get, Query } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOkResponse,
   ApiOperation,
   ApiUseTags,
-} from '@nestjs/swagger'
+} from '@nestjs/swagger';
 
-import { Statistician } from '&back/money/application/Statistician'
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
-import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser'
-import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers'
-import { DateRange } from '&back/utils/infrastructure/dto/DateRange'
-import { ApiQueryDateRange } from '&back/utils/presentation/http/api/ApiQueryDateRange'
-import { createEnumValidationPipe } from '&back/utils/presentation/http/pipes/acceptable/createEnumValidationPipe'
-import { ParseDateRangePipe } from '&back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe'
-import { Currency } from '&shared/enum/Currency'
-import { GroupBy } from '&shared/enum/GroupBy'
+import { Statistician } from '&back/money/application/Statistician';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { CurrentUser } from '&back/user/presentation/http/decorator/CurrentUser';
+import { OnlyForUsers } from '&back/user/presentation/http/security/OnlyForUsers';
+import { DateRange } from '&back/utils/infrastructure/dto/DateRange';
+import { ApiQueryDateRange } from '&back/utils/presentation/http/api/ApiQueryDateRange';
+import { createEnumValidationPipe } from '&back/utils/presentation/http/pipes/acceptable/createEnumValidationPipe';
+import { ParseDateRangePipe } from '&back/utils/presentation/http/pipes/dateRange/ParseDateRangePipe';
+import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&shared/enum/GroupBy';
 
-import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse'
-import { DateGroupResponse } from '../response/DateGroupResponse'
-import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse'
-import { AverageAmountResponse } from '../response/AverageAmountResponse'
+import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse';
+import { DateGroupResponse } from '../response/DateGroupResponse';
+import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse';
+import { AverageAmountResponse } from '../response/AverageAmountResponse';
 
 @Controller('money/statistics')
 @OnlyForUsers()
@@ -49,9 +49,9 @@ export class StatisticsController {
       range,
       by,
       currency,
-    )
+    );
 
-    return stats
+    return stats;
   }
 
   @Get('income-sources')
@@ -68,9 +68,9 @@ export class StatisticsController {
     currency: Currency = Currency.USD,
     @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<SourceGroupIncomeResponse[]> {
-    const sources = await this.statistician.showSources(login, range, currency)
+    const sources = await this.statistician.showSources(login, range, currency);
 
-    return sources
+    return sources;
   }
 
   @Get('outcome-categories')
@@ -91,9 +91,9 @@ export class StatisticsController {
       login,
       range,
       currency,
-    )
+    );
 
-    return categories
+    return categories;
   }
 
   @Get('average')
@@ -109,8 +109,8 @@ export class StatisticsController {
     currency: Currency = Currency.USD,
     @CurrentUser() { login }: TokenPayloadModel,
   ): Promise<AverageAmountResponse[]> {
-    const averages = await this.statistician.showAverage(login, by, currency)
+    const averages = await this.statistician.showAverage(login, by, currency);
 
-    return averages
+    return averages;
   }
 }

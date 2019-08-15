@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common'
-import { Context, PipeContext, TelegramActionHandler } from 'nest-telegram'
+import { Injectable } from '@nestjs/common';
+import { Context, PipeContext, TelegramActionHandler } from 'nest-telegram';
 
-import { CurrentSender } from '&back/user/presentation/telegram/transformer/CurrentSender'
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
-import { Accountant } from '&back/money/application/Accountant'
-import { Templating } from '&back/utils/infrastructure/Templating/Templating'
-import { parseCurrency } from '../helpers/parseCurrency'
-import { parseAmount } from '../helpers/parseAmount'
+import { CurrentSender } from '&back/user/presentation/telegram/transformer/CurrentSender';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { Accountant } from '&back/money/application/Accountant';
+import { Templating } from '&back/utils/infrastructure/Templating/Templating';
+import { parseCurrency } from '../helpers/parseCurrency';
+import { parseAmount } from '../helpers/parseAmount';
 
 @Injectable()
 export class TransactionActions {
@@ -20,7 +20,7 @@ export class TransactionActions {
     ctx: Context,
     @PipeContext(CurrentSender) { login }: TokenPayloadModel,
   ) {
-    const [_, rawAmount, rawCurrency, ...source] = ctx.message.text.split(' ')
+    const [_, rawAmount, rawCurrency, ...source] = ctx.message.text.split(' ');
 
     // TODO: Add message parser to nest-telegram lib as decorator
     const incomeFields = {
@@ -28,16 +28,16 @@ export class TransactionActions {
       currency: parseCurrency(rawCurrency),
       date: new Date(),
       source: source.join(' '),
-    }
+    };
 
-    await this.accountant.income(login, incomeFields)
+    await this.accountant.income(login, incomeFields);
 
     const responseText = await this.templating.render(
       'telegram/income-created',
       incomeFields,
-    )
+    );
 
-    await ctx.reply(responseText)
+    await ctx.reply(responseText);
   }
 
   @TelegramActionHandler({ command: '/outcome' })
@@ -50,9 +50,9 @@ export class TransactionActions {
       rawAmount,
       rawCurrency,
       ...categoryParts
-    ] = ctx.message.text.split(' ')
+    ] = ctx.message.text.split(' ');
 
-    await this.createOutcome(ctx, login, rawAmount, rawCurrency, categoryParts)
+    await this.createOutcome(ctx, login, rawAmount, rawCurrency, categoryParts);
   }
 
   @TelegramActionHandler({ message: /^(\d+) (\w+) (.+)/g })
@@ -62,9 +62,9 @@ export class TransactionActions {
   ) {
     const [rawAmount, rawCurrency, ...categoryParts] = ctx.message.text.split(
       ' ',
-    )
+    );
 
-    await this.createOutcome(ctx, login, rawAmount, rawCurrency, categoryParts)
+    await this.createOutcome(ctx, login, rawAmount, rawCurrency, categoryParts);
   }
 
   private async createOutcome(
@@ -80,15 +80,15 @@ export class TransactionActions {
       currency: parseCurrency(rawCurrency),
       date: new Date(),
       category: categoryParts.join(' '),
-    }
+    };
 
-    await this.accountant.outcome(login, outcomeFields)
+    await this.accountant.outcome(login, outcomeFields);
 
     const responseText = await this.templating.render(
       'telegram/outcome-created',
       outcomeFields,
-    )
+    );
 
-    await ctx.reply(responseText)
+    await ctx.reply(responseText);
   }
 }

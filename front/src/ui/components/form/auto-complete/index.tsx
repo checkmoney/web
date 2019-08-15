@@ -1,2 +1,2 @@
-export { AutoComplete } from './AutoComplete'
-export { AutoCompleteProps } from './AutoCompleteProps'
+export { AutoComplete } from './AutoComplete';
+export { AutoCompleteProps } from './AutoCompleteProps';

@@ -1,4 +1,4 @@
-import { CachedPeriod } from './CachedPeriod'
+import { CachedPeriod } from './CachedPeriod';
 
 export const createCachedPeriodKey = ({
   from,
@@ -7,4 +7,4 @@ export const createCachedPeriodKey = ({
   currency,
 }: CachedPeriod): string =>
   `${from && from.toISOString()}-${to &&
-    to.toISOString()}-by${groupBy}-in${currency}`
+    to.toISOString()}-by${groupBy}-in${currency}`;

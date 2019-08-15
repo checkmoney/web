@@ -2,17 +2,17 @@ import {
   ClearAction,
   WithFetchingState,
   createClearReduxWithFetching,
-} from 'redux-clear'
+} from 'redux-clear';
 
-import { TipModel } from '&shared/models/mind/TipModel'
-import { uniqByWithRespect } from '&front/helpers/uniqByWithRespect'
+import { TipModel } from '&shared/models/mind/TipModel';
+import { uniqByWithRespect } from '&front/helpers/uniqByWithRespect';
 
-type InternalState = TipModel[]
-type State = WithFetchingState<InternalState>
+type InternalState = TipModel[];
+type State = WithFetchingState<InternalState>;
 
 interface Actions {
-  addTips: ClearAction<[TipModel[]]>
-  removeTips: ClearAction<[string[]]>
+  addTips: ClearAction<[TipModel[]]>;
+  removeTips: ClearAction<[string[]]>;
 }
 
 const { actions, reducer } = createClearReduxWithFetching<
@@ -30,6 +30,6 @@ const { actions, reducer } = createClearReduxWithFetching<
       state.filter(tip => !forRemove.includes(tip.token)),
   },
   [],
-)
+);
 
-export { State, actions, reducer }
+export { State, actions, reducer };

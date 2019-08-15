@@ -1,21 +1,21 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get, Param } from '@nestjs/common';
 import {
   ApiBearerAuth,
   ApiOkResponse,
   ApiOperation,
   ApiUseTags,
-} from '@nestjs/swagger'
+} from '@nestjs/swagger';
 
-import { ProfileEditor } from '&back/user/application/ProfileEditor'
-import { UserRepository } from '&back/user/domain/UserRepository'
-import { PostNoCreate } from '&back/utils/presentation/http/PostNoCreate'
+import { ProfileEditor } from '&back/user/application/ProfileEditor';
+import { UserRepository } from '&back/user/domain/UserRepository';
+import { PostNoCreate } from '&back/utils/presentation/http/PostNoCreate';
 
-import { ProfileResponse } from '../response/ProfileResponse'
-import { OnlyForUsers } from '../security/OnlyForUsers'
-import { CurrentUser } from '../decorator/CurrentUser'
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel'
-import { Currency } from '&shared/enum/Currency'
-import { JsonParsePipe } from '&back/utils/presentation/http/pipes/JsonParsePipe'
+import { ProfileResponse } from '../response/ProfileResponse';
+import { OnlyForUsers } from '../security/OnlyForUsers';
+import { CurrentUser } from '../decorator/CurrentUser';
+import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { Currency } from '&shared/enum/Currency';
+import { JsonParsePipe } from '&back/utils/presentation/http/pipes/JsonParsePipe';
 
 @Controller('user/profile')
 @OnlyForUsers()
@@ -37,9 +37,9 @@ export class ProfileController {
   {
     login,
   }: TokenPayloadModel): Promise<ProfileResponse> {
-    const user = await this.userRepo.getOne(login)
+    const user = await this.userRepo.getOne(login);
 
-    return ProfileResponse.fromProfile(user.profile)
+    return ProfileResponse.fromProfile(user.profile);
   }
 
   @PostNoCreate('/set-currency/:currency')
@@ -49,7 +49,7 @@ export class ProfileController {
     @Param('currency') currency: Currency,
     @CurrentUser() user: TokenPayloadModel,
   ): Promise<void> {
-    await this.profileEditor.changeCurrency(user.login, currency)
+    await this.profileEditor.changeCurrency(user.login, currency);
   }
 
   @PostNoCreate('/set-week-start/:onMonday')
@@ -59,6 +59,6 @@ export class ProfileController {
     @Param('onMonday', JsonParsePipe) onMonday: boolean,
     @CurrentUser() user: TokenPayloadModel,
   ): Promise<void> {
-    await this.profileEditor.changeWeekStart(user.login, onMonday)
+    await this.profileEditor.changeWeekStart(user.login, onMonday);
   }
 }
