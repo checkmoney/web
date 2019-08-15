@@ -20,7 +20,7 @@
     "tsoption": "^0.7.0"
   },
   "devDependencies": {
-    "@solid-soda/scripts": "^1.12.5",
+    "@solid-soda/scripts": "^1.14.2",
     "@types/jest": "^24.0.14",
     "fast-check": "^1.15.1",
     "jest": "^24.8.0",
