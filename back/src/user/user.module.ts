@@ -9,6 +9,8 @@ import { UtilsModule } from '&back/utils/utils.module';
 import { Authenticator } from './application/Authenticator';
 import { ProfileEditor } from './application/ProfileEditor';
 import { Registrator } from './application/Registrator';
+import { GoogleValidator } from './application/social/GoogleValidator';
+import { SocialBinder } from './application/SocialBinder';
 import { User } from './domain/User.entity';
 import { UserRepository } from './domain/UserRepository';
 import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory';
@@ -16,6 +18,7 @@ import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPa
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder';
 import { AuthController } from './presentation/http/controller/AuthController';
 import { ProfileController } from './presentation/http/controller/ProfileController';
+import { SocialController } from './presentation/http/controller/SocialController';
 import { InvalidCredentialsFilter } from './presentation/http/filter/InvalidCredentialsFilter';
 import { LoginAlreadyTakenFilter } from './presentation/http/filter/LoginAlreadyTakenFilter';
 import { JwtGuard } from './presentation/http/security/JwtGuard';
@@ -35,12 +38,14 @@ import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser';
       useClass: JwtOptionsFactory,
     }),
   ],
-  controllers: [AuthController, ProfileController],
+  controllers: [AuthController, ProfileController, SocialController],
   providers: [
     {
       provide: PasswordEncoder,
       useClass: BcryptPasswordEncoder,
     },
+    SocialBinder,
+    GoogleValidator,
     LoginAlreadyTakenFilter.provider(),
     InvalidCredentialsFilter.provider(),
     Authenticator,

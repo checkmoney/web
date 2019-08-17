@@ -2,11 +2,13 @@ import React, { useEffect, useState, useCallback } from 'react';
 
 import { useTranslation } from '&front/domain/i18n';
 import { useMemoState, useThunk } from '&front/domain/store';
+import { bindGoogle } from '&front/domain/user/actions/bindGoogle';
 import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
 import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
 import { setWeekStart } from '&front/domain/user/actions/setWeekStart';
 import { signOut } from '&front/domain/user/actions/signOut';
 import { getProfile } from '&front/domain/user/selectors/getProfile';
+import { Google } from '&front/ui/auth-widget/google';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Button } from '&front/ui/components/form/button';
 import { Checkbox } from '&front/ui/components/form/checkbox';
@@ -15,8 +17,8 @@ import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
-import { Google } from '&front/ui/auth-widget/google';
 import { Currency } from '&shared/enum/Currency';
+import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
 
 import { pushRoute } from '../routing';
 import * as styles from './Profile.css';
@@ -36,6 +38,11 @@ export const Profile = () => {
   const [onMonday, setOnMonday] = useState(weekStartsOnMonday);
 
   const saved = useCallback(() => notify('Saved'), [notify]);
+
+  const handleGoogleLogin = useCallback(
+    (profile: GoogleProfile) => dispatch(bindGoogle(profile)),
+    [],
+  );
 
   useEffect(() => {
     if (currency !== defaultCurrency) {
@@ -78,7 +85,7 @@ export const Profile = () => {
         </Card>
 
         <Card title="Logins">
-          <Google onLogin={console.log} />
+          <Google onLogin={handleGoogleLogin} />
         </Card>
       </section>
     </Container>

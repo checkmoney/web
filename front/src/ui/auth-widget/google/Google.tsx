@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
 
@@ -22,6 +21,7 @@ export const Google = ({ onLogin }: Props) => {
         name: rawProfile.getName(),
         photo: rawProfile.getImageUrl(),
         email: rawProfile.getEmail(),
+        token: googleUser.getAuthResponse().id_token,
       };
 
       onLogin(profile);
