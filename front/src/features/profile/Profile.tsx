@@ -15,6 +15,7 @@ import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
+import { Google } from '&front/ui/auth-widget/google';
 import { Currency } from '&shared/enum/Currency';
 
 import { pushRoute } from '../routing';
@@ -74,6 +75,10 @@ export const Profile = () => {
           <Label text={t('profile:settings.week-starts-on-monday')}>
             <Checkbox value={onMonday} onChange={v => setOnMonday(!!v)} />
           </Label>
+        </Card>
+
+        <Card title="Logins">
+          <Google onLogin={console.log} />
         </Card>
       </section>
     </Container>
