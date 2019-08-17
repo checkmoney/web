@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 
+import { EntitySaver } from '&back/db/EntitySaver';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
 
 import { UserRepository } from '../domain/UserRepository';
 import { InvalidSocialRequestException } from './exception/InvalidSocialRequestException';
-import { GoogleValidator } from './social/GoogleValidator';
-import { EntitySaver } from '&back/db/EntitySaver';
 import { LoginAlreadyTakenException } from './exception/LoginAlreadyTakenException';
+import { GoogleValidator } from './social/GoogleValidator';
 
 @Injectable()
 export class SocialBinder {

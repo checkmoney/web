@@ -9,6 +9,7 @@ import { UtilsModule } from '&back/utils/utils.module';
 import { Authenticator } from './application/Authenticator';
 import { ProfileEditor } from './application/ProfileEditor';
 import { Registrator } from './application/Registrator';
+import { SignInProvider } from './application/SignInProvider';
 import { GoogleValidator } from './application/social/GoogleValidator';
 import { SocialBinder } from './application/SocialBinder';
 import { User } from './domain/User.entity';
@@ -27,7 +28,6 @@ import { AuthActions } from './presentation/telegram/actions/AuthActions';
 import { InvalidCredentialsCatcher } from './presentation/telegram/catcher/InvalidCredentialsCatcher';
 import { CurrentSender } from './presentation/telegram/transformer/CurrentSender';
 import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser';
-import { SignInProvider } from './application/SignInProvider';
 
 @Module({
   imports: [

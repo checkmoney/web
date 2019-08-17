@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { TelegramActionHandler, Context, PipeContext } from 'nest-telegram';
 
 import { Authenticator } from '&back/user/application/Authenticator';
+import { SignInProvider } from '&back/user/application/SignInProvider';
+import { SocialBinder } from '&back/user/application/SocialBinder';
 import { Templating } from '&back/utils/infrastructure/Templating/Templating';
 
 import { IsKnownUser } from '../transformer/IsKnownUser';
-import { SignInProvider } from '&back/user/application/SignInProvider';
-import { SocialBinder } from '&back/user/application/SocialBinder';
 
 @Injectable()
 export class AuthActions {

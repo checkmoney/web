@@ -56,6 +56,17 @@ class UserRepo {
     return Option.of(user);
   }
 
+  public async findOneByGoogle(googleId: string): Promise<Option<User>> {
+    const user = await this.userRepo
+      .createQueryBuilder()
+      .where({
+        googleId,
+      })
+      .getOne();
+
+    return Option.of(user);
+  }
+
   public async getDefaultCurrency(login: string): Promise<Currency> {
     const user = await this.getOne(login);
 
