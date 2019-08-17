@@ -20,6 +20,9 @@ export class User {
   @Column()
   private telegramId: string | undefined;
 
+  @Column()
+  private googleId: string | undefined;
+
   public constructor(login: string) {
     this.login = login;
 
@@ -42,5 +45,9 @@ export class User {
 
   public attachTelegram(telegramId: number): void {
     this.telegramId = telegramId.toString();
+  }
+
+  public attachGoogle(googleId: string): void {
+    this.googleId = googleId;
   }
 }
