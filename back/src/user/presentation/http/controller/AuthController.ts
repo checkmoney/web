@@ -13,6 +13,7 @@ import { PostNoCreate } from '&back/utils/presentation/http/PostNoCreate';
 
 import { AuthRequest } from '../request/AuthRequest';
 import { TokenResponse } from '../response/TokenResponse';
+import { SignInProvider } from '&back/user/application/SignInProvider';
 
 @Controller('user/auth')
 @ApiUseTags('user')
@@ -20,6 +21,7 @@ export class AuthController {
   public constructor(
     private readonly registrator: Registrator,
     private readonly authenticator: Authenticator,
+    private readonly signInProvider: SignInProvider,
   ) {}
 
   @PostNoCreate('sign-in')
@@ -48,7 +50,8 @@ export class AuthController {
     login: string,
     password: string,
   ): Promise<TokenResponse> {
-    const token = await this.authenticator.signIn(login, password);
+    const user = await this.signInProvider.signInByLogin(login, password);
+    const token = await this.authenticator.encode(user);
 
     return {
       token,

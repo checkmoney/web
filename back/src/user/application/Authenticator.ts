@@ -28,27 +28,12 @@ export class Authenticator {
     }
   }
 
-  public async signIn(login: string, password: string): Promise<string> {
-    const user = await this.userRepo.getOne(login);
-    const passwordValid = await user.isPasswordValid(
-      password,
-      this.passwordEncoder,
-    );
-
-    if (!passwordValid) {
-      throw new InvalidCredentialsException(login, password);
-    }
-
-    const payload = this.createTokenPayload(user);
-    const token = this.jwt.sign(payload);
-
-    return token;
-  }
-
-  private createTokenPayload(user: User): TokenPayloadModel {
-    return {
+  public async encode(user: User): Promise<string> {
+    const payload: TokenPayloadModel = {
       login: user.login,
       isManager: user.isManager,
     };
+
+    return this.jwt.sign(payload);
   }
 }

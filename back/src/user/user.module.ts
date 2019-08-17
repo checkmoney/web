@@ -27,6 +27,7 @@ import { AuthActions } from './presentation/telegram/actions/AuthActions';
 import { InvalidCredentialsCatcher } from './presentation/telegram/catcher/InvalidCredentialsCatcher';
 import { CurrentSender } from './presentation/telegram/transformer/CurrentSender';
 import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser';
+import { SignInProvider } from './application/SignInProvider';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser';
     GoogleValidator,
     LoginAlreadyTakenFilter.provider(),
     InvalidCredentialsFilter.provider(),
+    SignInProvider,
     Authenticator,
     Registrator,
     ProfileEditor,

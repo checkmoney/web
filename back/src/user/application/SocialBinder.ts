@@ -6,6 +6,7 @@ import { UserRepository } from '../domain/UserRepository';
 import { InvalidSocialRequestException } from './exception/InvalidSocialRequestException';
 import { GoogleValidator } from './social/GoogleValidator';
 import { EntitySaver } from '&back/db/EntitySaver';
+import { LoginAlreadyTakenException } from './exception/LoginAlreadyTakenException';
 
 @Injectable()
 export class SocialBinder {
@@ -26,6 +27,20 @@ export class SocialBinder {
     }
 
     user.attachGoogle(profile.id);
+
+    await this.entitySaver.save(user);
+  }
+
+  async bindTelegram(login: string, telegramId: number) {
+    const attachedUser = await this.userRepo.findOneByTelegram(telegramId);
+
+    if (attachedUser.nonEmpty()) {
+      throw new LoginAlreadyTakenException(login);
+    }
+
+    const user = await this.userRepo.getOne(login);
+
+    user.attachTelegram(telegramId);
 
     await this.entitySaver.save(user);
   }
