@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { OAuth2Client } from 'google-auth-library';
 import * as deepEqual from 'fast-deep-equal';
+import { OAuth2Client } from 'google-auth-library';
 
 import { Configuration } from '&back/config/Configuration';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';

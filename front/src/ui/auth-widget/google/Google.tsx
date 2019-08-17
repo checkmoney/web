@@ -1,9 +1,10 @@
+import getConfig from 'next/config';
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
 
-const googleClientId = '619616345812-bi543g7ojta4uqq4kk1ccp428pik8hp8';
+const { googleClientId } = getConfig().publicRuntimeConfig;
 
 interface Props {
   onLogin: (profile: GoogleProfile) => any;
