@@ -1,7 +1,8 @@
 import getConfig from 'next/config';
-import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
+import { GoogleLogin } from 'react-google-login';
 
+import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
 
 const { googleClientId } = getConfig().publicRuntimeConfig;
@@ -11,10 +12,10 @@ interface Props {
 }
 
 export const Google = ({ onLogin }: Props) => {
-  const [isClient, setClient] = useState(false);
+  const showNotify = useNotifyAlert();
 
-  useEffect(() => {
-    (window as any).onSignIn = (googleUser: any) => {
+  const handleSuccess = useCallback(
+    (googleUser: any) => {
       const rawProfile = googleUser.getBasicProfile();
 
       const profile: GoogleProfile = {
@@ -26,26 +27,22 @@ export const Google = ({ onLogin }: Props) => {
       };
 
       onLogin(profile);
-    };
+    },
+    [onLogin],
+  );
 
-    setClient(true);
-  }, []);
+  const handleError = useCallback(
+    () => showNotify('Что-то пошло не так, попробуйте еще раз'),
+    [showNotify],
+  );
 
   return (
-    <>
-      <Head>
-        <script
-          src="https://apis.google.com/js/platform.js"
-          async
-          defer
-        ></script>
-        <meta
-          name="google-signin-client_id"
-          content={`${googleClientId}.apps.googleusercontent.com`}
-        ></meta>
-      </Head>
-
-      {isClient && <div className="g-signin2" data-onsuccess="onSignIn" />}
-    </>
+    <GoogleLogin
+      clientId={googleClientId}
+      buttonText="Login"
+      onSuccess={handleSuccess}
+      onFailure={handleError}
+      cookiePolicy={'single_host_origin'}
+    />
   );
 };

@@ -22,10 +22,9 @@ module.exports = withPlugins(
     {
       publicRuntimeConfig: {
         backUrl: process.env.BACK_URL || 'http://localhost:3000',
-        backUrlServer: process.env.BACK_URL_SERVER || 'http://localhost:3000',
         googleClientId:
           process.env.GOOGLE_CLIENT_ID ||
-          '619616345812-bi543g7ojta4uqq4kk1ccp428pik8hp8',
+          '619616345812-bi543g7ojta4uqq4kk1ccp428pik8hp8.apps.googleusercontent.com',
       },
     },
   ],
