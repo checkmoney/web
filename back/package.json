@@ -7,7 +7,7 @@
     "prestart:back:prod": "tsc && cp -a ./templates ../dist/back/back",
     "start:back:prod": "pm2 start ./pm2.config.js",
     "evolutions:init": "evolutions --init",
-    "evolutions:run": "evolutions"
+    "evolutions:run": "evolutions -y"
   },
   "dependencies": {
     "@breadhead/detil-ts": "^1.0.1",

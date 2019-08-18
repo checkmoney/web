@@ -15,6 +15,9 @@ export class User {
   public readonly isManager: boolean = false;
 
   @Column()
+  public email: string | undefined;
+
+  @Column()
   private password: string | undefined;
 
   @Column()

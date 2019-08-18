@@ -24,6 +24,7 @@ export class Registrator {
     const user = new User(login);
 
     await user.changePassword(password, this.passwordEncoder);
+    user.email = login;
 
     await this.entitySaver.save(user);
   }
