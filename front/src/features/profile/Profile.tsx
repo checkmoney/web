@@ -38,11 +38,15 @@ export const Profile = () => {
   const [onMonday, setOnMonday] = useState(weekStartsOnMonday);
 
   const saved = useCallback(() => notify('Saved'), [notify]);
-
-  const handleGoogleLogin = useCallback(
-    (profile: GoogleProfile) => dispatch(bindGoogle(profile)),
-    [],
+  const bound = useCallback(
+    (social: string) => notify(`Аккаунт "${social}" прикреплен`),
+    [notify],
   );
+
+  const handleGoogleLogin = useCallback(async (profile: GoogleProfile) => {
+    await dispatch(bindGoogle(profile));
+    bound('google');
+  }, []);
 
   useEffect(() => {
     if (currency !== defaultCurrency) {
