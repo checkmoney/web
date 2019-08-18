@@ -24,22 +24,7 @@ export class Registrator {
     const user = new User(login);
 
     await user.changePassword(password, this.passwordEncoder);
-
-    await this.entitySaver.save(user);
-  }
-
-  public async addTelegramAccount(
-    login: string,
-    telegramId: number,
-  ): Promise<void> {
-    const attachedUser = await this.userRepo.findOneByTelegram(telegramId);
-    if (attachedUser.nonEmpty()) {
-      throw new LoginAlreadyTakenException(login);
-    }
-
-    const user = await this.userRepo.getOne(login);
-
-    user.attachTelegram(telegramId);
+    user.email = login;
 
     await this.entitySaver.save(user);
   }

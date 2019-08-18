@@ -9,9 +9,12 @@ import {
 
 import { Authenticator } from '&back/user/application/Authenticator';
 import { Registrator } from '&back/user/application/Registrator';
+import { SignInProvider } from '&back/user/application/SignInProvider';
+import { User } from '&back/user/domain/User.entity';
 import { PostNoCreate } from '&back/utils/presentation/http/PostNoCreate';
 
 import { AuthRequest } from '../request/AuthRequest';
+import { GoogleBindRequest } from '../request/GoogleBindRequest';
 import { TokenResponse } from '../response/TokenResponse';
 
 @Controller('user/auth')
@@ -20,6 +23,7 @@ export class AuthController {
   public constructor(
     private readonly registrator: Registrator,
     private readonly authenticator: Authenticator,
+    private readonly signInProvider: SignInProvider,
   ) {}
 
   @PostNoCreate('sign-in')
@@ -29,7 +33,9 @@ export class AuthController {
   public async signIn(@Body() request: AuthRequest): Promise<TokenResponse> {
     const { email, password } = request;
 
-    return this.createResponseByCredentials(email, password);
+    const user = await this.signInProvider.signInByLogin(email, password);
+
+    return this.createResponse(user);
   }
 
   @Post('sign-up')
@@ -41,14 +47,25 @@ export class AuthController {
 
     await this.registrator.signUp(email, password);
 
-    return this.createResponseByCredentials(email, password);
+    const user = await this.signInProvider.signInByLogin(email, password);
+
+    return this.createResponse(user);
   }
 
-  private async createResponseByCredentials(
-    login: string,
-    password: string,
+  @Post('google')
+  @ApiOperation({ title: 'Sign-up (or sign-in) by google account' })
+  @ApiCreatedResponse({ description: 'Success', type: TokenResponse })
+  @ApiBadRequestResponse({ description: 'Invalid Google payload' })
+  async authByGoogle(
+    @Body() request: GoogleBindRequest,
   ): Promise<TokenResponse> {
-    const token = await this.authenticator.signIn(login, password);
+    const user = await this.signInProvider.signInByGoogle(request);
+
+    return this.createResponse(user);
+  }
+
+  private async createResponse(user: User): Promise<TokenResponse> {
+    const token = await this.authenticator.encode(user);
 
     return {
       token,

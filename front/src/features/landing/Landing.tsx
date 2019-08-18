@@ -5,6 +5,7 @@ import { ForbiddenMessage } from './components/fornidden-message';
 import { HelloMessage } from './components/hello-message';
 import { SignIn } from './features/sign-in';
 import { SignUp } from './features/sign-up';
+import { Social } from './features/social';
 import * as styles from './Landing.css';
 
 interface Props {
@@ -23,6 +24,7 @@ export const Landing = ({ forbidden = false }: Props) => {
       )}
       <SignIn className={styles.signIn} />
       <SignUp className={styles.signUp} />
+      <Social className={styles.social} />
     </section>
   );
 };
