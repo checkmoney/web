@@ -24,7 +24,7 @@ export const Landing = ({ forbidden = false }: Props) => {
       )}
       <SignIn className={styles.signIn} />
       <SignUp className={styles.signUp} />
-      <Social clcasName={styles.social} />
+      <Social className={styles.social} />
     </section>
   );
 };
