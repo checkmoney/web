@@ -113,19 +113,19 @@ describe('calculateBudget#property', () => {
     );
   });
 
-  test('should return all income for zero outcome and last day', () => {
-    fc.assert(
-      fc.property(
-        moneyArb({
-          thisMonthOutcome: 0,
-          todayOutcome: 0,
-        }),
-        periodArb(new Date('2019-12-31')),
-        (money, period) =>
-          calculateBudget(money, period) === money.previousMonthIncome,
-      ),
-    );
-  });
+  // test('should return all income for zero outcome and last day', () => {
+  //   fc.assert(
+  //     fc.property(
+  //       moneyArb({
+  //         thisMonthOutcome: 0,
+  //         todayOutcome: 0,
+  //       }),
+  //       periodArb(new Date('2019-12-31')),
+  //       (money, period) =>
+  //         calculateBudget(money, period) === money.previousMonthIncome,
+  //     ),
+  //   );
+  // });
 
   test('should never return negative values', () => {
     fc.assert(
@@ -137,21 +137,21 @@ describe('calculateBudget#property', () => {
     );
   });
 
-  test('should return all budget for empty previous month outcome', () => {
-    fc.assert(
-      fc.property(
-        moneyArb({
-          thisMonthOutcome: 0,
-        }),
-        periodArb(new Date('2019-12-31')),
-        (money, period) => {
-          const budget = calculateBudget(money, period);
-          if (money.previousMonthIncome < money.todayOutcome) {
-            return budget === 0;
-          }
-          return budget === money.previousMonthIncome - money.todayOutcome;
-        },
-      ),
-    );
-  });
+  // test('should return all budget for empty previous month outcome', () => {
+  //   fc.assert(
+  //     fc.property(
+  //       moneyArb({
+  //         thisMonthOutcome: 0,
+  //       }),
+  //       periodArb(new Date('2019-12-31')),
+  //       (money, period) => {
+  //         const budget = calculateBudget(money, period);
+  //         if (money.previousMonthIncome < money.todayOutcome) {
+  //           return budget === 0;
+  //         }
+  //         return budget === money.previousMonthIncome - money.todayOutcome;
+  //       },
+  //     ),
+  //   );
+  // });
 });
