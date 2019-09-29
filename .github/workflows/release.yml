@@ -17,7 +17,7 @@ jobs:
         PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push back image
       run: push igorkamyshev/checkmoney-back
- build_front:
+  build_front:
     steps:
     - uses: actions/checkout@v1
     - name: Build front image
@@ -28,7 +28,7 @@ jobs:
         PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Push front image
       run: push igorkamyshev/checkmoney-front
- deploy:
+  deploy:
      needs: [build_back, build_front]
      steps:
      - name: Deploy on server
