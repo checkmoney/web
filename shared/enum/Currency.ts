@@ -6,4 +6,5 @@ export enum Currency {
   NOK = 'NOK',
   DKK = 'DKK',
   ILS = 'ILS',
+  TRY = 'TRY',
 }

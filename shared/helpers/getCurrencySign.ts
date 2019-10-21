@@ -9,4 +9,5 @@ export const getCurrencySign = (currency: Currency): string =>
     [Currency.NOK]: 'kr',
     [Currency.DKK]: 'kr.',
     [Currency.ILS]: '₪',
+    [Currency.TRY]: '₺',
   }[currency]);
