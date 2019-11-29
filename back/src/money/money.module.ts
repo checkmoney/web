@@ -8,14 +8,10 @@ import { Accountant } from './application/Accountant';
 import { CurrencyConverter } from './application/CurrencyConverter';
 import { Historian } from './application/Historian';
 import { Statistician } from './application/Statistician';
-import { ExchangeRate } from './domain/ExchangeRate.entity';
-import { ExchangeRateRepository } from './domain/ExchangeRateRepository';
 import { Income } from './domain/Income.entity';
 import { IncomeRepository } from './domain/IncomeRepository';
 import { Outcome } from './domain/Outcome.entity';
 import { OutcomeRepository } from './domain/OutcomeRepository';
-import { ApiClientUnity } from './insfrastructure/ExchangeRateApi/ApiClientUnity';
-import { ExchangeRateApi } from './insfrastructure/ExchangeRateApi/ExchangeRateApi';
 import { HistoryController } from './presentation/http/controller/HistoryController';
 import { StatisticsController } from './presentation/http/controller/StatisticsController';
 import { TransactionController } from './presentation/http/controller/TransactionController';
@@ -29,7 +25,7 @@ import { PlatformModule } from '&back/platform/platform.module';
     PlatformModule,
     UserModule,
     UtilsModule,
-    TypeOrmModule.forFeature([Income, Outcome, ExchangeRate]),
+    TypeOrmModule.forFeature([Income, Outcome]),
   ],
   controllers: [TransactionController, HistoryController, StatisticsController],
   providers: [
@@ -40,11 +36,6 @@ import { PlatformModule } from '&back/platform/platform.module';
     IncomeRepository,
     OutcomeRepository,
     CurrencyConverter,
-    {
-      provide: ExchangeRateApi,
-      useClass: ApiClientUnity,
-    },
-    ExchangeRateRepository,
     TransactionActions,
     UnexpectedParameterCatcher,
   ],
