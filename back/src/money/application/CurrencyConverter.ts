@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { differenceInDays, startOfDay } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 import { Option } from 'tsoption';
 
 import { EntitySaver } from '&back/db/EntitySaver';
 import { Currency } from '&shared/enum/Currency';
+import { MrSolomons } from '&back/platform/MrSolomons';
 
 import { ExchangeRate } from '../domain/ExchangeRate.entity';
 import { ExchangeRateRepository } from '../domain/ExchangeRateRepository';
@@ -16,6 +17,7 @@ export class CurrencyConverter {
     private readonly exchangeRateApi: ExchangeRateApi,
     private readonly exchangeRateRepo: ExchangeRateRepository,
     private readonly entitySaver: EntitySaver,
+    private readonly solomons: MrSolomons,
   ) {}
 
   public async convert(
@@ -24,21 +26,22 @@ export class CurrencyConverter {
     amount: number,
     when: Date,
   ): Promise<number> {
-    if (from === to) {
-      return amount;
-    }
+    return this.solomons
+      .convert(amount.toString(), from, to, when)
+      .then(Number);
 
-    const normalizedDate = startOfDay(when);
-    const normalizedNowDate = startOfDay(new Date());
+    // TODO: remove all exchange code after battle-test solomons
+    // const normalizedDate = startOfDay(when);
+    // const normalizedNowDate = startOfDay(new Date());
 
-    const rate = await this.getExistRate(from, to, normalizedDate)
-      .catch(() => this.getExistRateFromReverse(from, to, when))
-      .catch(() => this.getActualRate(from, to, normalizedDate))
-      .catch(() => this.getClosestExistRate(from, to, normalizedDate))
-      .catch(() => this.getActualRate(from, to, normalizedNowDate))
-      .catch(() => this.getLastExistRate(from, to));
+    // const rate = await this.getExistRate(from, to, normalizedDate)
+    //   .catch(() => this.getExistRateFromReverse(from, to, when))
+    //   .catch(() => this.getActualRate(from, to, normalizedDate))
+    //   .catch(() => this.getClosestExistRate(from, to, normalizedDate))
+    //   .catch(() => this.getActualRate(from, to, normalizedNowDate))
+    //   .catch(() => this.getLastExistRate(from, to));
 
-    return Math.round(amount * rate);
+    // return Math.round(amount * rate);
   }
 
   private async getActualRate(

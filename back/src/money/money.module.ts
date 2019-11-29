@@ -22,9 +22,11 @@ import { TransactionController } from './presentation/http/controller/Transactio
 import { ConversationFailedFilter } from './presentation/http/filter/ConversationFailedFilter';
 import { TransactionActions } from './presentation/telegram/actions/TransactionActions';
 import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/UnexpectedParameterCatcher';
+import { PlatformModule } from '&back/platform/platform.module';
 
 @Module({
   imports: [
+    PlatformModule,
     UserModule,
     UtilsModule,
     TypeOrmModule.forFeature([Income, Outcome, ExchangeRate]),
