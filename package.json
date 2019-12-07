@@ -3,8 +3,7 @@
   "private": true,
   "workspaces": [
     "front",
-    "back",
-    "landing"
+    "back"
   ],
   "version": "0.5.0",
   "license": "MIT",
