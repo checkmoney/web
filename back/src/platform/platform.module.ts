@@ -1,12 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MrSolomons } from '@checkmoney/soap-opera';
 
 import { ConfigModule } from '&back/config/config.module';
 
-import { MrSolomons } from './MrSolomons';
+import { mrSolomonsProvider } from './mrSolomonsProvider';
 
 @Module({
   imports: [ConfigModule],
-  providers: [MrSolomons],
+  providers: [mrSolomonsProvider],
   exports: [MrSolomons],
 })
 export class PlatformModule implements NestModule {

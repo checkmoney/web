@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { MrSolomons } from '@checkmoney/soap-opera';
 
 import { Currency } from '&shared/enum/Currency';
-import { MrSolomons } from '&back/platform/MrSolomons';
 
 import { ConversationFailedException } from './exception/ConversationFailedException';
 
@@ -17,7 +17,7 @@ export class CurrencyConverter {
   ): Promise<number> {
     try {
       const result = await this.solomons
-        .convert(amount.toString(), from, to, when)
+        .convert({ amount: amount.toString(), from, to, date: when })
         .then(Number);
 
       return result;
