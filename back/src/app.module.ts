@@ -34,7 +34,7 @@ export class AppModule implements NestModule {
 
     if (this.config.isDev()) {
       // in dev use long poll
-      this.telegramBot.startPolling();
+      // this.telegramBot.startPolling();
     }
   }
 }

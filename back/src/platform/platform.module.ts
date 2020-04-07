@@ -1,5 +1,5 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { MrSolomons } from '@checkmoney/soap-opera';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { ConfigModule } from '&back/config/config.module';
 

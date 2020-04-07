@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import { MrSolomons } from '@checkmoney/soap-opera';
+import { Injectable } from '@nestjs/common';
 
 import { Currency } from '&shared/enum/Currency';
 

@@ -16,6 +16,50 @@ class IncomeRepo implements TransactionRepository {
     private readonly incomeRepo: Repository<Income>,
   ) {}
 
+  async fetchByIdsForUser(ids: string[], userLogin: string) {
+    if (ids.length === 0) {
+      return [];
+    }
+
+    const incomes = await this.incomeRepo
+      .createQueryBuilder('income')
+      .innerJoin('income.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .where('income.id IN (:...ids)', { ids })
+      .getMany();
+
+    console.log(userLogin, ids, incomes);
+
+    return incomes;
+  }
+
+  async getTotalCountForUser(userLogin: string) {
+    const count = await this.incomeRepo
+      .createQueryBuilder('income')
+      .where('income.author = :userLogin', { userLogin })
+      .getCount();
+
+    return count;
+  }
+
+  async fetchIds(
+    userLogin: string,
+    offset: number,
+    limit: number,
+  ): Promise<string[]> {
+    const result = await this.incomeRepo
+      .createQueryBuilder('income')
+      .where('income.author = :userLogin', { userLogin })
+      .orderBy('income.date')
+      .offset(offset)
+      .limit(limit)
+      .select('id')
+      .getRawMany();
+
+    return result.map(({ id }) => id);
+  }
+
   public async findForUser(
     id: string,
     userLogin: string,

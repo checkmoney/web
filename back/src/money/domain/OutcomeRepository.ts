@@ -16,6 +16,48 @@ class OutomeRepo implements TransactionRepository {
     private readonly outcomeRepo: Repository<Outcome>,
   ) {}
 
+  async fetchByIdsForUser(ids: string[], userLogin: string) {
+    if (ids.length === 0) {
+      return [];
+    }
+
+    const outcomes = await this.outcomeRepo
+      .createQueryBuilder('outcome')
+      .innerJoin('outcome.author', 'author', 'author.login = :userLogin', {
+        userLogin,
+      })
+      .where('outcome.id IN (:...ids)', { ids })
+      .getMany();
+
+    return outcomes;
+  }
+
+  async getTotalCountForUser(userLogin: string) {
+    const count = await this.outcomeRepo
+      .createQueryBuilder('outcome')
+      .where('outcome.author = :userLogin', { userLogin })
+      .getCount();
+
+    return count;
+  }
+
+  async fetchIds(
+    userLogin: string,
+    offset: number,
+    limit: number,
+  ): Promise<string[]> {
+    const result = await this.outcomeRepo
+      .createQueryBuilder('outcome')
+      .where('outcome.author = :userLogin', { userLogin })
+      .orderBy('outcome.date')
+      .offset(offset)
+      .limit(limit)
+      .select('id')
+      .getRawMany();
+
+    return result.map(({ id }) => id);
+  }
+
   public async findForUser(
     id: string,
     userLogin: string,
