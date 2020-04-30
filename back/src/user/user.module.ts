@@ -18,6 +18,7 @@ import { JwtOptionsFactory } from './infrastructure/JwtOptionsFactory';
 import { BcryptPasswordEncoder } from './infrastructure/PasswordEncoder/BcryptPasswordEncoder';
 import { PasswordEncoder } from './infrastructure/PasswordEncoder/PasswordEncoder';
 import { AuthController } from './presentation/http/controller/AuthController';
+import { DetBellController } from './presentation/http/controller/DetBellController';
 import { ProfileController } from './presentation/http/controller/ProfileController';
 import { SocialController } from './presentation/http/controller/SocialController';
 import { InvalidCredentialsFilter } from './presentation/http/filter/InvalidCredentialsFilter';
@@ -39,7 +40,12 @@ import { IsKnownUser } from './presentation/telegram/transformer/IsKnownUser';
       useClass: JwtOptionsFactory,
     }),
   ],
-  controllers: [AuthController, ProfileController, SocialController],
+  controllers: [
+    AuthController,
+    ProfileController,
+    SocialController,
+    DetBellController,
+  ],
   providers: [
     {
       provide: PasswordEncoder,
