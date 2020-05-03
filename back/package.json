@@ -18,7 +18,7 @@
     "@nestjs/swagger": "^2.5.1",
     "@nestjs/typeorm": "^5.2.2",
     "@solid-soda/cache": "^0.4.1",
-    "@solid-soda/config": "^2.0.0",
+    "@solid-soda/config": "^2.2.0",
     "@solid-soda/evolutions": "^0.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

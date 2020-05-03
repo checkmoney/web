@@ -1413,10 +1413,10 @@
     redis-commands "^1.5.0"
     then-redis "^2.0.1"
 
-"@solid-soda/config@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@solid-soda/config/-/config-2.0.0.tgz#e3343ca51345e437946585c8ac99c2f044abd578"
-  integrity sha512-jJ3Q7iyNGrbekZm+h4Bx39S4jPRfCALEOKsm/dSZpFMI0jf0nxCOsFd6/kcGZDVonpo/68Rz9TEe19cx+ephUw==
+"@solid-soda/config@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@solid-soda/config/-/config-2.2.0.tgz#fd3de55228a25a2d60788e4bddd38cca22a5e093"
+  integrity sha512-16o1HMVuDJlDcgq1dboRb5b/t8+eVfYTZ6vZ+tyBsJUGkXGNap1hxSpjC9Tl9fsF3IRq5U+G1Cj8+cci7Blnig==
   dependencies:
     change-case "^3.1.0"
     dotenv "^6.2.0"
