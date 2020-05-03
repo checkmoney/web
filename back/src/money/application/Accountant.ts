@@ -1,3 +1,4 @@
+import { DrKhomyuk, DetBell } from '@checkmoney/soap-opera';
 import { Injectable } from '@nestjs/common';
 
 import { EntitySaver } from '&back/db/EntitySaver';
@@ -22,6 +23,8 @@ export class Accountant {
     private readonly entitySaver: EntitySaver,
     private readonly incomeRepo: IncomeRepository,
     private readonly outcomeRepo: OutcomeRepository,
+    private readonly statistics: DrKhomyuk,
+    private readonly users: DetBell,
   ) {}
 
   public async income(
@@ -45,6 +48,7 @@ export class Accountant {
     );
 
     await this.entitySaver.save(income);
+    await this.sendNotification(userLogin);
   }
 
   public async outcome(
@@ -68,6 +72,7 @@ export class Accountant {
     );
 
     await this.entitySaver.save(outcome);
+    await this.sendNotification(userLogin);
   }
 
   public async remove(transactionId: string, userLogin: string): Promise<void> {
@@ -96,5 +101,12 @@ export class Accountant {
     if (outcome.nonEmpty()) {
       await this.entitySaver.remove(outcome.get());
     }
+
+    await this.sendNotification(userLogin);
+  }
+
+  private async sendNotification(userId: string) {
+    const token = await this.users.pretend(userId);
+    await this.statistics.triggers.transaction(token);
   }
 }

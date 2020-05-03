@@ -1,3 +1,4 @@
+import { DetBell, DrKhomyuk } from '@checkmoney/soap-opera';
 import { Injectable } from '@nestjs/common';
 
 import { EntitySaver } from '&back/db/EntitySaver';
@@ -10,6 +11,8 @@ export class ProfileEditor {
   public constructor(
     private readonly userRepo: UserRepository,
     private readonly entitySaver: EntitySaver,
+    private readonly users: DetBell,
+    private readonly statistics: DrKhomyuk,
   ) {}
 
   public async changeCurrency(login: string, currency: Currency) {
@@ -18,6 +21,9 @@ export class ProfileEditor {
     user.profile.defaultCurrency = currency;
 
     await this.entitySaver.save(user);
+
+    const token = await this.users.pretend(login);
+    await this.statistics.triggers.currency(token);
   }
 
   public async changeWeekStart(login: string, onMonday: boolean) {
