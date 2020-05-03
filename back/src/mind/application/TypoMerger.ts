@@ -1,8 +1,10 @@
+import { DetBell, DrKhomyuk } from '@checkmoney/soap-opera';
 import { Injectable } from '@nestjs/common';
 
 import { EntitySaver } from '&back/db/EntitySaver';
 import { IncomeRepository } from '&back/money/domain/IncomeRepository';
 import { OutcomeRepository } from '&back/money/domain/OutcomeRepository';
+import { IdGenerator } from '&back/utils/infrastructure/IdGenerator/IdGenerator';
 
 @Injectable()
 export class TypoMerger {
@@ -10,6 +12,9 @@ export class TypoMerger {
     private readonly incomeRepo: IncomeRepository,
     private readonly outcomeRepo: OutcomeRepository,
     private readonly entitySaver: EntitySaver,
+    private readonly idGenerator: IdGenerator,
+    private readonly users: DetBell,
+    private readonly statistics: DrKhomyuk,
   ) {}
 
   public async merge(
@@ -21,6 +26,9 @@ export class TypoMerger {
       this.mergeInIncomes(primary, secondary, userLogin),
       this.mergeInOutcomes(primary, secondary, userLogin),
     ]);
+
+    const token = await this.users.pretend(userLogin);
+    await this.statistics.triggers.transaction(token);
   }
 
   private async mergeInIncomes(
@@ -37,11 +45,20 @@ export class TypoMerger {
       return;
     }
 
-    incomes.forEach(income => {
+    const newIncomes = await Promise.all(
+      incomes.map(async income => {
+        const id = await this.idGenerator.getId();
+        return income.clone(id);
+      }),
+    );
+    newIncomes.forEach(income => {
       income.source = primary;
     });
 
-    await this.entitySaver.save(...incomes);
+    await this.entitySaver.em.transaction(async em => {
+      await em.remove(incomes);
+      await em.save(newIncomes);
+    });
   }
 
   private async mergeInOutcomes(
@@ -58,10 +75,19 @@ export class TypoMerger {
       return;
     }
 
-    outcomes.forEach(outcome => {
+    const newOutcomes = await Promise.all(
+      outcomes.map(async outcome => {
+        const id = await this.idGenerator.getId();
+        return outcome.clone(id);
+      }),
+    );
+    newOutcomes.forEach(outcome => {
       outcome.category = primary;
     });
 
-    await this.entitySaver.save(...outcomes);
+    await this.entitySaver.em.transaction(async em => {
+      await em.remove(outcomes);
+      await em.save(newOutcomes);
+    });
   }
 }

@@ -40,4 +40,15 @@ export class Income implements AbstractTransaction {
     this.date = date;
     this.author = author;
   }
+
+  clone(newId: string): Income {
+    return new Income(
+      newId,
+      this.amount,
+      this.currency,
+      this.source,
+      this.date,
+      this.author,
+    );
+  }
 }

@@ -40,4 +40,15 @@ export class Outcome implements AbstractTransaction {
     this.date = date;
     this.author = author;
   }
+
+  clone(newId: string): Outcome {
+    return new Outcome(
+      newId,
+      this.amount,
+      this.currency,
+      this.category,
+      this.date,
+      this.author,
+    );
+  }
 }
