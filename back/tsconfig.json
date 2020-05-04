@@ -10,6 +10,7 @@
     "target": "es6",
     "sourceMap": true,
     "outDir": "../dist/back",
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "&back/*": ["./src/*"],
