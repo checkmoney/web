@@ -949,7 +949,7 @@
 
 "@checkmoney/soap-opera@^1.9.0":
   version "1.9.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@checkmoney/soap-opera/-/soap-opera-1.9.0.tgz#d83f7a0e112c30c1f19e2288d3e58a6df4dd0aa6"
+  resolved "https://registry.yarnpkg.com/@checkmoney/soap-opera/-/soap-opera-1.9.0.tgz#d83f7a0e112c30c1f19e2288d3e58a6df4dd0aa6"
   integrity sha512-DY4oaEFIQl99Y++q5A9VW+jf07n/CBxMrkW+Atv61gyxoyb3IyppiXgvDRWJqrn5nwv5OlW2pvYAWUzu+7yg0w==
   dependencies:
     "@solid-soda/cache" "^0.4.1"
@@ -1815,7 +1815,7 @@
 
 "@types/validator@10.11.3":
   version "10.11.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@types/validator/-/validator-10.11.3.tgz#945799bef24a953c5bc02011ca8ad79331a3ef25"
+  resolved "https://registry.yarnpkg.com/@types/validator/-/validator-10.11.3.tgz#945799bef24a953c5bc02011ca8ad79331a3ef25"
   integrity sha512-GKF2VnEkMmEeEGvoo03ocrP9ySMuX1ypKazIYMlsjfslfBMhOAtC5dmEWKdJioW4lJN7MZRS88kalTsVClyQ9w==
 
 "@types/vfile-message@*":
@@ -2672,7 +2672,7 @@ axios@^0.16.2:
 
 axios@^0.19.0:
   version "0.19.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   dependencies:
     follow-redirects "1.5.10"
@@ -3665,7 +3665,7 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
 
 class-transformer@^0.2.3:
   version "0.2.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/class-transformer/-/class-transformer-0.2.3.tgz#598c92ca71dcca73f91ccb875d74a3847ccfa32d"
+  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.2.3.tgz#598c92ca71dcca73f91ccb875d74a3847ccfa32d"
   integrity sha512-qsP+0xoavpOlJHuYsQJsN58HXSl8Jvveo+T37rEvCEeRfMWoytAyR0Ua/YsFgpM6AZYZ/og2PJwArwzJl1aXtQ==
 
 class-utils@^0.3.5:
@@ -3680,7 +3680,7 @@ class-utils@^0.3.5:
 
 class-validator@^0.11.1:
   version "0.11.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/class-validator/-/class-validator-0.11.1.tgz#9033b9ebdc3883e826dfc0c545a45935e3298553"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.11.1.tgz#9033b9ebdc3883e826dfc0c545a45935e3298553"
   integrity sha512-6CGdjwJLmKw+sQbK5ZDo1v1yTajkqfPOUDWSYVIlhUiCh6Phy8sAnMFE2XKHAcKAdoOz4jJUQhjPQWPYUuHxrA==
   dependencies:
     "@types/validator" "10.11.3"
@@ -4789,7 +4789,7 @@ date-fns@^1.27.2, date-fns@^1.29.0, date-fns@^1.30.1:
 
 date-fns@^2.8.1:
   version "2.12.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/date-fns/-/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
   integrity sha512-qJgn99xxKnFgB1qL4jpxU7Q2t0LOn1p8KMIveef3UZD7kqjT3tpFNNdXJelEHhE+rUgffriXriw/sOSU+cS1Hw==
 
 date-now@^0.1.4:
@@ -5330,7 +5330,7 @@ ecdsa-sig-formatter@1.0.10:
 
 ecdsa-sig-formatter@1.0.11:
   version "1.0.11"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
+  resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
   integrity sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==
   dependencies:
     safe-buffer "^5.0.1"
@@ -6980,7 +6980,7 @@ google-auth-library@^5.2.0:
 
 google-libphonenumber@^3.1.6:
   version "3.2.9"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/google-libphonenumber/-/google-libphonenumber-3.2.9.tgz#d65c2467eec22c35e3dcddfc91d26e2b135024c4"
+  resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.2.9.tgz#d65c2467eec22c35e3dcddfc91d26e2b135024c4"
   integrity sha512-PCU6Z5drRaFHNICJcurXsf6DN//ZNl0PXmPIpbHi+E1pp54GwyrhxBn57rr1nx+3mNUOMr4zeWirIKPc4ziJgw==
 
 google-p12-pem@^2.0.0:
@@ -9213,7 +9213,7 @@ jsonwebtoken@^8.3.0:
 
 jsonwebtoken@^8.5.1:
   version "8.5.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
   integrity sha512-XjwVfRS6jTMsqYs0EsuJ4LGxXV14zQybNd4L2r0UvbVnSF9Af8x7p5MzbJ90Ioz/9TI41/hTCvznF/loiSzn8w==
   dependencies:
     jws "^3.2.2"
@@ -9261,7 +9261,7 @@ jwa@^1.2.0:
 
 jwa@^1.4.1:
   version "1.4.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
   integrity sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==
   dependencies:
     buffer-equal-constant-time "1.0.1"
@@ -9278,7 +9278,7 @@ jws@^3.1.5:
 
 jws@^3.2.2:
   version "3.2.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
+  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
   integrity sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==
   dependencies:
     jwa "^1.4.1"
@@ -16308,7 +16308,7 @@ validate-npm-package-license@^3.0.1:
 
 validator@12.0.0:
   version "12.0.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/validator/-/validator-12.0.0.tgz#fb33221f5320abe2422cda2f517dc3838064e813"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-12.0.0.tgz#fb33221f5320abe2422cda2f517dc3838064e813"
   integrity sha512-r5zA1cQBEOgYlesRmSEwc9LkbfNLTtji+vWyaHzRZUxCTHdsX3bd+sdHfs5tGZ2W6ILGGsxWxCNwT/h3IY/3ng==
 
 vary@^1, vary@~1.1.2:
