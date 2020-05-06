@@ -29,15 +29,13 @@ class IncomeRepo implements TransactionRepository {
       .where('income.id IN (:...ids)', { ids })
       .getMany();
 
-    console.log(userLogin, ids, incomes);
-
     return incomes;
   }
 
   async getTotalCountForUser(userLogin: string) {
     const count = await this.incomeRepo
       .createQueryBuilder('income')
-      .where('income.authorLogin = :userLogin', { userLogin })
+      .where('income."authorLogin" = :userLogin', { userLogin })
       .getCount();
 
     return count;
@@ -50,7 +48,7 @@ class IncomeRepo implements TransactionRepository {
   ): Promise<string[]> {
     const result = await this.incomeRepo
       .createQueryBuilder('income')
-      .where('income.authorLogin = :userLogin', { userLogin })
+      .where('income."authorLogin" = :userLogin', { userLogin })
       .orderBy('income.date')
       .offset(offset)
       .limit(limit)

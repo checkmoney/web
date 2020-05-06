@@ -35,7 +35,7 @@ class OutomeRepo implements TransactionRepository {
   async getTotalCountForUser(userLogin: string) {
     const count = await this.outcomeRepo
       .createQueryBuilder('outcome')
-      .where('outcome.authorLogin = :userLogin', { userLogin })
+      .where('outcome."authorLogin" = :userLogin', { userLogin })
       .getCount();
 
     return count;
@@ -48,7 +48,7 @@ class OutomeRepo implements TransactionRepository {
   ): Promise<string[]> {
     const result = await this.outcomeRepo
       .createQueryBuilder('outcome')
-      .where('outcome.authorLogin = :userLogin', { userLogin })
+      .where('outcome."authorLogin" = :userLogin', { userLogin })
       .orderBy('outcome.date')
       .offset(offset)
       .limit(limit)
