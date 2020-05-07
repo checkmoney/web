@@ -1,17 +1,19 @@
 import { takeLatest, put, call, delay } from 'redux-saga/effects';
 
 import { StatisticsApi } from '&front/api/StatisticsApi';
-import { createStatisticsApi } from '&front/app/api/api.sagas';
+import { createStatisticsApi } from '&front/app/utility/api.sagas';
+import { logError } from '&front/app/utility/errors.sagas';
 
 import {
   GrowActions,
   growDataReceived,
   GrowRequestedAction,
   growRequested,
+  growFatalErrorHappened,
 } from './grow.actions';
 import { GrowItem } from './grow.types';
 
-const ATTEMPT_THRESHOLD = 2;
+const ATTEMPT_THRESHOLD = 3;
 const RETRY_DELAY = 100;
 
 export function* handleGrowFetchingSaga() {
@@ -20,22 +22,20 @@ export function* handleGrowFetchingSaga() {
   ) {
     const { periodType, attempt } = action.payload;
 
-    const apiClient: StatisticsApi = yield createStatisticsApi();
-
     try {
+      const apiClient: StatisticsApi = yield createStatisticsApi();
       const data: GrowItem = yield call(apiClient.findGrow, periodType);
-
       yield put(growDataReceived(periodType, data));
     } catch (error) {
-      // TODO: log error
-      console.error(error);
+      yield logError(error);
 
       if (attempt >= ATTEMPT_THRESHOLD) {
+        yield put(growFatalErrorHappened(periodType));
         return;
       }
 
       // Ok, lets retry
-      yield delay(RETRY_DELAY);
+      yield delay(RETRY_DELAY * attempt);
       yield put(growRequested(periodType, attempt + 1));
     }
   });

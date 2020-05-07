@@ -9,3 +9,12 @@ export const selectGrow = (periodType: GroupBy) => (
   state: State,
 ): GrowItem | undefined =>
   get(state, `application.statistics.grow.${periodType}`);
+
+export const selectGrowHasError = (periodType: GroupBy) => (
+  state: State,
+): boolean =>
+  get<State, any, Array<GroupBy>>(
+    state,
+    `application.statistics.grow.errors`,
+    [],
+  ).includes(periodType);

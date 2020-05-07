@@ -1,17 +1,18 @@
 import { format } from 'date-fns';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'redux-react-hook';
-import { Option } from 'tsoption';
 
 import { growRequested } from '&front/app/statistics/grow.actions';
-import { selectGrow } from '&front/app/statistics/grow.selectors';
+import {
+  selectGrow,
+  selectGrowHasError,
+} from '&front/app/statistics/grow.selectors';
 import { useTranslation } from '&front/domain/i18n';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Stat } from '&front/ui/components/chart/stat';
 import { Card } from '&front/ui/components/layout/card';
 import { Loader } from '&front/ui/components/layout/loader';
-import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 
 import * as styles from './Dynamics.css';
@@ -19,7 +20,6 @@ import * as styles from './Dynamics.css';
 interface Props {
   className?: string;
   group: GroupBy.Month | GroupBy.Year;
-  currency: Currency;
 }
 
 export const Dynamics = ({ className, group }: Props) => {
@@ -27,6 +27,7 @@ export const Dynamics = ({ className, group }: Props) => {
   const dispatch = useDispatch();
 
   const grow = useMemoMappedState(selectGrow(group), [group]);
+  const error = useMemoMappedState(selectGrowHasError(group), [group]);
 
   useEffect(() => {
     dispatch(growRequested(group));
@@ -45,7 +46,7 @@ export const Dynamics = ({ className, group }: Props) => {
       <Loader
         skeleton
         expectedRows={2}
-        status={{ error: Option.of(null), loading: !Boolean(grow) }}
+        status={{ error, loading: !Boolean(grow) }}
       >
         <div className={styles.diff}>
           <Stat
