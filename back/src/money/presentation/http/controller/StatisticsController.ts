@@ -17,7 +17,6 @@ import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
-import { AverageAmountResponse } from '../response/AverageAmountResponse';
 import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse';
 import { DateGroupResponse } from '../response/DateGroupResponse';
 import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse';
@@ -94,23 +93,5 @@ export class StatisticsController {
     );
 
     return categories;
-  }
-
-  @Get('average')
-  @ApiOperation({ title: 'Show average amounts' })
-  @ApiOkResponse({
-    description: 'Fetching stats success',
-    type: AverageAmountResponse,
-    isArray: true,
-  })
-  public async showAverage(
-    @Query('by', createEnumValidationPipe(GroupBy)) by: GroupBy,
-    @Query('currency', createEnumValidationPipe(Currency))
-    currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayloadModel,
-  ): Promise<AverageAmountResponse[]> {
-    const averages = await this.statistician.showAverage(login, by, currency);
-
-    return averages;
   }
 }

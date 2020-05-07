@@ -1,0 +1,11 @@
+import { get } from 'lodash';
+
+import { State } from '&front/domain/store/State';
+import { GroupBy } from '&shared/enum/GroupBy';
+
+import { GrowItem } from './grow.types';
+
+export const selectGrow = (periodType: GroupBy) => (
+  state: State,
+): GrowItem | undefined =>
+  get(state, `application.statistics.grow.${periodType}`);

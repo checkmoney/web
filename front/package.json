@@ -40,6 +40,7 @@
     "redux-clear": "^v1.1.2",
     "redux-devtools-extension": "^2.13.7",
     "redux-react-hook": "^3.1.0",
+    "redux-saga": "^1.1.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "use-media": "^1.2.0",
