@@ -11,7 +11,7 @@ import {
   growRequested,
   growFatalErrorHappened,
 } from './grow.actions';
-import { GrowItem } from './grow.types';
+import { Grow } from './grow.types';
 
 const ATTEMPT_THRESHOLD = 3;
 const RETRY_DELAY = 100;
@@ -24,7 +24,7 @@ export function* handleGrowFetchingSaga() {
 
     try {
       const apiClient: StatisticsApi = yield createStatisticsApi();
-      const data: GrowItem = yield call(apiClient.findGrow, periodType);
+      const data: Grow = yield call(apiClient.findGrow, periodType);
       yield put(growDataReceived(periodType, data));
     } catch (error) {
       yield logError(error);

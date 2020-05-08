@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import 'antd/dist/antd.css?CSSModulesDisable';
 import { Ampa } from '@ampa/nextjs';
 import { ModalContextProvider } from '@breadhead/use-modal';

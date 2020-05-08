@@ -2,7 +2,7 @@ import { Action } from 'redux';
 
 import { GroupBy } from '&shared/enum/GroupBy';
 
-import { GrowItem } from './grow.types';
+import { Grow } from './grow.types';
 
 export enum GrowActions {
   Requested = 'STATISTICS_GROW_Requested',
@@ -28,12 +28,12 @@ export interface GrowDataReceivedAction
   extends Action<GrowActions.DataReceived> {
   payload: {
     periodType: GroupBy;
-    data: GrowItem;
+    data: Grow;
   };
 }
 export const growDataReceived = (
   periodType: GroupBy,
-  data: GrowItem,
+  data: Grow,
 ): GrowDataReceivedAction => ({
   type: GrowActions.DataReceived,
   payload: { data, periodType },

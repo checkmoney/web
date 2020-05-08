@@ -8,10 +8,10 @@ import {
   GrowRequestedAction,
   GrowFatalErrorHappenedAction,
 } from './grow.actions';
-import { GrowItem } from './grow.types';
+import { Grow } from './grow.types';
 
 export type GrowState = {
-  [key in keyof typeof GroupBy]?: GrowItem;
+  [key in keyof typeof GroupBy]?: Grow;
 } & {
   errors?: GroupBy[];
 };

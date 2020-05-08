@@ -23,7 +23,6 @@ class StatsPage extends React.Component {
     await Promise.all([
       reduxStore.dispatch(fetchFirstTransactionDate() as any),
       reduxStore.dispatch(fetchStatsSources(from, to, currency) as any),
-      reduxStore.dispatch(fetchStatsCategories(from, to, currency) as any),
       reduxStore.dispatch(fetchStatsDynamics(
         from,
         to,

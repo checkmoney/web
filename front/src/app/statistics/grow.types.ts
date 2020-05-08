@@ -1,4 +1,4 @@
-export interface GrowItem {
-  expenses: number | null;
-  earnings: number | null;
+export class Grow {
+  expenses: number | null = null;
+  earnings: number | null = null;
 }

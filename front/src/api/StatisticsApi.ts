@@ -1,9 +1,12 @@
 import Axios, { AxiosInstance } from 'axios';
+import { plainToClass } from 'class-transformer';
 
-import { GrowItem } from '&front/app/statistics/grow.types';
+import { PeriodCategories } from '&front/app/statistics/categories.types';
+import { Grow } from '&front/app/statistics/grow.types';
 import { GroupBy } from '&shared/enum/GroupBy';
 
-import { addTokenToHttpConfig } from './utils';
+import { Interval } from './types';
+import { addTokenToHttpConfig, intervalForQuery } from './utils';
 
 export class StatisticsApi {
   private readonly http: AxiosInstance;
@@ -16,12 +19,26 @@ export class StatisticsApi {
     });
   }
 
-  findGrow = async (periodType: GroupBy): Promise<GrowItem> => {
+  findGrow = async (periodType: GroupBy): Promise<Grow> => {
     const { data } = await this.http.get(
       `v1/statistics/grow?periodType=${periodType}`,
       addTokenToHttpConfig(this.token, {}),
     );
 
-    return data;
+    return plainToClass(Grow, data);
+  };
+
+  fetchCategories = async (
+    periodType: GroupBy,
+    dateRange: Interval,
+  ): Promise<PeriodCategories[]> => {
+    const { data } = await this.http.get(
+      `v1/statistics/categories?periodType=${periodType}&${intervalForQuery(
+        dateRange,
+      )}`,
+      addTokenToHttpConfig(this.token, {}),
+    );
+
+    return plainToClass(PeriodCategories, data);
   };
 }
