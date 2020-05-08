@@ -17,9 +17,7 @@ import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
-import { CategoryGroupOutcomeResponse } from '../response/CategoryGroupOutcomeResponse';
 import { DateGroupResponse } from '../response/DateGroupResponse';
-import { SourceGroupIncomeResponse } from '../response/SourceGroupIncomeResponse';
 
 @Controller('money/statistics')
 @OnlyForUsers()
@@ -51,47 +49,5 @@ export class StatisticsController {
     );
 
     return stats;
-  }
-
-  @Get('income-sources')
-  @ApiOperation({ title: 'Show income sources' })
-  @ApiOkResponse({
-    description: 'Fetching stats sucess',
-    type: SourceGroupIncomeResponse,
-    isArray: true,
-  })
-  @ApiQueryDateRange()
-  public async showIncomeSourcesStats(
-    @Query(ParseDateRangePipe) range: DateRange,
-    @Query('currency', createEnumValidationPipe(Currency))
-    currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayloadModel,
-  ): Promise<SourceGroupIncomeResponse[]> {
-    const sources = await this.statistician.showSources(login, range, currency);
-
-    return sources;
-  }
-
-  @Get('outcome-categories')
-  @ApiOperation({ title: 'Show outcome categories' })
-  @ApiOkResponse({
-    description: 'Fetching stats sucess',
-    type: CategoryGroupOutcomeResponse,
-    isArray: true,
-  })
-  @ApiQueryDateRange()
-  public async showOutcomeCategoriesStats(
-    @Query(ParseDateRangePipe) range: DateRange,
-    @Query('currency', createEnumValidationPipe(Currency))
-    currency: Currency = Currency.USD,
-    @CurrentUser() { login }: TokenPayloadModel,
-  ): Promise<CategoryGroupOutcomeResponse[]> {
-    const categories = await this.statistician.showCategories(
-      login,
-      range,
-      currency,
-    );
-
-    return categories;
   }
 }

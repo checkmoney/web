@@ -12,10 +12,7 @@ interface Query {
 class SourcesPage extends React.Component<Query> {
   public static isSecure = true;
 
-  public static async getInitialProps({
-    reduxStore,
-    query,
-  }: AppContext<Query>) {
+  public static async getInitialProps({ query }: AppContext<Query>) {
     const { group } = query;
 
     return { group };

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { groupBy, flow, curryRight, mapValues, flatMap } from 'lodash';
+import { groupBy, mapValues } from 'lodash';
 
 import { createGroups } from '&back/utils/infrastructure/dateGroups/createGroups';
 import { dateGroupByCallback } from '&back/utils/infrastructure/dateGroups/dateGroupByCallback';
@@ -9,20 +9,16 @@ import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { createAverageReducer } from '&shared/helpers/createAverageReducer';
 import { AverageAmountModel } from '&shared/models/money/AvergaeAmountModel';
-import { CategoryGroupOutcomeModel } from '&shared/models/money/CategoryGroupOutcomeModel';
-import { SourceGroupIncomeModel } from '&shared/models/money/SourceGroupIncomeModel';
 
 import { Transaction } from '../domain/dto/Transaction';
 import { IncomeRepository } from '../domain/IncomeRepository';
 import { AbstractTransaction } from '../domain/interfaces/AbstarctTransaction';
-import { TransactionRepository } from '../domain/interfaces/TransactionRepository';
 import { OutcomeRepository } from '../domain/OutcomeRepository';
 import { CurrencyConverter } from './CurrencyConverter';
 import { amountMapper } from './helpers/amountMapper';
 import { rangeFilter } from './helpers/rangeFilter';
 import { sumReducer } from './helpers/sumReducer';
 import { Historian } from './Historian';
-import { SummedGroup } from './types/SummedGroup';
 
 @Injectable()
 export class Statistician {
@@ -117,72 +113,6 @@ export class Statistician {
         .map(amountMapper)
         .reduce(sumReducer, 0),
     }));
-  }
-
-  public async showCategories(
-    userLogin: string,
-    dateRange: DateRange,
-    currency: Currency,
-  ): Promise<CategoryGroupOutcomeModel[]> {
-    return this.showGrouped(
-      userLogin,
-      dateRange,
-      currency,
-      this.outcomeRepo,
-      'category',
-      'outcome',
-    );
-  }
-
-  public async showSources(
-    userLogin: string,
-    dateRange: DateRange,
-    currency: Currency,
-  ): Promise<SourceGroupIncomeModel[]> {
-    return this.showGrouped(
-      userLogin,
-      dateRange,
-      currency,
-      this.incomeRepo,
-      'source',
-      'income',
-    );
-  }
-
-  private async showGrouped<T extends string, K extends string>(
-    userLogin: string,
-    dateRange: DateRange,
-    currency: Currency,
-    repo: TransactionRepository,
-    groupKey: T,
-    sumKey: K,
-  ): Promise<SummedGroup<T, K>[]> {
-    const rawTransactions = await repo.findByRangeForUser(userLogin, dateRange);
-
-    const groups = Object.entries(groupBy(rawTransactions, groupKey)).map(
-      ([key, transactions]) => ({
-        key,
-        transactions,
-      }),
-    );
-
-    const convertedGroups = await Promise.all(
-      groups.map(async ({ key, transactions }) => ({
-        key,
-        transactions: await this.convertItems(currency)(transactions),
-      })),
-    );
-
-    const summedGroups = convertedGroups.map(
-      ({ key, transactions }) =>
-        ({
-          [groupKey]: key,
-          [sumKey]: transactions.map(amountMapper).reduce(sumReducer, 0),
-          currency,
-        } as SummedGroup<T, K>),
-    );
-
-    return summedGroups;
   }
 
   private convertItems(targetCurrency: Currency) {

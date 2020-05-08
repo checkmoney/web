@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "jsx": "preserve",
