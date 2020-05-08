@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { DbModule } from '&back/db/db.module';
 import { MoneyModule } from '&back/money/money.module';
+import { PlatformModule } from '&back/platform/platform.module';
 import { UserModule } from '&back/user/user.module';
 
 import { BudgetAdviser } from './application/adviser/BudgetAdviser';
@@ -31,6 +32,7 @@ import { TypoController } from './presentation/http/controller/TypoController';
     MoneyModule,
     TypeOrmModule.forFeature([DisabledTip]),
     TypeOrmModule.forFeature([CustomTip]),
+    PlatformModule,
   ],
   controllers: [TipController, TypoController],
   providers: [

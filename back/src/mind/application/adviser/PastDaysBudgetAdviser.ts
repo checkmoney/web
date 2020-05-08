@@ -1,4 +1,10 @@
 import {
+  DetBell,
+  DrKhomyuk,
+  PeriodType,
+  DateRange,
+} from '@checkmoney/soap-opera';
+import {
   startOfWeek,
   subWeeks,
   endOfWeek,
@@ -10,7 +16,6 @@ import * as md5 from 'md5';
 
 import { Adviser } from '&back/mind/infrastructure/adviser/helpers/Adviser';
 import { IsAdviser } from '&back/mind/infrastructure/adviser/helpers/IsAdviser';
-import { Statistician } from '&back/money/application/Statistician';
 import { UserRepository } from '&back/user/domain/UserRepository';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
@@ -21,31 +26,34 @@ import { TipModel } from '&shared/models/mind/TipModel';
 @IsAdviser()
 export class PastDaysBudgetAdviser implements Adviser {
   constructor(
-    private readonly statistician: Statistician,
     private readonly userRepo: UserRepository,
+    private readonly users: DetBell,
+    private readonly stats: DrKhomyuk,
   ) {}
 
   public async giveAdvice(login: string): Promise<TipModel[]> {
-    const currency = await this.userRepo.getDefaultCurrency(login);
+    const [currency, token] = await Promise.all([
+      this.userRepo.getDefaultCurrency(login),
+      this.users.pretend(login),
+    ]);
 
     return Promise.all([
-      this.giveAdviceForLastWeek(login, currency),
-      this.giceAdviceForLastMonth(login, currency),
+      this.giveAdviceForLastWeek(login, token, currency),
+      this.giceAdviceForLastMonth(token, currency),
     ]);
   }
 
-  private async giceAdviceForLastMonth(login: string, currency: Currency) {
+  private async giceAdviceForLastMonth(token: string, currency: Currency) {
     const now = new Date();
     const nowMinusMonth = subMonths(now, 1);
 
     const from = startOfMonth(nowMinusMonth);
     const to = endOfMonth(nowMinusMonth);
 
-    const [lastMonthStats] = await this.statistician.showDateRangeStats(
-      login,
-      { from, to },
-      GroupBy.Month,
-      currency,
+    const [lastMonthStats] = await this.stats.fetchAmount(
+      token,
+      PeriodType.Month,
+      new DateRange(from, to),
     );
 
     return {
@@ -53,7 +61,7 @@ export class PastDaysBudgetAdviser implements Adviser {
       date: now,
       action: TipAction.PastDaysBudget,
       meta: {
-        outcome: lastMonthStats.outcome,
+        outcome: Number(lastMonthStats.expenses),
         currency,
         group: GroupBy.Month,
       },
@@ -62,6 +70,7 @@ export class PastDaysBudgetAdviser implements Adviser {
 
   private async giveAdviceForLastWeek(
     login: string,
+    token: string,
     currency: Currency,
   ): Promise<TipModel> {
     const weekStartsOn = await this.userRepo.getWeekStartsOn(login);
@@ -72,11 +81,10 @@ export class PastDaysBudgetAdviser implements Adviser {
     const from = startOfWeek(nowMinusWeek, { weekStartsOn });
     const to = endOfWeek(nowMinusWeek, { weekStartsOn });
 
-    const [lastWeekStats] = await this.statistician.showDateRangeStats(
-      login,
-      { from, to },
-      GroupBy.Week,
-      currency,
+    const [lastWeekStats] = await this.stats.fetchAmount(
+      token,
+      PeriodType.Week,
+      new DateRange(from, to),
     );
 
     return {
@@ -84,7 +92,7 @@ export class PastDaysBudgetAdviser implements Adviser {
       date: now,
       action: TipAction.PastDaysBudget,
       meta: {
-        outcome: lastWeekStats.outcome,
+        outcome: Number(lastWeekStats.expenses),
         currency,
         group: GroupBy.Week,
       },

@@ -8,7 +8,6 @@ import { UtilsModule } from '&back/utils/utils.module';
 import { Accountant } from './application/Accountant';
 import { CurrencyConverter } from './application/CurrencyConverter';
 import { Historian } from './application/Historian';
-import { Statistician } from './application/Statistician';
 import { Income } from './domain/Income.entity';
 import { IncomeRepository } from './domain/IncomeRepository';
 import { Outcome } from './domain/Outcome.entity';
@@ -32,14 +31,13 @@ import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/Unex
     ConversationFailedFilter.provider(),
     Accountant,
     Historian,
-    Statistician,
     IncomeRepository,
     OutcomeRepository,
     CurrencyConverter,
     TransactionActions,
     UnexpectedParameterCatcher,
   ],
-  exports: [IncomeRepository, OutcomeRepository, Statistician, Historian],
+  exports: [IncomeRepository, OutcomeRepository, Historian],
 })
 export class MoneyModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {

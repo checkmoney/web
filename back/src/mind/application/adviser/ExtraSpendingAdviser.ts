@@ -1,4 +1,10 @@
 import {
+  DrKhomyuk,
+  DetBell,
+  PeriodType,
+  DateRange,
+} from '@checkmoney/soap-opera';
+import {
   startOfMonth,
   subMonths,
   endOfMonth,
@@ -7,7 +13,6 @@ import {
 } from 'date-fns';
 import * as md5 from 'md5';
 
-import { Statistician } from '&back/money/application/Statistician';
 import { UserRepository } from '&back/user/domain/UserRepository';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { TipAction } from '&shared/enum/TipAction';
@@ -20,31 +25,28 @@ import { IsAdviser } from '../../infrastructure/adviser/helpers/IsAdviser';
 @IsAdviser()
 export class ExtraSpendingAdviser implements Adviser {
   public constructor(
-    private readonly statistician: Statistician,
     private readonly userRepo: UserRepository,
+    private readonly users: DetBell,
+    private readonly stats: DrKhomyuk,
   ) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
     const monthProgress = calculateGroupProgress(GroupBy.Month);
-    const currency = await this.userRepo.getDefaultCurrency(userLogin);
+    const [currency, token] = await Promise.all([
+      this.userRepo.getDefaultCurrency(userLogin),
+      this.users.pretend(userLogin),
+    ]);
 
     const now = new Date();
-    const dateRange = {
-      from: startOfMonth(subMonths(now, 1)),
-      to: endOfMonth(now),
-    };
-    const [
-      lastMonthStats,
-      currentMonthStats,
-    ] = await this.statistician.showDateRangeStats(
-      userLogin,
-      dateRange,
-      GroupBy.Month,
-      currency,
+
+    const [lastMonthStats, currentMonthStats] = await this.stats.fetchAmount(
+      token,
+      PeriodType.Month,
+      new DateRange(startOfMonth(subMonths(now, 1)), endOfMonth(now)),
     );
 
-    const income = lastMonthStats.income * monthProgress;
-    const { outcome } = currentMonthStats;
+    const income = Number(lastMonthStats.earnings) * monthProgress;
+    const outcome = Number(currentMonthStats.expenses);
 
     if (outcome <= income) {
       return [];
