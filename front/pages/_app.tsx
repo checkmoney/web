@@ -51,7 +51,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
     return (
       <Container>
         <Head>
-          <script src="//unpkg.com/reflect-metadata/@0.1.13/Reflect.js" />
+          <script src="//unpkg.com/reflect-metadata@0.1.13/Reflect.js" />
           <meta name="viewport" content="width=device-width, initial=scale=1" />
         </Head>
         <Provider store={reduxStore}>
