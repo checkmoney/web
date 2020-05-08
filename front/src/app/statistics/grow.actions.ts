@@ -1,53 +1,16 @@
-import { Action } from 'redux';
+import actionCreatorFactory from 'typescript-fsa';
 
 import { GroupBy } from '&shared/enum/GroupBy';
 
 import { Grow } from './grow.types';
 
-export enum GrowActions {
-  Requested = 'STATISTICS_GROW_Requested',
-  DataReceived = 'STATISTICS_GROW_DataReceived',
-  FatalErrorHappened = 'STATISTICS_GROW_FatalErrorHappened',
-}
+const actionCreator = actionCreatorFactory('STATISTICS_GROW');
 
-export interface GrowRequestedAction extends Action<GrowActions.Requested> {
-  payload: {
+export const actions = actionCreator.async<
+  {
     periodType: GroupBy;
-    attempt: number;
-  };
-}
-export const growRequested = (
-  periodType: GroupBy,
-  attempt: number = 1,
-): GrowRequestedAction => ({
-  type: GrowActions.Requested,
-  payload: { periodType, attempt },
-});
-
-export interface GrowDataReceivedAction
-  extends Action<GrowActions.DataReceived> {
-  payload: {
-    periodType: GroupBy;
-    data: Grow;
-  };
-}
-export const growDataReceived = (
-  periodType: GroupBy,
-  data: Grow,
-): GrowDataReceivedAction => ({
-  type: GrowActions.DataReceived,
-  payload: { data, periodType },
-});
-
-export interface GrowFatalErrorHappenedAction
-  extends Action<GrowActions.FatalErrorHappened> {
-  payload: {
-    periodType: GroupBy;
-  };
-}
-export const growFatalErrorHappened = (
-  periodType: GroupBy,
-): GrowFatalErrorHappenedAction => ({
-  type: GrowActions.FatalErrorHappened,
-  payload: { periodType },
-});
+    attempt?: number;
+  },
+  Grow,
+  string
+>('FETCHING');

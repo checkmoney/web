@@ -1,13 +1,9 @@
 import { uniq } from 'lodash';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 import { GroupBy } from '&shared/enum/GroupBy';
 
-import {
-  GrowActions,
-  GrowDataReceivedAction,
-  GrowRequestedAction,
-  GrowFatalErrorHappenedAction,
-} from './grow.actions';
+import { actions } from './grow.actions';
 import { Grow } from './grow.types';
 
 type StateData = { [key in GroupBy]?: Grow };
@@ -20,30 +16,13 @@ const initialState: GrowState = {
   errors: [],
 };
 
-type GrowAction =
-  | GrowDataReceivedAction
-  | GrowRequestedAction
-  | GrowFatalErrorHappenedAction;
-
-export const growReducer = (
-  state: GrowState = initialState,
-  action: GrowAction,
-): GrowState => {
-  switch (action.type) {
-    case GrowActions.DataReceived:
-      return {
-        ...state,
-        [action.payload.periodType]: action.payload.data,
-        errors: state.errors.filter(
-          error => error !== action.payload.periodType,
-        ),
-      };
-    case GrowActions.FatalErrorHappened:
-      return {
-        ...state,
-        errors: uniq([...state.errors, action.payload.periodType]),
-      };
-    default:
-      return state;
-  }
-};
+export const growReducer = reducerWithInitialState(initialState)
+  .case(actions.done, (state, { params, result }) => ({
+    ...state,
+    [params.periodType]: result,
+    errors: state.errors.filter(error => error !== params.periodType),
+  }))
+  .case(actions.failed, (state, { params }) => ({
+    ...state,
+    errors: uniq([...state.errors, params.periodType]),
+  }));

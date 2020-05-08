@@ -4,23 +4,17 @@ import { StatisticsApi } from '&front/api/StatisticsApi';
 import { createStatisticsApi } from '&front/app/utility/api.sagas';
 import { logError } from '&front/app/utility/errors.sagas';
 
-import {
-  CategoriesActions,
-  CategoriesRequestedAction,
-  categoriesDataReceived,
-  categoriesFatalErrorHappened,
-  categoriesRequested,
-} from './categories.actions';
+import { actions } from './categories.actions';
 import { PeriodCategories } from './categories.types';
 
 const ATTEMPT_THRESHOLD = 3;
 const RETRY_DELAY = 100;
 
 export function* handleCategoriesFetchingSaga() {
-  yield takeLatest(CategoriesActions.Requested, function*(
-    action: CategoriesRequestedAction,
+  yield takeLatest(actions.started.type, function*(
+    action: ReturnType<typeof actions.started>,
   ) {
-    const { periodType, attempt, dateRange } = action.payload;
+    const { periodType, attempt = 0, dateRange } = action.payload;
 
     try {
       const apiClient: StatisticsApi = yield createStatisticsApi();
@@ -29,18 +23,22 @@ export function* handleCategoriesFetchingSaga() {
         periodType,
         dateRange,
       );
-      yield put(categoriesDataReceived(periodType, dateRange, data));
+      yield put(actions.done({ params: action.payload, result: data }));
     } catch (error) {
       yield logError(error);
 
       if (attempt >= ATTEMPT_THRESHOLD) {
-        yield put(categoriesFatalErrorHappened(periodType, dateRange));
+        yield put(
+          actions.failed({ params: action.payload, error: 'Unknown error' }),
+        );
         return;
       }
 
       // Ok, lets retry
       yield delay(RETRY_DELAY * attempt);
-      yield put(categoriesRequested(periodType, dateRange, attempt + 1));
+      yield put(
+        actions.started({ periodType, dateRange, attempt: attempt + 1 }),
+      );
     }
   });
 }

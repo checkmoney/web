@@ -1,8 +1,9 @@
 import { format } from 'date-fns';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'redux-react-hook';
+import { Option } from 'tsoption';
 
-import { growRequested } from '&front/app/statistics/grow.actions';
+import { actions } from '&front/app/statistics/grow.actions';
 import {
   selectGrow,
   selectGrowHasError,
@@ -30,13 +31,15 @@ export const Dynamics = ({ className, group }: Props) => {
   const error = useMemoMappedState(selectGrowHasError(group), [group]);
 
   useEffect(() => {
-    dispatch(growRequested(group));
+    dispatch(actions.started({ periodType: group }));
   }, [group]);
 
   const period =
     group === GroupBy.Month
       ? translatedMonthTitle(t, new Date())
       : format(new Date(), 'YYYY');
+
+  const errorState = error ? Option.of('Error') : Option.of<string>(null);
 
   // TODO: add info about calculation in tooltip
   return (
@@ -46,7 +49,7 @@ export const Dynamics = ({ className, group }: Props) => {
       <Loader
         skeleton
         expectedRows={2}
-        status={{ error, loading: !Boolean(grow) }}
+        status={{ error: errorState, loading: !Boolean(grow) }}
       >
         <div className={styles.diff}>
           <Stat

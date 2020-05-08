@@ -4,7 +4,7 @@ import { useDispatch } from 'redux-react-hook';
 import { Option } from 'tsoption';
 
 import { Interval } from '&front/api/types';
-import { categoriesRequested } from '&front/app/statistics/categories.actions';
+import { actions } from '&front/app/statistics/categories.actions';
 import {
   selectCategories,
   selectCategoriesHasError,
@@ -55,7 +55,7 @@ export const Categories = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(categoriesRequested(group, dateRange));
+    dispatch(actions.started({ periodType: group, dateRange }));
   }, [group, dateRange]);
 
   const data = useMemoMappedState(selectCategories(group, dateRange), [
