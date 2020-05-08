@@ -1,12 +1,16 @@
-import { sortBy, take } from 'lodash';
-import React, { useMemo } from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { take } from 'lodash';
+import React, { useMemo, useEffect } from 'react';
+import { useDispatch } from 'redux-react-hook';
+import { Option } from 'tsoption';
 
+import { Interval } from '&front/api/types';
+import { categoriesRequested } from '&front/app/statistics/categories.actions';
+import {
+  selectCategories,
+  selectCategoriesHasError,
+} from '&front/app/statistics/categories.selectors';
 import { useTranslation } from '&front/domain/i18n';
-import { fetchStatsSources } from '&front/domain/money/actions/fetchStatsSources';
-import { getStatsSources } from '&front/domain/money/selectors/getStatsSources';
-import { getStatsSourcesFetchingStatus } from '&front/domain/money/selectors/getStatsSourcesFetchingStatus';
-import { useMemoState } from '&front/domain/store';
+import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { pushRoute } from '&front/features/routing';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button, ButtonType } from '&front/ui/components/form/button';
@@ -34,11 +38,11 @@ export const Sources = ({
 
   const columns = useMemo(
     () => ({
-      source: {
+      category: {
         title: 'Source',
         widthPercent,
       },
-      income: {
+      amount: {
         title: 'Amount',
         transform: displayMoney(currency),
       },
@@ -46,31 +50,39 @@ export const Sources = ({
     [currency, widthPercent],
   );
 
-  const fetching = useMappedState(getStatsSourcesFetchingStatus);
-
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
+  const dateRange = useMemo(() => new Interval(from, to), [from, to]);
+  const dispatch = useDispatch();
 
-  const stats = useMemoState(
-    () => getStatsSources(from, to, currency),
-    () => fetchStatsSources(from, to, currency),
-    [from, to, currency],
-  );
+  useEffect(() => {
+    dispatch(categoriesRequested(group, dateRange));
+  }, [group, dateRange]);
 
-  // sort by `income` and take `maxLength` top groups
+  const data = useMemoMappedState(selectCategories(group, dateRange), [
+    group,
+    dateRange,
+  ]);
+  const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
+    group,
+    dateRange,
+  ]);
+
   const preparedData = useMemo(
     () =>
-      stats.map(s =>
-        take(sortBy(s, transaction => -transaction.income), maxLength),
-      ),
-    [stats, maxLength],
+      Option.of(data)
+        .map(v => v.earnings)
+        .map(v => take(v, maxLength)),
+    [data, maxLength],
   );
+
+  const errorState = error ? Option.of('Error') : Option.of<string>(null);
 
   return (
     <LoaderTable
       title={t('stats:top.income')}
       columns={columns}
       data={preparedData}
-      fetching={fetching}
+      fetching={{ error: errorState, loading: preparedData.isEmpty() }}
       expectedRows={maxLength}
       className={className}
       hideHeader
