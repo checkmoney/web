@@ -1,12 +1,11 @@
 import { Statistic, Icon } from 'antd';
 import React from 'react';
-import { Option } from 'tsoption';
 
 import { useTranslation } from '&front/domain/i18n';
 
 interface Props {
   title: string;
-  value: Option<number>;
+  value?: number | null;
   suffix?: string;
   decreaseIsGood?: boolean;
 }
@@ -19,8 +18,8 @@ export const Stat = ({
 }: Props) => {
   const { t } = useTranslation();
 
-  if (value.nonEmpty()) {
-    const positive = value.get() > 0;
+  if (value != null) {
+    const positive = value > 0;
 
     const green = !decreaseIsGood ? positive : !positive;
 
@@ -30,7 +29,7 @@ export const Stat = ({
     return (
       <Statistic
         title={title}
-        value={Math.abs(value.get())}
+        value={Math.abs(value)}
         precision={2}
         valueStyle={{ color }}
         prefix={<Icon type={iconType} />}

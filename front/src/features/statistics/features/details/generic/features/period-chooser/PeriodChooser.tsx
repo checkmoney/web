@@ -8,7 +8,6 @@ import { GroupBy } from '&shared/enum/GroupBy';
 
 import { Next, Prev } from '../components/next-prev';
 import { ShowMonth } from '../components/show-month';
-import { ShowWhole } from '../components/show-whole';
 import { ShowYear } from '../components/show-year';
 import * as styles from './PeriodChooser.css';
 
@@ -53,7 +52,6 @@ export const PeriodChooser = ({
     >
       <ShowYear group={group} detailType={detailType} />
       <ShowMonth group={group} detailType={detailType} />
-      <ShowWhole group={group} detailType={detailType} />
     </Card>
   );
 };

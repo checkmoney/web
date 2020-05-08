@@ -1,9 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
 import { useTranslation } from '&front/domain/i18n';
 import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
-import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
@@ -21,15 +20,14 @@ const columnWidthPercent = 40;
 const maxLength = 5;
 
 export const Statistics = () => {
-  const defaultCurrency = useMappedState(getDefaultCurrency);
-  const [currency, setCurrency] = useState(defaultCurrency);
+  const currency = useMappedState(getDefaultCurrency);
   const { t } = useTranslation();
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
       <Tab title={title} className={styles.statistics}>
         <aside className={styles.aside}>
-          <Dynamics group={group} currency={currency} />
+          <Dynamics group={group} />
           <Categories
             group={group}
             currency={currency}
@@ -60,11 +58,7 @@ export const Statistics = () => {
         onBack={() => pushRoute('/app')}
       />
 
-      <Tabs
-        tabBarExtraContent={
-          <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
-        }
-      >
+      <Tabs>
         {renderContent(t('stats:monthly'), GroupBy.Month)}
         {renderContent(t('stats:yearly'), GroupBy.Year)}
       </Tabs>

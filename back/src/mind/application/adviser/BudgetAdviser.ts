@@ -1,18 +1,14 @@
 import {
-  lastDayOfMonth,
-  differenceInDays,
-  subMonths,
-  startOfMonth,
-  format,
-  getDate,
-  getDaysInMonth,
-} from 'date-fns';
+  DetBell,
+  DrKhomyuk,
+  PeriodType,
+  DateRange,
+} from '@checkmoney/soap-opera';
+import { subMonths, startOfMonth, startOfDay, endOfDay } from 'date-fns';
 import * as md5 from 'md5';
 
-import { Statistician } from '&back/money/application/Statistician';
 import { UserRepository } from '&back/user/domain/UserRepository';
 import { Currency } from '&shared/enum/Currency';
-import { GroupBy } from '&shared/enum/GroupBy';
 import { TipAction } from '&shared/enum/TipAction';
 import { formatDate } from '&shared/helpers/formatDate';
 import { TipModel } from '&shared/models/mind/TipModel';
@@ -24,16 +20,20 @@ import { calculateBudget } from '../calculator/calculateBudget';
 @IsAdviser()
 export class BudgetAdviser implements Adviser {
   public constructor(
-    private readonly statistician: Statistician,
     private readonly userRepo: UserRepository,
+    private readonly stats: DrKhomyuk,
+    private readonly users: DetBell,
   ) {}
 
   public async giveAdvice(userLogin: string): Promise<TipModel[]> {
-    const currency = await this.userRepo.getDefaultCurrency(userLogin);
+    const [currency, token] = await Promise.all([
+      this.userRepo.getDefaultCurrency(userLogin),
+      this.users.pretend(userLogin),
+    ]);
 
     const [monthsStats, todaysStats] = await Promise.all([
-      this.getMonthsStats(userLogin, currency),
-      this.getTodaysStats(userLogin, currency),
+      this.getMonthsStats(token, currency),
+      this.getTodaysStats(token),
     ]);
 
     const money = {
@@ -55,38 +55,33 @@ export class BudgetAdviser implements Adviser {
     ];
   }
 
-  private async getTodaysStats(userLogin: string, currency: Currency) {
+  private async getTodaysStats(token: string) {
     const now = new Date();
 
-    const [todaysStats] = await this.statistician.showDateRangeStats(
-      userLogin,
-      { from: now, to: now },
-      GroupBy.Day,
-      currency,
+    const [todaysStats] = await this.stats.fetchAmount(
+      token,
+      PeriodType.Day,
+      new DateRange(startOfDay(now), endOfDay(now)),
     );
 
     return {
-      todayOutcome: todaysStats.outcome,
+      todayOutcome: Number(todaysStats.expenses),
     };
   }
 
-  private async getMonthsStats(userLogin: string, currency: Currency) {
+  private async getMonthsStats(token: string, currency: Currency) {
     const now = new Date();
     const startDate = startOfMonth(subMonths(now, 1));
 
-    const [
-      previousMonth,
-      thisMonth,
-    ] = await this.statistician.showDateRangeStats(
-      userLogin,
-      { from: startDate, to: now },
-      GroupBy.Month,
-      currency,
+    const [previousMonth, thisMonth] = await this.stats.fetchAmount(
+      token,
+      PeriodType.Month,
+      new DateRange(startDate, now),
     );
 
     return {
-      previousMonthIncome: previousMonth.income,
-      thisMonthOutcome: thisMonth.outcome,
+      previousMonthIncome: Number(previousMonth.earnings),
+      thisMonthOutcome: Number(thisMonth.expenses),
     };
   }
 

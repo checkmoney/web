@@ -18,6 +18,14 @@ export const Loader = ({
   skeleton = false,
   dataAvaiable = true,
 }: Props) => {
+  if (typeof error === 'boolean' && error) {
+    return <p>error</p>;
+  }
+
+  if (typeof error !== 'boolean' && error.nonEmpty()) {
+    return <p>error: {error.get()}</p>;
+  }
+
   const showLoader = loading || !dataAvaiable;
 
   if (skeleton && showLoader) {
@@ -26,10 +34,6 @@ export const Loader = ({
 
   if (showLoader) {
     return <p>loading...</p>;
-  }
-
-  if (error.nonEmpty()) {
-    return <p>error: {error.get()}</p>;
   }
 
   return <>{children}</>;

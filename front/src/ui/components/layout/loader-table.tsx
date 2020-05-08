@@ -22,6 +22,10 @@ export const LoaderTable = <Data extends Array<{}>>({
   expectedRows,
   ...rest
 }: Props<Data>) => {
+  if (fetching.error.nonEmpty()) {
+    return <p>error</p>;
+  }
+
   if (fetching.loading || data.isEmpty()) {
     return (
       <Card title={rest.title}>
