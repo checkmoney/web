@@ -22,7 +22,7 @@ module.exports = withPlugins(
     {
       publicRuntimeConfig: {
         backUrl: process.env.BACK_URL || 'https://api.checkmoney.space',
-        statsUrl: process.env.BACK_URL || 'https://stats.checkmoney.space',
+        statsUrl: process.env.STATS_BACK_URL || 'https://stats.checkmoney.space',
         googleClientId:
           process.env.GOOGLE_CLIENT_ID ||
           '619616345812-bi543g7ojta4uqq4kk1ccp428pik8hp8.apps.googleusercontent.com',
