@@ -1,4 +1,4 @@
-import { get, uniq } from 'lodash';
+import { uniq } from 'lodash';
 
 import { GroupBy } from '&shared/enum/GroupBy';
 
@@ -10,10 +10,14 @@ import {
 } from './grow.actions';
 import { Grow } from './grow.types';
 
-export type GrowState = {
-  [key in keyof typeof GroupBy]?: Grow;
-} & {
-  errors?: GroupBy[];
+type StateData = { [key in GroupBy]?: Grow };
+
+export interface GrowState extends StateData {
+  errors: GroupBy[];
+}
+
+const initialState: GrowState = {
+  errors: [],
 };
 
 type GrowAction =
@@ -22,7 +26,7 @@ type GrowAction =
   | GrowFatalErrorHappenedAction;
 
 export const growReducer = (
-  state: GrowState | undefined,
+  state: GrowState = initialState,
   action: GrowAction,
 ): GrowState => {
   switch (action.type) {
@@ -30,19 +34,16 @@ export const growReducer = (
       return {
         ...state,
         [action.payload.periodType]: action.payload.data,
-        errors: (get(state, 'errors') || []).filter(
+        errors: state.errors.filter(
           error => error !== action.payload.periodType,
         ),
       };
     case GrowActions.FatalErrorHappened:
       return {
         ...state,
-        errors: uniq([
-          ...(get(state, 'errors') || []),
-          action.payload.periodType,
-        ]),
+        errors: uniq([...state.errors, action.payload.periodType]),
       };
     default:
-      return state || {};
+      return state;
   }
 };

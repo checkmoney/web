@@ -1,4 +1,4 @@
-import { uniqBy, get } from 'lodash';
+import { uniqBy } from 'lodash';
 
 import { Interval } from '&front/api/types';
 import { intervalIdentity } from '&front/api/utils';
@@ -12,10 +12,14 @@ import {
 } from './categories.actions';
 import { PeriodCategories } from './categories.types';
 
-export type CategoriesState = {
-  [key in keyof typeof GroupBy]?: PeriodCategories[];
-} & {
-  errors?: Array<{ dateRange: Interval; periodType: GroupBy }>;
+type StateData = { [key in GroupBy]?: PeriodCategories[] };
+
+export interface CategoriesState extends StateData {
+  errors: Array<{ dateRange: Interval; periodType: GroupBy }>;
+}
+
+const initialState: CategoriesState = {
+  errors: [],
 };
 
 type CategoriesAction =
@@ -24,18 +28,15 @@ type CategoriesAction =
   | CategoriesFatalErrorHappenedAction;
 
 export const categoriesReducer = (
-  state: CategoriesState | undefined,
+  state: CategoriesState = initialState,
   action: CategoriesAction,
 ): CategoriesState => {
   switch (action.type) {
     case CategoriesActions.DataReceived:
       return {
         ...state,
-        [action.payload.periodType]: uniqBy<PeriodCategories>(
-          [
-            ...get(state || {}, action.payload.periodType, []),
-            ...action.payload.data,
-          ],
+        [action.payload.periodType]: uniqBy(
+          [...(state[action.payload.periodType] || []), ...action.payload.data],
           item => intervalIdentity(item.period),
         ),
       };
@@ -43,11 +44,11 @@ export const categoriesReducer = (
       return {
         ...state,
         errors: uniqBy(
-          [...(get(state, 'errors') || []), action.payload],
+          [...state.errors, action.payload],
           error => `${intervalIdentity(error.dateRange)}-${error.periodType}`,
         ),
       };
     default:
-      return state || {};
+      return state;
   }
 };
