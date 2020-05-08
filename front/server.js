@@ -1,3 +1,4 @@
+require('reflect-metadata');
 const args = require('args-parser')(process.argv);
 const cookieParser = require('cookie-parser');
 const express = require('express');
