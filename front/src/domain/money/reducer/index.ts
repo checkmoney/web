@@ -25,15 +25,10 @@ import {
   reducer as listSourceReducer,
   State as ListSourcesState,
 } from './listSources';
-import {
-  reducer as statsDynamicsReducer,
-  State as StatsDynamicsState,
-} from './statsDynamics';
 
 interface State {
   createIncomeFetching: IncomeFetchingState;
   createOutcomeFetching: OutcomeFetchingState;
-  statsDynamics: StatsDynamicsState;
   history: HistoryState;
   firstTransactionDate: FirstTransactionDateState;
   deleteTransactionFetching: DeleteTransactionFetching;
@@ -44,7 +39,6 @@ interface State {
 const reducer = combineReducers<State>({
   createIncomeFetching: incomeFetchingReducer,
   createOutcomeFetching: outcomeFetchingReducer,
-  statsDynamics: statsDynamicsReducer,
   history: historyReducer,
   firstTransactionDate: firstTransactionDateReducer,
   deleteTransactionFetching: deleteTransactionFetchingReducer,

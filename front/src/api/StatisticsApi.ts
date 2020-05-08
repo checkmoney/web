@@ -3,6 +3,7 @@ import { plainToClass } from 'class-transformer';
 
 import { PeriodCategories } from '&front/app/statistics/categories.types';
 import { Grow } from '&front/app/statistics/grow.types';
+import { PeriodAmount } from '&front/app/statistics/periods.types';
 import { GroupBy } from '&shared/enum/GroupBy';
 
 import { Interval } from './types';
@@ -40,5 +41,19 @@ export class StatisticsApi {
     );
 
     return plainToClass(PeriodCategories, data);
+  };
+
+  fetchPeriods = async (
+    periodType: GroupBy,
+    dateRange: Interval,
+  ): Promise<PeriodAmount[]> => {
+    const { data } = await this.http.get(
+      `v1/statistics/periods?periodType=${periodType}&${intervalForQuery(
+        dateRange,
+      )}`,
+      addTokenToHttpConfig(this.token, {}),
+    );
+
+    return plainToClass(PeriodAmount, data);
   };
 }

@@ -15,7 +15,6 @@ import { Outcome } from './domain/Outcome.entity';
 import { OutcomeRepository } from './domain/OutcomeRepository';
 import { HistoryController } from './presentation/http/controller/HistoryController';
 import { MrButcherController } from './presentation/http/controller/MrButcherController';
-import { StatisticsController } from './presentation/http/controller/StatisticsController';
 import { TransactionController } from './presentation/http/controller/TransactionController';
 import { ConversationFailedFilter } from './presentation/http/filter/ConversationFailedFilter';
 import { TransactionActions } from './presentation/telegram/actions/TransactionActions';
@@ -28,12 +27,7 @@ import { UnexpectedParameterCatcher } from './presentation/telegram/catcher/Unex
     UtilsModule,
     TypeOrmModule.forFeature([Income, Outcome]),
   ],
-  controllers: [
-    TransactionController,
-    HistoryController,
-    StatisticsController,
-    MrButcherController,
-  ],
+  controllers: [TransactionController, HistoryController, MrButcherController],
   providers: [
     ConversationFailedFilter.provider(),
     Accountant,
