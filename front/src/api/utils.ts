@@ -1,10 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
-
-import { Interval } from './types';
 import { format } from 'date-fns';
 
-export const intervalForQuery = ({ start, end }: Interval) =>
-  `start=${start}&end=${end}`;
+import { Interval } from './types';
+
+export const intervalForQuery = ({ start, end }: Interval) => {
+  const pattern = 'YYYY-MM-DD';
+  return `start=${format(start, pattern)}&end=${format(end, pattern)}`;
+};
 
 export const addTokenToHttpConfig = (
   token: string,
