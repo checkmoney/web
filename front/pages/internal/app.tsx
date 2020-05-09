@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
 import { pageWithTranslation, Namespace } from '&front/domain/i18n';
-import { fetchTips } from '&front/domain/mind/actions/fetchTips';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { App } from '&front/features/app';
 
@@ -12,7 +11,6 @@ class AppPage extends React.Component {
   public static async getInitialProps({ reduxStore }: AppContext) {
     await Promise.all([
       reduxStore.dispatch(fetchFirstTransactionDate() as any),
-      reduxStore.dispatch(fetchTips() as any),
     ]);
 
     return {};
