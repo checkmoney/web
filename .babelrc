@@ -6,7 +6,7 @@
         "root": ["./src/"],
         "alias": {
           "&front": "./src",
-          "&shared": "./../shared"
+          "&shared": "./shared"
         }
       }
     ],

@@ -3,3 +3,4 @@ dist
 *.css.d.ts
 back/.env
 .DS_Store
+.next
