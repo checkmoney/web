@@ -3,13 +3,11 @@
   "private": true,
   "workspaces": [
     "front",
-    "back"
   ],
   "version": "0.5.0",
   "license": "MIT",
   "scripts": {
-    "types": "tcm front && tsc --noEmit -p front && tsc --noEmit -p back",
-    "circular": "madge --circular --extensions ts ./ --tsConfig tsconfig.json",
+    "types": "tcm front && tsc --noEmit -p front",
     "test": "jest",
     "s": "yarn soda"
   },
