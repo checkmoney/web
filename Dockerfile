@@ -5,7 +5,6 @@ WORKDIR /app
 COPY . .
 RUN yarn
 
-WORKDIR /app/front
 RUN yarn build
 
 FROM keymetrics/pm2:10-alpine
@@ -16,8 +15,6 @@ ENV NODE_ENV="production"
 ENV PATH="./node_modules/.bin:$PATH"
 
 COPY --from=build /app .
-
-WORKDIR /app/front
 
 EXPOSE 3001
 
