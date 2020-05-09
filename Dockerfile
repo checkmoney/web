@@ -6,7 +6,7 @@ COPY . .
 RUN yarn
 
 WORKDIR /app/front
-RUN yarn prestart:front:prod
+RUN yarn build
 
 FROM keymetrics/pm2:10-alpine
 

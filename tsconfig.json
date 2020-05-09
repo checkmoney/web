@@ -4,18 +4,40 @@
     "lib": ["es2017", "dom"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "customMatcher": "\\.css$"
+        }
+      }
+    ],
     "paths": {
-      "&back/*": ["./back/src/*"],
-      "&front/*": ["./front/src/*"],
-      "&landing/*": ["./landing/src/interactive/*"],
+      "&front/*": ["./src/*"],
       "&shared/*": ["./shared/*"]
     }
   },
   "include": [
-    "back/src/**/*",
-    "front/src/**/*",
-    "landing/src/interactive/*",
-    "shared/**/*"
+    "src/**/*",
+    "pages/**/*",
+    "shared/**/*",
+    "./types.d.ts"
   ],
-  "exclude": ["node_modules/**/*", "front/node_modules/**/*"]
+  "exclude": ["node_modules/**/*"]
 }
