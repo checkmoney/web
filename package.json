@@ -100,7 +100,6 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn soda lint-staged",
-      "pre-push": "yarn soda lint && yarn types && yarn circular && yarn types",
       "commit-msg": "yarn soda commitlint"
     }
   },
