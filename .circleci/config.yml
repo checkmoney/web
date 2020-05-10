@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   # yarn-berry: checkmoney/yarn-berry@1.0.0
   docker: checkmoney/docker@1.0.3
-  deploy: checkmoney/deploy@1.1.0
+  deploy: checkmoney/deploy@1.2.1
 workflows:
   version: 2
   build:
