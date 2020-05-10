@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const Prev = ({ group, setPreviousPeriodNumber }: Props) => {
-  const back = useCallback(() => setPreviousPeriodNumber(v => v + 1), [
+  const back = useCallback(() => setPreviousPeriodNumber((v) => v + 1), [
     setPreviousPeriodNumber,
   ]);
 
@@ -33,7 +33,7 @@ export const Next = ({
   previousPeriodNumber,
   setPreviousPeriodNumber,
 }: Props) => {
-  const next = useCallback(() => setPreviousPeriodNumber(v => v - 1), [
+  const next = useCallback(() => setPreviousPeriodNumber((v) => v - 1), [
     setPreviousPeriodNumber,
   ]);
 

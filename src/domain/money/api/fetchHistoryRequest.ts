@@ -16,4 +16,4 @@ export const fetchHistoryRequest = (api: Api) => (
         by,
       },
     })
-    .then(response => actualizeStore(response.data));
+    .then((response) => actualizeStore(response.data));

@@ -38,7 +38,7 @@ export const YearPicker = ({
 
   return (
     <Select value={stringValue} onChange={stringOnChange}>
-      {years.map(year => (
+      {years.map((year) => (
         <Option value={year.toString()} key={year}>
           {year.toString()}
         </Option>

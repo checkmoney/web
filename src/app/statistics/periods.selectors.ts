@@ -8,7 +8,7 @@ import { GroupBy } from '&shared/enum/GroupBy';
 export const selectPeriods = (periodType: GroupBy, dateRange: Interval) => (
   state: State,
 ) =>
-  (state.application.statistics.periods[periodType] || []).filter(item =>
+  (state.application.statistics.periods[periodType] || []).filter((item) =>
     isWithinRange(item.period.start, dateRange.start, dateRange.end),
   );
 
@@ -17,7 +17,7 @@ export const selectPeriodsHasError = (
   dateRange: Interval,
 ) => (state: State) =>
   state.application.statistics.periods.errors.some(
-    item =>
+    (item) =>
       intervalIdentity(item.dateRange) === intervalIdentity(dateRange) &&
       item.periodType === periodType,
   );

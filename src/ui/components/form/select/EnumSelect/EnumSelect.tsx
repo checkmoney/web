@@ -22,7 +22,7 @@ export const EnumSelect = ({
 
   return (
     <Select {...props}>
-      {Object.values(options).map(value => (
+      {Object.values(options).map((value) => (
         <Option value={value} key={value}>
           {createLabel(value)}
         </Option>

@@ -3,5 +3,5 @@ import { Option } from 'tsoption';
 
 export const displayNullableDate = (date?: Date) =>
   Option.of(date)
-    .map(d => format(d, 'D.MM.YYYY'))
+    .map((d) => format(d, 'D.MM.YYYY'))
     .getOrElse('');

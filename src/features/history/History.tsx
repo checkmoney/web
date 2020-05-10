@@ -44,7 +44,7 @@ export const History = () => {
           defaultSelected={defaultMonthTitle}
           vertical={!isMobile}
         >
-          {months.map(month => (
+          {months.map((month) => (
             <Tab
               title={month.title}
               className={styles.history}

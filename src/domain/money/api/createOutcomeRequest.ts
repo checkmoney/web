@@ -6,4 +6,4 @@ export const createOutcomeRequest = (api: Api) => (
 ): Promise<void> =>
   api.client
     .post('/money/transaction/outcome', income)
-    .then(response => response.data);
+    .then((response) => response.data);

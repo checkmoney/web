@@ -5,4 +5,4 @@ import { ProfileModel } from '&shared/models/user/ProfileModel';
 export const getUserProfileRequest = (api: Api) => (): Promise<ProfileModel> =>
   api.client
     .get(`user/profile/`)
-    .then(response => actualizeStore(response.data));
+    .then((response) => actualizeStore(response.data));

@@ -27,17 +27,17 @@ export const historyToTableData = (
   { maxLength, filter }: Options,
 ) =>
   history
-    .flatMap(items => Option.of(head(items)))
-    .map(item =>
+    .flatMap((items) => Option.of(head(items)))
+    .map((item) =>
       [
-        ...item.incomes.map(income => ({
+        ...item.incomes.map((income) => ({
           ...income,
           date: income.date,
           amount: income.amount,
           currency: income.currency,
           comment: income.source,
         })),
-        ...item.outcomes.map(outcome => ({
+        ...item.outcomes.map((outcome) => ({
           ...outcome,
           date: outcome.date,
           amount: -outcome.amount,
@@ -46,17 +46,17 @@ export const historyToTableData = (
         })),
       ].filter(normalizedFilter(filter)),
     )
-    .map(transactions =>
+    .map((transactions) =>
       sortBy(
         transactions,
-        transaction => transaction.date && -transaction.date.valueOf(),
+        (transaction) => transaction.date && -transaction.date.valueOf(),
       ),
     )
-    .map(transactions =>
+    .map((transactions) =>
       maxLength ? take(transactions, maxLength) : transactions,
     )
-    .map(transactions =>
-      transactions.map(transaction => ({
+    .map((transactions) =>
+      transactions.map((transaction) => ({
         ...transaction,
         rawAmount: transaction.amount,
         amount: displayMoney(transaction.currency)(transaction.amount, {

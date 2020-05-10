@@ -11,7 +11,7 @@ const ATTEMPT_THRESHOLD = 3;
 const RETRY_DELAY = 100;
 
 export function* handlePeriodsFetchingSaga() {
-  yield takeLatest(actions.started.type, function*(
+  yield takeLatest(actions.started.type, function* (
     action: ReturnType<typeof actions.started>,
   ) {
     const { periodType, dateRange, attempt = 0 } = action.payload;

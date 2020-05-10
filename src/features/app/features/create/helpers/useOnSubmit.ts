@@ -11,7 +11,7 @@ import { Kind } from './Kind';
 export const useOnSubmit = () => {
   const dispatch = useThunk();
 
-  const onSubmit = useCallback(async fields => {
+  const onSubmit = useCallback(async (fields) => {
     if (fields.kind === Kind.Income) {
       const income = fieldsToIncomeModel(fields);
       await dispatch(createIncome(income));

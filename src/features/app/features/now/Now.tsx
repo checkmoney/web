@@ -13,10 +13,14 @@ interface Props {
 }
 
 export const Now = ({ className }: Props) => {
-  const tips = useMemoState(() => getTips, () => fetchTips(), []);
+  const tips = useMemoState(
+    () => getTips,
+    () => fetchTips(),
+    [],
+  );
   const components = useMemo(
     () =>
-      tips.map(tip => {
+      tips.map((tip) => {
         const Component = getTipComponent(tip);
 
         return <Component tip={tip} key={tip.token} />;

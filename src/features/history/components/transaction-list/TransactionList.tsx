@@ -39,12 +39,12 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
 
   const incomeColumns = createColumns(t, 'comment', 'source');
   const incomes = historyToTableData(history, {
-    filter: transaction => transaction.amount > 0,
+    filter: (transaction) => transaction.amount > 0,
   });
 
   const outcomesColumns = createColumns(t, 'comment', 'category');
   const outcomes = historyToTableData(history, {
-    filter: transaction => transaction.amount < 0,
+    filter: (transaction) => transaction.amount < 0,
   });
 
   const { open: openIncome, IncomeModal } = useIncomeModal();

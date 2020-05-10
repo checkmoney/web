@@ -18,7 +18,7 @@ interface DataSet {
 }
 
 type Display = (value: number | string | undefined) => string;
-const defaultDisplay: Display = v => `${v}`;
+const defaultDisplay: Display = (v) => `${v}`;
 
 interface Props {
   dataSets: DataSet[];
@@ -33,11 +33,11 @@ export const BarChart = ({
 }: Props) => {
   const data = useMemo(
     () => ({
-      labels: uniq(flatten(dataSets.map(set => set.name))),
-      datasets: uniq(flatten(dataSets.map(set => Object.keys(set.data)))).map(
+      labels: uniq(flatten(dataSets.map((set) => set.name))),
+      datasets: uniq(flatten(dataSets.map((set) => Object.keys(set.data)))).map(
         (name, index) => ({
           label: dataSets[index].data[name].label,
-          data: dataSets.map(set => set.data[name].value),
+          data: dataSets.map((set) => set.data[name].value),
           backgroundColor: getColor(index),
         }),
       ),

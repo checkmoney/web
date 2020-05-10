@@ -12,7 +12,7 @@ export const signInGoogle = (profile: GoogleProfile) =>
   fetchOrFail(signInActions, async (dispatch, getApi) => {
     const { token } = await getApi()
       .client.post('user/auth/google', profile)
-      .then(response => response.data as TokenModel);
+      .then((response) => response.data as TokenModel);
 
     setCookie(token);
 

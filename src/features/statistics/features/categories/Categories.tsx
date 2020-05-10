@@ -70,8 +70,8 @@ export const Categories = ({
   const preparedData = useMemo(
     () =>
       Option.of(data)
-        .map(v => v.expenses)
-        .map(v => take(v, maxLength)),
+        .map((v) => v.expenses)
+        .map((v) => take(v, maxLength)),
     [data, maxLength],
   );
 

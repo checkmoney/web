@@ -23,7 +23,7 @@ export const Select = ({
       onChange={handleChange}
       filterOption={filterOption}
     >
-      {children.map(child => (
+      {children.map((child) => (
         <AntOption key={child.props.value} {...child.props} />
       ))}
     </AntSelect>

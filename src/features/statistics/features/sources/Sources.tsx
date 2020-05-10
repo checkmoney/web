@@ -70,8 +70,8 @@ export const Sources = ({
   const preparedData = useMemo(
     () =>
       Option.of(data)
-        .map(v => v.earnings)
-        .map(v => take(v, maxLength)),
+        .map((v) => v.earnings)
+        .map((v) => take(v, maxLength)),
     [data, maxLength],
   );
 

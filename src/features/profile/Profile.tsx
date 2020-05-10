@@ -84,7 +84,7 @@ export const Profile = () => {
           </Label>
 
           <Label text={t('profile:settings.week-starts-on-monday')}>
-            <Checkbox value={onMonday} onChange={v => setOnMonday(!!v)} />
+            <Checkbox value={onMonday} onChange={(v) => setOnMonday(!!v)} />
           </Label>
         </Card>
 

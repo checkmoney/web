@@ -6,4 +6,4 @@ export const setCurrencyRequest = (api: Api) => (
 ): Promise<Currency> =>
   api.client
     .post(`user/profile/set-currency/${defaultCurrency}`)
-    .then(response => response.data);
+    .then((response) => response.data);

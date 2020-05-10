@@ -16,7 +16,7 @@ const { actions, reducer } = createClearReduxWithFetching<
   Actions
 >(
   {
-    addCategories: state => newCategories => [
+    addCategories: (state) => (newCategories) => [
       ...new Set([...state, ...newCategories]),
     ],
   },

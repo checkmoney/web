@@ -49,7 +49,7 @@ export const Menu = ({ children, className }: Props) => {
       onSelect={handleSelect}
       {...additionalProps}
     >
-      {children.map(child => (
+      {children.map((child) => (
         <AntMenu.Item key={child.props.id}>{child}</AntMenu.Item>
       ))}
     </AntMenu>

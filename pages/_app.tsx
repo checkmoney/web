@@ -24,9 +24,9 @@ class CheckmoneyWeb extends App<WithReduxProps> {
     const ctx: AppContext = appContext.ctx as any;
 
     const token = Option.of(ctx)
-      .flatMap(context => Option.of(context.req))
-      .flatMap(request => Option.of(request.cookies))
-      .flatMap(cookies => Option.of(cookies.token));
+      .flatMap((context) => Option.of(context.req))
+      .flatMap((request) => Option.of(request.cookies))
+      .flatMap((cookies) => Option.of(cookies.token));
 
     if (token.nonEmpty()) {
       ctx.reduxStore.dispatch(dataActions.setToken(token.get()));
@@ -71,6 +71,6 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default nextWithQuery(withReduxStore(appWithTranslation(
-  CheckmoneyWeb,
-) as any) as any);
+export default nextWithQuery(
+  withReduxStore(appWithTranslation(CheckmoneyWeb) as any) as any,
+);

@@ -21,7 +21,7 @@ export const Merge = ({ token, variants }: Props) => {
     (mainVariant: string) => {
       const merge = {
         primary: mainVariant,
-        secondary: variants.filter(varinat => varinat !== mainVariant),
+        secondary: variants.filter((varinat) => varinat !== mainVariant),
       };
 
       return () => dispatch(mergeTypos(token, merge));
@@ -37,7 +37,7 @@ export const Merge = ({ token, variants }: Props) => {
     <Card
       title={t('tips:typo.title')}
       extra={<DismissButton token={token} />}
-      actions={variants.map(variant => (
+      actions={variants.map((variant) => (
         <Button
           type={ButtonType.Text}
           key={variant}

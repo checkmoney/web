@@ -9,7 +9,7 @@ interface Actions {
 
 const { actions, reducer } = createClearRedux<State, Actions>(
   {
-    set: () => newDate => newDate,
+    set: () => (newDate) => newDate,
   },
   subYears(new Date(), 1),
   'money/first-transaction-date',

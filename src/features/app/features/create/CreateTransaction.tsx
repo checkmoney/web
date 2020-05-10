@@ -75,7 +75,9 @@ export const CreateTransaction = ({ className }: Props) => {
     >
       {({ handleSubmit, form: { initialize }, values, initialValues }) => (
         <form
-          onSubmit={e => handleSubmit(e)!.then(() => initialize(initialValues))}
+          onSubmit={(e) =>
+            handleSubmit(e)!.then(() => initialize(initialValues))
+          }
           className={className}
         >
           <Card title={t('create-transaction:title')} className={styles.form}>

@@ -18,7 +18,7 @@ export const selectCategoriesHasError = (
   dateRange: Interval,
 ) => (state: State) =>
   state.application.statistics.categories.errors.some(
-    item =>
+    (item) =>
       intervalIdentity(item.dateRange) === intervalIdentity(dateRange) &&
       item.periodType === periodType,
   );

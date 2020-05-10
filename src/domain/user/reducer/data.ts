@@ -12,11 +12,11 @@ interface Actions {
 
 const { reducer, actions } = createClearRedux<State, Actions>(
   {
-    setToken: state => token => ({
+    setToken: (state) => (token) => ({
       ...state,
       token: Option.of(token),
     }),
-    resetToken: state => () => ({
+    resetToken: (state) => () => ({
       ...state,
       token: Option.of(null),
     }),

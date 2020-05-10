@@ -55,8 +55,8 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   const preparedData = useMemo(
     () =>
-      Option.of(data).map(t =>
-        t[dataPath].map(i => ({
+      Option.of(data).map((t) =>
+        t[dataPath].map((i) => ({
           name: i.category,
           data: i.amount,
         })),
@@ -89,7 +89,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
             {preparedData.nonEmpty() && (
               <PieChart
                 dataSets={preparedData.get()}
-                displayValue={value =>
+                displayValue={(value) =>
                   displayMoney(currency)(value, { withPenny: false })
                 }
                 fitToContainer={isSmall}

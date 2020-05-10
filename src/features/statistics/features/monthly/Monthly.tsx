@@ -64,7 +64,7 @@ export const Monthly = ({ className, currency }: Props) => {
         <YearPicker
           min={getYear(firstTransactionDate)}
           value={year}
-          onChange={d => setYear(d || getYear(new Date()))}
+          onChange={(d) => setYear(d || getYear(new Date()))}
         />
       </ControlHeader>
 

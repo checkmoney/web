@@ -23,10 +23,10 @@ export const periodsReducer = reducerWithInitialState(initialState)
     ...state,
     [params.periodType]: uniqBy(
       [...(state[params.periodType] || []), ...result],
-      item => intervalIdentity(item.period),
+      (item) => intervalIdentity(item.period),
     ),
     errors: state.errors.filter(
-      error =>
+      (error) =>
         intervalIdentity(error.dateRange) !==
           intervalIdentity(params.dateRange) &&
         error.periodType !== params.periodType,
@@ -36,6 +36,6 @@ export const periodsReducer = reducerWithInitialState(initialState)
     ...state,
     errors: uniqBy(
       [...state.errors, params],
-      error => `${intervalIdentity(error.dateRange)}-${error.periodType}`,
+      (error) => `${intervalIdentity(error.dateRange)}-${error.periodType}`,
     ),
   }));

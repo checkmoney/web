@@ -5,7 +5,7 @@ import { createOptions } from './helpers/createOptions';
 import { getColor } from './helpers/getColor';
 
 type Display = (value: number | string | undefined) => string;
-const defaultDisplay: Display = v => `${v}`;
+const defaultDisplay: Display = (v) => `${v}`;
 
 interface DataSet {
   name: string;
@@ -25,11 +25,11 @@ export const PieChart = ({
 }: Props) => {
   const data = useMemo(
     () => ({
-      labels: dataSets.map(set => set.name),
+      labels: dataSets.map((set) => set.name),
       datasets: [
         {
-          data: dataSets.map(set => set.data),
-          backgroundColor: dataSets.map(set => getColor(set.name)),
+          data: dataSets.map((set) => set.data),
+          backgroundColor: dataSets.map((set) => getColor(set.name)),
           borderWidth: 0,
         },
       ],

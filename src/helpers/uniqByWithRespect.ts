@@ -11,8 +11,13 @@ export const uniqByWithRespect = <T, K>(
   const uniqKeys = new Set(arr.map(uniqBy));
 
   return [...uniqKeys]
-    .map(key =>
-      last(sortBy(arr.filter(item => uniqBy(item) === key), respectWith)),
+    .map((key) =>
+      last(
+        sortBy(
+          arr.filter((item) => uniqBy(item) === key),
+          respectWith,
+        ),
+      ),
     )
-    .filter(item => item !== undefined) as T[];
+    .filter((item) => item !== undefined) as T[];
 };

@@ -24,7 +24,7 @@ export const Toggle = ({
 
   return (
     <ButtonGroup className={cx(styles.group, className)}>
-      {children.map(child => (
+      {children.map((child) => (
         <Button
           onClick={() => handleChange(child.props.value)}
           type={resolveType(child.props)}

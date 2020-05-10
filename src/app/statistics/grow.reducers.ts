@@ -20,7 +20,7 @@ export const growReducer = reducerWithInitialState(initialState)
   .case(actions.done, (state, { params, result }) => ({
     ...state,
     [params.periodType]: result,
-    errors: state.errors.filter(error => error !== params.periodType),
+    errors: state.errors.filter((error) => error !== params.periodType),
   }))
   .case(actions.failed, (state, { params }) => ({
     ...state,

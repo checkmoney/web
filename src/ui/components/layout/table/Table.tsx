@@ -35,7 +35,7 @@ export const Table = <Data extends Array<{}>>({
   );
 
   const onRow = useCallback(
-    record => ({
+    (record) => ({
       onClick: () => onRowClick && onRowClick(record),
     }),
     [onRowClick],

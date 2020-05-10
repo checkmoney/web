@@ -9,7 +9,7 @@ export const createOptions = (
     yAxes: [
       {
         ticks: {
-          callback: v => `${displayValue(v)}`,
+          callback: (v) => `${displayValue(v)}`,
           beginAtZero: true,
         },
       },

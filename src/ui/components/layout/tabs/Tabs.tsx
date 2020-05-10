@@ -45,7 +45,7 @@ export const Tabs = ({
       tabBarExtraContent={tabBarExtraContent}
       tabPosition={getMode(vertical)}
     >
-      {actualChildren.map(child => (
+      {actualChildren.map((child) => (
         <AntTabs.TabPane
           key={child.props.title}
           tab={child.props.title}

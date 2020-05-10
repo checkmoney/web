@@ -6,7 +6,7 @@ import { actions as dataActions } from '../reducer/data';
 const { resetToken } = dataActions;
 
 export const signOut = () =>
-  fetchOrFail(undefined, async dispatch => {
+  fetchOrFail(undefined, async (dispatch) => {
     resetCookie();
 
     dispatch(resetToken());

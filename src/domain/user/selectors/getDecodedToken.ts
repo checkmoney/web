@@ -11,7 +11,8 @@ const removeSignature = (token: string) =>
   dropRight(token.split('.'), 1).join('.');
 const getJsonMatches = (decoded: string) =>
   decoded.match(new RegExp('{.+?}', 'gi')) || [];
-const parseJson = (matches: string[]) => matches.map(item => JSON.parse(item));
+const parseJson = (matches: string[]) =>
+  matches.map((item) => JSON.parse(item));
 const mergeObjects = (objects: object[]) =>
   objects.reduce(
     (acc, cur) => ({

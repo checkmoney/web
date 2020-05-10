@@ -59,7 +59,9 @@ export const Yearly = ({ className, currency }: Props) => {
       <Loader status={{ error: errorState, loading: false }}>
         {stats.nonEmpty() && stats.get().length > 0 && (
           <BarChart
-            displayValue={v => displayMoney(currency)(v, { withPenny: false })}
+            displayValue={(v) =>
+              displayMoney(currency)(v, { withPenny: false })
+            }
             dataSets={stats.get().map(({ period, expenses, earnings }) => ({
               name: format(period.start, 'YYYY'),
               data: {

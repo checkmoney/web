@@ -6,4 +6,4 @@ export const disableTipsRequest = (api: Api) => (
 ): Promise<void> =>
   api.client
     .post('/mind/tip/disable', disableTip)
-    .then(response => response.data);
+    .then((response) => response.data);

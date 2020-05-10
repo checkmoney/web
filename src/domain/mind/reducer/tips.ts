@@ -20,14 +20,14 @@ const { actions, reducer } = createClearReduxWithFetching<
   Actions
 >(
   {
-    addTips: state => newTips =>
+    addTips: (state) => (newTips) =>
       uniqByWithRespect(
         [...state, ...newTips],
-        tip => tip.token,
-        tip => tip.date.valueOf(),
+        (tip) => tip.token,
+        (tip) => tip.date.valueOf(),
       ),
-    removeTips: state => forRemove =>
-      state.filter(tip => !forRemove.includes(tip.token)),
+    removeTips: (state) => (forRemove) =>
+      state.filter((tip) => !forRemove.includes(tip.token)),
   },
   [],
 );

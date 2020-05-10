@@ -27,11 +27,11 @@ export const actualizeStore = (data: any): any => {
     return data;
   }
 
-  const supportedTapers = OBJECT_TAPERS.filter(taper => taper.supports(data));
+  const supportedTapers = OBJECT_TAPERS.filter((taper) => taper.supports(data));
 
   if (isPlainObject(data) && supportedTapers.length > 0) {
-    return flow(supportedTapers.map(taper => (v: any) => taper.tap(v)))(data);
+    return flow(supportedTapers.map((taper) => (v: any) => taper.tap(v)))(data);
   }
 
-  return mapValues(data, value => actualizeStore(value));
+  return mapValues(data, (value) => actualizeStore(value));
 };

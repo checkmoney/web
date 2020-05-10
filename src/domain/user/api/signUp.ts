@@ -10,4 +10,4 @@ export const signUp = (api: Api) => (
       email,
       password,
     })
-    .then(response => response.data);
+    .then((response) => response.data);

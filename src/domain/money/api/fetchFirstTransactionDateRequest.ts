@@ -6,4 +6,4 @@ export const fetchFirstTransactionDateRequest = (api: Api) => (): Promise<
 > =>
   api.client
     .get('/money/history/earliest')
-    .then(response => actualizeStore(response.data));
+    .then((response) => actualizeStore(response.data));

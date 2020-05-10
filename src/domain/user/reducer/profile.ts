@@ -18,7 +18,7 @@ const { reducer, actions } = createClearReduxWithFetching<
   Actions
 >(
   {
-    setProfile: () => profile => profile,
+    setProfile: () => (profile) => profile,
   },
   {
     defaultCurrency: Currency.USD,
