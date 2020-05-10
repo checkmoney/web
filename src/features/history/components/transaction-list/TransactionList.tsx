@@ -1,7 +1,6 @@
 import React from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
 import { getHistory } from '&front/domain/money/selectors/getHistory';
 import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
@@ -27,8 +26,6 @@ interface Props {
 }
 
 export const TransactionList = ({ from, to, classNames }: Props) => {
-  const { t } = useTranslation();
-
   const history = useMemoState(
     () => getHistory(from, to, GroupBy.Month),
     () => fetchHistory(from, to, GroupBy.Month),
@@ -56,7 +53,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
         {outcomes.nonEmpty() && (
           <Table
             className={classNames.outcomes}
-            title={t('history:outcomes')}
+            title="Расходы"
             columns={outcomesColumns}
             data={outcomes.get()}
             onRowClick={({ id }) => openOutcome(id)}
@@ -65,7 +62,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
         {incomes.nonEmpty() && (
           <Table
             className={classNames.incomes}
-            title={t('history:incomes')}
+            title="Доходы"
             columns={incomeColumns}
             data={incomes.get()}
             onRowClick={({ id }) => openIncome(id)}

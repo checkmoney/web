@@ -3,7 +3,6 @@ import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { useThunk } from '&front/domain/store';
 import { signIn } from '&front/domain/user/actions/signIn';
 import { getSignInFetching } from '&front/domain/user/selectors/getSignInFetching';
@@ -23,7 +22,6 @@ interface Props {
 
 export const SignIn = ({ className }: Props) => {
   const dispatch = useThunk();
-  const { t } = useTranslation();
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signIn(email, password));
@@ -40,8 +38,8 @@ export const SignIn = ({ className }: Props) => {
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
-          <Card title={t('landing:sign-in')} className={styles.card}>
-            <Label text={t('landing:email')}>
+          <Card title="Вход" className={styles.card}>
+            <Label text="Email">
               <Input
                 name="email"
                 type={InputType.Email}
@@ -49,12 +47,12 @@ export const SignIn = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text={t('landing:password')}>
+            <Label text="Пароль">
               <Input name="password" type={InputType.Password} />
             </Label>
 
             <LoadingButton fethcing={fetching} submit>
-              {t('landing:sign-in-action')}
+              Войти
             </LoadingButton>
           </Card>
         </form>

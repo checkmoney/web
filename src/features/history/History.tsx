@@ -33,10 +33,7 @@ export const History = () => {
 
   return (
     <Container>
-      <PageHeader
-        title={t('common:nav.history')}
-        onBack={() => pushRoute('/app')}
-      />
+      <PageHeader title="История" onBack={() => pushRoute('/app')} />
 
       {isClient && (
         <Tabs
