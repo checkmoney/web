@@ -43,7 +43,7 @@ workflows:
           image_version: CIRCLE_TAG
           path_to_app: PATH_TO_APP
           apply_post_install: false
-          container_name: 'web'
+          container_name: 'web_app'
           filters:
             tags:
               only: /.*/
