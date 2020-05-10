@@ -1,0 +1,53 @@
+version: 2.1
+orbs:
+  # yarn-berry: checkmoney/yarn-berry@1.0.0
+  docker: checkmoney/docker@1.0.3
+  deploy: checkmoney/deploy@1.1.0
+workflows:
+  version: 2
+  build:
+    jobs:
+      # - yarn-berry/local:
+      #     name: eslint
+      #     command: 'lint:code'
+      #     filters:
+      #       branches:
+      #         only: /.*/
+      #       tags:
+      #         only: /.*/
+      # - yarn-berry/local:
+      #     name: types
+      #     command: 'types'
+      #     filters:
+      #       branches:
+      #         only: /.*/
+      #       tags:
+      #         only: /.*/
+      - docker/build_push:
+          image_name: 'web'
+          image_version: CIRCLE_TAG
+          docker_username: DOCKER_USERNAME
+          docker_password: DOCKER_PASSWORD
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /.*/
+          # requires:
+          #   - eslint
+          #   - types
+      - deploy/roll_out:
+          ssh_user: SSH_USER
+          ssh_host: SSH_HOST
+          image_name: 'web'
+          image_version: CIRCLE_TAG
+          path_to_app: PATH_TO_APP
+          apply_post_install: false
+          container_name: 'web'
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+          requires:
+            - docker/build_push
