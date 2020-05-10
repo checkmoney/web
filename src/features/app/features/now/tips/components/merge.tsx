@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 
-import { useTranslation } from '&front/domain/i18n';
 import { mergeTypos } from '&front/domain/mind/actions/mergeTypos';
 import { useThunk } from '&front/domain/store';
 import { Button, ButtonType } from '&front/ui/components/form/button';
@@ -15,7 +14,6 @@ interface Props {
 
 export const Merge = ({ token, variants }: Props) => {
   const dispatch = useThunk();
-  const { t } = useTranslation();
 
   const createOnMerge = useCallback(
     (mainVariant: string) => {
@@ -35,7 +33,7 @@ export const Merge = ({ token, variants }: Props) => {
 
   return (
     <Card
-      title={t('tips:typo.title')}
+      title="Возможная опечатка"
       extra={<DismissButton token={token} />}
       actions={variants.map((variant) => (
         <Button
@@ -47,7 +45,8 @@ export const Merge = ({ token, variants }: Props) => {
         </Button>
       ))}
     >
-      {t('tips:typo.content')}
+      Мы нашли несколько транзакций, похоже в некоторых из них допущена
+      опечатка. Пожалуйста, выберите правильный вариант или закройте этот совет.
     </Card>
   );
 };

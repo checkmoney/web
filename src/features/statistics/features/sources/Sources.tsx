@@ -9,7 +9,6 @@ import {
   selectCategories,
   selectCategoriesHasError,
 } from '&front/app/statistics/categories.selectors';
-import { useTranslation } from '&front/domain/i18n';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { pushRoute } from '&front/features/routing';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
@@ -34,8 +33,6 @@ export const Sources = ({
   widthPercent,
   maxLength,
 }: Props) => {
-  const { t } = useTranslation();
-
   const columns = useMemo(
     () => ({
       category: {
@@ -79,7 +76,7 @@ export const Sources = ({
 
   return (
     <LoaderTable
-      title={t('stats:top.income')}
+      title="На что вы тратите деньги"
       columns={columns}
       data={preparedData}
       fetching={{ error: errorState, loading: preparedData.isEmpty() }}
@@ -91,7 +88,7 @@ export const Sources = ({
           type={ButtonType.Text}
           onClick={() => pushRoute(`/app/stats/sources/${group}`)}
         >
-          {t('stats:actions.details')}
+          Подробнее
         </Button>
       }
     />

@@ -10,7 +10,6 @@ import {
   selectPeriods,
   selectPeriodsHasError,
 } from '&front/app/statistics/periods.selectors';
-import { useTranslation } from '&front/domain/i18n';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { wantUTC } from '&front/helpers/wantUTC';
@@ -29,7 +28,6 @@ interface Props {
 export const Yearly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate);
   const isSmall = useMedia({ maxWidth: 768 });
-  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const from = useMemo(() => wantUTC(startOfYear)(firstTransactionDate), [
@@ -55,7 +53,7 @@ export const Yearly = ({ className, currency }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title={t('stats:dynamics.yearly-title')} />
+      <ControlHeader title="По годам" />
       <Loader status={{ error: errorState, loading: false }}>
         {stats.nonEmpty() && stats.get().length > 0 && (
           <BarChart
@@ -66,11 +64,11 @@ export const Yearly = ({ className, currency }: Props) => {
               name: format(period.start, 'YYYY'),
               data: {
                 income: {
-                  label: t('history:incomes'),
+                  label: 'Доходы',
                   value: earnings,
                 },
                 outcome: {
-                  label: t('history:outcomes'),
+                  label: 'Расходы',
                   value: expenses,
                 },
               },

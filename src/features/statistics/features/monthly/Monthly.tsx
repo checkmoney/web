@@ -60,7 +60,7 @@ export const Monthly = ({ className, currency }: Props) => {
 
   return (
     <section className={className}>
-      <ControlHeader title={t('stats:dynamics.monthly-title')}>
+      <ControlHeader title="По месяцам в">
         <YearPicker
           min={getYear(firstTransactionDate)}
           value={year}
@@ -76,11 +76,11 @@ export const Monthly = ({ className, currency }: Props) => {
               name: translatedMonthTitle(t, period.start, false),
               data: {
                 income: {
-                  label: t('history:incomes'),
+                  label: 'Доходы',
                   value: earnings,
                 },
                 outcome: {
-                  label: t('history:outcomes'),
+                  label: 'Расходы',
                   value: expenses,
                 },
               },

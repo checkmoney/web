@@ -1,7 +1,6 @@
 import React from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { getUserIsManager } from '&front/domain/user/selectors/getUserIsManager';
 import { pushRoute } from '&front/features/routing';
 import { Menu } from '&front/ui/components/controls/menu/Menu';
@@ -13,28 +12,27 @@ interface Props {
 
 export const Navigation = ({ className }: Props) => {
   const isManager = useMappedState(getUserIsManager);
-  const { t } = useTranslation();
 
   const defaultMenu = [
     <MenuItem id="home" key="home" selected>
-      {t('common:nav.home')}
+      Сводка
     </MenuItem>,
     <MenuItem id="stats" key="stats" onClick={() => pushRoute('/app/stats')}>
-      {t('common:nav.stats')}
+      Статистика
     </MenuItem>,
     <MenuItem
       id="history"
       key="history"
       onClick={() => pushRoute('/app/history')}
     >
-      {t('common:nav.history')}
+      История
     </MenuItem>,
     <MenuItem
       id="profile"
       key="profile"
       onClick={() => pushRoute('/app/profile')}
     >
-      {t('common:nav.profile')}
+      Профиль
     </MenuItem>,
   ];
 
@@ -45,7 +43,7 @@ export const Navigation = ({ className }: Props) => {
           key="manager"
           onClick={() => pushRoute('/manager')}
         >
-          {t('common:nav.manager')}
+          Менеджерская
         </MenuItem>,
       ]
     : [];

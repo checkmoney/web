@@ -37,12 +37,12 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
 
   const fetching = useMappedState(getHistoryFetchingStatus);
 
-  const incomeColumns = createColumns(t, 'comment', 'source');
+  const incomeColumns = createColumns('comment', 'source');
   const incomes = historyToTableData(history, {
     filter: (transaction) => transaction.amount > 0,
   });
 
-  const outcomesColumns = createColumns(t, 'comment', 'category');
+  const outcomesColumns = createColumns('comment', 'category');
   const outcomes = historyToTableData(history, {
     filter: (transaction) => transaction.amount < 0,
   });

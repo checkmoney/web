@@ -2,7 +2,6 @@ import { endOfMonth, startOfMonth } from 'date-fns';
 import React, { useMemo, useCallback } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
 import { getHistory } from '&front/domain/money/selectors/getHistory';
 import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
@@ -27,7 +26,6 @@ const to = wantUTC(endOfMonth)(new Date());
 
 export const History = ({ className }: Props) => {
   const fetching = useMappedState(getHistoryFetchingStatus);
-  const { t } = useTranslation();
 
   const history = useMemoState(
     () => getHistory(from, to, groupBy),
@@ -35,7 +33,7 @@ export const History = ({ className }: Props) => {
     [from, to],
   );
 
-  const columns = createColumns(t, 'comment');
+  const columns = createColumns('comment');
 
   const lastOutcomes = useMemo(
     () => historyToTableData(history, { maxLength: historyLength }),
@@ -59,7 +57,7 @@ export const History = ({ className }: Props) => {
   return (
     <>
       <LoaderTable
-        title={t('short-history:title')}
+        title="Последние транзакции"
         className={className}
         data={lastOutcomes}
         columns={columns}
