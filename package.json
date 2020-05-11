@@ -35,7 +35,7 @@
     "js-base64": "^2.5.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
-    "next": "^7.0.2",
+    "next": "^9.3.2",
     "next-compose-plugins": "^2.1.1",
     "next-css-unpluggable": "^2.1.13",
     "next-routes": "^1.4.2",
