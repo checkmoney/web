@@ -1,5 +1,5 @@
-import { Interval } from '&front/api/types';
-import { intervalIdentity } from '&front/api/utils';
+import { Interval } from '&front/app/api/api.types';
+import { intervalIdentity } from '&front/app/api/api.utils';
 import { State } from '&front/domain/store/State';
 import { GroupBy } from '&shared/enum/GroupBy';
 

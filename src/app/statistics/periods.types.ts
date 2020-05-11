@@ -1,7 +1,7 @@
-import { Interval } from '&front/api/types';
 import { Type } from 'class-transformer';
 
-import { TransformBigInt } from '../utility/api.utils';
+import { Interval } from '../api/api.types';
+import { TransformBigInt } from '../api/api.utils';
 
 export class PeriodAmount {
   @TransformBigInt()

@@ -1,8 +1,8 @@
 import { uniqBy } from 'lodash';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { Interval } from '&front/api/types';
-import { intervalIdentity } from '&front/api/utils';
+import { Interval } from '&front/app/api/api.types';
+import { intervalIdentity } from '&front/app/api/api.utils';
 import { GroupBy } from '&shared/enum/GroupBy';
 
 import { actions } from './categories.actions';

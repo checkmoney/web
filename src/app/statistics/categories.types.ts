@@ -1,9 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { Type } from 'class-transformer';
 
-import { Interval } from '&front/api/types';
+import { Interval } from '&front/app/api/api.types';
 
-import { TransformBigInt } from '../utility/api.utils';
+import { TransformBigInt } from '../api/api.utils';
 
 export class CategoryData {
   @TransformBigInt()
@@ -20,8 +20,10 @@ export class CategoryData {
 export class PeriodCategories {
   @Type(() => CategoryData)
   readonly expenses: CategoryData[];
+
   @Type(() => CategoryData)
   readonly earnings: CategoryData[];
+
   @Type(() => Interval)
   readonly period: Interval;
 

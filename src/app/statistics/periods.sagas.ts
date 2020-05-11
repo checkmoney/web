@@ -1,7 +1,7 @@
 import { takeLatest, put, call, delay } from 'redux-saga/effects';
 
-import { StatisticsApi } from '&front/api/StatisticsApi';
-import { createStatisticsApi } from '&front/app/utility/api.sagas';
+import { StatisticsApi } from '&front/app/api/parts/StatisticsApi';
+import { createStatisticsApi } from '&front/app/api/api.sagas';
 import { logError } from '&front/app/utility/errors.sagas';
 
 import { actions } from './periods.actions';

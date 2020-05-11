@@ -3,7 +3,7 @@ import React, { useMemo, useEffect } from 'react';
 import { useDispatch } from 'redux-react-hook';
 import { Option } from 'tsoption';
 
-import { Interval } from '&front/api/types';
+import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
 import {
   selectCategories,

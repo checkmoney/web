@@ -6,6 +6,7 @@ export class Interval {
 
   @Type(() => Date)
   readonly end: Date;
+
   constructor(start: Date, end: Date) {
     this.start = start;
     this.end = end;

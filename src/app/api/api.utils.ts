@@ -1,7 +1,11 @@
 import { AxiosRequestConfig } from 'axios';
+import { Transform } from 'class-transformer';
 import { format } from 'date-fns';
 
-import { Interval } from './types';
+import { Interval } from './api.types';
+
+export const TransformBigInt = () =>
+  Transform((value: string) => Number(value));
 
 export const intervalForQuery = ({ start, end }: Interval) => {
   const pattern = 'YYYY-MM-DD';

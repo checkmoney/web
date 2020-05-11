@@ -6,8 +6,8 @@ import { Grow } from '&front/app/statistics/grow.types';
 import { PeriodAmount } from '&front/app/statistics/periods.types';
 import { GroupBy } from '&shared/enum/GroupBy';
 
-import { Interval } from './types';
-import { addTokenToHttpConfig, intervalForQuery } from './utils';
+import { Interval } from '../api.types';
+import { addTokenToHttpConfig, intervalForQuery } from '../api.utils';
 
 export class StatisticsApi {
   private readonly http: AxiosInstance;

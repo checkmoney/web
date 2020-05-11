@@ -4,7 +4,7 @@ import { useMappedState, useDispatch } from 'redux-react-hook';
 import { Option } from 'tsoption';
 import { useMedia } from 'use-media';
 
-import { Interval } from '&front/api/types';
+import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/periods.actions';
 import {
   selectPeriods,

@@ -1,7 +1,7 @@
 import getConfig from 'next/config';
 import { select } from 'redux-saga/effects';
 
-import { StatisticsApi } from '&front/api/StatisticsApi';
+import { StatisticsApi } from '&front/app/api/parts/StatisticsApi';
 import { getTokenValue } from '&front/domain/user/selectors/getToken';
 
 const { publicRuntimeConfig } = getConfig();
