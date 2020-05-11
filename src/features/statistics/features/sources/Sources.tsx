@@ -76,7 +76,7 @@ export const Sources = ({
 
   return (
     <LoaderTable
-      title="На что вы тратите деньги"
+      title="Что приносит вам деньги"
       columns={columns}
       data={preparedData}
       fetching={{ error: errorState, loading: preparedData.isEmpty() }}

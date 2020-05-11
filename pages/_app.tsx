@@ -11,13 +11,11 @@ import { StoreContext } from 'redux-react-hook';
 import { Option } from 'tsoption';
 
 import { AppContext } from '&front/domain/AppContext';
-import { appWithTranslation, i18n } from '&front/domain/i18n';
 import { WithReduxProps, withReduxStore } from '&front/domain/store';
 import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
 import { actions as dataActions } from '&front/domain/user/reducer/data';
 import { getToken } from '&front/domain/user/selectors/getToken';
 import { pushRoute, routeAnimations } from '&front/features/routing';
-import { Language } from '&shared/enum/Language';
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -38,9 +36,6 @@ class CheckmoneyWeb extends App<WithReduxProps> {
     if (isSecure && !loggedIn) {
       await pushRoute('/forbidden', Option.of(ctx));
     }
-
-    // TODO: In future use lang from profile
-    i18n.changeLanguage(Language.Ru);
 
     return App.getInitialProps(appContext);
   }
@@ -71,6 +66,4 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default nextWithQuery(
-  withReduxStore(appWithTranslation(CheckmoneyWeb) as any) as any,
-);
+export default nextWithQuery(withReduxStore(CheckmoneyWeb as any) as any);
