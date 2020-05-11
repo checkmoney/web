@@ -2,7 +2,6 @@ import { FORBIDDEN } from 'http-status-codes';
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { Landing } from '&front/features/landing';
 
 class ForbiddenPage extends React.Component {
@@ -17,4 +16,4 @@ class ForbiddenPage extends React.Component {
   }
 }
 
-export default pageWithTranslation(Namespace.Landind)(ForbiddenPage);
+export default ForbiddenPage;

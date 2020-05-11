@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { History } from '&front/features/history';
 
@@ -19,8 +18,4 @@ class HisotryPage extends React.Component {
   }
 }
 
-export default pageWithTranslation([
-  Namespace.Transaction,
-  Namespace.History,
-  Namespace.Months,
-])(HisotryPage);
+export default HisotryPage;

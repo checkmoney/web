@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { Statistics } from '&front/features/statistics';
 
@@ -19,9 +18,4 @@ class StatsPage extends React.Component {
   }
 }
 
-export default pageWithTranslation([
-  Namespace.History,
-  Namespace.Months,
-  Namespace.Stats,
-  Namespace.Currency,
-])(StatsPage);
+export default StatsPage;

@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { Categories } from '&front/features/statistics/features/details/categories';
 import { GroupBy } from '&shared/enum/GroupBy';
 
@@ -25,6 +24,4 @@ class CateogiesPage extends React.Component<Query> {
   }
 }
 
-export default pageWithTranslation([Namespace.Stats, Namespace.Months])(
-  CateogiesPage,
-);
+export default CateogiesPage;
