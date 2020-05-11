@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
@@ -21,7 +20,6 @@ const maxLength = 5;
 
 export const Statistics = () => {
   const currency = useMappedState(getDefaultCurrency);
-  const { t } = useTranslation();
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
@@ -53,14 +51,11 @@ export const Statistics = () => {
 
   return (
     <Container>
-      <PageHeader
-        title={t('common:nav.stats')}
-        onBack={() => pushRoute('/app')}
-      />
+      <PageHeader title="Статистика" onBack={() => pushRoute('/app')} />
 
       <Tabs>
-        {renderContent(t('stats:monthly'), GroupBy.Month)}
-        {renderContent(t('stats:yearly'), GroupBy.Year)}
+        {renderContent('Месяц', GroupBy.Month)}
+        {renderContent('Год', GroupBy.Year)}
       </Tabs>
     </Container>
   );

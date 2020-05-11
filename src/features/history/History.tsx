@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Container } from '&front/ui/components/layout/container';
@@ -18,15 +17,11 @@ import * as styles from './History.css';
 export const History = () => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate);
   const { isClient } = useEnvironment();
-  const { t } = useTranslation();
 
-  const months = useMemo(
-    () => createMonths(t, firstTransactionDate, new Date()),
-    [firstTransactionDate, t],
-  );
-  const defaultMonthTitle = useMemo(() => translatedMonthTitle(t, new Date()), [
-    t,
+  const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [
+    firstTransactionDate,
   ]);
+  const defaultMonthTitle = useMemo(() => translatedMonthTitle(new Date()), []);
 
   const { innerWidth } = useWindowSize();
   const isMobile = innerWidth && innerWidth < 768;

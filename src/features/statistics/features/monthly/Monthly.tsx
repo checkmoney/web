@@ -10,7 +10,6 @@ import {
   selectPeriods,
   selectPeriodsHasError,
 } from '&front/app/statistics/periods.selectors';
-import { useTranslation } from '&front/domain/i18n';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
@@ -31,7 +30,6 @@ interface Props {
 export const Monthly = ({ className, currency }: Props) => {
   const firstTransactionDate = useMappedState(getFirstTransactionDate);
   const isSmall = useMedia({ maxWidth: 768 });
-  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const [year, setYear] = useState(getYear(new Date()));
@@ -73,7 +71,7 @@ export const Monthly = ({ className, currency }: Props) => {
           <BarChart
             displayValue={displayMoney(currency)}
             dataSets={stats.get().map(({ period, earnings, expenses }) => ({
-              name: translatedMonthTitle(t, period.start, false),
+              name: translatedMonthTitle(period.start, false),
               data: {
                 income: {
                   label: 'Доходы',

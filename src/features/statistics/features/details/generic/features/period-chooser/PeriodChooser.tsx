@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import React from 'react';
 
-import { useTranslation } from '&front/domain/i18n';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Card } from '&front/ui/components/layout/card';
 import { GroupBy } from '&shared/enum/GroupBy';
@@ -16,7 +15,7 @@ interface Props {
   setPreviousPeriodNumber: (t: (v: number) => number) => void;
   from: Date;
   to: Date;
-  group?: GroupBy;
+  group: GroupBy;
   detailType: string;
 }
 
@@ -27,13 +26,8 @@ export const PeriodChooser = ({
   previousPeriodNumber,
   detailType,
 }: Props) => {
-  const { t } = useTranslation();
-
-  const title = !group
-    ? t('stats:details.all-time')
-    : group === GroupBy.Year
-    ? format(from, 'YYYY')
-    : translatedMonthTitle(t, from);
+  const title =
+    group === GroupBy.Year ? format(from, 'YYYY') : translatedMonthTitle(from);
 
   const actionProps = {
     setPreviousPeriodNumber,

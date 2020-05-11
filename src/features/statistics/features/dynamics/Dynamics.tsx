@@ -8,7 +8,6 @@ import {
   selectGrow,
   selectGrowHasError,
 } from '&front/app/statistics/grow.selectors';
-import { useTranslation } from '&front/domain/i18n';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Stat } from '&front/ui/components/chart/stat';
@@ -23,8 +22,14 @@ interface Props {
   group: GroupBy.Month | GroupBy.Year;
 }
 
+const titles = {
+  [GroupBy.Month]: 'По сравнению со средним месяцем',
+  [GroupBy.Year]: 'По сравнению со средним годом',
+  [GroupBy.Day]: 'По сравнению со средним днем',
+  [GroupBy.Week]: 'По сравнению со средней неделей',
+};
+
 export const Dynamics = ({ className, group }: Props) => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const grow = useMemoMappedState(selectGrow(group), [group]);
@@ -36,7 +41,7 @@ export const Dynamics = ({ className, group }: Props) => {
 
   const period =
     group === GroupBy.Month
-      ? translatedMonthTitle(t, new Date())
+      ? translatedMonthTitle(new Date())
       : format(new Date(), 'YYYY');
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
@@ -44,21 +49,17 @@ export const Dynamics = ({ className, group }: Props) => {
   // TODO: add info about calculation in tooltip
   return (
     <Card title={period} className={className}>
-      <p>{t(`stats:dynamics.compared-${group}`)}</p>
+      <p>{titles[group]}</p>
 
       <Loader
         skeleton
         expectedRows={2}
-        status={{ error: errorState, loading: !Boolean(grow) }}
+        status={{ error: errorState, loading: !grow }}
       >
         <div className={styles.diff}>
+          <Stat title="Доходы" value={grow && grow.earnings} suffix="%" />
           <Stat
-            title={t('history:incomes')}
-            value={grow && grow.earnings}
-            suffix="%"
-          />
-          <Stat
-            title={t('history:outcomes')}
+            title="Расходы"
             value={grow && grow.expenses}
             suffix="%"
             decreaseIsGood
