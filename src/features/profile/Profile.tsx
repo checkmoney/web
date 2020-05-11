@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import { useTranslation } from '&front/domain/i18n';
 import { useMemoState, useThunk } from '&front/domain/store';
 import { bindGoogle } from '&front/domain/user/actions/bindGoogle';
 import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
@@ -26,7 +25,6 @@ import * as styles from './Profile.css';
 export const Profile = () => {
   const dispatch = useThunk();
   const notify = useNotifyAlert();
-  const { t } = useTranslation();
 
   const { defaultCurrency, weekStartsOnMonday } = useMemoState(
     () => getProfile,
@@ -67,23 +65,19 @@ export const Profile = () => {
 
   return (
     <Container>
-      <PageHeader
-        title={t('common:nav.profile')}
-        onBack={() => pushRoute('/app')}
-      />
+      <PageHeader title="Профиль" onBack={() => pushRoute('/app')} />
 
       <section className={styles.container}>
-        <Card title={t('profile:main.title')}>
-          <p>{t('profile:main.soon')}</p>
-          <Button onClick={logout}>{t('profile:main.sign-out')}</Button>
+        <Card title="Профиль">
+          <Button onClick={logout}>Выйти</Button>
         </Card>
 
-        <Card title={t('profile:settings.title')}>
-          <Label text={t('profile:settings.preferred-currency')}>
+        <Card title="Настройки">
+          <Label text="Валюта по умолчанию">
             <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
           </Label>
 
-          <Label text={t('profile:settings.week-starts-on-monday')}>
+          <Label text="Неделя начинается с понедельника">
             <Checkbox value={onMonday} onChange={(v) => setOnMonday(!!v)} />
           </Label>
         </Card>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { Profile } from '&front/features/profile';
 
 class ProfilePage extends React.Component {
@@ -11,6 +10,4 @@ class ProfilePage extends React.Component {
   }
 }
 
-export default pageWithTranslation([Namespace.Profile, Namespace.Currency])(
-  ProfilePage,
-);
+export default ProfilePage;

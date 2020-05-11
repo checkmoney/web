@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { AppContext } from '&front/domain/AppContext';
-import { pageWithTranslation, Namespace } from '&front/domain/i18n';
 import { Sources } from '&front/features/statistics/features/details/sources';
 import { GroupBy } from '&shared/enum/GroupBy';
 
@@ -25,6 +24,4 @@ class SourcesPage extends React.Component<Query> {
   }
 }
 
-export default pageWithTranslation([Namespace.Stats, Namespace.Months])(
-  SourcesPage,
-);
+export default SourcesPage;

@@ -3,7 +3,6 @@ import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { useThunk } from '&front/domain/store';
 import { signUp } from '&front/domain/user/actions/signUp';
 import { getSignUpFetching } from '&front/domain/user/selectors/getSignUpFetching';
@@ -23,7 +22,6 @@ interface Props {
 
 export const SignUp = ({ className }: Props) => {
   const dispatch = useThunk();
-  const { t } = useTranslation();
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signUp(email, password));
@@ -40,8 +38,8 @@ export const SignUp = ({ className }: Props) => {
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
-          <Card title={t('landing:sign-up')} className={styles.card}>
-            <Label text={t('landing:email')}>
+          <Card title="Регистрация" className={styles.card}>
+            <Label text="Email">
               <Input
                 name="email"
                 type={InputType.Email}
@@ -49,16 +47,16 @@ export const SignUp = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text={t('landing:password')}>
+            <Label text="Пароль">
               <Input name="password" type={InputType.Password} />
             </Label>
 
-            <Label text={t('landing:repeat-password')}>
+            <Label text="Пароль еще раз">
               <Input name="password-repeat" type={InputType.Password} />
             </Label>
 
             <LoadingButton fethcing={fetching} submit>
-              {t('landing:sign-up-action')}
+              Зарегистрироваться
             </LoadingButton>
           </Card>
         </form>

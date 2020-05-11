@@ -1,8 +1,6 @@
 import { Statistic, Icon } from 'antd';
 import React from 'react';
 
-import { useTranslation } from '&front/domain/i18n';
-
 interface Props {
   title: string;
   value?: number | null;
@@ -16,8 +14,6 @@ export const Stat = ({
   suffix,
   decreaseIsGood = false,
 }: Props) => {
-  const { t } = useTranslation();
-
   if (value != null) {
     const positive = value > 0;
 
@@ -40,7 +36,7 @@ export const Stat = ({
 
   return (
     <Statistic
-      title={`${title}, ${t('common:ui.no-data')}`}
+      title={`${title}, нет данных`}
       value={0}
       precision={2}
       suffix={suffix}

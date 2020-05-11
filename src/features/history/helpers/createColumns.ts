@@ -1,21 +1,27 @@
 import { displayNullableDate } from '&front/helpers/displayNullableDtae';
 
+const commentMap = {
+  category: 'Категория',
+  source: 'Источник',
+  comment: 'Комментарий',
+};
+
+type Comment = 'category' | 'source' | 'comment';
 export const createColumns = (
-  t: (key: string) => string,
-  commentKey: string,
-  commentTitle: string = commentKey,
+  commentKey: Comment,
+  commentTitle: Comment = commentKey,
 ) => ({
   date: {
-    title: t('transaction:date'),
+    title: 'Дата',
     transform: displayNullableDate,
     widthPercent: 30,
   },
   amount: {
-    title: t('transaction:amount'),
+    title: 'Сумма',
     widthPercent: 30,
   },
   [commentKey]: {
-    title: t(`transaction:${commentTitle}`),
+    title: commentMap[commentTitle],
     widthPercent: 40,
   },
 });

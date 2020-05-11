@@ -2,7 +2,6 @@ import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
 import { useMappedState } from 'redux-react-hook';
 
-import { useTranslation } from '&front/domain/i18n';
 import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
 import { fetchSources } from '&front/domain/money/actions/fetchSources';
 import { getCategories } from '&front/domain/money/selectors/getCategories';
@@ -38,7 +37,6 @@ interface Props {
 
 export const CreateTransaction = ({ className }: Props) => {
   const dispatch = useThunk();
-  const { t } = useTranslation();
 
   const onSubmit = useOnSubmit();
 
@@ -80,13 +78,13 @@ export const CreateTransaction = ({ className }: Props) => {
           }
           className={className}
         >
-          <Card title={t('create-transaction:title')} className={styles.form}>
-            <Label text={t('transaction:amount')} className={styles.amount}>
+          <Card title="Новая транзакция" className={styles.form}>
+            <Label text="Сумма" className={styles.amount}>
               <InputMoney name="amount" currency={values.currency} />
             </Label>
 
             <Label
-              text={t(getCommentByKind(values.kind))}
+              text={getCommentByKind(values.kind)}
               className={styles.comment}
             >
               <AutoComplete
@@ -96,26 +94,26 @@ export const CreateTransaction = ({ className }: Props) => {
               />
             </Label>
 
-            <Label text={t('transaction:currency')} className={styles.currency}>
+            <Label text="Валюта" className={styles.currency}>
               <EnumSelect
                 showSearch
                 name="currency"
                 options={Currency}
-                getLabel={translatedCurrency(t)}
+                getLabel={translatedCurrency}
               />
             </Label>
 
-            <Label text={t('transaction:date')} className={styles.date}>
+            <Label text="Дата" className={styles.date}>
               <DatePicker name="date" />
             </Label>
 
             <Toggle name="kind" className={styles.kind}>
-              <Variant value={Kind.Outcome}>{t('transaction:outcome')}</Variant>
-              <Variant value={Kind.Income}>{t('transaction:income')}</Variant>
+              <Variant value={Kind.Outcome}>Расход</Variant>
+              <Variant value={Kind.Income}>Доход</Variant>
             </Toggle>
 
             <LoadingButton fethcing={fetching} submit className={styles.submit}>
-              {t('create-transaction:action')}
+              Создать
             </LoadingButton>
           </Card>
         </form>

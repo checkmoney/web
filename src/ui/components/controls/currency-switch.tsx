@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 
-import { useTranslation } from '&front/domain/i18n';
 import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { EnumSelect } from '&front/ui/components/form/select';
 import { Currency } from '&shared/enum/Currency';
@@ -11,8 +10,6 @@ interface Props {
 }
 
 export const CurrencySwitch = ({ currency, updateCurrency }: Props) => {
-  const { t } = useTranslation();
-
   const onChange = useCallback(
     (v?: string) => {
       updateCurrency((v as Currency) || currency);
@@ -26,7 +23,7 @@ export const CurrencySwitch = ({ currency, updateCurrency }: Props) => {
       value={currency}
       onChange={onChange}
       showSearch
-      getLabel={translatedCurrency(t)}
+      getLabel={translatedCurrency}
     />
   );
 };

@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { Namespace, pageWithTranslation } from '&front/domain/i18n';
 import { Landing } from '&front/features/landing';
 
 class IndexPage extends React.Component {
@@ -9,4 +8,4 @@ class IndexPage extends React.Component {
   }
 }
 
-export default pageWithTranslation(Namespace.Landind)(IndexPage);
+export default IndexPage;

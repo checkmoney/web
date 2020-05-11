@@ -1,31 +1,38 @@
 import React, { useCallback } from 'react';
 
-import { useTranslation } from '&front/domain/i18n';
 import { Button, ButtonType } from '&front/ui/components/form/button';
 import { GroupBy } from '&shared/enum/GroupBy';
 
 interface Props {
-  group?: GroupBy;
+  group: GroupBy;
   previousPeriodNumber: number;
   setPreviousPeriodNumber: (t: (v: number) => number) => void;
 }
+
+const prevTitles = {
+  [GroupBy.Month]: 'Предыдущий месяц',
+  [GroupBy.Year]: 'Предыдущий год',
+  [GroupBy.Day]: 'Предыдущий день',
+  [GroupBy.Week]: 'Предыдущая неделя',
+};
 
 export const Prev = ({ group, setPreviousPeriodNumber }: Props) => {
   const back = useCallback(() => setPreviousPeriodNumber((v) => v + 1), [
     setPreviousPeriodNumber,
   ]);
 
-  const { t } = useTranslation();
-
-  if (!group) {
-    return null;
-  }
-
   return (
     <Button onClick={back} type={ButtonType.Text}>
-      {t(`stats:details.prev-${group}`)}
+      {prevTitles[group]}
     </Button>
   );
+};
+
+const nextTitles = {
+  [GroupBy.Year]: 'Следующий год',
+  [GroupBy.Month]: 'Следующий месяц',
+  [GroupBy.Day]: 'Следующий день',
+  [GroupBy.Week]: 'Следующая неделя',
 };
 
 export const Next = ({
@@ -37,15 +44,13 @@ export const Next = ({
     setPreviousPeriodNumber,
   ]);
 
-  const { t } = useTranslation();
-
-  if (!group || previousPeriodNumber <= 0) {
+  if (previousPeriodNumber <= 0) {
     return null;
   }
 
   return (
     <Button onClick={next} type={ButtonType.Text}>
-      {t(`stats:details.next-${group}`)}
+      {nextTitles[group]}
     </Button>
   );
 };
