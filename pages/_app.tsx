@@ -1,7 +1,5 @@
 import 'reflect-metadata';
 import 'antd/dist/antd.css?CSSModulesDisable';
-import { ModalContextProvider } from '@breadhead/use-modal';
-import { nextWithQuery } from '@breadhead/use-query';
 import App, { Container, NextAppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -48,9 +46,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
         </Head>
         <Provider store={reduxStore}>
           <StoreContext.Provider value={reduxStore}>
-            <ModalContextProvider pushRoute={pushRoute}>
-              <Component {...pageProps} />
-            </ModalContextProvider>
+            <Component {...pageProps} />
           </StoreContext.Provider>
         </Provider>
       </Container>
@@ -58,4 +54,4 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 }
 
-export default nextWithQuery(withReduxStore(CheckmoneyWeb as any) as any);
+export default withReduxStore(CheckmoneyWeb as any);

@@ -5,8 +5,7 @@ import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
 import { getHistory } from '&front/domain/money/selectors/getHistory';
 import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
 import { useMemoState } from '&front/domain/store';
-import { useIncomeModal } from '&front/features/transaction/income';
-import { useOutcomeModal } from '&front/features/transaction/outcome';
+import { useDelete } from '&front/features/transaction/delete/useDelete';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Table } from '&front/ui/components/layout/table';
 import { GroupBy } from '&shared/enum/GroupBy';
@@ -44,8 +43,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
     filter: (transaction) => transaction.amount < 0,
   });
 
-  const { open: openIncome, IncomeModal } = useIncomeModal();
-  const { open: openOutcome, OutcomeModal } = useOutcomeModal();
+  const { handleDelete } = useDelete();
 
   return (
     <>
@@ -56,7 +54,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
             title="Расходы"
             columns={outcomesColumns}
             data={outcomes.get()}
-            onRowClick={({ id }) => openOutcome(id)}
+            onRowClick={({ id }) => handleDelete(id)}
           />
         )}
         {incomes.nonEmpty() && (
@@ -65,12 +63,10 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
             title="Доходы"
             columns={incomeColumns}
             data={incomes.get()}
-            onRowClick={({ id }) => openIncome(id)}
+            onRowClick={({ id }) => handleDelete(id)}
           />
         )}
       </Loader>
-      <IncomeModal />
-      <OutcomeModal />
     </>
   );
 };
