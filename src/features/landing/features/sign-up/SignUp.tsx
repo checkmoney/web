@@ -12,7 +12,7 @@ import { Label } from '&front/ui/components/form/label';
 import { LoadingButton } from '&front/ui/components/form/loading-button';
 import { Card } from '&front/ui/components/layout/card';
 import { useErrorAlert } from '&front/ui/hooks/useErrorAlert';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 import { Route } from '&front/app/router/router.types';
 
 import * as styles from '../SignForm.css';
@@ -23,7 +23,7 @@ interface Props {
 
 export const SignUp = ({ className }: Props) => {
   const dispatch = useThunk();
-  const { pushRoute } = useBoundRouterActions(Route.Hello);
+  const { pushRoute } = useBoundRouter(Route.Hello);
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signUp(email, password));

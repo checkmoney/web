@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, ButtonType } from '&front/ui/components/form/button';
 import { GroupBy } from '&shared/enum/GroupBy';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 import { Route } from '&front/app/router/router.types';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 export const ShowMonth = ({ group, detailType }: Props) => {
   const showMonth = !group || group !== GroupBy.Month;
-  const { pushRoute } = useBoundRouterActions(Route.DetailedStatistics);
+  const { pushRoute } = useBoundRouter(Route.DetailedStatistics);
 
   return showMonth ? (
     <Button

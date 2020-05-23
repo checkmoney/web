@@ -6,13 +6,13 @@ import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Button } from '&front/ui/components/form/button';
 import { Currency } from '&shared/enum/Currency';
 import { Route } from '&front/app/router/router.types';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 
 import * as styles from './Hello.css';
 
 export const Hello = () => {
   const dispatchThunk = useThunk();
-  const { pushRoute } = useBoundRouterActions(Route.Dashboard);
+  const { pushRoute } = useBoundRouter(Route.Dashboard);
 
   const [currency, setCurrency] = useState(Currency.USD);
 

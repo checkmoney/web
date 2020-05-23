@@ -10,7 +10,7 @@ import { useEnvironment } from '&front/ui/hooks/useEnvironment';
 import { useWindowSize } from '&front/ui/hooks/useWindowSize';
 import { useMemoState } from '&front/domain/store';
 import { Route } from '&front/app/router/router.types';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 
 import { TransactionList } from './components/transaction-list';
 import { createMonths } from './helpers/createMonths';
@@ -23,7 +23,7 @@ export const History = () => {
     [],
   );
   const { isClient } = useEnvironment();
-  const { pushRoute } = useBoundRouterActions(Route.Dashboard);
+  const { pushRoute } = useBoundRouter(Route.Dashboard);
 
   const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [
     firstTransactionDate,

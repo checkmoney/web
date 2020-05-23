@@ -17,7 +17,7 @@ import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
 import { Route } from '&front/app/router/router.types';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 
 interface Props {
   className?: string;
@@ -51,7 +51,7 @@ export const Sources = ({
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
   const dateRange = useMemo(() => new Interval(from, to), [from, to]);
   const dispatch = useDispatch();
-  const { pushRoute } = useBoundRouterActions(Route.DetailedStatistics);
+  const { pushRoute } = useBoundRouter(Route.DetailedStatistics);
 
   useEffect(() => {
     dispatch(actions.started({ periodType: group, dateRange }));

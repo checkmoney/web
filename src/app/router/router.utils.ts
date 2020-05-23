@@ -1,15 +1,12 @@
-import { useDispatch } from 'redux-react-hook';
 import { useCallback } from 'react';
 
 import { Route } from './router.types';
-import { routerActions } from './router.actions';
+import { router } from './router';
 
-export const useBoundRouterActions = (route: Route) => {
-  const dispatch = useDispatch();
-
+export const useBoundRouter = (route: Route) => {
   const pushRoute = useCallback(
-    (params?: object) => {
-      dispatch(routerActions.push({ route, params }));
+    (params: Record<string, any> = {}) => {
+      router.navigate(route, params);
     },
     [route],
   );
@@ -17,12 +14,13 @@ export const useBoundRouterActions = (route: Route) => {
   return { pushRoute };
 };
 
-export const useRouterActions = () => {
-  const dispatch = useDispatch();
-
-  const pushRoute = useCallback((route: Route, params?: object) => {
-    dispatch(routerActions.push({ route, params }));
-  }, []);
+export const useRouter = () => {
+  const pushRoute = useCallback(
+    (route: Route, params: Record<string, any> = {}) => {
+      router.navigate(route, params);
+    },
+    [],
+  );
 
   return { pushRoute };
 };

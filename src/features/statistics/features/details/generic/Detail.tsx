@@ -18,7 +18,7 @@ import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
 import { Route } from '&front/app/router/router.types';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -34,7 +34,7 @@ interface Props {
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const currency = useMappedState(selectStatisticsCurrency);
   const isSmall = useMedia({ maxWidth: 768 });
-  const { pushRoute } = useBoundRouterActions(Route.Statistics);
+  const { pushRoute } = useBoundRouter(Route.Statistics);
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
 

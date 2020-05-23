@@ -20,7 +20,7 @@ import {
   selectDefaultCurrencyIsAvailable,
 } from '&front/app/profile/default_currency.selectors';
 import { RequireType } from '&front/app/utility/require.types';
-import { useRouterActions } from '&front/app/router/router.utils';
+import { useRouter } from '&front/app/router/router.utils';
 import { Route } from '&front/app/router/router.types';
 
 import * as styles from './Profile.css';
@@ -29,7 +29,7 @@ export const Profile = () => {
   const dispatchThunk = useThunk();
   const dispatch = useDispatch();
   const notify = useNotifyAlert();
-  const { pushRoute } = useRouterActions();
+  const { pushRoute } = useRouter();
 
   useEffect(() => {
     dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));

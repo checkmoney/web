@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Menu } from '&front/ui/components/controls/menu/Menu';
 import { MenuItem } from '&front/ui/components/controls/menu/MenuItem';
-import { useRouterActions } from '&front/app/router/router.utils';
+import { useRouter } from '&front/app/router/router.utils';
 import { Route } from '&front/app/router/router.types';
 import { decodeToken, retrieveToken } from '&front/app/auth/auth.utils';
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const Navigation = ({ className }: Props) => {
   const { isManager } = decodeToken(retrieveToken() || '');
-  const { pushRoute } = useRouterActions();
+  const { pushRoute } = useRouter();
 
   const defaultMenu = [
     <MenuItem id="home" key="home" selected>

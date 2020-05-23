@@ -6,7 +6,7 @@ import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
 import { GroupBy } from '&shared/enum/GroupBy';
-import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { useBoundRouter } from '&front/app/router/router.utils';
 import { Route } from '&front/app/router/router.types';
 
 import { Categories } from './features/categories';
@@ -21,7 +21,7 @@ const maxLength = 5;
 
 export const Statistics = () => {
   const currency = useMappedState(selectStatisticsCurrency);
-  const { pushRoute } = useBoundRouterActions(Route.Dashboard);
+  const { pushRoute } = useBoundRouter(Route.Dashboard);
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
