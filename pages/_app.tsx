@@ -5,8 +5,11 @@ import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { StoreContext } from 'redux-react-hook';
+import { RouterProvider } from 'react-router5';
 
 import { WithReduxProps, withReduxStore } from '&front/domain/store';
+import { router } from '&front/app/router/router';
+import { Application } from '&front/presentation/Application';
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -14,7 +17,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
   }
 
   public render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { reduxStore } = this.props;
 
     return (
       <Container>
@@ -24,7 +27,10 @@ class CheckmoneyWeb extends App<WithReduxProps> {
         </Head>
         <Provider store={reduxStore}>
           <StoreContext.Provider value={reduxStore}>
-            <Component {...pageProps} />
+            <RouterProvider router={router}>
+              <Application />
+            </RouterProvider>
+            ,
           </StoreContext.Provider>
         </Provider>
       </Container>

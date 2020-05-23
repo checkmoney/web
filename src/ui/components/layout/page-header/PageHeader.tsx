@@ -9,5 +9,5 @@ interface Props {
 }
 
 export const PageHeader = ({ onBack, title }: Props) => {
-  return <AntPageHeader onBack={onBack} title={title} />;
+  return <AntPageHeader onBack={() => onBack()} title={title} />;
 };

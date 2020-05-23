@@ -1,7 +1,7 @@
 import { takeLatest, all } from 'redux-saga/effects';
 
-import NextRoutes from '../../../routes';
 import { routerActions } from './router.actions';
+import { router } from './router';
 
 function* handlePushSaga() {
   // eslint-disable-next-line require-yield
@@ -10,12 +10,7 @@ function* handlePushSaga() {
   ) {
     const { route, params = {} } = action.payload;
 
-    const path = Object.entries(params).reduce(
-      (pathAcc, [key, value]) => pathAcc.replace(`:${key}`, value),
-      route as string,
-    );
-
-    NextRoutes.Router.pushRoute(path);
+    router.navigate(route, params);
   });
 }
 
