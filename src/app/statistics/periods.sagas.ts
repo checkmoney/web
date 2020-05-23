@@ -5,7 +5,7 @@ import { createStatisticsApi } from '&front/app/api/api.sagas';
 import { logError } from '&front/app/utility/errors.sagas';
 
 import { actions } from './periods.actions';
-import { PeriodAmount } from './periods.types';
+import { actions as metaActions } from './meta.actions';
 
 const ATTEMPT_THRESHOLD = 3;
 const RETRY_DELAY = 100;
@@ -18,11 +18,13 @@ export function* handlePeriodsFetchingSaga() {
 
     try {
       const apiClient: StatisticsApi = yield createStatisticsApi();
-      const data: PeriodAmount[] = yield call(
+      const { data, meta } = yield call(
         apiClient.fetchPeriods,
         periodType,
         dateRange,
       );
+
+      yield put(metaActions.setCurrency(meta.currency));
       yield put(actions.done({ params: action.payload, result: data }));
     } catch (error) {
       yield logError(error);

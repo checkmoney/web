@@ -1,39 +1,46 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useDispatch, useMappedState } from 'redux-react-hook';
 
-import { useMemoState, useThunk } from '&front/domain/store';
+import { useThunk } from '&front/domain/store';
 import { bindGoogle } from '&front/domain/user/actions/bindGoogle';
-import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
 import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
-import { setWeekStart } from '&front/domain/user/actions/setWeekStart';
 import { signOut } from '&front/domain/user/actions/signOut';
-import { getProfile } from '&front/domain/user/selectors/getProfile';
 import { Google } from '&front/ui/auth-widget/google';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Button } from '&front/ui/components/form/button';
-import { Checkbox } from '&front/ui/components/form/checkbox';
 import { Label } from '&front/ui/components/form/label';
 import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
-import { Currency } from '&shared/enum/Currency';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
+import { actions as requireActions } from '&front/app/utility/require.actions';
+import {
+  selectDefaultCurrency,
+  selectDefaultCurrencyIsAvailable,
+} from '&front/app/profile/default_currency.selectors';
+import { RequireType } from '&front/app/utility/require.types';
 
 import { pushRoute } from '../routing';
 import * as styles from './Profile.css';
 
 export const Profile = () => {
-  const dispatch = useThunk();
+  const dispatchThunk = useThunk();
+  const dispatch = useDispatch();
   const notify = useNotifyAlert();
 
-  const { defaultCurrency, weekStartsOnMonday } = useMemoState(
-    () => getProfile,
-    fetchUserProfile,
-    [],
-  );
+  useEffect(() => {
+    dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
+  }, []);
 
-  const [currency, setCurrency] = useState<Currency>(defaultCurrency);
-  const [onMonday, setOnMonday] = useState(weekStartsOnMonday);
+  const defaultCurrency = useMappedState(selectDefaultCurrency);
+  const isReady = useMappedState(selectDefaultCurrencyIsAvailable);
+
+  const [currency, setCurrency] = useState(defaultCurrency);
+
+  useEffect(() => {
+    setCurrency(defaultCurrency);
+  }, [defaultCurrency]);
 
   const saved = useCallback(() => notify('Saved'), [notify]);
   const bound = useCallback(
@@ -42,24 +49,18 @@ export const Profile = () => {
   );
 
   const handleGoogleLogin = useCallback(async (profile: GoogleProfile) => {
-    await dispatch(bindGoogle(profile));
+    await dispatchThunk(bindGoogle(profile));
     bound('google');
   }, []);
 
   useEffect(() => {
-    if (currency !== defaultCurrency) {
-      dispatch(setDefaultCurrency(currency)).then(saved);
+    if (currency && currency !== defaultCurrency) {
+      dispatchThunk(setDefaultCurrency(currency)).then(saved);
     }
   }, [currency, saved, defaultCurrency]);
 
-  useEffect(() => {
-    if (onMonday !== weekStartsOnMonday) {
-      dispatch(setWeekStart(onMonday)).then(saved);
-    }
-  }, [onMonday, saved, weekStartsOnMonday]);
-
   const logout = useCallback(async () => {
-    dispatch(signOut());
+    dispatchThunk(signOut());
     await pushRoute('/');
   }, []);
 
@@ -74,11 +75,13 @@ export const Profile = () => {
 
         <Card title="Настройки">
           <Label text="Валюта по умолчанию">
-            <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
-          </Label>
-
-          <Label text="Неделя начинается с понедельника">
-            <Checkbox value={onMonday} onChange={(v) => setOnMonday(!!v)} />
+            {!isReady && 'Loading...'}
+            {isReady && (
+              <CurrencySwitch
+                currency={currency!}
+                updateCurrency={setCurrency}
+              />
+            )}
           </Label>
         </Card>
 

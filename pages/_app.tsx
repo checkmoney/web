@@ -12,7 +12,6 @@ import { Option } from 'tsoption';
 
 import { AppContext } from '&front/domain/AppContext';
 import { WithReduxProps, withReduxStore } from '&front/domain/store';
-import { fetchUserProfile } from '&front/domain/user/actions/fetchUserProfile';
 import { actions as dataActions } from '&front/domain/user/reducer/data';
 import { getToken } from '&front/domain/user/selectors/getToken';
 import { pushRoute, routeAnimations } from '&front/features/routing';
@@ -28,7 +27,6 @@ class CheckmoneyWeb extends App<WithReduxProps> {
 
     if (token.nonEmpty()) {
       ctx.reduxStore.dispatch(dataActions.setToken(token.get()));
-      await ctx.reduxStore.dispatch(fetchUserProfile() as any);
     }
 
     const isSecure = !!(appContext.Component as any).isSecure;

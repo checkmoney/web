@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
-import { useMappedState } from 'redux-react-hook';
+import { useMappedState, useDispatch } from 'redux-react-hook';
 
 import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
 import { fetchSources } from '&front/domain/money/actions/fetchSources';
@@ -9,7 +9,6 @@ import { getCreateIncomeFetching } from '&front/domain/money/selectors/getCreate
 import { getCreateOutcomeFetching } from '&front/domain/money/selectors/getCreateOutcomeFetching';
 import { getSources } from '&front/domain/money/selectors/getSources';
 import { useThunk } from '&front/domain/store';
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
 import {
   DatePicker,
   EnumSelect,
@@ -24,6 +23,13 @@ import { LoadingButton } from '&front/ui/components/form/loading-button';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
 import { Currency } from '&shared/enum/Currency';
+import { actions as requireActions } from '&front/app/utility/require.actions';
+import { RequireType } from '&front/app/utility/require.types';
+import {
+  selectDefaultCurrency,
+  selectDefaultCurrencyIsAvailable,
+} from '&front/app/profile/default_currency.selectors';
+import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
 
 import * as styles from './CreateTransaction.css';
 import { getCommentByKind } from './helpers/getCommentByKind';
@@ -36,11 +42,13 @@ interface Props {
 }
 
 export const CreateTransaction = ({ className }: Props) => {
-  const dispatch = useThunk();
+  const dispatchThunk = useThunk();
+  const dispatch = useDispatch();
 
   const onSubmit = useOnSubmit();
 
-  const defaultCurrency = useMappedState(getDefaultCurrency);
+  const defaultCurrency = useMappedState(selectDefaultCurrency);
+  const isLoaded = useMappedState(selectDefaultCurrencyIsAvailable);
 
   const outcomeFetching = useMappedState(getCreateOutcomeFetching);
   const incomeFetching = useMappedState(getCreateIncomeFetching);
@@ -49,8 +57,10 @@ export const CreateTransaction = ({ className }: Props) => {
   const existSources = useMappedState(getSources);
   const existCategories = useMappedState(getCategories);
   useEffect(() => {
-    dispatch(fetchSources());
-    dispatch(fetchCategories());
+    dispatchThunk(fetchSources());
+    dispatchThunk(fetchCategories());
+
+    dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
   }, []);
 
   const getVariants = useCallback(
@@ -61,6 +71,14 @@ export const CreateTransaction = ({ className }: Props) => {
       }[kind]),
     [existSources, existCategories],
   );
+
+  if (!isLoaded) {
+    return (
+      <Card title="Новая транзакция">
+        <Skeleton rows={7} />
+      </Card>
+    );
+  }
 
   return (
     <Form

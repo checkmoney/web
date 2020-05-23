@@ -10,7 +10,7 @@ import {
   selectCategoriesHasError,
 } from '&front/app/statistics/categories.selectors';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
+import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { pushRoute } from '&front/features/routing';
 import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
@@ -31,7 +31,7 @@ interface Props {
 }
 
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
-  const currency = useMappedState(getDefaultCurrency);
+  const currency = useMappedState(selectStatisticsCurrency);
   const isSmall = useMedia({ maxWidth: 768 });
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
@@ -90,7 +90,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
               <PieChart
                 dataSets={preparedData.get()}
                 displayValue={(value) =>
-                  displayMoney(currency)(value, { withPenny: false })
+                  displayMoney(currency!)(value, { withPenny: false })
                 }
                 fitToContainer={isSmall}
               />

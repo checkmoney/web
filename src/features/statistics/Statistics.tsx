@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
+import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
@@ -19,7 +19,7 @@ const columnWidthPercent = 40;
 const maxLength = 5;
 
 export const Statistics = () => {
-  const currency = useMappedState(getDefaultCurrency);
+  const currency = useMappedState(selectStatisticsCurrency);
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
@@ -28,21 +28,21 @@ export const Statistics = () => {
           <Dynamics group={group} />
           <Categories
             group={group}
-            currency={currency}
+            currency={currency!}
             widthPercent={columnWidthPercent}
             maxLength={maxLength}
           />
           <Sources
             group={group}
-            currency={currency}
+            currency={currency!}
             widthPercent={columnWidthPercent}
             maxLength={maxLength}
           />
         </aside>
 
         <div className={styles.charts}>
-          {group === GroupBy.Month && <Monthly currency={currency} />}
-          {group === GroupBy.Year && <Yearly currency={currency} />}
+          {group === GroupBy.Month && <Monthly currency={currency!} />}
+          {group === GroupBy.Year && <Yearly currency={currency!} />}
         </div>
       </Tab>
     ),

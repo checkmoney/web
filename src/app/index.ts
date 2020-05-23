@@ -5,17 +5,33 @@ import {
   CategoriesState,
   categoriesReducer,
 } from './statistics/categories.reducers';
+import {
+  DefaultCurrencyState,
+  defaultCurrencyReducer,
+} from './profile/default_currency.reducers';
 import { handleCategoriesFetchingSaga } from './statistics/categories.sagas';
 import { GrowState, growReducer } from './statistics/grow.reducers';
 import { handleGrowFetchingSaga } from './statistics/grow.sagas';
 import { PeriodsState, periodsReducer } from './statistics/periods.reducers';
 import { handlePeriodsFetchingSaga } from './statistics/periods.sagas';
+import { handleLogoutSaga } from './auth/auth.sagas';
+import { handleRouterPushSaga } from './router/router.sagas';
+import { handleDefaultCurrencyFetchingSaga } from './profile/default_currency.sagas';
+import { handleRequireRemoteDataSaga } from './utility/require.sagas';
+import {
+  StatisticsMetaState,
+  statisticsMetaReducer,
+} from './statistics/meta.reducers';
 
 export function* applicationSaga() {
   yield all([
     handleGrowFetchingSaga(),
     handleCategoriesFetchingSaga(),
     handlePeriodsFetchingSaga(),
+    handleDefaultCurrencyFetchingSaga(),
+    handleRequireRemoteDataSaga(),
+    handleRouterPushSaga(),
+    handleLogoutSaga(),
   ]);
 }
 
@@ -24,6 +40,10 @@ export interface ApplicationState {
     grow: GrowState;
     categories: CategoriesState;
     periods: PeriodsState;
+    meta: StatisticsMetaState;
+  };
+  profile: {
+    defaultCurrency: DefaultCurrencyState;
   };
 }
 
@@ -32,5 +52,9 @@ export const applicationReducer = combineReducers({
     grow: growReducer,
     categories: categoriesReducer,
     periods: periodsReducer,
+    meta: statisticsMetaReducer,
+  }),
+  profile: combineReducers({
+    defaultCurrency: defaultCurrencyReducer,
   }),
 });
