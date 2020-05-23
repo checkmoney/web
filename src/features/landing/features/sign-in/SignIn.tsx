@@ -7,12 +7,13 @@ import { useThunk } from '&front/domain/store';
 import { signIn } from '&front/domain/user/actions/signIn';
 import { getSignInFetching } from '&front/domain/user/selectors/getSignInFetching';
 import { Input } from '&front/features/final-form';
-import { pushRoute } from '&front/features/routing';
 import { InputType } from '&front/ui/components/form/input/InputType';
 import { Label } from '&front/ui/components/form/label';
 import { LoadingButton } from '&front/ui/components/form/loading-button';
 import { Card } from '&front/ui/components/layout/card';
 import { useErrorAlert } from '&front/ui/hooks/useErrorAlert';
+import { useBoundRouterActions } from '&front/app/router/router.utils';
+import { Route } from '&front/app/router/router.types';
 
 import * as styles from '../SignForm.css';
 
@@ -22,10 +23,11 @@ interface Props {
 
 export const SignIn = ({ className }: Props) => {
   const dispatch = useThunk();
+  const { pushRoute } = useBoundRouterActions(Route.Dashboard);
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signIn(email, password));
-    await pushRoute('/app');
+    pushRoute();
   }, []);
 
   const fetching = useMappedState(getSignInFetching);

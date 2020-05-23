@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import 'antd/dist/antd.css?CSSModulesDisable';
-import { Ampa } from '@ampa/nextjs';
 import { ModalContextProvider } from '@breadhead/use-modal';
 import { nextWithQuery } from '@breadhead/use-query';
 import App, { Container, NextAppContext } from 'next/app';
@@ -14,7 +13,7 @@ import { AppContext } from '&front/domain/AppContext';
 import { WithReduxProps, withReduxStore } from '&front/domain/store';
 import { actions as dataActions } from '&front/domain/user/reducer/data';
 import { getToken } from '&front/domain/user/selectors/getToken';
-import { pushRoute, routeAnimations } from '&front/features/routing';
+import { pushRoute } from '&front/features/routing';
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
@@ -50,12 +49,7 @@ class CheckmoneyWeb extends App<WithReduxProps> {
         <Provider store={reduxStore}>
           <StoreContext.Provider value={reduxStore}>
             <ModalContextProvider pushRoute={pushRoute}>
-              <Ampa
-                timeout={{ enter: 500, exit: 500 }}
-                routeAnimations={routeAnimations}
-              >
-                <Component {...pageProps} />
-              </Ampa>
+              <Component {...pageProps} />
             </ModalContextProvider>
           </StoreContext.Provider>
         </Provider>

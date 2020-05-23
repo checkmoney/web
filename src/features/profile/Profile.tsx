@@ -20,14 +20,16 @@ import {
   selectDefaultCurrencyIsAvailable,
 } from '&front/app/profile/default_currency.selectors';
 import { RequireType } from '&front/app/utility/require.types';
+import { useRouterActions } from '&front/app/router/router.utils';
+import { Route } from '&front/app/router/router.types';
 
-import { pushRoute } from '../routing';
 import * as styles from './Profile.css';
 
 export const Profile = () => {
   const dispatchThunk = useThunk();
   const dispatch = useDispatch();
   const notify = useNotifyAlert();
+  const { pushRoute } = useRouterActions();
 
   useEffect(() => {
     dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
@@ -61,12 +63,12 @@ export const Profile = () => {
 
   const logout = useCallback(async () => {
     dispatchThunk(signOut());
-    await pushRoute('/');
+    pushRoute(Route.Login);
   }, []);
 
   return (
     <Container>
-      <PageHeader title="Профиль" onBack={() => pushRoute('/app')} />
+      <PageHeader title="Профиль" onBack={() => pushRoute(Route.Dashboard)} />
 
       <section className={styles.container}>
         <Card title="Профиль">

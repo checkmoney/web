@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useRoutePrefetching } from '../routing';
 import { ForbiddenMessage } from './components/fornidden-message';
 import { HelloMessage } from './components/hello-message';
 import { SignIn } from './features/sign-in';
@@ -13,8 +12,6 @@ interface Props {
 }
 
 export const Landing = ({ forbidden = false }: Props) => {
-  useRoutePrefetching(['/hello', '/app']);
-
   return (
     <section className={styles.container}>
       {forbidden ? (

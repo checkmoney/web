@@ -15,7 +15,6 @@
     "release": "standard-version"
   },
   "dependencies": {
-    "@ampa/nextjs": "^1.0.1",
     "@breadhead/use-modal": "^1.1.1",
     "@breadhead/use-query": "^0.3.0",
     "@zeit/next-typescript": "^1.1.1",

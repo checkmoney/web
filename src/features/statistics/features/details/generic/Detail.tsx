@@ -11,13 +11,14 @@ import {
 } from '&front/app/statistics/categories.selectors';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
-import { pushRoute } from '&front/features/routing';
 import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
+import { Route } from '&front/app/router/router.types';
+import { useBoundRouterActions } from '&front/app/router/router.utils';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -33,6 +34,7 @@ interface Props {
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const currency = useMappedState(selectStatisticsCurrency);
   const isSmall = useMedia({ maxWidth: 768 });
+  const { pushRoute } = useBoundRouterActions(Route.Statistics);
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
 
@@ -68,7 +70,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   return (
     <Container>
-      <PageHeader title={detailTitle} onBack={() => pushRoute('/app/stats')} />
+      <PageHeader title={detailTitle} onBack={pushRoute} />
 
       <section className={styles.categories}>
         <aside className={styles.aside}>

@@ -10,13 +10,14 @@ import {
   selectCategoriesHasError,
 } from '&front/app/statistics/categories.selectors';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
-import { pushRoute } from '&front/features/routing';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button, ButtonType } from '&front/ui/components/form/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
+import { Route } from '&front/app/router/router.types';
+import { useBoundRouterActions } from '&front/app/router/router.utils';
 
 interface Props {
   className?: string;
@@ -50,6 +51,7 @@ export const Sources = ({
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
   const dateRange = useMemo(() => new Interval(from, to), [from, to]);
   const dispatch = useDispatch();
+  const { pushRoute } = useBoundRouterActions(Route.DetailedStatistics);
 
   useEffect(() => {
     dispatch(actions.started({ periodType: group, dateRange }));
@@ -86,7 +88,7 @@ export const Sources = ({
       footer={
         <Button
           type={ButtonType.Text}
-          onClick={() => pushRoute(`/app/stats/sources/${group}`)}
+          onClick={() => pushRoute({ type: 'sources', group })}
         >
           Подробнее
         </Button>

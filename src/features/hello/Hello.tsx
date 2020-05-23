@@ -2,23 +2,23 @@ import React, { useCallback, useState } from 'react';
 
 import { useThunk } from '&front/domain/store';
 import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
-import { pushRoute, useRoutePrefetching } from '&front/features/routing';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Button } from '&front/ui/components/form/button';
 import { Currency } from '&shared/enum/Currency';
+import { Route } from '&front/app/router/router.types';
+import { useBoundRouterActions } from '&front/app/router/router.utils';
 
 import * as styles from './Hello.css';
 
 export const Hello = () => {
-  useRoutePrefetching(['/app']);
-
   const dispatchThunk = useThunk();
+  const { pushRoute } = useBoundRouterActions(Route.Dashboard);
 
   const [currency, setCurrency] = useState(Currency.USD);
 
   const next = useCallback(async () => {
     await dispatchThunk(setDefaultCurrency(currency));
-    pushRoute('/app');
+    pushRoute();
   }, [currency]);
 
   return (

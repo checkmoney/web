@@ -1,13 +1,14 @@
 import { takeLatest, put } from 'redux-saga/effects';
 
 import { actions } from './auth.actions';
-import { actions as routerActions } from '../router/router.actions';
+import { routerActions } from '../router/router.actions';
+import { Route } from '../router/router.types';
 
 export function* handleLogoutSaga() {
   yield takeLatest(
     actions.unauthorized.type,
     function* handleUnauthorizedAction() {
-      yield put(routerActions.push('/'));
+      yield put(routerActions.push(Route.Login));
     },
   );
 }
