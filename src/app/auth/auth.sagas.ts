@@ -8,7 +8,7 @@ export function* handleLogoutSaga() {
   yield takeLatest(
     actions.unauthorized.type,
     function* handleUnauthorizedAction() {
-      yield put(routerActions.push(Route.Login));
+      yield put(routerActions.push({ route: Route.Login }));
     },
   );
 }
