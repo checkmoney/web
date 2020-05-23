@@ -1,7 +1,7 @@
 import { PageHeader as AntPageHeader } from 'antd';
 import React from 'react';
 
-import './AntPageHeader.css?CSSModulesDisable';
+import './AntPageHeader.css';
 
 interface Props {
   onBack: () => void;

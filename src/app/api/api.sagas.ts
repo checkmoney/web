@@ -1,4 +1,3 @@
-import getConfig from 'next/config';
 import { put, call } from 'redux-saga/effects';
 
 import { StatisticsApi } from '&front/app/api/parts/StatisticsApi';
@@ -6,9 +5,9 @@ import { actions as authAction } from '&front/app/auth/auth.actions';
 
 import { ProfileApi } from './parts/ProfileApi';
 import { retrieveToken } from '../auth/auth.utils';
+import { config } from '../config';
 
-const { publicRuntimeConfig } = getConfig();
-const { statsUrl, backUrl } = publicRuntimeConfig;
+const { statsUrl, backUrl } = config;
 
 export function* createStatisticsApi() {
   const token: ReturnType<typeof retrieveToken> = yield call(retrieveToken);
