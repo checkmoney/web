@@ -2,12 +2,14 @@ import React, { useMemo } from 'react';
 import { useMappedState } from 'redux-react-hook';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
+import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
 import { useEnvironment } from '&front/ui/hooks/useEnvironment';
 import { useWindowSize } from '&front/ui/hooks/useWindowSize';
+import { useMemoState } from '&front/domain/store';
 
 import { pushRoute } from '../routing';
 import { TransactionList } from './components/transaction-list';
@@ -15,7 +17,11 @@ import { createMonths } from './helpers/createMonths';
 import * as styles from './History.css';
 
 export const History = () => {
-  const firstTransactionDate = useMappedState(getFirstTransactionDate);
+  const firstTransactionDate = useMemoState(
+    () => getFirstTransactionDate,
+    fetchFirstTransactionDate,
+    [],
+  );
   const { isClient } = useEnvironment();
 
   const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [

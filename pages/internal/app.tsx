@@ -1,17 +1,11 @@
 import * as React from 'react';
 
-import { AppContext } from '&front/domain/AppContext';
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { App } from '&front/features/app';
 
 class AppPage extends React.Component {
   public static isSecure = true;
 
-  public static async getInitialProps({ reduxStore }: AppContext) {
-    await Promise.all([
-      reduxStore.dispatch(fetchFirstTransactionDate() as any),
-    ]);
-
+  public static async getInitialProps() {
     return {};
   }
 
