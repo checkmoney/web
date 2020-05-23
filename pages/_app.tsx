@@ -5,33 +5,11 @@ import Head from 'next/head';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { StoreContext } from 'redux-react-hook';
-import { Option } from 'tsoption';
 
-import { AppContext } from '&front/domain/AppContext';
 import { WithReduxProps, withReduxStore } from '&front/domain/store';
-import { actions as dataActions } from '&front/domain/user/reducer/data';
-import { getToken } from '&front/domain/user/selectors/getToken';
-import { pushRoute } from '&front/features/routing';
 
 class CheckmoneyWeb extends App<WithReduxProps> {
   public static async getInitialProps(appContext: NextAppContext) {
-    const ctx: AppContext = appContext.ctx as any;
-
-    const token = Option.of(ctx)
-      .flatMap((context) => Option.of(context.req))
-      .flatMap((request) => Option.of(request.cookies))
-      .flatMap((cookies) => Option.of(cookies.token));
-
-    if (token.nonEmpty()) {
-      ctx.reduxStore.dispatch(dataActions.setToken(token.get()));
-    }
-
-    const isSecure = !!(appContext.Component as any).isSecure;
-    const loggedIn = getToken(ctx.reduxStore.getState()).nonEmpty();
-    if (isSecure && !loggedIn) {
-      await pushRoute('/forbidden', Option.of(ctx));
-    }
-
     return App.getInitialProps(appContext);
   }
 

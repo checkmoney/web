@@ -1,17 +1,17 @@
 import getConfig from 'next/config';
-import { select, put } from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 
 import { StatisticsApi } from '&front/app/api/parts/StatisticsApi';
-import { getTokenValue } from '&front/domain/user/selectors/getToken';
 import { actions as authAction } from '&front/app/auth/auth.actions';
 
 import { ProfileApi } from './parts/ProfileApi';
+import { retrieveToken } from '../auth/auth.utils';
 
 const { publicRuntimeConfig } = getConfig();
 const { statsUrl, backUrl } = publicRuntimeConfig;
 
 export function* createStatisticsApi() {
-  const token: ReturnType<typeof getTokenValue> = yield select(getTokenValue);
+  const token: ReturnType<typeof retrieveToken> = yield call(retrieveToken);
 
   if (!token) {
     yield put(authAction.unauthorized());
@@ -24,7 +24,7 @@ export function* createStatisticsApi() {
 }
 
 export function* createProfileApi() {
-  const token: ReturnType<typeof getTokenValue> = yield select(getTokenValue);
+  const token: ReturnType<typeof retrieveToken> = yield call(retrieveToken);
 
   if (!token) {
     yield put(authAction.unauthorized());

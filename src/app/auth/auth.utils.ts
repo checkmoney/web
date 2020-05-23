@@ -1,11 +1,20 @@
+import Cookie from 'js-cookie';
 import { Base64 } from 'js-base64';
 import { dropRight, flow } from 'lodash';
-import { createSelector } from 'reselect';
-import { Option } from 'tsoption';
 
 import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
 
-import { getToken } from './getToken';
+export function retrieveToken() {
+  return Cookie.get('token');
+}
+
+export function updateToken(token: string) {
+  return Cookie.set('token', token);
+}
+
+export function eraseToken() {
+  return Cookie.remove('token');
+}
 
 const removeSignature = (token: string) =>
   dropRight(token.split('.'), 1).join('.');
@@ -22,16 +31,11 @@ const mergeObjects = (objects: object[]) =>
     {},
   );
 
-export const getDecodedToken = createSelector(
-  getToken,
-  (token): Option<TokenPayloadModel> =>
-    token.map(
-      flow([
-        removeSignature,
-        Base64.decode,
-        getJsonMatches,
-        parseJson,
-        mergeObjects,
-      ]),
-    ),
-);
+export const decodeToken = (token: string): TokenPayloadModel =>
+  flow([
+    removeSignature,
+    Base64.decode,
+    getJsonMatches,
+    parseJson,
+    mergeObjects,
+  ])(token);

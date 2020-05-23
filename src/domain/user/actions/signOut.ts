@@ -1,13 +1,7 @@
 import { fetchOrFail } from '&front/domain/store';
-
-import { resetCookie } from '../helpers/resetCookie';
-import { actions as dataActions } from '../reducer/data';
-
-const { resetToken } = dataActions;
+import { eraseToken } from '&front/app/auth/auth.utils';
 
 export const signOut = () =>
-  fetchOrFail(undefined, async (dispatch) => {
-    resetCookie();
-
-    dispatch(resetToken());
+  fetchOrFail(undefined, async (_) => {
+    eraseToken();
   });
