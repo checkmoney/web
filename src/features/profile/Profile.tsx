@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useMappedState } from 'redux-react-hook';
+import { useRouter } from 'react-router5';
 
 import { useThunk } from '&front/domain/store';
 import { bindGoogle } from '&front/domain/user/actions/bindGoogle';
@@ -20,8 +21,7 @@ import {
   selectDefaultCurrencyIsAvailable,
 } from '&front/app/profile/default_currency.selectors';
 import { RequireType } from '&front/app/utility/require.types';
-import { useRouter } from '&front/app/router/router.utils';
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 
 import * as styles from './Profile.css';
 
@@ -29,7 +29,7 @@ export const Profile = () => {
   const dispatchThunk = useThunk();
   const dispatch = useDispatch();
   const notify = useNotifyAlert();
-  const { pushRoute } = useRouter();
+  const { navigate } = useRouter();
 
   useEffect(() => {
     dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
@@ -63,12 +63,12 @@ export const Profile = () => {
 
   const logout = useCallback(async () => {
     dispatchThunk(signOut());
-    pushRoute(Route.Login);
+    navigate(Route.Login);
   }, []);
 
   return (
     <Container>
-      <PageHeader title="Профиль" onBack={() => pushRoute(Route.Dashboard)} />
+      <PageHeader title="Профиль" onBack={() => navigate(Route.Dashboard)} />
 
       <section className={styles.container}>
         <Card title="Профиль">

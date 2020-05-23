@@ -2,6 +2,7 @@ import cx from 'classnames';
 import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
 import { useMappedState } from 'redux-react-hook';
+import { useRouter } from 'react-router5';
 
 import { useThunk } from '&front/domain/store';
 import { signUp } from '&front/domain/user/actions/signUp';
@@ -12,8 +13,7 @@ import { Label } from '&front/ui/components/form/label';
 import { LoadingButton } from '&front/ui/components/form/loading-button';
 import { Card } from '&front/ui/components/layout/card';
 import { useErrorAlert } from '&front/ui/hooks/useErrorAlert';
-import { useBoundRouter } from '&front/app/router/router.utils';
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 
 import * as styles from '../SignForm.css';
 
@@ -23,11 +23,11 @@ interface Props {
 
 export const SignUp = ({ className }: Props) => {
   const dispatch = useThunk();
-  const { pushRoute } = useBoundRouter(Route.Hello);
+  const { navigate } = useRouter();
 
   const onSubmit = useCallback(async ({ email, password }) => {
     await dispatch(signUp(email, password));
-    pushRoute();
+    navigate(Route.Hello);
   }, []);
 
   const fetching = useMappedState(getSignUpFetching);

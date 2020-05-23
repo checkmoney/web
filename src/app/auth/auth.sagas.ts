@@ -1,8 +1,7 @@
 import { takeLatest, call } from 'redux-saga/effects';
 
 import { actions } from './auth.actions';
-import { Route } from '../router/router.types';
-import { router } from '../router/router';
+import { router, Route } from '../router';
 
 export function* handleLogoutSaga() {
   yield takeLatest(

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useRouter } from 'react-router5';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
@@ -9,8 +10,7 @@ import { Tab, Tabs } from '&front/ui/components/layout/tabs';
 import { useEnvironment } from '&front/ui/hooks/useEnvironment';
 import { useWindowSize } from '&front/ui/hooks/useWindowSize';
 import { useMemoState } from '&front/domain/store';
-import { Route } from '&front/app/router/router.types';
-import { useBoundRouter } from '&front/app/router/router.utils';
+import { Route } from '&front/app/router';
 
 import { TransactionList } from './components/transaction-list';
 import { createMonths } from './helpers/createMonths';
@@ -23,7 +23,7 @@ export const History = () => {
     [],
   );
   const { isClient } = useEnvironment();
-  const { pushRoute } = useBoundRouter(Route.Dashboard);
+  const { navigate } = useRouter();
 
   const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [
     firstTransactionDate,
@@ -35,7 +35,7 @@ export const History = () => {
 
   return (
     <Container>
-      <PageHeader title="История" onBack={pushRoute} />
+      <PageHeader title="История" onBack={() => navigate(Route.Dashboard)} />
 
       {isClient && (
         <Tabs

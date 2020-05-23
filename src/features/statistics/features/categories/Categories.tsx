@@ -2,6 +2,7 @@ import { take } from 'lodash';
 import React, { useMemo, useEffect } from 'react';
 import { useDispatch } from 'redux-react-hook';
 import { Option } from 'tsoption';
+import { useRouter } from 'react-router5';
 
 import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
@@ -16,8 +17,7 @@ import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
-import { useBoundRouter } from '&front/app/router/router.utils';
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 
 interface Props {
   className?: string;
@@ -51,7 +51,7 @@ export const Categories = ({
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
   const dateRange = useMemo(() => new Interval(from, to), [from, to]);
   const dispatch = useDispatch();
-  const { pushRoute } = useBoundRouter(Route.DetailedStatistics);
+  const { navigate } = useRouter();
 
   useEffect(() => {
     dispatch(actions.started({ periodType: group, dateRange }));
@@ -88,7 +88,9 @@ export const Categories = ({
       footer={
         <Button
           type={ButtonType.Text}
-          onClick={() => pushRoute({ type: 'categories', group })}
+          onClick={() =>
+            navigate(Route.DetailedStatistics, { type: 'categories', group })
+          }
         >
           Подробнее
         </Button>

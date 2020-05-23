@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useMappedState, useDispatch } from 'redux-react-hook';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
+import { useRouter } from 'react-router5';
 
 import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
@@ -17,8 +18,7 @@ import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
-import { Route } from '&front/app/router/router.types';
-import { useBoundRouter } from '&front/app/router/router.utils';
+import { Route } from '&front/app/router';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -34,7 +34,7 @@ interface Props {
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const currency = useMappedState(selectStatisticsCurrency);
   const isSmall = useMedia({ maxWidth: 768 });
-  const { pushRoute } = useBoundRouter(Route.Statistics);
+  const { navigate } = useRouter();
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
 
@@ -70,7 +70,10 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   return (
     <Container>
-      <PageHeader title={detailTitle} onBack={pushRoute} />
+      <PageHeader
+        title={detailTitle}
+        onBack={() => navigate(Route.Statistics)}
+      />
 
       <section className={styles.categories}>
         <aside className={styles.aside}>

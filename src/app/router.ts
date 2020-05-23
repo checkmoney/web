@@ -1,7 +1,16 @@
 import createRouter from 'router5';
 import browserPlugin from 'router5-plugin-browser';
 
-import { Route } from './router.types';
+export enum Route {
+  Login = '/',
+  Dashboard = '/app',
+  Hello = '/hello',
+  History = '/app/history',
+  Profile = '/app/profile',
+  Statistics = '/app/stats',
+  DetailedStatistics = '/app/stats/:type/:group',
+  Manager = '/manager',
+}
 
 const routes = [
   { name: Route.Login, path: '/' },

@@ -8,7 +8,7 @@ import { StoreContext } from 'redux-react-hook';
 import { RouterProvider } from 'react-router5';
 
 import { WithReduxProps, withReduxStore } from '&front/domain/store';
-import { router } from '&front/app/router/router';
+import { router } from '&front/app/router';
 import { Application } from '&front/presentation/Application';
 
 class CheckmoneyWeb extends App<WithReduxProps> {

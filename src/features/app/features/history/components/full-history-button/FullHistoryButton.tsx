@@ -1,18 +1,18 @@
 import React from 'react';
+import { useRouter } from 'react-router5';
 
 import { Button, ButtonType } from '&front/ui/components/form/button';
-import { useBoundRouter } from '&front/app/router/router.utils';
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 
 import * as styles from './FullHistoryButton.css';
 
 export const FullHistoryButton = () => {
-  const { pushRoute } = useBoundRouter(Route.History);
+  const { navigate } = useRouter();
 
   return (
     <Button
       className={styles.button}
-      onClick={pushRoute}
+      onClick={() => navigate(Route.History)}
       type={ButtonType.Text}
     >
       Полная история

@@ -1,9 +1,9 @@
 import React from 'react';
+import { useRouter } from 'react-router5';
 
 import { Button, ButtonType } from '&front/ui/components/form/button';
 import { GroupBy } from '&shared/enum/GroupBy';
-import { useBoundRouter } from '&front/app/router/router.utils';
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 
 interface Props {
   group?: GroupBy;
@@ -12,11 +12,13 @@ interface Props {
 
 export const ShowMonth = ({ group, detailType }: Props) => {
   const showMonth = !group || group !== GroupBy.Month;
-  const { pushRoute } = useBoundRouter(Route.DetailedStatistics);
+  const { navigate } = useRouter();
 
   return showMonth ? (
     <Button
-      onClick={() => pushRoute({ type: detailType, group: 'month' })}
+      onClick={() =>
+        navigate(Route.DetailedStatistics, { type: detailType, group: 'month' })
+      }
       type={ButtonType.Secondary}
     >
       Показать за месяц

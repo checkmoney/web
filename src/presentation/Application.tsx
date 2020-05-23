@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRoute } from 'react-router5';
 
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 import { Landing } from '&front/features/landing';
 import { App } from '&front/features/app';
 import { Hello } from '&front/features/hello';

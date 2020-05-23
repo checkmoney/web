@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { useMappedState } from 'redux-react-hook';
+import { useRouter } from 'react-router5';
 
 import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
 import { GroupBy } from '&shared/enum/GroupBy';
-import { useBoundRouter } from '&front/app/router/router.utils';
-import { Route } from '&front/app/router/router.types';
+import { Route } from '&front/app/router';
 
 import { Categories } from './features/categories';
 import { Dynamics } from './features/dynamics';
@@ -21,7 +21,7 @@ const maxLength = 5;
 
 export const Statistics = () => {
   const currency = useMappedState(selectStatisticsCurrency);
-  const { pushRoute } = useBoundRouter(Route.Dashboard);
+  const { navigate } = useRouter();
 
   const renderContent = useCallback(
     (title: string, group: GroupBy.Month | GroupBy.Year) => (
@@ -53,7 +53,7 @@ export const Statistics = () => {
 
   return (
     <Container>
-      <PageHeader title="Статистика" onBack={pushRoute} />
+      <PageHeader title="Статистика" onBack={() => navigate(Route.Dashboard)} />
 
       <Tabs>
         {renderContent('Месяц', GroupBy.Month)}
