@@ -7,7 +7,8 @@ import { ProfileApi } from './parts/ProfileApi';
 import { retrieveToken } from '../auth/auth.utils';
 import { config } from '../config';
 
-const { statsUrl, backUrl } = config;
+const statsUrl = config('STATS_URL');
+const backUrl = config('BACK_URL');
 
 export function* createStatisticsApi() {
   const token: ReturnType<typeof retrieveToken> = yield call(retrieveToken);

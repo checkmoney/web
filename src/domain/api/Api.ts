@@ -3,7 +3,7 @@ import { Option } from 'tsoption';
 
 import { config } from '&front/app/config';
 
-const { backUrl } = config;
+const backUrl = config('BACK_URL');
 
 export class Api {
   public get client() {

@@ -5,7 +5,7 @@ import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
 import { config } from '&front/app/config';
 
-const { googleClientId } = config;
+const googleClientId = config('GOOGLE_CLIENT_ID');
 
 interface Props {
   onLogin: (profile: GoogleProfile) => any;
