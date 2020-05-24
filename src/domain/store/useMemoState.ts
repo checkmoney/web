@@ -1,6 +1,6 @@
 import { isFunction } from 'lodash';
 import { useCallback, useEffect } from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 
 import { State } from './State';
 import { useThunk } from './useThunk';
@@ -14,7 +14,7 @@ export const useMemoState = <T>(
 
   const selector = useCallback(createSelector(), deps);
 
-  const state = useMappedState(selector);
+  const state = useSelector(selector);
 
   const isEmpty = useCallback(() => {
     if (state && isFunction((state as any).isEmpty)) {

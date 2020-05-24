@@ -1,6 +1,6 @@
 import { endOfYear, format, startOfYear } from 'date-fns';
 import React, { useMemo, useEffect } from 'react';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import { useMedia } from 'use-media';
 

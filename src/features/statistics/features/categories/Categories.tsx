@@ -1,6 +1,6 @@
 import { take } from 'lodash';
 import React, { useMemo, useEffect } from 'react';
-import { useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import { useRouter } from 'react-router5';
 

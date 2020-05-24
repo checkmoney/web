@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
 import { fetchSources } from '&front/domain/money/actions/fetchSources';
@@ -47,15 +47,15 @@ export const CreateTransaction = ({ className }: Props) => {
 
   const onSubmit = useOnSubmit();
 
-  const defaultCurrency = useMappedState(selectDefaultCurrency);
-  const isLoaded = useMappedState(selectDefaultCurrencyIsAvailable);
+  const defaultCurrency = useSelector(selectDefaultCurrency);
+  const isLoaded = useSelector(selectDefaultCurrencyIsAvailable);
 
-  const outcomeFetching = useMappedState(getCreateOutcomeFetching);
-  const incomeFetching = useMappedState(getCreateIncomeFetching);
+  const outcomeFetching = useSelector(getCreateOutcomeFetching);
+  const incomeFetching = useSelector(getCreateIncomeFetching);
   const fetching = mergeFetchingState(outcomeFetching, incomeFetching);
 
-  const existSources = useMappedState(getSources);
-  const existCategories = useMappedState(getCategories);
+  const existSources = useSelector(getSources);
+  const existCategories = useSelector(getCategories);
   useEffect(() => {
     dispatchThunk(fetchSources());
     dispatchThunk(fetchCategories());

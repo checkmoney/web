@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 import { ThunkAction } from 'redux-thunk';
 
 import { ExtraArg } from './ExtraArg';

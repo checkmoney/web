@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useSelector, useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
 import { useRouter } from 'react-router5';
@@ -32,7 +32,7 @@ interface Props {
 }
 
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
-  const currency = useMappedState(selectStatisticsCurrency);
+  const currency = useSelector(selectStatisticsCurrency);
   const isSmall = useMedia({ maxWidth: 768 });
   const { navigate } = useRouter();
 

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'react-router5';
 
 import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
@@ -20,7 +20,7 @@ const columnWidthPercent = 40;
 const maxLength = 5;
 
 export const Statistics = () => {
-  const currency = useMappedState(selectStatisticsCurrency);
+  const currency = useSelector(selectStatisticsCurrency);
   const { navigate } = useRouter();
 
   const renderContent = useCallback(

@@ -1,6 +1,6 @@
 import { endOfMonth, startOfMonth } from 'date-fns';
 import React, { useMemo, useCallback } from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 
 import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
 import { getHistory } from '&front/domain/money/selectors/getHistory';
@@ -24,7 +24,7 @@ const from = wantUTC(startOfMonth)(new Date());
 const to = wantUTC(endOfMonth)(new Date());
 
 export const History = ({ className }: Props) => {
-  const fetching = useMappedState(getHistoryFetchingStatus);
+  const fetching = useSelector(getHistoryFetchingStatus);
 
   const history = useMemoState(
     () => getHistory(from, to, groupBy),

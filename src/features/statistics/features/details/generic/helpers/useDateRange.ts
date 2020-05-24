@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useMappedState } from 'redux-react-hook';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';

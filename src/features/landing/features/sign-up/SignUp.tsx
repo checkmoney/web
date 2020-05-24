@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import React, { useCallback } from 'react';
 import { Form } from 'react-final-form';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'react-router5';
 
 import { useThunk } from '&front/domain/store';
@@ -30,7 +30,7 @@ export const SignUp = ({ className }: Props) => {
     navigate(Route.Hello);
   }, []);
 
-  const fetching = useMappedState(getSignUpFetching);
+  const fetching = useSelector(getSignUpFetching);
   useErrorAlert(fetching.error);
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 
 import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
 import { getHistory } from '&front/domain/money/selectors/getHistory';
@@ -31,7 +31,7 @@ export const TransactionList = ({ from, to, classNames }: Props) => {
     [from, to],
   );
 
-  const fetching = useMappedState(getHistoryFetchingStatus);
+  const fetching = useSelector(getHistoryFetchingStatus);
 
   const incomeColumns = createColumns('comment', 'source');
   const incomes = historyToTableData(history, {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch, useMappedState } from 'redux-react-hook';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'react-router5';
 
 import { useThunk } from '&front/domain/store';
@@ -35,8 +35,8 @@ export const Profile = () => {
     dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
   }, []);
 
-  const defaultCurrency = useMappedState(selectDefaultCurrency);
-  const isReady = useMappedState(selectDefaultCurrencyIsAvailable);
+  const defaultCurrency = useSelector(selectDefaultCurrency);
+  const isReady = useSelector(selectDefaultCurrencyIsAvailable);
 
   const [currency, setCurrency] = useState(defaultCurrency);
 

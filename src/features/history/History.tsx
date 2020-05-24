@@ -7,7 +7,6 @@ import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
-import { useEnvironment } from '&front/ui/hooks/useEnvironment';
 import { useWindowSize } from '&front/ui/hooks/useWindowSize';
 import { useMemoState } from '&front/domain/store';
 import { Route } from '&front/app/router';
@@ -22,7 +21,6 @@ export const History = () => {
     fetchFirstTransactionDate,
     [],
   );
-  const { isClient } = useEnvironment();
   const { navigate } = useRouter();
 
   const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [
@@ -36,28 +34,22 @@ export const History = () => {
   return (
     <Container>
       <PageHeader title="История" onBack={() => navigate(Route.Dashboard)} />
-
-      {isClient && (
-        <Tabs
-          className={styles.tabs}
-          defaultSelected={defaultMonthTitle}
-          vertical={!isMobile}
-        >
-          {months.map((month) => (
-            <Tab
-              title={month.title}
-              className={styles.history}
-              key={month.title}
-            >
-              <TransactionList
-                from={month.from}
-                to={month.to}
-                classNames={styles}
-              />
-            </Tab>
-          ))}
-        </Tabs>
-      )}
+      <Tabs
+        className={styles.tabs}
+        defaultSelected={defaultMonthTitle}
+        vertical={!isMobile}
+      >
+        {months.map((month) => (
+          <Tab title={month.title} className={styles.history} key={month.title}>
+            <TransactionList
+              from={month.from}
+              to={month.to}
+              classNames={styles}
+            />
+          </Tab>
+        ))}
+      </Tabs>
+      )
     </Container>
   );
 };
