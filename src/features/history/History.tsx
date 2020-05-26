@@ -7,7 +7,6 @@ import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
-import { useWindowSize } from '&front/ui/hooks/useWindowSize';
 import { useMemoState } from '&front/domain/store';
 import { Route } from '&front/app/router';
 
@@ -28,17 +27,10 @@ export const History = () => {
   ]);
   const defaultMonthTitle = useMemo(() => translatedMonthTitle(new Date()), []);
 
-  const { innerWidth } = useWindowSize();
-  const isMobile = innerWidth && innerWidth < 768;
-
   return (
     <Container>
       <PageHeader title="История" onBack={() => navigate(Route.Dashboard)} />
-      <Tabs
-        className={styles.tabs}
-        defaultSelected={defaultMonthTitle}
-        vertical={!isMobile}
-      >
+      <Tabs className={styles.tabs} defaultSelected={defaultMonthTitle}>
         {months.map((month) => (
           <Tab title={month.title} className={styles.history} key={month.title}>
             <TransactionList
@@ -49,7 +41,6 @@ export const History = () => {
           </Tab>
         ))}
       </Tabs>
-      )
     </Container>
   );
 };

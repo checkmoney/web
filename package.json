@@ -14,9 +14,10 @@
     "release": "standard-version"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.1.0",
     "@samokat/abstract-env": "^1.1.1",
     "@samokat/parcel-plugin-real-env": "^1.0.0",
-    "antd": "^3.15.0",
+    "antd": "^4.2.5",
     "axios": "^0.18.0",
     "chart.js": "^2.7.3",
     "class-transformer": "^0.2.3",

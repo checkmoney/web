@@ -3,7 +3,6 @@ import React, { useMemo, useCallback } from 'react';
 
 import * as styles from './Table.css';
 import { TableProps } from './TableProps';
-import './AntTable.css';
 
 export const Table = <Data extends Array<{}>>({
   className,

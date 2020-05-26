@@ -2,7 +2,6 @@ import { Tabs as AntTabs } from 'antd';
 import { head } from 'lodash';
 import React, { ReactElement, useMemo, ReactNode } from 'react';
 
-import { getMode } from './helpers/getMode';
 import { TabProps } from './TabProps';
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
   className?: string;
   tabBarExtraContent?: ReactNode;
   defaultSelected?: string;
-  vertical?: boolean;
 }
 
 export const Tabs = ({
@@ -43,7 +41,7 @@ export const Tabs = ({
       defaultActiveKey={defaultActiveKey}
       className={className}
       tabBarExtraContent={tabBarExtraContent}
-      tabPosition={getMode(vertical)}
+      tabBarStyle={{ height: '45px' }}
     >
       {actualChildren.map((child) => (
         <AntTabs.TabPane
