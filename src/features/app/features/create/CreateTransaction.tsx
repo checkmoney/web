@@ -107,6 +107,7 @@ export const CreateTransaction = ({ className }: Props) => {
             >
               <AutoComplete
                 name="comment"
+                className={styles.input}
                 placeholder={getExampleByKind(values.kind)}
                 variants={getVariants(values.kind)}
               />
@@ -117,6 +118,7 @@ export const CreateTransaction = ({ className }: Props) => {
                 showSearch
                 name="currency"
                 options={Currency}
+                className={styles.input}
                 getLabel={translatedCurrency}
               />
             </Label>

@@ -25,7 +25,7 @@ const routes = [
 
 const router = createRouter(routes);
 
-router.usePlugin(browserPlugin({ useHash: true }));
+router.usePlugin(browserPlugin());
 
 router.start();
 

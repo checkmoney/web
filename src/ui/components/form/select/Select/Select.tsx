@@ -13,6 +13,7 @@ export const Select = ({
   showSearch = false,
   value,
   onChange,
+  className,
 }: SelectProps) => {
   const { currentValue, handleChange } = useCustomInput(value, onChange);
 
@@ -22,6 +23,7 @@ export const Select = ({
       value={currentValue}
       onChange={handleChange}
       filterOption={filterOption}
+      className={className}
     >
       {children.map((child) => (
         <AntOption key={child.props.value} {...child.props} />

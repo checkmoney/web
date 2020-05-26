@@ -3,4 +3,5 @@ export interface AutoCompleteProps {
   value?: string;
   variants: string[];
   placeholder?: string;
+  className?: string;
 }
