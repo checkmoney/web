@@ -77,7 +77,6 @@
     "eslint-plugin-import-helpers": "^1.0.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
-    "eslint-plugin-unicorn": "^18.0.1",
     "fast-check": "^1.15.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.3",

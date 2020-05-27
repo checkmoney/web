@@ -8,7 +8,7 @@ export const useErrorAlert = (
 ) => {
   useEffect(() => {
     if (error.nonEmpty()) {
-      const message = !!customMessage ? customMessage : error.get();
+      const message = customMessage || error.get();
 
       notification.error({
         message,
