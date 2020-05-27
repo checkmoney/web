@@ -16,7 +16,6 @@ export const Tabs = ({
   className,
   tabBarExtraContent,
   defaultSelected,
-  vertical = false,
 }: Props) => {
   const defaultActiveKey = useMemo(() => {
     if (defaultSelected !== undefined) {
@@ -28,14 +27,6 @@ export const Tabs = ({
     return firstChild ? firstChild.props.title : undefined;
   }, [children, defaultSelected]);
 
-  const actualChildren = useMemo(() => {
-    if (vertical) {
-      return children.reverse();
-    }
-
-    return children;
-  }, [vertical, children]);
-
   return (
     <AntTabs
       defaultActiveKey={defaultActiveKey}
@@ -43,7 +34,7 @@ export const Tabs = ({
       tabBarExtraContent={tabBarExtraContent}
       tabBarStyle={{ height: '45px' }}
     >
-      {actualChildren.map((child) => (
+      {children.map((child) => (
         <AntTabs.TabPane
           key={child.props.title}
           tab={child.props.title}

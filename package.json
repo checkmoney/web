@@ -30,9 +30,9 @@
     "js-base64": "^2.5.1",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.11",
-    "react": "^16.8.1",
+    "react": "^16.13.1",
     "react-chartjs-2": "^2.7.4",
-    "react-dom": "^16.8.1",
+    "react-dom": "^16.13.1",
     "react-final-form": "^4.0.2",
     "react-google-login": "^5.0.5",
     "react-redux": "^7.2.0",
@@ -62,7 +62,7 @@
     "@types/js-cookie": "^2.2.0",
     "@types/lodash": "^4.14.120",
     "@types/randomcolor": "^0.5.1",
-    "@types/react": "^16.8.2",
+    "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
@@ -95,7 +95,7 @@
     "stylelint": "^13.3.1",
     "stylelint-config-recess-order": "^2.0.4",
     "stylelint-config-recommended": "^3.0.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.9.3"
   },
   "husky": {
     "hooks": {

@@ -24,7 +24,5 @@
       "&front/*": ["./src/*"],
       "&shared/*": ["./shared/*"]
     }
-  },
-  "include": ["src/**/*", "pages/**/*", "shared/**/*", "./types.d.ts"],
-  "exclude": ["node_modules/**/*"]
+  }
 }

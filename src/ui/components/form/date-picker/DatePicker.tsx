@@ -11,7 +11,7 @@ export const DatePicker = ({ value, onChange }: DatePickerProps) => {
   const { currentValue, handleChange } = useCustomInput(value, onChange);
 
   const momentHandleChange = useCallback(
-    (date?: Moment) => handleChange(!!date ? date.toDate() : new Date()),
+    (date: Moment | null) => handleChange(date ? date.toDate() : new Date()),
     [handleChange],
   );
 
