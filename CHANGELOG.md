@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/checkmoney/web/compare/v1.1.3...v1.1.4) (2020-05-27)
+
+### Bug Fixes
+
+- fix nginx config ([b507e67](https://github.com/checkmoney/web/commit/b507e67b1d16f2b1c57b232188ab69431712ea8f))
+
 ### [1.1.3](https://github.com/checkmoney/web/compare/v1.1.2...v1.1.3) (2020-05-27)
 
 ### Bug Fixes
