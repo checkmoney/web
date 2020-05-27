@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/checkmoney/web/compare/v1.0.0...v1.1.0) (2020-05-27)
+
+### Features
+
+- add 12-factor config ([c152a6b](https://github.com/checkmoney/web/commit/c152a6b3725cbbef659d6268825522cd05968bd8))
+- replace profile by default currency ([943205e](https://github.com/checkmoney/web/commit/943205e6811f6ceba3da0c574cc4cb9ed62e6557))
+- **i18n:** final clean ([e362788](https://github.com/checkmoney/web/commit/e36278800275a6b111870c7885b0bbafd06b3c96))
+- **i18n:** remove i18n setup ([575385b](https://github.com/checkmoney/web/commit/575385b69ab8fea93769b67584abec1384d77a14))
+- **i18n:** remove some usage ([d54225d](https://github.com/checkmoney/web/commit/d54225de27924f06fe31e4222ac7b142b8ea1a0e))
+- **i18n:** remove some usage ([e8a020d](https://github.com/checkmoney/web/commit/e8a020d3c40234ef2e78e282dc0a5e3b93b8b470))
+- **i18n:** remove some usage ([b1272ca](https://github.com/checkmoney/web/commit/b1272ca3a77f6b5c2f9325c02d340a7ccfc476bb))
+
+### Bug Fixes
+
+- add head ([7954c60](https://github.com/checkmoney/web/commit/7954c60c8715d791df8b0d72b0ecf65167cf7a69))
+- fix route ([b929a82](https://github.com/checkmoney/web/commit/b929a8279170b323a60873693c36aa7c51d0ba9d))
+- fix some minor issues ([93fab59](https://github.com/checkmoney/web/commit/93fab596bbc80c050d021afae50015299d9f20ed))
+- fix some ui issues ([0e91413](https://github.com/checkmoney/web/commit/0e91413f43d772616f4d939b2f6201774a23e473))
+- fix some ui issues ([cb2fa62](https://github.com/checkmoney/web/commit/cb2fa62d2c27b6f82e19755fc57cbee41b0d8aca))
+
 ## 1.0.0 (2020-05-10)
 
 ### Features
