@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 
 import { State } from './State';
 
@@ -9,7 +9,7 @@ export const useMemoMappedState = <T>(
 ) => {
   const memoSelector = useMemo(() => selector, deps);
 
-  const state = useMappedState(memoSelector);
+  const state = useSelector(memoSelector);
 
   return state;
 };

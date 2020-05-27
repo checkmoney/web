@@ -1,3 +1,4 @@
+import { uniq } from 'lodash';
 import {
   ClearAction,
   WithFetchingState,
@@ -16,9 +17,7 @@ const { actions, reducer } = createClearReduxWithFetching<
   Actions
 >(
   {
-    addSources: (state) => (newSources) => [
-      ...new Set([...state, ...newSources]),
-    ],
+    addSources: (state) => (newSources) => uniq([...state, ...newSources]),
   },
   [],
 );

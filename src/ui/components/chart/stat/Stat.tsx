@@ -1,4 +1,5 @@
-import { Statistic, Icon } from 'antd';
+import { Statistic } from 'antd';
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import React from 'react';
 
 interface Props {
@@ -20,7 +21,7 @@ export const Stat = ({
     const green = !decreaseIsGood ? positive : !positive;
 
     const color = green ? '#3f8600' : '#cf1322';
-    const iconType = positive ? 'arrow-up' : 'arrow-down';
+    const Icon = positive ? ArrowUpOutlined : ArrowDownOutlined;
 
     return (
       <Statistic
@@ -28,7 +29,7 @@ export const Stat = ({
         value={Math.abs(value)}
         precision={2}
         valueStyle={{ color }}
-        prefix={<Icon type={iconType} />}
+        prefix={<Icon />}
         suffix={suffix}
       />
     );

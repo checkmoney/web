@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useSelector, useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
+import { useRouter } from 'react-router5';
 
 import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
@@ -10,14 +11,14 @@ import {
   selectCategoriesHasError,
 } from '&front/app/statistics/categories.selectors';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
-import { getDefaultCurrency } from '&front/domain/user/selectors/getDefaultCurrency';
-import { pushRoute } from '&front/features/routing';
+import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
+import { Route } from '&front/app/router';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -31,8 +32,9 @@ interface Props {
 }
 
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
-  const currency = useMappedState(getDefaultCurrency);
+  const currency = useSelector(selectStatisticsCurrency);
   const isSmall = useMedia({ maxWidth: 768 });
+  const { navigate } = useRouter();
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
 
@@ -68,7 +70,10 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   return (
     <Container>
-      <PageHeader title={detailTitle} onBack={() => pushRoute('/app/stats')} />
+      <PageHeader
+        title={detailTitle}
+        onBack={() => navigate(Route.Statistics)}
+      />
 
       <section className={styles.categories}>
         <aside className={styles.aside}>
@@ -90,7 +95,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
               <PieChart
                 dataSets={preparedData.get()}
                 displayValue={(value) =>
-                  displayMoney(currency)(value, { withPenny: false })
+                  displayMoney(currency!)(value, { withPenny: false })
                 }
                 fitToContainer={isSmall}
               />

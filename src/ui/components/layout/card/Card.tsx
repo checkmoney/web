@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Card = ({ className, title, children, extra, actions }: Props) => {
-  const actualActions = !!actions ? actions.filter(Boolean) : undefined;
+  const actualActions = actions ? actions.filter(Boolean) : undefined;
 
   return (
     <AntCard title={title} extra={extra} actions={actualActions}>

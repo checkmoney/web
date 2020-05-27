@@ -1,36 +1,37 @@
 import React from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useRouter } from 'react-router5';
 
-import { getUserIsManager } from '&front/domain/user/selectors/getUserIsManager';
-import { pushRoute } from '&front/features/routing';
 import { Menu } from '&front/ui/components/controls/menu/Menu';
 import { MenuItem } from '&front/ui/components/controls/menu/MenuItem';
+import { Route } from '&front/app/router';
+import { decodeToken, retrieveToken } from '&front/app/auth/auth.utils';
 
 interface Props {
   className?: string;
 }
 
 export const Navigation = ({ className }: Props) => {
-  const isManager = useMappedState(getUserIsManager);
+  const { isManager } = decodeToken(retrieveToken() || '');
+  const { navigate } = useRouter();
 
   const defaultMenu = [
     <MenuItem id="home" key="home" selected>
       Сводка
     </MenuItem>,
-    <MenuItem id="stats" key="stats" onClick={() => pushRoute('/app/stats')}>
+    <MenuItem id="stats" key="stats" onClick={() => navigate(Route.Statistics)}>
       Статистика
     </MenuItem>,
     <MenuItem
       id="history"
       key="history"
-      onClick={() => pushRoute('/app/history')}
+      onClick={() => navigate(Route.History)}
     >
       История
     </MenuItem>,
     <MenuItem
       id="profile"
       key="profile"
-      onClick={() => pushRoute('/app/profile')}
+      onClick={() => navigate(Route.Profile)}
     >
       Профиль
     </MenuItem>,
@@ -41,7 +42,7 @@ export const Navigation = ({ className }: Props) => {
         <MenuItem
           id="manager"
           key="manager"
-          onClick={() => pushRoute('/manager')}
+          onClick={() => navigate(Route.Manager)}
         >
           Менеджерская
         </MenuItem>,

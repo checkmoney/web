@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 
 import { actions } from '&front/app/statistics/grow.actions';

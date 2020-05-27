@@ -4,3 +4,5 @@ dist
 back/.env
 .DS_Store
 .next
+.cache
+*.log

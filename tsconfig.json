@@ -19,20 +19,10 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
-    "plugins": [
-      {
-        "name": "typescript-plugin-css-modules",
-        "options": {
-          "customMatcher": "\\.css$"
-        }
-      }
-    ],
+    "target": "ES5",
     "paths": {
       "&front/*": ["./src/*"],
       "&shared/*": ["./shared/*"]
     }
-  },
-  "include": ["src/**/*", "pages/**/*", "shared/**/*", "./types.d.ts"],
-  "exclude": ["node_modules/**/*"]
+  }
 }

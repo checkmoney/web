@@ -1,8 +1,6 @@
 import { Skeleton as AntSkeleton } from 'antd';
 import React from 'react';
 
-import './AntSkeleton.css?CSSModulesDisable';
-
 interface Props {
   showTitle?: boolean;
   rows?: number;

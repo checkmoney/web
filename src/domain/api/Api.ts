@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import getConfig from 'next/config';
 import { Option } from 'tsoption';
 
-const { publicRuntimeConfig } = getConfig();
-const { backUrl } = publicRuntimeConfig;
+import { config } from '&front/app/config';
+
+const backUrl = config('BACK_URL');
 
 export class Api {
   public get client() {

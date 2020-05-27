@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 export function colorHash(inputString: string) {
   let sum = 0;
 

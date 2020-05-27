@@ -1,21 +1,24 @@
-FROM mhart/alpine-node:10 as build
+FROM node:12-alpine as build
 
 WORKDIR /app
 
-COPY . .
+COPY package.json package.json
+COPY yarn.lock yarn.lock
 RUN yarn
 
+COPY . .
 RUN yarn build
 
-FROM keymetrics/pm2:10-alpine
+FROM nginx:1.17.10-alpine
 
-WORKDIR /app
+RUN apk add bash
 
-ENV NODE_ENV="production"
-ENV PATH="./node_modules/.bin:$PATH"
+COPY ./nginx/cmd.sh /etc/nginx/cmd.sh
+COPY ./nginx/generate_env.sh /etc/nginx/generate_env.sh
+COPY ./nginx/env.dict /etc/nginx/env.dict
 
-COPY --from=build /app .
+COPY ./nginx/checkmoney.conf /etc/nginx/conf.d/
 
-EXPOSE 3001
-
-CMD [ "pm2-docker", "start", "pm2.json" ]
+COPY --from=build /app/dist /usr/share/nginx/html
+ 
+CMD ["bash", "/etc/nginx/cmd.sh"]

@@ -1,10 +1,4 @@
-import { OptionProps } from 'antd/lib/select';
-import { ReactElement } from 'react';
-
-export const filterOption = (
-  inputValue: string,
-  option: ReactElement<OptionProps>,
-) => {
+export const filterOption = (inputValue: string, option: any) => {
   if (option && option.props && option.props.children) {
     return `${option.props.children}`
       .toUpperCase()

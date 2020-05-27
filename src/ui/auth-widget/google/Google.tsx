@@ -1,11 +1,11 @@
-import getConfig from 'next/config';
 import React, { useCallback } from 'react';
 import { GoogleLogin } from 'react-google-login';
 
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
+import { config } from '&front/app/config';
 
-const { googleClientId } = getConfig().publicRuntimeConfig;
+const googleClientId = config('GOOGLE_CLIENT_ID');
 
 interface Props {
   onLogin: (profile: GoogleProfile) => any;

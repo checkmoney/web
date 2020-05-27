@@ -1,16 +1,15 @@
 import { endOfMonth, startOfMonth } from 'date-fns';
 import React, { useMemo, useCallback } from 'react';
-import { useMappedState } from 'redux-react-hook';
+import { useSelector } from 'react-redux';
 
 import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
 import { getHistory } from '&front/domain/money/selectors/getHistory';
 import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
 import { useMemoState } from '&front/domain/store';
 import { historyToTableData, createColumns } from '&front/features/history';
-import { useIncomeModal } from '&front/features/transaction/income';
-import { useOutcomeModal } from '&front/features/transaction/outcome';
 import { wantUTC } from '&front/helpers/wantUTC';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
+import { useDelete } from '&front/features/transaction/delete/useDelete';
 import { GroupBy } from '&shared/enum/GroupBy';
 
 import { FullHistoryButton } from './components/full-history-button';
@@ -25,7 +24,7 @@ const from = wantUTC(startOfMonth)(new Date());
 const to = wantUTC(endOfMonth)(new Date());
 
 export const History = ({ className }: Props) => {
-  const fetching = useMappedState(getHistoryFetchingStatus);
+  const fetching = useSelector(getHistoryFetchingStatus);
 
   const history = useMemoState(
     () => getHistory(from, to, groupBy),
@@ -40,19 +39,9 @@ export const History = ({ className }: Props) => {
     [history],
   );
 
-  const { open: openIncome, IncomeModal } = useIncomeModal();
-  const { open: openOutcome, OutcomeModal } = useOutcomeModal();
+  const { handleDelete } = useDelete();
 
-  const onRowClick = useCallback(
-    ({ id, rawAmount }) => {
-      if (rawAmount < 0) {
-        openOutcome(id);
-      } else {
-        openIncome(id);
-      }
-    },
-    [openIncome, openOutcome],
-  );
+  const onRowClick = useCallback(({ id }) => handleDelete(id), [handleDelete]);
 
   return (
     <>
@@ -66,8 +55,6 @@ export const History = ({ className }: Props) => {
         footer={<FullHistoryButton />}
         onRowClick={onRowClick}
       />
-      <IncomeModal />
-      <OutcomeModal />
     </>
   );
 };

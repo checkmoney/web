@@ -5,7 +5,7 @@ import { createStatisticsApi } from '&front/app/api/api.sagas';
 import { logError } from '&front/app/utility/errors.sagas';
 
 import { actions } from './grow.actions';
-import { Grow } from './grow.types';
+import { actions as metaActions } from './meta.actions';
 
 const ATTEMPT_THRESHOLD = 3;
 const RETRY_DELAY = 100;
@@ -18,7 +18,9 @@ export function* handleGrowFetchingSaga() {
 
     try {
       const apiClient: StatisticsApi = yield createStatisticsApi();
-      const data: Grow = yield call(apiClient.findGrow, periodType);
+      const { data, meta } = yield call(apiClient.findGrow, periodType);
+
+      yield put(metaActions.setCurrency(meta.currency));
       yield put(actions.done({ params: action.payload, result: data }));
     } catch (error) {
       yield logError(error);

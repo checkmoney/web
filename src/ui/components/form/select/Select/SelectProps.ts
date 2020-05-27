@@ -7,4 +7,5 @@ export interface SelectProps {
   children: Array<ReactElement<OptionProps>>;
   value?: string;
   onChange?: (value: string | undefined) => void;
+  className?: string;
 }

@@ -10,4 +10,4 @@
 yarn dev
 ```
 
-**app running on localhost:3001**
+App running on [http://localhost:3001](http://localhost:3001).

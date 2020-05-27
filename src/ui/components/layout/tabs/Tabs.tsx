@@ -2,7 +2,6 @@ import { Tabs as AntTabs } from 'antd';
 import { head } from 'lodash';
 import React, { ReactElement, useMemo, ReactNode } from 'react';
 
-import { getMode } from './helpers/getMode';
 import { TabProps } from './TabProps';
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
   className?: string;
   tabBarExtraContent?: ReactNode;
   defaultSelected?: string;
-  vertical?: boolean;
 }
 
 export const Tabs = ({
@@ -18,7 +16,6 @@ export const Tabs = ({
   className,
   tabBarExtraContent,
   defaultSelected,
-  vertical = false,
 }: Props) => {
   const defaultActiveKey = useMemo(() => {
     if (defaultSelected !== undefined) {
@@ -30,22 +27,14 @@ export const Tabs = ({
     return firstChild ? firstChild.props.title : undefined;
   }, [children, defaultSelected]);
 
-  const actualChildren = useMemo(() => {
-    if (vertical) {
-      return children.reverse();
-    }
-
-    return children;
-  }, [vertical, children]);
-
   return (
     <AntTabs
       defaultActiveKey={defaultActiveKey}
       className={className}
       tabBarExtraContent={tabBarExtraContent}
-      tabPosition={getMode(vertical)}
+      tabBarStyle={{ height: '45px' }}
     >
-      {actualChildren.map((child) => (
+      {children.map((child) => (
         <AntTabs.TabPane
           key={child.props.title}
           tab={child.props.title}

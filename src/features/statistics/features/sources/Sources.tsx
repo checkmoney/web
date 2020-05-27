@@ -1,7 +1,8 @@
 import { take } from 'lodash';
 import React, { useMemo, useEffect } from 'react';
-import { useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
+import { useRouter } from 'react-router5';
 
 import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
@@ -10,13 +11,13 @@ import {
   selectCategoriesHasError,
 } from '&front/app/statistics/categories.selectors';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
-import { pushRoute } from '&front/features/routing';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button, ButtonType } from '&front/ui/components/form/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
+import { Route } from '&front/app/router';
 
 interface Props {
   className?: string;
@@ -50,6 +51,7 @@ export const Sources = ({
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
   const dateRange = useMemo(() => new Interval(from, to), [from, to]);
   const dispatch = useDispatch();
+  const { navigate } = useRouter();
 
   useEffect(() => {
     dispatch(actions.started({ periodType: group, dateRange }));
@@ -86,7 +88,9 @@ export const Sources = ({
       footer={
         <Button
           type={ButtonType.Text}
-          onClick={() => pushRoute(`/app/stats/sources/${group}`)}
+          onClick={() =>
+            navigate(Route.DetailedStatistics, { type: 'sources', group })
+          }
         >
           Подробнее
         </Button>

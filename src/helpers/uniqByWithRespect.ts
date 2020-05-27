@@ -1,4 +1,4 @@
-import { sortBy, last } from 'lodash';
+import { sortBy, last, uniq } from 'lodash';
 
 type GetKey<T, K> = (v: T) => K;
 type GetRespect<T> = (v: T) => number;
@@ -8,9 +8,9 @@ export const uniqByWithRespect = <T, K>(
   uniqBy: GetKey<T, K>,
   respectWith: GetRespect<T>,
 ): T[] => {
-  const uniqKeys = new Set(arr.map(uniqBy));
+  const uniqKeys = uniq(arr.map(uniqBy));
 
-  return [...uniqKeys]
+  return uniqKeys
     .map((key) =>
       last(
         sortBy(

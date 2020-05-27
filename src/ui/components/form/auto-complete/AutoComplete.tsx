@@ -12,6 +12,7 @@ export const AutoComplete = ({
   onChange,
   variants,
   placeholder,
+  className,
 }: AutoCompleteProps) => {
   const { currentValue, handleChange } = useCustomInput(value, onChange);
 
@@ -35,6 +36,7 @@ export const AutoComplete = ({
       dataSource={dataSource}
       placeholder={placeholder}
       filterOption={filterOption}
+      className={className}
     />
   );
 };

@@ -1,6 +1,6 @@
 import { endOfYear, startOfYear, getYear, parse } from 'date-fns';
 import React, { useState, useMemo, useEffect } from 'react';
-import { useMappedState, useDispatch } from 'redux-react-hook';
+import { useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import { useMedia } from 'use-media';
 
@@ -21,6 +21,8 @@ import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&shared/enum/Currency';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
+import { useMemoState } from '&front/domain/store';
+import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 
 interface Props {
   className?: string;
@@ -28,7 +30,11 @@ interface Props {
 }
 
 export const Monthly = ({ className, currency }: Props) => {
-  const firstTransactionDate = useMappedState(getFirstTransactionDate);
+  const firstTransactionDate = useMemoState(
+    () => getFirstTransactionDate,
+    fetchFirstTransactionDate,
+    [],
+  );
   const isSmall = useMedia({ maxWidth: 768 });
   const dispatch = useDispatch();
 

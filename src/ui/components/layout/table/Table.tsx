@@ -3,7 +3,6 @@ import React, { useMemo, useCallback } from 'react';
 
 import * as styles from './Table.css';
 import { TableProps } from './TableProps';
-import './AntTable.css?CSSModulesDisable';
 
 export const Table = <Data extends Array<{}>>({
   className,
@@ -51,7 +50,7 @@ export const Table = <Data extends Array<{}>>({
       pagination={false}
       showHeader={!hideHeader}
       title={() => <div className={styles.title}>{title}</div>}
-      footer={!!footer ? () => footer : undefined}
+      footer={footer ? () => footer : undefined}
       onRow={onRow}
     />
   );
