@@ -18,5 +18,5 @@ config_str="${config_str%,*} ${config_str##*,}"
 
 # put JS string to JS file
 echo "Creating config-file with content: \"${config_str}\""
-echo "${config_str}" >> /usr/share/nginx/html/config.env.js
+echo "${config_str}" >> /srv/www/config.env.js
 

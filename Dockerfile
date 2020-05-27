@@ -19,6 +19,6 @@ COPY ./nginx/env.dict /etc/nginx/env.dict
 
 COPY ./nginx/checkmoney.conf /etc/nginx/conf.d/
 
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /srv/www
  
 CMD ["bash", "/etc/nginx/cmd.sh"]
