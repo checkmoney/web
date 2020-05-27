@@ -15,12 +15,12 @@ import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
 import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
-import { actions as requireActions } from '&front/app/utility/require.actions';
+import { actions as requireActions } from '&front/app/utility/required.actions';
 import {
   selectDefaultCurrency,
   selectDefaultCurrencyIsAvailable,
 } from '&front/app/profile/default_currency.selectors';
-import { RequireType } from '&front/app/utility/require.types';
+import { RequireType } from '&front/app/utility/required.types';
 import { Route } from '&front/app/router';
 
 import * as styles from './Profile.css';

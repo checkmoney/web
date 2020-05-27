@@ -23,8 +23,8 @@ import { LoadingButton } from '&front/ui/components/form/loading-button';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
 import { Currency } from '&shared/enum/Currency';
-import { actions as requireActions } from '&front/app/utility/require.actions';
-import { RequireType } from '&front/app/utility/require.types';
+import { actions as requireActions } from '&front/app/utility/required.actions';
+import { RequireType } from '&front/app/utility/required.types';
 import {
   selectDefaultCurrency,
   selectDefaultCurrencyIsAvailable,

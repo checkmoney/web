@@ -16,7 +16,7 @@ import { PeriodsState, periodsReducer } from './statistics/periods.reducers';
 import { handlePeriodsFetchingSaga } from './statistics/periods.sagas';
 import { handleLogoutSaga } from './auth/auth.sagas';
 import { handleDefaultCurrencyFetchingSaga } from './profile/default_currency.sagas';
-import { handleRequireRemoteDataSaga } from './utility/require.sagas';
+import { handleRequireRemoteDataSaga } from './utility/required.sagas';
 import {
   StatisticsMetaState,
   statisticsMetaReducer,

@@ -1,9 +1,10 @@
 import actionCreatorFactory from 'typescript-fsa';
-
-import { RequireType } from './require.types';
+import { RequireType } from './required.types';
 
 const actionCreator = actionCreatorFactory('REQUIRE');
 
-export const actions = {
+const actions = {
   dataRequired: actionCreator<RequireType>('DATA'),
 };
+
+export { actions };

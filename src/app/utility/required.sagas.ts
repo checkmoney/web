@@ -3,8 +3,8 @@ import { Action } from 'redux';
 
 import { State } from '&front/domain/store/State';
 
-import { actions } from './require.actions';
-import { RequireType } from './require.types';
+import { actions } from './required.actions';
+import { RequireType } from './required.types';
 import { selectDefaultCurrencyIsAvailable } from '../profile/default_currency.selectors';
 import { actions as defaultCurrencyActions } from '../profile/default_currency.actions';
 
