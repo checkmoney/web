@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/checkmoney/web/compare/v1.1.5...v1.1.6) (2020-05-27)
+
+### Bug Fixes
+
+- degrade antd due to parcel bug ([9dccd0d](https://github.com/checkmoney/web/commit/9dccd0d107d91fe21c1e22db7b8ee32110da4d8e))
+
 ### [1.1.5](https://github.com/checkmoney/web/compare/v1.1.4...v1.1.5) (2020-05-27)
 
 ### Bug Fixes
