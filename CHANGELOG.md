@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/checkmoney/web/compare/v1.1.0...v1.1.1) (2020-05-27)
+
+### Bug Fixes
+
+- remove custom registry ([11e4e6b](https://github.com/checkmoney/web/commit/11e4e6b6f8ab29772efe24e2e8b33b58b2a4c373))
+
 ## [1.1.0](https://github.com/checkmoney/web/compare/v1.0.0...v1.1.0) (2020-05-27)
 
 ### Features
