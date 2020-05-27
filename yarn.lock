@@ -4,24 +4,24 @@
 
 "@ant-design/colors@^3.1.0":
   version "3.2.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@ant-design/colors/-/colors-3.2.2.tgz#5ad43d619e911f3488ebac303d606e66a8423903"
+  resolved "https://registry.yarnpkg.com/@ant-design/colors/-/colors-3.2.2.tgz#5ad43d619e911f3488ebac303d606e66a8423903"
   integrity sha512-YKgNbG2dlzqMhA9NtI3/pbY16m3Yl/EeWBRa+lB1X1YaYxHrxNexiQYCLTWO/uDvAjLFMEDU+zR901waBtMtjQ==
   dependencies:
     tinycolor2 "^1.4.1"
 
 "@ant-design/css-animation@^1.7.2":
   version "1.7.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@ant-design/css-animation/-/css-animation-1.7.2.tgz#4ee5d2ec0fb7cc0a78b44e1c82628bd4621ac7e3"
+  resolved "https://registry.yarnpkg.com/@ant-design/css-animation/-/css-animation-1.7.2.tgz#4ee5d2ec0fb7cc0a78b44e1c82628bd4621ac7e3"
   integrity sha512-bvVOe7A+r7lws58B7r+fgnQDK90cV45AXuvGx6i5CCSX1W/M3AJnHsNggDANBxEtWdNdFWcDd5LorB+RdSIlBw==
 
 "@ant-design/icons-svg@^4.0.0":
   version "4.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@ant-design/icons-svg/-/icons-svg-4.1.0.tgz#480b025f4b20ef7fe8f47d4a4846e4fee84ea06c"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons-svg/-/icons-svg-4.1.0.tgz#480b025f4b20ef7fe8f47d4a4846e4fee84ea06c"
   integrity sha512-Fi03PfuUqRs76aI3UWYpP864lkrfPo0hluwGqh7NJdLhvH4iRDc3jbJqZIvRDLHKbXrvAfPPV3+zjUccfFvWOQ==
 
 "@ant-design/icons@^4.1.0":
   version "4.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@ant-design/icons/-/icons-4.1.0.tgz#444edcc3822d5b43b2b038d6f893cd7f7dfcc48d"
+  resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-4.1.0.tgz#444edcc3822d5b43b2b038d6f893cd7f7dfcc48d"
   integrity sha512-R1aIPJboGq4nVYwW7s0v/V2g6yiY27Kec5ldfK3mWHskw7bihPOKwxkHbITuSJcVNJsSvA6LNMlKZoY1u8DIKQ==
   dependencies:
     "@ant-design/colors" "^3.1.0"
@@ -32,7 +32,7 @@
 
 "@ant-design/react-slick@~0.26.1":
   version "0.26.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@ant-design/react-slick/-/react-slick-0.26.1.tgz#1462ad1342a83af51b7ea4ee0ae1d76d91d1b3d3"
+  resolved "https://registry.yarnpkg.com/@ant-design/react-slick/-/react-slick-0.26.1.tgz#1462ad1342a83af51b7ea4ee0ae1d76d91d1b3d3"
   integrity sha512-1CR3vNFxAMmMb9btF6w9yT1xlrhZr6f/K+OkqoCLfWxN7h7jC16UCr1RsGBoFUdSq8bYfTr3pe6AiiCEDsALvA==
   dependencies:
     classnames "^2.2.5"
@@ -1274,7 +1274,7 @@
 
 "@types/react-dom@^16.9.8":
   version "16.9.8"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
   integrity sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
   dependencies:
     "@types/react" "*"
@@ -1299,7 +1299,7 @@
 
 "@types/react@^16.9.35":
   version "16.9.35"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/@types/react/-/react-16.9.35.tgz#a0830d172e8aadd9bd41709ba2281a3124bbd368"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.35.tgz#a0830d172e8aadd9bd41709ba2281a3124bbd368"
   integrity sha512-q0n0SsWcGc8nDqH2GJfWQWUOmZSJhXV64CjVN5SvcNti3TdEaA3AH0D8DwNmMdzjMAC/78tB8nAZIlV8yTz+zQ==
   dependencies:
     "@types/prop-types" "*"
@@ -1396,7 +1396,7 @@ acorn@^7.1.1:
 
 add-dom-event-listener@^1.1.0:
   version "1.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/add-dom-event-listener/-/add-dom-event-listener-1.1.0.tgz#6a92db3a0dd0abc254e095c0f1dc14acbbaae310"
+  resolved "https://registry.yarnpkg.com/add-dom-event-listener/-/add-dom-event-listener-1.1.0.tgz#6a92db3a0dd0abc254e095c0f1dc14acbbaae310"
   integrity sha512-WCxx1ixHT0GQU9hb0KI/mhgRQhnU+U3GvwY6ZvVjYq8rsihIGoaIOUbY0yMPBxLH5MDtr0kz3fisWGNcbWW7Jw==
   dependencies:
     object-assign "4.x"
@@ -1495,7 +1495,7 @@ ansi-to-html@^0.6.4:
 
 antd@^4.2.5:
   version "4.2.5"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/antd/-/antd-4.2.5.tgz#5f68fa9282e49306b8c8d44304321d9b979772d7"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.2.5.tgz#5f68fa9282e49306b8c8d44304321d9b979772d7"
   integrity sha512-8rKCvik1gbru/nzodt+21r6ksWP9VPUfC74dhTLlRA1bY+7+ZZCS87+ikbAIARQRTh88LOe6nOxn5+3rJ3yOZA==
   dependencies:
     "@ant-design/css-animation" "^1.7.2"
@@ -1609,7 +1609,7 @@ array-includes@^3.0.3, array-includes@^3.1.1:
 
 array-tree-filter@^2.1.0:
   version "2.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/array-tree-filter/-/array-tree-filter-2.1.0.tgz#873ac00fec83749f255ac8dd083814b4f6329190"
+  resolved "https://registry.yarnpkg.com/array-tree-filter/-/array-tree-filter-2.1.0.tgz#873ac00fec83749f255ac8dd083814b4f6329190"
   integrity sha512-4ROwICNlNw/Hqa9v+rk5h22KjmzB1JGTMVKP2AKJBOCgb0yL0ASf0+YvCcLNNwquOHNX48jkeZIJ3a+oOQqKcw==
 
 array-union@^2.1.0:
@@ -1701,7 +1701,7 @@ async-limiter@~1.0.0:
 
 async-validator@^3.0.3:
   version "3.3.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/async-validator/-/async-validator-3.3.0.tgz#1d92193bbe60d6d6c8b246692c7005e9ed14a8ee"
+  resolved "https://registry.yarnpkg.com/async-validator/-/async-validator-3.3.0.tgz#1d92193bbe60d6d6c8b246692c7005e9ed14a8ee"
   integrity sha512-cAHGD9EL8aCqWXjnb44q94MWiDFzUo1tMhvLb2WzcpWqGiKugsjWG9cvl+jPgkPca7asNbsBU3fa0cwkI/P+Xg==
 
 asynckit@^0.4.0:
@@ -2543,7 +2543,7 @@ component-emitter@^1.2.1:
 
 compute-scroll-into-view@^1.0.13:
   version "1.0.13"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/compute-scroll-into-view/-/compute-scroll-into-view-1.0.13.tgz#be1b1663b0e3f56cd5f7713082549f562a3477e2"
+  resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.13.tgz#be1b1663b0e3f56cd5f7713082549f562a3477e2"
   integrity sha512-o+w9w7A98aAFi/GjK8cxSV+CdASuPa2rR5UWs3+yHkJzWqaKoBEufFNWYaXInCSmUfDCVhesG+v9MTWqOjsxFg==
 
 concat-map@0.0.1:
@@ -2820,7 +2820,7 @@ copy-descriptor@^0.1.0:
 
 copy-to-clipboard@^3.2.0:
   version "3.3.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz#115aa1a9998ffab6196f93076ad6da3b913662ae"
+  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz#115aa1a9998ffab6196f93076ad6da3b913662ae"
   integrity sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==
   dependencies:
     toggle-selection "^1.0.6"
@@ -3494,7 +3494,7 @@ doctrine@^3.0.0:
 
 dom-align@^1.7.0:
   version "1.12.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/dom-align/-/dom-align-1.12.0.tgz#56fb7156df0b91099830364d2d48f88963f5a29c"
+  resolved "https://registry.yarnpkg.com/dom-align/-/dom-align-1.12.0.tgz#56fb7156df0b91099830364d2d48f88963f5a29c"
   integrity sha512-YkoezQuhp3SLFGdOlr5xkqZ640iXrnHAwVYcDg8ZKRUtO7mSzSC2BA5V0VuyAwPSJA4CLIc6EDDJh4bEsD2+zA==
 
 dom-serializer@0:
@@ -4740,7 +4740,7 @@ graphviz@^0.0.8:
 
 hammerjs@^2.0.8:
   version "2.0.8"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
   integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
 
 handlebars@^4.7.6:
@@ -4883,7 +4883,7 @@ hoist-non-react-statics@^3.3.0:
 
 hoist-non-react-statics@^3.3.2:
   version "3.3.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
   dependencies:
     react-is "^16.7.0"
@@ -5152,7 +5152,7 @@ inquirer@^7.0.0:
 
 insert-css@^2.0.0:
   version "2.0.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/insert-css/-/insert-css-2.0.0.tgz#eb5d1097b7542f4c79ea3060d3aee07d053880f4"
+  resolved "https://registry.yarnpkg.com/insert-css/-/insert-css-2.0.0.tgz#eb5d1097b7542f4c79ea3060d3aee07d053880f4"
   integrity sha1-610Ql7dUL0x56jBg067gfQU4gPQ=
 
 internal-slot@^1.0.2:
@@ -5664,7 +5664,7 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
 
 json2mq@^0.2.0:
   version "0.2.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/json2mq/-/json2mq-0.2.0.tgz#b637bd3ba9eabe122c83e9720483aeb10d2c904a"
+  resolved "https://registry.yarnpkg.com/json2mq/-/json2mq-0.2.0.tgz#b637bd3ba9eabe122c83e9720483aeb10d2c904a"
   integrity sha1-tje9O6nqvhIsg+lyBIOusQ0skEo=
   dependencies:
     string-convert "^0.2.0"
@@ -6268,7 +6268,7 @@ min-indent@^1.0.0:
 
 mini-store@^3.0.1:
   version "3.0.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/mini-store/-/mini-store-3.0.3.tgz#3024b2baff96d54d426fbcf5db2c993291bf836f"
+  resolved "https://registry.yarnpkg.com/mini-store/-/mini-store-3.0.3.tgz#3024b2baff96d54d426fbcf5db2c993291bf836f"
   integrity sha512-EHpcxqITc3UIEC9iR8DCWzKIFpz8IgIMw+dNKJ8tJ7mKSHhPfa3xDLFyh1fv0NeA89v2Vb7nIwd+3UGdLZUZ7A==
   dependencies:
     hoist-non-react-statics "^3.3.2"
@@ -6382,7 +6382,7 @@ moment@^2.10.2:
 
 moment@^2.24.0, moment@^2.25.3:
   version "2.26.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
   integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
 ms@2.0.0:
@@ -6709,7 +6709,7 @@ object.values@^1.1.1:
 
 omit.js@^1.0.2:
   version "1.0.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/omit.js/-/omit.js-1.0.2.tgz#91a14f0eba84066dfa015bf30e474c47f30bc858"
+  resolved "https://registry.yarnpkg.com/omit.js/-/omit.js-1.0.2.tgz#91a14f0eba84066dfa015bf30e474c47f30bc858"
   integrity sha512-/QPc6G2NS+8d4L/cQhbk6Yit1WTB6Us2g84A7A/1+w9d/eRGHyEqC5kkQtHVoHZ5NFWGG7tUGgrhVZwgZanKrQ==
   dependencies:
     babel-runtime "^6.23.0"
@@ -8161,7 +8161,7 @@ quote-stream@^1.0.1, quote-stream@~1.0.2:
 
 raf@^3.4.0, raf@^3.4.1:
   version "3.4.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
+  resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
   integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
   dependencies:
     performance-now "^2.1.0"
@@ -8188,7 +8188,7 @@ range-parser@~1.2.1:
 
 rc-align@^3.0.0, rc-align@^3.0.0-rc.0:
   version "3.0.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-align/-/rc-align-3.0.0.tgz#5b0510aaa12dfef7b8d79877d39e43de5ef831bc"
+  resolved "https://registry.yarnpkg.com/rc-align/-/rc-align-3.0.0.tgz#5b0510aaa12dfef7b8d79877d39e43de5ef831bc"
   integrity sha512-/T/4LOlKJLFe8EwsORuc3pFWOJ8caUpj2vtKIHWea4PhakoleM7KDQsx0n1WDQENIeSfrP9P1FowVxAdvhjsvw==
   dependencies:
     classnames "2.x"
@@ -8198,7 +8198,7 @@ rc-align@^3.0.0, rc-align@^3.0.0-rc.0:
 
 rc-animate@3.x, rc-animate@^3.0.0, rc-animate@~3.0.0:
   version "3.0.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-animate/-/rc-animate-3.0.0.tgz#f76d7051136b7d650fb3d29366a160e95a369c0a"
+  resolved "https://registry.yarnpkg.com/rc-animate/-/rc-animate-3.0.0.tgz#f76d7051136b7d650fb3d29366a160e95a369c0a"
   integrity sha512-+ANeyCei4lWSJHWTcocywdYAy6lpRdBva/7Fs3nBBiAngW/W+Gmx+gQEcsmcgQBqziWUYnR91Bk12ltR3GBHPA==
   dependencies:
     "@ant-design/css-animation" "^1.7.2"
@@ -8208,7 +8208,7 @@ rc-animate@3.x, rc-animate@^3.0.0, rc-animate@~3.0.0:
 
 rc-cascader@~1.1.0:
   version "1.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-cascader/-/rc-cascader-1.1.0.tgz#e4c8058f0d388c4fc63a1257c15e4e7ab60061f5"
+  resolved "https://registry.yarnpkg.com/rc-cascader/-/rc-cascader-1.1.0.tgz#e4c8058f0d388c4fc63a1257c15e4e7ab60061f5"
   integrity sha512-YVMzLB6pyW+kZpQr95qs5ZFHTovfWuVdfYiz53iBSOKIGx1EwopPyuptlt/SWfzdzwoelRmts/ArSHj6mgcsrA==
   dependencies:
     array-tree-filter "^2.1.0"
@@ -8218,7 +8218,7 @@ rc-cascader@~1.1.0:
 
 rc-checkbox@~2.2.0:
   version "2.2.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-checkbox/-/rc-checkbox-2.2.0.tgz#a0ce95c34f05e0eb882664174518cd4baa36dce9"
+  resolved "https://registry.yarnpkg.com/rc-checkbox/-/rc-checkbox-2.2.0.tgz#a0ce95c34f05e0eb882664174518cd4baa36dce9"
   integrity sha512-Wjh/nutLA8iIPTT1P9I9KOqlUblVe+CWa3SxMibFySnLyYbMxKNtPhwNcbADPOqzNU0AsCntTduNeJg1n0B5fg==
   dependencies:
     babel-runtime "^6.23.0"
@@ -8226,7 +8226,7 @@ rc-checkbox@~2.2.0:
 
 rc-collapse@~2.0.0:
   version "2.0.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-collapse/-/rc-collapse-2.0.0.tgz#08c5942f82005b4342ced02d983581e4c41cd324"
+  resolved "https://registry.yarnpkg.com/rc-collapse/-/rc-collapse-2.0.0.tgz#08c5942f82005b4342ced02d983581e4c41cd324"
   integrity sha512-R5+Ge1uzwK9G1wZPRPhqQsed4FXTDmU0BKzsqfNBtZdk/wd+yey8ZutmJmSozYc5hQwjPkCvJHV7gOIRZKIlJg==
   dependencies:
     "@ant-design/css-animation" "^1.7.2"
@@ -8237,7 +8237,7 @@ rc-collapse@~2.0.0:
 
 rc-dialog@~7.7.0:
   version "7.7.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-dialog/-/rc-dialog-7.7.0.tgz#c5ca3e04fe8f8b9358505231db0862aa2dfb0e85"
+  resolved "https://registry.yarnpkg.com/rc-dialog/-/rc-dialog-7.7.0.tgz#c5ca3e04fe8f8b9358505231db0862aa2dfb0e85"
   integrity sha512-WVLnbpP+9YCaDjFpX03PdGHNtEzUmVPfc047/XHIBxrI2n9gcog5PhHHJzewi8ZJrFj5sWi+1OWakf7vwaCfJg==
   dependencies:
     babel-runtime "6.x"
@@ -8246,7 +8246,7 @@ rc-dialog@~7.7.0:
 
 rc-drawer@~3.2.0:
   version "3.2.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-drawer/-/rc-drawer-3.2.0.tgz#6d9bba2fb1647942840dad61f36b9c88b753f565"
+  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-3.2.0.tgz#6d9bba2fb1647942840dad61f36b9c88b753f565"
   integrity sha512-ekt5K2pHIQihByupUooJ7kVmpmAyHrGy2T9h+AlPwhIL9xemK+RVRq3RbOv1V03BqNPCDx4sWV5sWiAhGMUctw==
   dependencies:
     classnames "^2.2.6"
@@ -8254,7 +8254,7 @@ rc-drawer@~3.2.0:
 
 rc-dropdown@~3.0.0:
   version "3.0.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-dropdown/-/rc-dropdown-3.0.2.tgz#e486b67f5e8e8b9e326426d5a80254621453d66a"
+  resolved "https://registry.yarnpkg.com/rc-dropdown/-/rc-dropdown-3.0.2.tgz#e486b67f5e8e8b9e326426d5a80254621453d66a"
   integrity sha512-T3XP4qL6xmkxn8z52YF2SEPoMHPpBiLf0Kty3mjNdRSyKnlu+0F+3bhDHf6gO1msmqrjURaz8sMNAFDcoFHHnw==
   dependencies:
     babel-runtime "^6.26.0"
@@ -8263,7 +8263,7 @@ rc-dropdown@~3.0.0:
 
 rc-field-form@~1.2.0:
   version "1.2.4"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-field-form/-/rc-field-form-1.2.4.tgz#2634f03ddd340eea81db154e9e891e378a38ce5d"
+  resolved "https://registry.yarnpkg.com/rc-field-form/-/rc-field-form-1.2.4.tgz#2634f03ddd340eea81db154e9e891e378a38ce5d"
   integrity sha512-k3RY/yVfCusvPRWx4O+vAGY5bgm1FS6aZghnToqwMIGBsdsxB32Asv21reJKr4LKZ36Ag64rASfiSeLgdUCR+A==
   dependencies:
     "@babel/runtime" "^7.8.4"
@@ -8272,7 +8272,7 @@ rc-field-form@~1.2.0:
 
 rc-hammerjs@~0.6.0:
   version "0.6.9"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-hammerjs/-/rc-hammerjs-0.6.9.tgz#9a4ddbda1b2ec8f9b9596091a6a989842a243907"
+  resolved "https://registry.yarnpkg.com/rc-hammerjs/-/rc-hammerjs-0.6.9.tgz#9a4ddbda1b2ec8f9b9596091a6a989842a243907"
   integrity sha512-4llgWO3RgLyVbEqUdGsDfzUDqklRlQW5VEhE3x35IvhV+w//VPRG34SBavK3D2mD/UaLKaohgU41V4agiftC8g==
   dependencies:
     babel-runtime "6.x"
@@ -8281,7 +8281,7 @@ rc-hammerjs@~0.6.0:
 
 rc-input-number@~4.6.1:
   version "4.6.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-input-number/-/rc-input-number-4.6.2.tgz#1e0c1437a2aa45294588ece933f5b02551fce22d"
+  resolved "https://registry.yarnpkg.com/rc-input-number/-/rc-input-number-4.6.2.tgz#1e0c1437a2aa45294588ece933f5b02551fce22d"
   integrity sha512-780tUBUNCbQ4l/vKSXxMCiRKNBT6ApKXCDQG20GnT+v1lL4gq4GkdfoTGz6lb0uyY40rk7V09RtIXt7VIHrGRw==
   dependencies:
     babel-runtime "6.x"
@@ -8290,7 +8290,7 @@ rc-input-number@~4.6.1:
 
 rc-mentions@~1.1.0:
   version "1.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-mentions/-/rc-mentions-1.1.0.tgz#fa4994b94eee03e5254a0a600839ed19e1f9f0e9"
+  resolved "https://registry.yarnpkg.com/rc-mentions/-/rc-mentions-1.1.0.tgz#fa4994b94eee03e5254a0a600839ed19e1f9f0e9"
   integrity sha512-uOVMiQ5Jxfo3mbpOZsZt20Alid0268lX9eBR2I/chly0qhNbmSB71iLOHGkbL7zuHd50GF/eSr9fXJJQKUYG1Q==
   dependencies:
     classnames "^2.2.6"
@@ -8300,7 +8300,7 @@ rc-mentions@~1.1.0:
 
 rc-menu@^8.0.1, rc-menu@~8.2.1:
   version "8.2.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-menu/-/rc-menu-8.2.1.tgz#132f26f61b05e5f85d7977dd3cdde6ec23335ce7"
+  resolved "https://registry.yarnpkg.com/rc-menu/-/rc-menu-8.2.1.tgz#132f26f61b05e5f85d7977dd3cdde6ec23335ce7"
   integrity sha512-E2HmP9ZGam5hiZ2UJ466m3n/iqbYsPAquyZaNEDcgjhktI/LcwzpEdLIgPVyfgOGQ84QTY9wBF6f9D/032/WxA==
   dependencies:
     classnames "2.x"
@@ -8313,7 +8313,7 @@ rc-menu@^8.0.1, rc-menu@~8.2.1:
 
 rc-notification@~4.3.0:
   version "4.3.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-notification/-/rc-notification-4.3.2.tgz#94d2a46d6797b5f0a4a852e2f991187f3885b9e5"
+  resolved "https://registry.yarnpkg.com/rc-notification/-/rc-notification-4.3.2.tgz#94d2a46d6797b5f0a4a852e2f991187f3885b9e5"
   integrity sha512-xsxvpBL7HfYAELQvvauy+5dpQ4dugQRJSD1GtB2zWtGXYCfxTMW/93OX35ll05H9kzULLZ8PlXD+/i9fJcurIg==
   dependencies:
     classnames "2.x"
@@ -8322,14 +8322,14 @@ rc-notification@~4.3.0:
 
 rc-pagination@~2.2.0:
   version "2.2.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-pagination/-/rc-pagination-2.2.2.tgz#9773726fb6c5879bd4e5fe8848cb2dea50d80b97"
+  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-2.2.2.tgz#9773726fb6c5879bd4e5fe8848cb2dea50d80b97"
   integrity sha512-7QVY4xcoLcB9jHDxOm/zY1b6wEP8/jEVpcOFUQk2bbKUtrt8cRNB+FIrDUvuVeiIEFYcMXFPgKoHHMrUaIuSGA==
   dependencies:
     classnames "^2.2.1"
 
 rc-picker@~1.4.16:
   version "1.4.16"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-picker/-/rc-picker-1.4.16.tgz#50b6bde3d237cc327917353d21e3bb9ce004ee5c"
+  resolved "https://registry.yarnpkg.com/rc-picker/-/rc-picker-1.4.16.tgz#50b6bde3d237cc327917353d21e3bb9ce004ee5c"
   integrity sha512-aGMwyVX2Tt5Dv8xjpICoqn0nZW7PtTBfGwxevznCB/8doRrhs0jtU/zhSm3806hqJ8viR65v+fmwtXHi3HMc5w==
   dependencies:
     classnames "^2.2.1"
@@ -8340,14 +8340,14 @@ rc-picker@~1.4.16:
 
 rc-progress@~3.0.0:
   version "3.0.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-progress/-/rc-progress-3.0.0.tgz#cea324ce8fc31421cd815d94a4649a8a29f8f8db"
+  resolved "https://registry.yarnpkg.com/rc-progress/-/rc-progress-3.0.0.tgz#cea324ce8fc31421cd815d94a4649a8a29f8f8db"
   integrity sha512-dQv1KU3o6Vay604FMYMF4S0x4GNXAgXf1tbQ1QoxeIeQt4d5fUeB7Ri82YPu+G+aRvH/AtxYAlEcnxyVZ1/4Hw==
   dependencies:
     classnames "^2.2.6"
 
 rc-rate@~2.6.0:
   version "2.6.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-rate/-/rc-rate-2.6.0.tgz#3990f1b0c7f0da91465c12af3612c03dd836703d"
+  resolved "https://registry.yarnpkg.com/rc-rate/-/rc-rate-2.6.0.tgz#3990f1b0c7f0da91465c12af3612c03dd836703d"
   integrity sha512-g6gXZDQfd+kLK7AmoPPWjZ5nlM6ckwQy4RU1xcaFL8AEDx10qbC6Vi6oEhruBbYiPlbAacYcsMA5EbFXhD5x8A==
   dependencies:
     classnames "^2.2.5"
@@ -8355,7 +8355,7 @@ rc-rate@~2.6.0:
 
 rc-resize-observer@^0.2.0:
   version "0.2.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-resize-observer/-/rc-resize-observer-0.2.1.tgz#4610acb8a0f2a84b5e8d45664964ac32b5d3df72"
+  resolved "https://registry.yarnpkg.com/rc-resize-observer/-/rc-resize-observer-0.2.1.tgz#4610acb8a0f2a84b5e8d45664964ac32b5d3df72"
   integrity sha512-GENTRkL3lq05ilrjTxPpHUPrKTC9D7XqUGesSXgi/GyO4j/jKIjLPn7zuZOcJ5QmN5QGRe24IaVWPZHQPE6vLw==
   dependencies:
     classnames "^2.2.1"
@@ -8364,7 +8364,7 @@ rc-resize-observer@^0.2.0:
 
 rc-select@^10.1.0, rc-select@~10.3.5:
   version "10.3.6"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-select/-/rc-select-10.3.6.tgz#d11800c3a8c8e8c75ed9e4b0d6cf790ce59edc42"
+  resolved "https://registry.yarnpkg.com/rc-select/-/rc-select-10.3.6.tgz#d11800c3a8c8e8c75ed9e4b0d6cf790ce59edc42"
   integrity sha512-FDiqh48Djuq+NbUQyl4K110EkeLwBmxBQ94bSGdz7CFpT1wptVzDlpBc0PBqO+MUQ4Q+vCOhShArTf9GQyoJbg==
   dependencies:
     classnames "2.x"
@@ -8376,7 +8376,7 @@ rc-select@^10.1.0, rc-select@~10.3.5:
 
 rc-slider@~9.2.3:
   version "9.2.4"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-slider/-/rc-slider-9.2.4.tgz#92e2b58c53def9921ae0fc2822727ab5785b9ed0"
+  resolved "https://registry.yarnpkg.com/rc-slider/-/rc-slider-9.2.4.tgz#92e2b58c53def9921ae0fc2822727ab5785b9ed0"
   integrity sha512-wSr7vz+WtzzGqsGU2rTQ4mmLz9fkuIDMPYMYm8ygYFvxQ2Rh4uRhOWHYI0R8krNK5k1bGycckYxmQqUIvLAh3w==
   dependencies:
     babel-runtime "6.x"
@@ -8388,7 +8388,7 @@ rc-slider@~9.2.3:
 
 rc-steps@~3.6.0:
   version "3.6.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-steps/-/rc-steps-3.6.0.tgz#5a377f6a0a7eacd3152bb96bdf425b654b4a552e"
+  resolved "https://registry.yarnpkg.com/rc-steps/-/rc-steps-3.6.0.tgz#5a377f6a0a7eacd3152bb96bdf425b654b4a552e"
   integrity sha512-UH0ggF5UB4QBoAXeJH6JUSnPVg3H9z3o3nyf6yZ5QYXcsFn4tIJyjtnE9h+yhQIBQDVzwNY1r5yhW2PYrzO1tw==
   dependencies:
     classnames "^2.2.3"
@@ -8396,7 +8396,7 @@ rc-steps@~3.6.0:
 
 rc-switch@~3.1.0:
   version "3.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-switch/-/rc-switch-3.1.0.tgz#29c7d125d1631c8d991edbd25e5c875564d9a0da"
+  resolved "https://registry.yarnpkg.com/rc-switch/-/rc-switch-3.1.0.tgz#29c7d125d1631c8d991edbd25e5c875564d9a0da"
   integrity sha512-Aj187C59srZR43zzic4que/OFFbUwhbpKHU4Ppuv2Zg6i+0F4OSJ/4Z0NGS7Ssqf2n/EMQ+AJQpX14GEYqBFoA==
   dependencies:
     classnames "^2.2.1"
@@ -8404,7 +8404,7 @@ rc-switch@~3.1.0:
 
 rc-table@~7.5.3:
   version "7.5.10"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-table/-/rc-table-7.5.10.tgz#ba9901cb80cb72cb573c58017a9468e462c58e4c"
+  resolved "https://registry.yarnpkg.com/rc-table/-/rc-table-7.5.10.tgz#ba9901cb80cb72cb573c58017a9468e462c58e4c"
   integrity sha512-COLoU+Vzd8Qwod8BPpry8MVtvLUo0uDdjK2T2kjF1/w5mlVDTgtVB38ckfYf4JdEqBrzj9P6bSjvohtlZ1IQuQ==
   dependencies:
     classnames "^2.2.5"
@@ -8415,7 +8415,7 @@ rc-table@~7.5.3:
 
 rc-tabs@~10.1.1:
   version "10.1.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-tabs/-/rc-tabs-10.1.1.tgz#847d8c2038842a3cb5f2e74935d0e38b85fce61e"
+  resolved "https://registry.yarnpkg.com/rc-tabs/-/rc-tabs-10.1.1.tgz#847d8c2038842a3cb5f2e74935d0e38b85fce61e"
   integrity sha512-dOFeaYil3d6zV3ZtGZWfRf7zwyqUQ48cl67/Y/03SsBWEdYgfZzlgjfHqmUT+V7L7CvhQ5lIQyYpj4EthkgKCg==
   dependencies:
     classnames "2.x"
@@ -8426,21 +8426,21 @@ rc-tabs@~10.1.1:
 
 rc-tooltip@^4.0.0:
   version "4.2.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-tooltip/-/rc-tooltip-4.2.0.tgz#614235c94874861b7a473793992956fb666e2ba2"
+  resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-4.2.0.tgz#614235c94874861b7a473793992956fb666e2ba2"
   integrity sha512-Ehf7nTQkn+2Y5J1awYIH8RmMTzHEBj+V7VpLLgCjMVMbigJLdW6pcB2XK6oSGUKl9VGzONdWqya+OKHIPd3D1Q==
   dependencies:
     rc-trigger "^4.2.1"
 
 rc-tooltip@~4.0.2:
   version "4.0.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-tooltip/-/rc-tooltip-4.0.3.tgz#728b760863643ec2e85827a2e7fb28d961b3b759"
+  resolved "https://registry.yarnpkg.com/rc-tooltip/-/rc-tooltip-4.0.3.tgz#728b760863643ec2e85827a2e7fb28d961b3b759"
   integrity sha512-HNyBh9/fPdds0DXja8JQX0XTIHmZapB3lLzbdn74aNSxXG1KUkt+GK4X1aOTRY5X9mqm4uUKdeFrn7j273H8gw==
   dependencies:
     rc-trigger "^4.0.0"
 
 rc-tree-select@~3.1.0:
   version "3.1.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-tree-select/-/rc-tree-select-3.1.3.tgz#d31efbf9955d70b250fe50645b39f3b705a3d124"
+  resolved "https://registry.yarnpkg.com/rc-tree-select/-/rc-tree-select-3.1.3.tgz#d31efbf9955d70b250fe50645b39f3b705a3d124"
   integrity sha512-VQDr+qLCCJ9V/4ewnp3crMT2N7iJV58V0uWVA3nGJxVuxhSj8TPHFZLnyMh6vaNrQsrY6eBp/x1y6nEJBjnVQg==
   dependencies:
     classnames "2.x"
@@ -8450,7 +8450,7 @@ rc-tree-select@~3.1.0:
 
 rc-tree@^3.1.0, rc-tree@~3.2.0:
   version "3.2.2"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-tree/-/rc-tree-3.2.2.tgz#9822c4929570156a2170037a4faeb010cae10702"
+  resolved "https://registry.yarnpkg.com/rc-tree/-/rc-tree-3.2.2.tgz#9822c4929570156a2170037a4faeb010cae10702"
   integrity sha512-eF4vJJpMnTmPufxplZ2xg+P3ogfFoUfZkZXV2qasC6JSTf+13jB7pA1xXjCwJ86V+7PqEGUsE/mljLusng0XEA==
   dependencies:
     classnames "2.x"
@@ -8460,7 +8460,7 @@ rc-tree@^3.1.0, rc-tree@~3.2.0:
 
 rc-trigger@^4.0.0, rc-trigger@^4.2.1:
   version "4.2.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-trigger/-/rc-trigger-4.2.1.tgz#e30271c703d3a470fd47e75b7432102c7d0c9449"
+  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-4.2.1.tgz#e30271c703d3a470fd47e75b7432102c7d0c9449"
   integrity sha512-iFQ+/FbzDvYDrTS3jXbdk4MgVNU0R/A8UAAQkspXSr4Q6jTcR6p+lfNhSS0JJgJuXtfjoInC0+8jXK8HUShQ0g==
   dependencies:
     classnames "^2.2.6"
@@ -8471,7 +8471,7 @@ rc-trigger@^4.0.0, rc-trigger@^4.2.1:
 
 rc-trigger@~4.1.0:
   version "4.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-trigger/-/rc-trigger-4.1.0.tgz#6b13a41161716d6353e6324a01055efacb07cf71"
+  resolved "https://registry.yarnpkg.com/rc-trigger/-/rc-trigger-4.1.0.tgz#6b13a41161716d6353e6324a01055efacb07cf71"
   integrity sha512-EyQjO6aHDAPRvJeyPmg/yVL/8Bp7oA6Lf+4Ay2OyOwhZLzHHN8m+F2XrVWKpjg04eBXbuGBNiucIqv1d/ddE3w==
   dependencies:
     classnames "^2.2.6"
@@ -8482,7 +8482,7 @@ rc-trigger@~4.1.0:
 
 rc-upload@~3.0.4:
   version "3.0.4"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-upload/-/rc-upload-3.0.4.tgz#5fd8ba9eefc1e466225240ae997404693d86fa09"
+  resolved "https://registry.yarnpkg.com/rc-upload/-/rc-upload-3.0.4.tgz#5fd8ba9eefc1e466225240ae997404693d86fa09"
   integrity sha512-dTCvj1iHxjHG0qo5UyN2ZmtueG9GG3xrOhOwnjsehaoOvl0TOjLbHkUIPPqLZk+wHb57Ue4KB7c3+IMgkDoBvw==
   dependencies:
     babel-runtime "6.x"
@@ -8490,7 +8490,7 @@ rc-upload@~3.0.4:
 
 rc-util@^4.0.4, rc-util@^4.11.0, rc-util@^4.12.0, rc-util@^4.13.0, rc-util@^4.14.0, rc-util@^4.15.3, rc-util@^4.16.1, rc-util@^4.17.0, rc-util@^4.20.0, rc-util@^4.20.1, rc-util@^4.20.3, rc-util@^4.20.5, rc-util@^4.20.6, rc-util@^4.5.1, rc-util@^4.6.0, rc-util@^4.8.0, rc-util@^4.9.0:
   version "4.20.7"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-util/-/rc-util-4.20.7.tgz#8c19f3a489744ec00c9871ffe3701cdb7ff4a38e"
+  resolved "https://registry.yarnpkg.com/rc-util/-/rc-util-4.20.7.tgz#8c19f3a489744ec00c9871ffe3701cdb7ff4a38e"
   integrity sha512-wzL7bGTimuUK/SgXlUIxcXYdQ27eAaBd8PTuiKz7ZI/Mbm5R6ZcRTWpeIGG56t+/79oi++kobfKbJrPxMTkKIw==
   dependencies:
     add-dom-event-listener "^1.1.0"
@@ -8501,7 +8501,7 @@ rc-util@^4.0.4, rc-util@^4.11.0, rc-util@^4.12.0, rc-util@^4.13.0, rc-util@^4.14
 
 rc-virtual-list@^1.1.0, rc-virtual-list@^1.1.2:
   version "1.1.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/rc-virtual-list/-/rc-virtual-list-1.1.3.tgz#4b59d1f727f3ba2dc4ccea21f3e92a5e023c11a0"
+  resolved "https://registry.yarnpkg.com/rc-virtual-list/-/rc-virtual-list-1.1.3.tgz#4b59d1f727f3ba2dc4ccea21f3e92a5e023c11a0"
   integrity sha512-2D7GPdvta05NQZ5fHSK3BFst28G0wFgvNX/xAhGXVC8YOheZPFAn5Yqpe7jXFepBb7Y+1cwOx12LYAL8VkULBw==
   dependencies:
     classnames "^2.2.6"
@@ -8528,7 +8528,7 @@ react-chartjs-2@^2.7.4:
 
 react-dom@^16.13.1:
   version "16.13.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
   dependencies:
     loose-envify "^1.1.0"
@@ -8568,7 +8568,7 @@ react-is@^16.8.1:
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
 react-redux@^7.2.0:
@@ -8591,7 +8591,7 @@ react-router5@^8.0.1:
 
 react@^16.13.1:
   version "16.13.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   dependencies:
     loose-envify "^1.1.0"
@@ -9043,7 +9043,7 @@ reselect@^4.0.0:
 
 resize-observer-polyfill@^1.5.0, resize-observer-polyfill@^1.5.1:
   version "1.5.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
   integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-dependency-path@^2.0.0:
@@ -9265,7 +9265,7 @@ saxes@^3.1.9:
 
 scheduler@^0.19.1:
   version "0.19.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
   integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
   dependencies:
     loose-envify "^1.1.0"
@@ -9273,7 +9273,7 @@ scheduler@^0.19.1:
 
 scroll-into-view-if-needed@^2.2.20:
   version "2.2.24"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.24.tgz#12bca532990769bd509115a49edcfa755e92a0ea"
+  resolved "https://registry.yarnpkg.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.24.tgz#12bca532990769bd509115a49edcfa755e92a0ea"
   integrity sha512-vsC6SzyIZUyJG8o4nbUDCiIwsPdH6W/FVmjT2avR2hp/yzS53JjGmg/bKD20TkoNajbu5dAQN4xR7yes4qhwtQ==
   dependencies:
     compute-scroll-into-view "^1.0.13"
@@ -9402,7 +9402,7 @@ shallow-copy@~0.0.1:
 
 shallowequal@^1.0.2, shallowequal@^1.1.0:
   version "1.1.0"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
+  resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
 shebang-command@^1.2.0:
@@ -9728,7 +9728,7 @@ string-argv@0.3.1:
 
 string-convert@^0.2.0:
   version "0.2.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/string-convert/-/string-convert-0.2.1.tgz#6982cc3049fbb4cd85f8b24568b9d9bf39eeff97"
+  resolved "https://registry.yarnpkg.com/string-convert/-/string-convert-0.2.1.tgz#6982cc3049fbb4cd85f8b24568b9d9bf39eeff97"
   integrity sha1-aYLMMEn7tM2F+LJFaLnZvznu/5c=
 
 string-hash@^1.1.1:
@@ -10189,7 +10189,7 @@ tiny-inflate@^1.0.0:
 
 tinycolor2@^1.4.1:
   version "1.4.1"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
   integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
 
 tmp@^0.0.33:
@@ -10248,7 +10248,7 @@ to-regex@^3.0.1, to-regex@^3.0.2:
 
 toggle-selection@^1.0.6:
   version "1.0.6"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
+  resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
   integrity sha1-bkWxJj8gF/oKzH2J14sVuL932jI=
 
 toidentifier@1.0.0:
@@ -10438,7 +10438,7 @@ typescript@^3.0.3, typescript@^3.2.1:
 
 typescript@^3.9.3:
   version "3.9.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
   integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
 
 uglify-js@^3.1.4:
@@ -10764,7 +10764,7 @@ walkdir@^0.0.12:
 
 warning@^4.0.1, warning@^4.0.3, warning@~4.0.3:
   version "4.0.3"
-  resolved "http://npm.dal.k8s.int.avs.io/repository/aviasales/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
   dependencies:
     loose-envify "^1.0.0"
