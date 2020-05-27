@@ -9,7 +9,7 @@ RUN yarn
 COPY . .
 RUN yarn build
 
-FROM nginx:1.17.10-alpine
+FROM nginx:1.16.1-alpine
 
 RUN apk add bash
 
