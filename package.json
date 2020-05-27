@@ -18,7 +18,7 @@
     "@samokat/abstract-env": "^1.1.1",
     "@samokat/parcel-plugin-real-env": "^1.0.0",
     "antd": "^4.2.5",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "chart.js": "^2.7.3",
     "class-transformer": "^0.2.3",
     "classnames": "^2.2.6",
