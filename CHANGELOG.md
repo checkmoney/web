@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/checkmoney/web/compare/v1.1.4...v1.1.5) (2020-05-27)
+
+### Bug Fixes
+
+- fix parcel prod build bug ([1b2e854](https://github.com/checkmoney/web/commit/1b2e854c2f3c3cdeef2a522d8170577178c51f50))
+
 ### [1.1.4](https://github.com/checkmoney/web/compare/v1.1.3...v1.1.4) (2020-05-27)
 
 ### Bug Fixes
