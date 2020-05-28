@@ -27,7 +27,7 @@ export const YearPicker = ({
   );
   const stringOnChange = useCallback(
     (v: string | undefined) => {
-      const newValue = v !== undefined ? parseInt(v, 10) : v;
+      const newValue = Number(v !== undefined ? parseInt(v, 10) : v);
 
       handleChange(newValue);
     },
