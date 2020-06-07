@@ -1,8 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
 import { useRouter } from 'react-router5';
+import { head } from 'lodash';
 
 import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
@@ -19,6 +20,7 @@ import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
 import { Route } from '&front/app/router';
+import { selectPeriods } from '&front/app/statistics/periods.selectors';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -50,6 +52,12 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     group,
     dateRange,
   ]);
+
+  const dataByPeriod = useMemoMappedState(
+    selectPeriods(GroupBy.Month, dateRange),
+    [dateRange],
+  );
+
   const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
     group,
     dateRange,
@@ -64,6 +72,14 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
         })),
       ),
     [data, dataPath],
+  );
+
+  const total = useMemo(
+    () =>
+      Option.of(
+        dataByPeriod && head(dataByPeriod) && head(dataByPeriod)[dataPath],
+      ),
+    [dataByPeriod],
   );
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
@@ -92,13 +108,21 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
             status={{ error: errorState, loading: preparedData.isEmpty() }}
           >
             {preparedData.nonEmpty() && (
-              <PieChart
-                dataSets={preparedData.get()}
-                displayValue={(value) =>
-                  displayMoney(currency!)(value, { withPenny: false })
-                }
-                fitToContainer={isSmall}
-              />
+              <Fragment>
+                {total.nonEmpty() && (
+                  <p>
+                    Всего:
+                    {displayMoney(currency!)(total.get(), { withPenny: false })}
+                  </p>
+                )}
+                <PieChart
+                  dataSets={preparedData.get()}
+                  displayValue={(value) =>
+                    displayMoney(currency!)(value, { withPenny: false })
+                  }
+                  fitToContainer={isSmall}
+                />
+              </Fragment>
             )}
           </Loader>
         </div>
