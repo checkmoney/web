@@ -74,13 +74,17 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     [data, dataPath],
   );
 
-  const total = useMemo(
-    () =>
-      Option.of(
-        dataByPeriod && head(dataByPeriod) && head(dataByPeriod)[dataPath],
-      ),
-    [dataByPeriod],
-  );
+  const total = useMemo(() => {
+    if (!dataByPeriod) return null;
+
+    const byMonth = dataByPeriod?.length === 1;
+
+    const totalValue = byMonth
+      ? head(dataByPeriod)[dataPath]
+      : dataByPeriod.reduce((sum, it) => it[dataPath] + sum, 0);
+
+    return Option.of(totalValue);
+  }, [dataByPeriod]);
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
 
