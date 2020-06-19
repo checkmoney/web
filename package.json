@@ -132,10 +132,12 @@
   },
   "size-limit": [
     {
-      "path": "dist/*.js"
+      "path": "dist/*.js",
+      "limit": "916.23 KB"
     },
     {
-      "path": "dist/*.css"
+      "path": "dist/*.css",
+      "limit": "66.92 KB"
     }
   ]
 }
