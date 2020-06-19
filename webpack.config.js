@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { EnvironmentPlugin } = require('webpack');
 
 const {
@@ -13,7 +14,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: ['ts-loader'],
         exclude: /node_modules/,
       },
       {
@@ -40,6 +41,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
+    host: '0.0.0.0',
   },
   stats: { children: false },
   output: {
@@ -48,6 +50,7 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
