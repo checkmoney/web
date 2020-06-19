@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.9](https://github.com/checkmoney/web/compare/v1.1.8...v1.1.9) (2020-06-19)
+
+### Bug Fixes
+
+- add miss html tags ([9a41364](https://github.com/checkmoney/web/commit/9a41364a6f037004e015c0143c891876fff54169))
+
 ### [1.1.8](https://github.com/checkmoney/web/compare/v1.1.7...v1.1.8) (2020-06-19)
 
 ### [1.1.7](https://github.com/checkmoney/web/compare/v1.1.6...v1.1.7) (2020-05-28)
