@@ -75,6 +75,7 @@
     "@types/react-redux": "^7.1.9",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "@yarnpkg/pnpify": "^2.0.0-rc.25",
     "babel-loader": "^8.1.0",
     "babel-plugin-date-fns": "1",
     "babel-plugin-lodash": "^3.3.4",
