@@ -14,7 +14,7 @@ const defaultParams = {
 };
 
 export const displayMoney = (currency: Currency) => (
-  amount: number | string | undefined | {},
+  amount: number | string | undefined,
   params: Params = defaultParams,
 ) => {
   const actualParams = {

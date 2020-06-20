@@ -79,7 +79,11 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const total = useMemo(() => {
     if (!dataByPeriod) return Option.of(null);
 
-    return Option.of(head(dataByPeriod) && head(dataByPeriod)[dataPath]);
+    const lastPeriod = head(dataByPeriod);
+
+    if (!lastPeriod) return Option.of(null);
+
+    return Option.of(lastPeriod[dataPath]);
   }, [dataByPeriod]);
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
