@@ -1,11 +1,13 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
 import { useRouter } from 'react-router5';
+import { head } from 'lodash';
 
 import { Interval } from '&front/app/api/api.types';
-import { actions } from '&front/app/statistics/categories.actions';
+import { actions as categoriesActions } from '&front/app/statistics/categories.actions';
+import { actions as periodsActions } from '&front/app/statistics/periods.actions';
 import {
   selectCategories,
   selectCategoriesHasError,
@@ -19,6 +21,8 @@ import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
 import { Route } from '&front/app/router';
+import { selectPeriods } from '&front/app/statistics/periods.selectors';
+import { NON_BREAKING_SPACE } from '&shared/helpers/NON_BREAKING_SPACE';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -43,13 +47,19 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.started({ periodType: group, dateRange }));
+    dispatch(categoriesActions.started({ periodType: group, dateRange }));
+    dispatch(periodsActions.started({ periodType: group, dateRange }));
   }, [group, dateRange]);
 
   const data = useMemoMappedState(selectCategories(group, dateRange), [
     group,
     dateRange,
   ]);
+
+  const dataByPeriod = useMemoMappedState(selectPeriods(group, dateRange), [
+    dateRange,
+  ]);
+
   const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
     group,
     dateRange,
@@ -65,6 +75,16 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
       ),
     [data, dataPath],
   );
+
+  const total = useMemo(() => {
+    if (!dataByPeriod) return Option.of(null);
+
+    const lastPeriod = head(dataByPeriod);
+
+    if (!lastPeriod) return Option.of(null);
+
+    return Option.of(lastPeriod[dataPath]);
+  }, [dataByPeriod, dataPath]);
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
 
@@ -92,13 +112,23 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
             status={{ error: errorState, loading: preparedData.isEmpty() }}
           >
             {preparedData.nonEmpty() && (
-              <PieChart
-                dataSets={preparedData.get()}
-                displayValue={(value) =>
-                  displayMoney(currency!)(value, { withPenny: false })
-                }
-                fitToContainer={isSmall}
-              />
+              <Fragment>
+                {total.nonEmpty() && (
+                  <p>
+                    Всего:
+                    {`${NON_BREAKING_SPACE}${displayMoney(
+                      currency!,
+                    )(total.get(), { withPenny: false })}`}
+                  </p>
+                )}
+                <PieChart
+                  dataSets={preparedData.get()}
+                  displayValue={(value) =>
+                    displayMoney(currency!)(value, { withPenny: false })
+                  }
+                  fitToContainer={isSmall}
+                />
+              </Fragment>
             )}
           </Loader>
         </div>
