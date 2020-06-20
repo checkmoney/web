@@ -6,7 +6,8 @@ import { useRouter } from 'react-router5';
 import { head } from 'lodash';
 
 import { Interval } from '&front/app/api/api.types';
-import { actions } from '&front/app/statistics/categories.actions';
+import { actions as categoriesActions } from '&front/app/statistics/categories.actions';
+import { actions as periodsActions } from '&front/app/statistics/periods.actions';
 import {
   selectCategories,
   selectCategoriesHasError,
@@ -21,6 +22,7 @@ import { GroupBy } from '&shared/enum/GroupBy';
 import { displayMoney } from '&shared/helpers/displayMoney';
 import { Route } from '&front/app/router';
 import { selectPeriods } from '&front/app/statistics/periods.selectors';
+import { NON_BREAKING_SPACE } from '&shared/helpers/NON_BREAKING_SPACE';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -45,7 +47,8 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.started({ periodType: group, dateRange }));
+    dispatch(categoriesActions.started({ periodType: group, dateRange }));
+    dispatch(periodsActions.started({ periodType: group, dateRange }));
   }, [group, dateRange]);
 
   const data = useMemoMappedState(selectCategories(group, dateRange), [
@@ -53,10 +56,9 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     dateRange,
   ]);
 
-  const dataByPeriod = useMemoMappedState(
-    selectPeriods(GroupBy.Month, dateRange),
-    [dateRange],
-  );
+  const dataByPeriod = useMemoMappedState(selectPeriods(group, dateRange), [
+    dateRange,
+  ]);
 
   const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
     group,
@@ -75,15 +77,9 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   );
 
   const total = useMemo(() => {
-    if (!dataByPeriod) return null;
+    if (!dataByPeriod) return Option.of(null);
 
-    const byMonth = dataByPeriod?.length === 1;
-
-    const totalValue = byMonth
-      ? head(dataByPeriod)[dataPath]
-      : dataByPeriod.reduce((sum, it) => it[dataPath] + sum, 0);
-
-    return Option.of(totalValue);
+    return Option.of(head(dataByPeriod) && head(dataByPeriod)[dataPath]);
   }, [dataByPeriod]);
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
@@ -116,7 +112,9 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
                 {total.nonEmpty() && (
                   <p>
                     Всего:
-                    {displayMoney(currency!)(total.get(), { withPenny: false })}
+                    {`${NON_BREAKING_SPACE}${displayMoney(
+                      currency!,
+                    )(total.get(), { withPenny: false })}`}
                   </p>
                 )}
                 <PieChart
