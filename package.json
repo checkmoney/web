@@ -74,6 +74,8 @@
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-date-fns": "1",
+    "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-typescript-metadata": "^0.3.0",
     "clean-webpack-plugin": "^3.0.0",
     "commitizen": "^4.0.4",
@@ -93,6 +95,7 @@
     "lint-staged": "^10.1.3",
     "madge": "^3.4.3",
     "mini-css-extract-plugin": "^0.9.0",
+    "moment-locales-webpack-plugin": "^1.2.0",
     "parcel-bundler": "^1.12.4",
     "postcss": "^7.0.14",
     "postcss-custom-media": "^7.0.7",
@@ -142,7 +145,7 @@
   "size-limit": [
     {
       "path": "dist/*.js",
-      "limit": "655.85 KB"
+      "limit": "534.38 KB"
     },
     {
       "path": "dist/*.css",

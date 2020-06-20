@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { EnvironmentPlugin } = require('webpack');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 const {
   resolveTsconfigPathsToAlias,
@@ -37,7 +38,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
-    alias: resolveTsconfigPathsToAlias(),
+    alias: {
+      ...resolveTsconfigPathsToAlias(),
+      'lodash-es': 'lodash',
+    },
   },
   devServer: {
     contentBase: './dist',
@@ -62,6 +66,9 @@ module.exports = {
       BACK_URL: '',
       STATS_URL: '',
       GOOGLE_CLIENT_ID: '',
+    }),
+    new MomentLocalesPlugin({
+      localesToKeep: ['ru'],
     }),
   ],
 };
