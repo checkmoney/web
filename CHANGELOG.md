@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/checkmoney/web/compare/v1.1.10...v1.2.0) (2020-06-20)
+
+### Features
+
+- **detail page:** add total sum for the period ([64303b6](https://github.com/checkmoney/web/commit/64303b6d2a43f10cd32e4ff3d889f5cc6497b399))
+- **detail-page:** fix total for yearly periods ([2b1e827](https://github.com/checkmoney/web/commit/2b1e827de19c7cbe992c449d2a58d970f1578a72))
+
+### Bug Fixes
+
+- **detail:** add periods fetching ([81d15bd](https://github.com/checkmoney/web/commit/81d15bdf3eccf4cbfae30904edc565d9bcd7b557))
+- **detail:** fix total useMemo hook depts ([9acb253](https://github.com/checkmoney/web/commit/9acb253add1a9578f054e9c46554ed968ce76877))
+- **detail:** fix types ([f96df72](https://github.com/checkmoney/web/commit/f96df72a867e6f5b9cddec0ced4c7dee2471c397))
+- **detail:** fix types ([b5071a0](https://github.com/checkmoney/web/commit/b5071a030f12329324bc423df49abc9ea553a97b))
+
 ### [1.1.10](https://github.com/checkmoney/web/compare/v1.1.9...v1.1.10) (2020-06-20)
 
 ### [1.1.9](https://github.com/checkmoney/web/compare/v1.1.8...v1.1.9) (2020-06-19)
