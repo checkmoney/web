@@ -215,7 +215,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],
       [
         "eslint-plugin-react",
-        "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.19.0"
+        "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.20.0"
       ],
       [
         "eslint-plugin-react-hooks",
@@ -499,7 +499,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-import-resolver-node", "npm:0.3.3"],
             ["eslint-plugin-import", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.20.2"],
             ["eslint-plugin-import-helpers", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:1.0.2"],
-            ["eslint-plugin-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.19.0"],
+            ["eslint-plugin-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.20.0"],
             ["eslint-plugin-react-hooks", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"],
             ["fast-check", "npm:1.15.1"],
             ["final-form", "npm:4.11.1"],
@@ -3402,10 +3402,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@babel/runtime-corejs3", [
-        ["npm:7.9.6", {
-          "packageLocation": "./.yarn/cache/@babel-runtime-corejs3-npm-7.9.6-fc4ed637c2-5ef285a2c1.zip/node_modules/@babel/runtime-corejs3/",
+        ["npm:7.10.3", {
+          "packageLocation": "./.yarn/cache/@babel-runtime-corejs3-npm-7.10.3-c64891913f-b6cc868beb.zip/node_modules/@babel/runtime-corejs3/",
           "packageDependencies": [
-            ["@babel/runtime-corejs3", "npm:7.9.6"],
+            ["@babel/runtime-corejs3", "npm:7.10.3"],
             ["core-js-pure", "npm:3.6.5"],
             ["regenerator-runtime", "npm:0.13.5"]
           ],
@@ -9077,21 +9077,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["eslint-plugin-react", [
-        ["virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.19.0", {
-          "packageLocation": "./.yarn/$$virtual/eslint-plugin-react-virtual-e8af36965d/0/cache/eslint-plugin-react-npm-7.19.0-cf65a17ee2-3e5b7bd3b2.zip/node_modules/eslint-plugin-react/",
+        ["virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.20.0", {
+          "packageLocation": "./.yarn/$$virtual/eslint-plugin-react-virtual-60db715da7/0/cache/eslint-plugin-react-npm-7.20.0-0586546de2-7033e1a422.zip/node_modules/eslint-plugin-react/",
           "packageDependencies": [
-            ["eslint-plugin-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.19.0"],
+            ["eslint-plugin-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.20.0"],
             ["array-includes", "npm:3.1.1"],
             ["doctrine", "npm:2.1.0"],
             ["eslint", "npm:6.8.0"],
             ["has", "npm:1.0.3"],
-            ["jsx-ast-utils", "npm:2.2.3"],
+            ["jsx-ast-utils", "npm:2.4.1"],
             ["object.entries", "npm:1.1.1"],
             ["object.fromentries", "npm:2.0.2"],
             ["object.values", "npm:1.1.1"],
             ["prop-types", "npm:15.7.2"],
             ["resolve", "patch:resolve@npm%3A1.17.0#builtin<compat/resolve>::version=1.17.0&hash=3388aa"],
-            ["semver", "npm:6.3.0"],
             ["string.prototype.matchall", "npm:4.0.2"],
             ["xregexp", "npm:4.3.0"]
           ],
@@ -12385,10 +12384,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["jsx-ast-utils", [
-        ["npm:2.2.3", {
-          "packageLocation": "./.yarn/cache/jsx-ast-utils-npm-2.2.3-0afe9e42fb-a5eaa22bb2.zip/node_modules/jsx-ast-utils/",
+        ["npm:2.4.1", {
+          "packageLocation": "./.yarn/cache/jsx-ast-utils-npm-2.4.1-81203927bc-36471d635b.zip/node_modules/jsx-ast-utils/",
           "packageDependencies": [
-            ["jsx-ast-utils", "npm:2.2.3"],
+            ["jsx-ast-utils", "npm:2.4.1"],
             ["array-includes", "npm:3.1.1"],
             ["object.assign", "npm:4.1.0"]
           ],
@@ -21378,7 +21377,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-import-resolver-node", "npm:0.3.3"],
             ["eslint-plugin-import", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.20.2"],
             ["eslint-plugin-import-helpers", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:1.0.2"],
-            ["eslint-plugin-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.19.0"],
+            ["eslint-plugin-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:7.20.0"],
             ["eslint-plugin-react-hooks", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"],
             ["fast-check", "npm:1.15.1"],
             ["final-form", "npm:4.11.1"],
@@ -21831,7 +21830,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/xregexp-npm-4.3.0-ffd2086dab-2dcef4888e.zip/node_modules/xregexp/",
           "packageDependencies": [
             ["xregexp", "npm:4.3.0"],
-            ["@babel/runtime-corejs3", "npm:7.9.6"]
+            ["@babel/runtime-corejs3", "npm:7.10.3"]
           ],
           "linkType": "HARD",
         }]
