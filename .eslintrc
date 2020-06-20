@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "react",
     "eslint-plugin-import-helpers",
     "@typescript-eslint",
     "react-hooks"
