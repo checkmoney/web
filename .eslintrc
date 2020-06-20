@@ -52,7 +52,8 @@
   },
   "settings": {
     "react": {
-      "version": "detect"
+      "pragma": "React",
+      "version": "16.13.1"
     }
   }
 }
