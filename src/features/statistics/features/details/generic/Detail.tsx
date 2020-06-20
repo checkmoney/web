@@ -84,7 +84,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     if (!lastPeriod) return Option.of(null);
 
     return Option.of(lastPeriod[dataPath]);
-  }, [dataByPeriod]);
+  }, [dataByPeriod, dataPath]);
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
 
