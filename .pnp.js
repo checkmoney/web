@@ -406,6 +406,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"
       ],
       [
+        "stylelint-order",
+        "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:4.1.0"
+      ],
+      [
         "tsoption",
         "npm:0.7.0"
       ],
@@ -543,6 +547,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["stylelint", "npm:13.3.3"],
             ["stylelint-config-recess-order", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.0.4"],
             ["stylelint-config-recommended", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"],
+            ["stylelint-order", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:4.1.0"],
             ["tsoption", "npm:0.7.0"],
             ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=64df9d"],
             ["typescript-fsa", "npm:3.0.0"],
@@ -15216,6 +15221,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["supports-color", "npm:6.1.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:7.0.32", {
+          "packageLocation": "./.yarn/cache/postcss-npm-7.0.32-437a119902-340f4f6ca6.zip/node_modules/postcss/",
+          "packageDependencies": [
+            ["postcss", "npm:7.0.32"],
+            ["chalk", "npm:2.4.2"],
+            ["source-map", "npm:0.6.1"],
+            ["supports-color", "npm:6.1.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["postcss-attribute-case-insensitive", [
@@ -19910,6 +19925,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["stylelint-order", [
+        ["virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:4.1.0", {
+          "packageLocation": "./.yarn/$$virtual/stylelint-order-virtual-cf42c18dee/0/cache/stylelint-order-npm-4.1.0-fbae712b47-69f7a60035.zip/node_modules/stylelint-order/",
+          "packageDependencies": [
+            ["stylelint-order", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:4.1.0"],
+            ["lodash", "npm:4.17.15"],
+            ["postcss", "npm:7.0.32"],
+            ["postcss-sorting", "npm:5.0.1"],
+            ["stylelint", "npm:13.3.3"]
+          ],
+          "packagePeers": [
+            "stylelint"
+          ],
+          "linkType": "HARD",
+        }],
         ["virtual:964eb8a2fc7b3c4c5a4bf37d024e8dc2da68b9cc755a0dacfe5e1a4289432913623e05ec1f4501483ddb258436b970e7cb790fec79f7de0d2caabec4684305ed#npm:4.0.0", {
           "packageLocation": "./.yarn/$$virtual/stylelint-order-virtual-589c9bda68/0/cache/stylelint-order-npm-4.0.0-e41f395eeb-c49858f931.zip/node_modules/stylelint-order/",
           "packageDependencies": [
@@ -21397,6 +21426,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["stylelint", "npm:13.3.3"],
             ["stylelint-config-recess-order", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.0.4"],
             ["stylelint-config-recommended", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.0.0"],
+            ["stylelint-order", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:4.1.0"],
             ["tsoption", "npm:0.7.0"],
             ["typescript", "patch:typescript@npm%3A3.9.3#builtin<compat/typescript>::version=3.9.3&hash=64df9d"],
             ["typescript-fsa", "npm:3.0.0"],

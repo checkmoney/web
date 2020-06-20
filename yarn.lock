@@ -14041,6 +14041,17 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"postcss@npm:^7.0.31":
+  version: 7.0.32
+  resolution: "postcss@npm:7.0.32"
+  dependencies:
+    chalk: ^2.4.2
+    source-map: ^0.6.1
+    supports-color: ^6.1.0
+  checksum: 340f4f6ca6bd37961927f68bf7e38d071a7cba0468240cbba64ccf78012b2acbec974491284cb200e438dd3e655314e6d9508562523cbf9a49d5b00fd7e769fa
+  languageName: node
+  linkType: hard
+
 "posthtml-parser@npm:^0.4.0, posthtml-parser@npm:^0.4.1, posthtml-parser@npm:^0.4.2":
   version: 0.4.2
   resolution: "posthtml-parser@npm:0.4.2"
@@ -17306,6 +17317,19 @@ resolve@^1.9.0:
   languageName: node
   linkType: hard
 
+"stylelint-order@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "stylelint-order@npm:4.1.0"
+  dependencies:
+    lodash: ^4.17.15
+    postcss: ^7.0.31
+    postcss-sorting: ^5.0.1
+  peerDependencies:
+    stylelint: ^10.0.1 || ^11.0.0 || ^12.0.0 || ^13.0.0
+  checksum: 69f7a6003564d21d4eab2b2f3cf641661b7d2bb34d765446502dc0e12b120234673ed62019aa02d439dd545102124c0b1b6af4f5bafbcff1b8e8d19a408f41c5
+  languageName: node
+  linkType: hard
+
 "stylelint@npm:^13.3.1":
   version: 13.3.3
   resolution: "stylelint@npm:13.3.3"
@@ -18695,6 +18719,7 @@ typescript@^3.9.3:
     stylelint: ^13.3.1
     stylelint-config-recess-order: ^2.0.4
     stylelint-config-recommended: ^3.0.0
+    stylelint-order: ^4.1.0
     tsoption: ^0.7.0
     typescript: ^3.9.3
     typescript-fsa: ^3.0.0

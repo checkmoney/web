@@ -117,6 +117,7 @@
     "stylelint": "^13.3.1",
     "stylelint-config-recess-order": "^2.0.4",
     "stylelint-config-recommended": "^3.0.0",
+    "stylelint-order": "^4.1.0",
     "typescript": "^3.9.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
