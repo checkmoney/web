@@ -9,6 +9,7 @@
     "build": "webpack -p -c ./webpack/webpack.config.js",
     "pretty": "prettier --write .",
     "commit": "git-cz",
+    "lint:types": "tsc --noEmit",
     "lint:size": "yarn build && size-limit",
     "lint:code": "eslint \"./**/*.{ts,tsx}\"",
     "lint:styles": "stylelint \"./**/*.css\"",

@@ -23,14 +23,14 @@ workflows:
               only: /.*/
             tags:
               only: /.*/
-      # - yarn-berry/local:
-      #     name: types
-      #     command: 'types'
-      #     filters:
-      #       branches:
-      #         only: /.*/
-      #       tags:
-      #         only: /.*/
+      - yarn-berry/local:
+          name: types
+          command: 'lint:types'
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - docker/build_push:
           image_name: 'web'
           image_version: CIRCLE_TAG
@@ -44,7 +44,7 @@ workflows:
           requires:
             - eslint
             - stylelint
-          #   - types
+            - types
       - deploy/roll_out:
           ssh_user: SSH_USER
           ssh_host: SSH_HOST
