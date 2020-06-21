@@ -62,7 +62,7 @@
     "@babel/preset-typescript": "^7.10.1",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@size-limit/preset-app": "^4.5.1",
+    "@size-limit/file": "^4.5.1",
     "@types/chart.js": "^2.7.45",
     "@types/classnames": "^2.2.7",
     "@types/color": "^3.0.0",
@@ -150,7 +150,7 @@
   "size-limit": [
     {
       "path": "dist/*.js",
-      "limit": "534.38 KB"
+      "limit": "560.02 KB"
     },
     {
       "path": "dist/*.css",
