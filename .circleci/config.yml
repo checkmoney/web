@@ -8,6 +8,14 @@ workflows:
   build:
     jobs:
       - yarn-berry/local:
+          name: size
+          command: 'lint:size'
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+      - yarn-berry/local:
           name: eslint
           command: 'lint:code'
           filters:
@@ -45,6 +53,7 @@ workflows:
             - eslint
             - stylelint
             - types
+            - size
       - deploy/roll_out:
           ssh_user: SSH_USER
           ssh_host: SSH_HOST
