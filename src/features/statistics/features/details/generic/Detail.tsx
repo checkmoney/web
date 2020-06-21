@@ -77,11 +77,11 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   );
 
   const total = useMemo(() => {
-    if (!dataByPeriod) return Option.of(null);
+    if (!dataByPeriod) return Option.of<number>(null);
 
     const lastPeriod = head(dataByPeriod);
 
-    if (!lastPeriod) return Option.of(null);
+    if (!lastPeriod) return Option.of<number>(null);
 
     return Option.of(lastPeriod[dataPath]);
   }, [dataByPeriod, dataPath]);

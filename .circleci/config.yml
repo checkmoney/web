@@ -1,28 +1,44 @@
 version: 2.1
 orbs:
-  # yarn-berry: checkmoney/yarn-berry@1.0.0
+  yarn-berry: checkmoney/yarn-berry@1.0.0
   docker: checkmoney/docker@1.0.3
   deploy: checkmoney/deploy@1.2.1
 workflows:
   version: 2
   build:
     jobs:
-      # - yarn-berry/local:
-      #     name: eslint
-      #     command: 'lint:code'
-      #     filters:
-      #       branches:
-      #         only: /.*/
-      #       tags:
-      #         only: /.*/
-      # - yarn-berry/local:
-      #     name: types
-      #     command: 'types'
-      #     filters:
-      #       branches:
-      #         only: /.*/
-      #       tags:
-      #         only: /.*/
+      - yarn-berry/local:
+          name: size
+          command: 'lint:size'
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+      - yarn-berry/local:
+          name: eslint
+          command: 'lint:code'
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+      - yarn-berry/local:
+          name: stylelint
+          command: 'lint:styles'
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
+      - yarn-berry/local:
+          name: types
+          command: 'lint:types'
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - docker/build_push:
           image_name: 'web'
           image_version: CIRCLE_TAG
@@ -33,9 +49,11 @@ workflows:
               only: master
             tags:
               only: /.*/
-          # requires:
-          #   - eslint
-          #   - types
+          requires:
+            - eslint
+            - stylelint
+            - types
+            - size
       - deploy/roll_out:
           ssh_user: SSH_USER
           ssh_host: SSH_HOST

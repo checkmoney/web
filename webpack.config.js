@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { EnvironmentPlugin } = require('webpack');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 
 const {
   resolveTsconfigPathsToAlias,
@@ -15,7 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: ['babel-loader'],
+        use: require.resolve('babel-loader'),
         exclude: /node_modules/,
       },
       {
@@ -24,15 +25,15 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: require.resolve('css-loader'),
             options: { modules: true, importLoaders: 1 },
           },
-          'postcss-loader',
+          require.resolve('postcss-loader'),
         ],
       },
       {
         test: /antd\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, require.resolve('css-loader')],
       },
     ],
   },
@@ -42,6 +43,14 @@ module.exports = {
       ...resolveTsconfigPathsToAlias(),
       'lodash-es': 'lodash',
     },
+    plugins: [
+      PnpWebpackPlugin,
+    ],
+  },
+  resolveLoader: {
+    plugins: [
+      PnpWebpackPlugin.moduleLoader(module),
+    ],
   },
   devServer: {
     contentBase: './dist',

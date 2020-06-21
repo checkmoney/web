@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "react",
     "eslint-plugin-import-helpers",
     "@typescript-eslint",
     "react-hooks"
@@ -52,7 +53,8 @@
   },
   "settings": {
     "react": {
-      "version": "detect"
+      "pragma": "React",
+      "version": "16.13.1"
     }
   }
 }
