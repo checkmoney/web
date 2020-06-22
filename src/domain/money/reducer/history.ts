@@ -10,7 +10,7 @@ import {
   createInitialState,
   newItemProcessor,
 } from '&front/domain/cached-data';
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
+import { HistoryGroupModel } from '&front/models/money/HistoryGroupModel';
 
 type InternalState = CachedState<HistoryGroupModel>;
 type State = WithFetchingState<InternalState>;

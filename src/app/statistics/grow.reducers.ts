@@ -1,7 +1,7 @@
 import { uniq } from 'lodash';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { actions } from './grow.actions';
 import { Grow } from './grow.types';

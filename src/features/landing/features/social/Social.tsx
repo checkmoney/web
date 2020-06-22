@@ -4,7 +4,7 @@ import { useRouter } from 'react-router5';
 import { useThunk } from '&front/domain/store';
 import { signInGoogle } from '&front/domain/user/actions/signInGoogle';
 import { Google } from '&front/ui/auth-widget/google';
-import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
+import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
 import { Route } from '&front/app/router';
 
 interface Props {

@@ -1,6 +1,6 @@
 import { Omit } from 'utility-types';
 
-import { Currency } from '&shared/enum/Currency';
+import { Currency } from '&front/enum/Currency';
 
 import { InputProps } from '../input';
 

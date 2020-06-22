@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { GoogleLogin } from 'react-google-login';
 
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
-import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
+import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
 import { config } from '&front/app/config';
 
 const googleClientId = config('GOOGLE_CLIENT_ID');

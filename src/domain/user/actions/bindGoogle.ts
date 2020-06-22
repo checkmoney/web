@@ -1,5 +1,5 @@
 import { fetchOrFail } from '&front/domain/store';
-import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
+import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
 
 export const bindGoogle = (profile: GoogleProfile) =>
   fetchOrFail(undefined, async (_, getApi) => {

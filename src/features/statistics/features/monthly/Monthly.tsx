@@ -18,9 +18,9 @@ import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { YearPicker } from '&front/ui/components/form/year-picker';
 import { Loader } from '&front/ui/components/layout/loader';
-import { Currency } from '&shared/enum/Currency';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { displayMoney } from '&shared/helpers/displayMoney';
+import { Currency } from '&front/enum/Currency';
+import { GroupBy } from '&front/enum/GroupBy';
+import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 

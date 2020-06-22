@@ -8,7 +8,7 @@ import { useMemoState } from '&front/domain/store';
 import { useDelete } from '&front/features/transaction/delete/useDelete';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Table } from '&front/ui/components/layout/table';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { createColumns } from '../../helpers/createColumns';
 import { historyToTableData } from '../../helpers/historyToTableData';

@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa';
 
-import { Currency } from '&shared/enum/Currency';
+import { Currency } from '&front/enum/Currency';
 
 const actionCreator = actionCreatorFactory('DEFAULT_CURRENCY');
 

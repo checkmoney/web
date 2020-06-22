@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { TipModel } from '&shared/models/mind/TipModel';
+import { displayMoney } from '&front/helpers/displayMoney';
+import { TipModel } from '&front/models/mind/TipModel';
 
 import { DailyBudgetMeta } from './DailyBudgetMeta';
 

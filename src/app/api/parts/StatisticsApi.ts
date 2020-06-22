@@ -4,8 +4,8 @@ import { plainToClass } from 'class-transformer';
 import { PeriodCategories } from '&front/app/statistics/categories.types';
 import { Grow } from '&front/app/statistics/grow.types';
 import { PeriodAmount } from '&front/app/statistics/periods.types';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { Currency } from '&shared/enum/Currency';
+import { GroupBy } from '&front/enum/GroupBy';
+import { Currency } from '&front/enum/Currency';
 
 import { Interval } from '../api.types';
 import { addTokenToHttpConfig, intervalForQuery } from '../api.utils';

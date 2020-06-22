@@ -18,11 +18,11 @@ import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { displayMoney } from '&shared/helpers/displayMoney';
+import { GroupBy } from '&front/enum/GroupBy';
+import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/app/router';
 import { selectPeriods } from '&front/app/statistics/periods.selectors';
-import { NON_BREAKING_SPACE } from '&shared/helpers/NON_BREAKING_SPACE';
+import { NON_BREAKING_SPACE } from '&front/helpers/NON_BREAKING_SPACE';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';

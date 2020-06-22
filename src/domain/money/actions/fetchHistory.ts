@@ -1,5 +1,5 @@
 import { fetchOrFail } from '&front/domain/store';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { fetchHistoryRequest } from '../api/fetchHistoryRequest';
 import { actions } from '../reducer/history';

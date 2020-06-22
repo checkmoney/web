@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { TipModel } from '&shared/models/mind/TipModel';
+import { displayMoney } from '&front/helpers/displayMoney';
+import { GroupBy } from '&front/enum/GroupBy';
+import { TipModel } from '&front/models/mind/TipModel';
 
 import { DismissButton } from '../components/dismiss-button';
 import { PastDaysBudgetMeta } from './PastDaysBudgetMeta';

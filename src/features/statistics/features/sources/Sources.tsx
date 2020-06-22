@@ -14,9 +14,9 @@ import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button, ButtonType } from '&front/ui/components/form/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
-import { Currency } from '&shared/enum/Currency';
-import { GroupBy } from '&shared/enum/GroupBy';
-import { displayMoney } from '&shared/helpers/displayMoney';
+import { Currency } from '&front/enum/Currency';
+import { GroupBy } from '&front/enum/GroupBy';
+import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/app/router';
 
 interface Props {

@@ -2,7 +2,7 @@ import Cookie from 'js-cookie';
 import { Base64 } from 'js-base64';
 import { dropRight, flow } from 'lodash';
 
-import { TokenPayloadModel } from '&shared/models/user/TokenPayloadModel';
+import { TokenPayloadModel } from '&front/models/user/TokenPayloadModel';
 
 export function retrieveToken() {
   return Cookie.get('token');

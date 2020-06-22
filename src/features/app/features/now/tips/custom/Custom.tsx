@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ExternalLink } from '&front/ui/components/controls/external-link';
 import { Card } from '&front/ui/components/layout/card';
-import { TipModel } from '&shared/models/mind/TipModel';
+import { TipModel } from '&front/models/mind/TipModel';
 
 import { DismissButton } from '../components/dismiss-button';
 import { CustomMeta } from './CustomMeta';

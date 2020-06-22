@@ -1,5 +1,5 @@
 import { Api } from '&front/domain/api';
-import { MergeTypoModel } from '&shared/models/mind/MergeTypoModel';
+import { MergeTypoModel } from '&front/models/mind/MergeTypoModel';
 
 export const mergeTypoRequest = (api: Api) => (
   merge: MergeTypoModel,

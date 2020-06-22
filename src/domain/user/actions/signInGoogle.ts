@@ -1,6 +1,6 @@
 import { fetchOrFail } from '&front/domain/store';
-import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
-import { TokenModel } from '&shared/models/user/TokenModel';
+import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
+import { TokenModel } from '&front/models/user/TokenModel';
 import { updateToken } from '&front/app/auth/auth.utils';
 
 import { actions as signInActions } from '../reducer/signIn';

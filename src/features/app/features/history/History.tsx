@@ -10,7 +10,7 @@ import { historyToTableData, createColumns } from '&front/features/history';
 import { wantUTC } from '&front/helpers/wantUTC';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { useDelete } from '&front/features/transaction/delete/useDelete';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { FullHistoryButton } from './components/full-history-button';
 

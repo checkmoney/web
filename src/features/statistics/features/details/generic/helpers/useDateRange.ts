@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 

@@ -2,7 +2,7 @@ import { takeLatest, put, call, delay } from 'redux-saga/effects';
 
 import { createProfileApi } from '&front/app/api/api.sagas';
 import { logError } from '&front/app/utility/errors.sagas';
-import { Currency } from '&shared/enum/Currency';
+import { Currency } from '&front/enum/Currency';
 
 import { actions } from './default_currency.actions';
 import { ProfileApi } from '../api/parts/ProfileApi';

@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
-import { TipAction } from '&shared/enum/TipAction';
-import { TipModel } from '&shared/models/mind/TipModel';
+import { TipAction } from '&front/models/mind/TipAction';
+import { TipModel } from '&front/models/mind/TipModel';
 
 import { Custom } from './custom';
 import { DailyBudget } from './daily-budget';

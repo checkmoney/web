@@ -1,7 +1,7 @@
 import { Interval } from '&front/app/api/api.types';
 import { intervalIdentity } from '&front/app/api/api.utils';
 import { State } from '&front/domain/store/State';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { PeriodCategories } from './categories.types';
 

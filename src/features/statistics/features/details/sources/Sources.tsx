@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { Detail } from '../generic';
 

@@ -1,5 +1,5 @@
 import { Api } from '&front/domain/api';
-import { OutcomeModel } from '&shared/models/money/OutcomeModel';
+import { OutcomeModel } from '&front/models/money/OutcomeModel';
 
 export const createOutcomeRequest = (api: Api) => (
   income: OutcomeModel,

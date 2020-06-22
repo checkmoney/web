@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa';
 
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { Grow } from './grow.types';
 

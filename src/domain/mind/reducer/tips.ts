@@ -5,7 +5,7 @@ import {
 } from 'redux-clear';
 
 import { uniqByWithRespect } from '&front/helpers/uniqByWithRespect';
-import { TipModel } from '&shared/models/mind/TipModel';
+import { TipModel } from '&front/models/mind/TipModel';
 
 type InternalState = TipModel[];
 type State = WithFetchingState<InternalState>;

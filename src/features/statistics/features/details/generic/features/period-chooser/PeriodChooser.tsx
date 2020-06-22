@@ -3,7 +3,7 @@ import React from 'react';
 
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Card } from '&front/ui/components/layout/card';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { Next, Prev } from '../components/next-prev';
 import { ShowMonth } from '../components/show-month';

@@ -5,7 +5,7 @@ import { useThunk } from '&front/domain/store';
 import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Button } from '&front/ui/components/form/button';
-import { Currency } from '&shared/enum/Currency';
+import { Currency } from '&front/enum/Currency';
 import { Route } from '&front/app/router';
 
 import * as styles from './Hello.css';

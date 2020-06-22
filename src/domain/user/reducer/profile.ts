@@ -4,8 +4,8 @@ import {
   WithFetchingState,
 } from 'redux-clear';
 
-import { Currency } from '&shared/enum/Currency';
-import { ProfileModel } from '&shared/models/user/ProfileModel';
+import { Currency } from '&front/enum/Currency';
+import { ProfileModel } from '&front/models/user/ProfileModel';
 
 type InternalState = ProfileModel;
 type State = WithFetchingState<InternalState>;

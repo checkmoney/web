@@ -1,6 +1,6 @@
 import { refetchData } from '&front/domain/money/actions/refetchData';
 import { fetchOrFail } from '&front/domain/store';
-import { MergeTypoModel } from '&shared/models/mind/MergeTypoModel';
+import { MergeTypoModel } from '&front/models/mind/MergeTypoModel';
 
 import { mergeTypoRequest } from '../api/mergeTypoRequest';
 import { actions } from '../reducer/tips';

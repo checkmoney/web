@@ -6,7 +6,7 @@ import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 import { Route } from '&front/app/router';
 
 import { Categories } from './features/categories';

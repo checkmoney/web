@@ -1,7 +1,7 @@
 import actionCreatorFactory from 'typescript-fsa';
 
 import { Interval } from '&front/app/api/api.types';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import { PeriodCategories } from './categories.types';
 

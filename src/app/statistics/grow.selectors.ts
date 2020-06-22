@@ -1,5 +1,5 @@
 import { State } from '&front/domain/store/State';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 export const selectGrow = (periodType: GroupBy) => (state: State) =>
   state.application.statistics.grow[periodType];

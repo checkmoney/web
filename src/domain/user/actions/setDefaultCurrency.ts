@@ -1,5 +1,5 @@
 import { fetchOrFail } from '&front/domain/store';
-import { Currency } from '&shared/enum/Currency';
+import { Currency } from '&front/enum/Currency';
 import { actions as defaultCurrencyActions } from '&front/app/profile/default_currency.actions';
 
 import { setCurrencyRequest } from '../api/setCurrencyRequest';

@@ -1,5 +1,5 @@
 import { Api } from '&front/domain/api';
-import { TokenModel } from '&shared/models/user/TokenModel';
+import { TokenModel } from '&front/models/user/TokenModel';
 
 export const signIn = (api: Api) => (
   email: string,

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { Button, ButtonType } from '&front/ui/components/form/button';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 interface Props {
   group: GroupBy;

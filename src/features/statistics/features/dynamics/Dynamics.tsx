@@ -13,7 +13,7 @@ import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Stat } from '&front/ui/components/chart/stat';
 import { Card } from '&front/ui/components/layout/card';
 import { Loader } from '&front/ui/components/layout/loader';
-import { GroupBy } from '&shared/enum/GroupBy';
+import { GroupBy } from '&front/enum/GroupBy';
 
 import * as styles from './Dynamics.css';
 

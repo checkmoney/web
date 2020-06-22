@@ -1,8 +1,8 @@
 import { take, head, sortBy } from 'lodash';
 import { Option } from 'tsoption';
 
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { HistoryGroupModel } from '&shared/models/money/HistoryGroupModel';
+import { displayMoney } from '&front/helpers/displayMoney';
+import { HistoryGroupModel } from '&front/models/money/HistoryGroupModel';
 
 import { UnifiedTransaction } from './UnifiedTransaction';
 

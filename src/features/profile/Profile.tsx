@@ -14,7 +14,7 @@ import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
-import { GoogleProfile } from '&shared/models/user/external/GoogleProfile';
+import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
 import { actions as requireActions } from '&front/app/utility/required.actions';
 import {
   selectDefaultCurrency,

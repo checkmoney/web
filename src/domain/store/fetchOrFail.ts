@@ -4,7 +4,6 @@ import { Option } from 'tsoption';
 
 import { Api } from '&front/domain/api';
 import { ExtraArg, State } from '&front/domain/store';
-import { tryOr } from '&shared/helpers/tryOr';
 import { retrieveToken } from '&front/app/auth/auth.utils';
 
 interface FetchActions {
@@ -43,7 +42,13 @@ export const fetchOrFail = (
 
     dispatch(success());
   } catch (error) {
-    dispatch(failure(tryOr(() => error.response.data.message, error.message)));
+    const message = Option.of(error)
+      .flatMap((e) => Option.of(e.response))
+      .flatMap((r) => Option.of(r.data))
+      .flatMap((d) => Option.of(d.message))
+      .getOrElse(error.message);
+
+    dispatch(failure(message));
 
     throw error;
   }

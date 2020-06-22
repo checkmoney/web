@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance } from 'axios';
 
-import { Currency } from '&shared/enum/Currency';
+import { Currency } from '&front/enum/Currency';
 
 import { addTokenToHttpConfig } from '../api.utils';
 

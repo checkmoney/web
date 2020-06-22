@@ -2,9 +2,9 @@ import { setDate } from 'date-fns';
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&shared/helpers/displayMoney';
-import { formatDate } from '&shared/helpers/formatDate';
-import { TipModel } from '&shared/models/mind/TipModel';
+import { displayMoney } from '&front/helpers/displayMoney';
+import { formatDate } from '&front/helpers/formatDate';
+import { TipModel } from '&front/models/mind/TipModel';
 
 import { DismissButton } from '../components/dismiss-button';
 import { RecurrentPaymentMeta } from './RecurrentPaymentMeta';
