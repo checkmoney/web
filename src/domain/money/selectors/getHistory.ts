@@ -2,9 +2,9 @@ import { Option } from 'tsoption';
 
 import { createCachedPeriodKey } from '&front/domain/cached-data';
 import { State } from '&front/domain/store';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
-export const getHistory = (from: Date, to: Date, groupBy: GroupBy) => (
+export const getHistory = (from: Date, to: Date, groupBy: PeriodType) => (
   state: State,
 ) =>
   Option.of(

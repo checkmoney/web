@@ -1,8 +1,8 @@
 import { Currency } from '&front/application/profile';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 export interface CachedPeriod {
-  groupBy?: GroupBy;
+  groupBy?: PeriodType;
   from?: Date;
   to?: Date;
   currency?: Currency;

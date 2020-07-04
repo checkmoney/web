@@ -6,8 +6,6 @@ import {
   categoriesReducer,
 } from './statistics/categories.reducers';
 import { handleCategoriesFetchingSaga } from './statistics/categories.sagas';
-import { GrowState, growReducer } from './statistics/grow.reducers';
-import { handleGrowFetchingSaga } from './statistics/grow.sagas';
 import { PeriodsState, periodsReducer } from './statistics/periods.reducers';
 import { handlePeriodsFetchingSaga } from './statistics/periods.sagas';
 import { handleRequireRemoteDataSaga } from './utility/required.sagas';
@@ -18,7 +16,6 @@ import {
 
 export function* applicationSaga() {
   yield all([
-    handleGrowFetchingSaga(),
     handleCategoriesFetchingSaga(),
     handlePeriodsFetchingSaga(),
     handleRequireRemoteDataSaga(),
@@ -27,7 +24,6 @@ export function* applicationSaga() {
 
 export interface ApplicationState {
   statistics: {
-    grow: GrowState;
     categories: CategoriesState;
     periods: PeriodsState;
     meta: StatisticsMetaState;
@@ -36,7 +32,6 @@ export interface ApplicationState {
 
 export const applicationReducer = combineReducers({
   statistics: combineReducers({
-    grow: growReducer,
     categories: categoriesReducer,
     periods: periodsReducer,
     meta: statisticsMetaReducer,

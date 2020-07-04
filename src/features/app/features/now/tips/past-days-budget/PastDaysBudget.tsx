@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
 import { displayMoney } from '&front/helpers/displayMoney';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { TipModel } from '&front/models/mind/TipModel';
 
 import { DismissButton } from '../components/dismiss-button';
@@ -13,18 +13,18 @@ interface Props {
 }
 
 const titles = {
-  [GroupBy.Month]: 'Прошлый месяц',
-  [GroupBy.Week]: 'Прошлая неделя',
-  [GroupBy.Day]: 'Вчера',
-  [GroupBy.Year]: 'Прошлый год',
+  [PeriodType.Month]: 'Прошлый месяц',
+  [PeriodType.Week]: 'Прошлая неделя',
+  [PeriodType.Day]: 'Вчера',
+  [PeriodType.Year]: 'Прошлый год',
 };
 const contents = {
-  [GroupBy.Month]: (amount: string) =>
+  [PeriodType.Month]: (amount: string) =>
     `За прошлый месяц вы потратили ${amount}`,
-  [GroupBy.Week]: (amount: string) =>
+  [PeriodType.Week]: (amount: string) =>
     `За прошлую неделю вы потратили ${amount}`,
-  [GroupBy.Day]: (amount: string) => `Вчера вы потратили ${amount}`,
-  [GroupBy.Year]: (amount: string) => `За прошлй год вы потратили ${amount}`,
+  [PeriodType.Day]: (amount: string) => `Вчера вы потратили ${amount}`,
+  [PeriodType.Year]: (amount: string) => `За прошлй год вы потратили ${amount}`,
 };
 
 export const PastDaysBudget = ({ tip: { token, meta } }: Props) => {

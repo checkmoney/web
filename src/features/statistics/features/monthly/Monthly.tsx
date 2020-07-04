@@ -19,7 +19,7 @@ import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { YearPicker } from '&front/ui/components/form/year-picker';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&front/application/profile';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
@@ -48,14 +48,14 @@ export const Monthly = ({ className, currency }: Props) => {
   const dateRange = useMemo(() => new Interval(from, to), [from, to]);
 
   useEffect(() => {
-    dispatch(actions.started({ dateRange, periodType: GroupBy.Month }));
+    dispatch(actions.started({ dateRange, periodType: PeriodType.Month }));
   }, [dateRange]);
 
-  const data = useMemoMappedState(selectPeriods(GroupBy.Month, dateRange), [
+  const data = useMemoMappedState(selectPeriods(PeriodType.Month, dateRange), [
     dateRange,
   ]);
   const error = useMemoMappedState(
-    selectPeriodsHasError(GroupBy.Month, dateRange),
+    selectPeriodsHasError(PeriodType.Month, dateRange),
     [dateRange],
   );
 

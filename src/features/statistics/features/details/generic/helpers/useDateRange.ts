@@ -2,11 +2,14 @@ import { useMemo } from 'react';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 
-export const useDateRange = (previousPeriodNumber: number, group?: GroupBy) => {
+export const useDateRange = (
+  previousPeriodNumber: number,
+  group?: PeriodType,
+) => {
   const firstTransactionDate = useMemoState(
     () => getFirstTransactionDate,
     fetchFirstTransactionDate,

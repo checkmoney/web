@@ -1,8 +1,8 @@
 import { Currency } from '&front/application/profile';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 export interface PastDaysBudgetMeta {
   outcome: number;
   currency: Currency;
-  group: GroupBy;
+  group: PeriodType;
 }

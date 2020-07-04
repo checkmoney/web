@@ -1,20 +1,21 @@
 import { Interval } from '&front/app/api/api.types';
 import { intervalIdentity } from '&front/app/api/api.utils';
 import { State } from '&front/domain/store/State';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 import { PeriodCategories } from './categories.types';
 
-export const selectCategories = (periodType: GroupBy, dateRange: Interval) => (
-  state: State,
-) =>
+export const selectCategories = (
+  periodType: PeriodType,
+  dateRange: Interval,
+) => (state: State) =>
   (state.application.statistics.categories[periodType] || []).find(
     (item: PeriodCategories) =>
       intervalIdentity(item.period) === intervalIdentity(dateRange),
   );
 
 export const selectCategoriesHasError = (
-  periodType: GroupBy,
+  periodType: PeriodType,
   dateRange: Interval,
 ) => (state: State) =>
   state.application.statistics.categories.errors.some(

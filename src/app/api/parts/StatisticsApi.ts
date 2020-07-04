@@ -2,10 +2,9 @@ import Axios, { AxiosInstance } from 'axios';
 import { plainToClass } from 'class-transformer';
 
 import { PeriodCategories } from '&front/app/statistics/categories.types';
-import { Grow } from '&front/app/statistics/grow.types';
 import { PeriodAmount } from '&front/app/statistics/periods.types';
-import { GroupBy } from '&front/enum/GroupBy';
 import { Currency } from '&front/application/profile';
+import { PeriodType } from '&front/shared';
 
 import { Interval } from '../api.types';
 import { addTokenToHttpConfig, intervalForQuery } from '../api.utils';
@@ -21,19 +20,7 @@ export class StatisticsApi {
     });
   }
 
-  findGrow = async (periodType: GroupBy) => {
-    const { data, headers } = await this.http.get(
-      `v1/statistics/grow?periodType=${periodType}`,
-      addTokenToHttpConfig(this.token, {}),
-    );
-
-    return {
-      data: plainToClass(Grow, data),
-      meta: this.getMeta(headers),
-    };
-  };
-
-  fetchCategories = async (periodType: GroupBy, dateRange: Interval) => {
+  fetchCategories = async (periodType: PeriodType, dateRange: Interval) => {
     const { data, headers } = await this.http.get(
       `v1/statistics/categories?periodType=${periodType}&${intervalForQuery(
         dateRange,
@@ -47,7 +34,7 @@ export class StatisticsApi {
     };
   };
 
-  fetchPeriods = async (periodType: GroupBy, dateRange: Interval) => {
+  fetchPeriods = async (periodType: PeriodType, dateRange: Interval) => {
     const { data, headers } = await this.http.get(
       `v1/statistics/periods?periodType=${periodType}&${intervalForQuery(
         dateRange,

@@ -17,7 +17,7 @@ import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&front/application/profile';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
@@ -43,14 +43,14 @@ export const Yearly = ({ className, currency }: Props) => {
   const dateRange = useMemo(() => new Interval(from, to), [from, to]);
 
   useEffect(() => {
-    dispatch(actions.started({ dateRange, periodType: GroupBy.Year }));
+    dispatch(actions.started({ dateRange, periodType: PeriodType.Year }));
   }, [dateRange]);
 
-  const data = useMemoMappedState(selectPeriods(GroupBy.Year, dateRange), [
+  const data = useMemoMappedState(selectPeriods(PeriodType.Year, dateRange), [
     dateRange,
   ]);
   const error = useMemoMappedState(
-    selectPeriodsHasError(GroupBy.Year, dateRange),
+    selectPeriodsHasError(PeriodType.Year, dateRange),
     [dateRange],
   );
 

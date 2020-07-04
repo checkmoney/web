@@ -1,10 +1,10 @@
 import { fetchOrFail } from '&front/domain/store';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 import { fetchHistoryRequest } from '../api/fetchHistoryRequest';
 import { actions } from '../reducer/history';
 
-export const forceFetchHistory = (from: Date, to: Date, groupBy: GroupBy) =>
+export const forceFetchHistory = (from: Date, to: Date, groupBy: PeriodType) =>
   fetchOrFail(undefined, async (dispatch, getApi) => {
     const history = await fetchHistoryRequest(getApi())(from, to, groupBy);
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Card } from '&front/ui/components/layout/card';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 import { Next, Prev } from '../components/next-prev';
 import { ShowMonth } from '../components/show-month';
@@ -15,7 +15,7 @@ interface Props {
   setPreviousPeriodNumber: (t: (v: number) => number) => void;
   from: Date;
   to: Date;
-  group: GroupBy;
+  group: PeriodType;
   detailType: string;
 }
 
@@ -27,7 +27,9 @@ export const PeriodChooser = ({
   detailType,
 }: Props) => {
   const title =
-    group === GroupBy.Year ? format(from, 'YYYY') : translatedMonthTitle(from);
+    group === PeriodType.Year
+      ? format(from, 'YYYY')
+      : translatedMonthTitle(from);
 
   const actionProps = {
     setPreviousPeriodNumber,

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 import { Detail } from '../generic';
 
 interface Props {
-  group: GroupBy;
+  group: PeriodType;
 }
 
 export const Categories = ({ group }: Props) => {

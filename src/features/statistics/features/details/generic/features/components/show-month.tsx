@@ -2,16 +2,16 @@ import React from 'react';
 import { useRouter } from 'react-router5';
 
 import { Button } from '&front/presentation/atoms/button';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { Route } from '&front/application/router';
 
 interface Props {
-  group?: GroupBy;
+  group?: PeriodType;
   detailType: string;
 }
 
 export const ShowMonth = ({ group, detailType }: Props) => {
-  const showMonth = !group || group !== GroupBy.Month;
+  const showMonth = !group || group !== PeriodType.Month;
   const { navigate } = useRouter();
 
   return showMonth ? (

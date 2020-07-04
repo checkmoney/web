@@ -15,14 +15,14 @@ import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button } from '&front/presentation/atoms/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&front/application/profile';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
 
 interface Props {
   className?: string;
   currency: Currency;
-  group: GroupBy.Month | GroupBy.Year;
+  group: PeriodType.Month | PeriodType.Year;
   widthPercent: number;
   maxLength: number;
 }

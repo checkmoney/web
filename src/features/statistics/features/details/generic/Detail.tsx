@@ -18,7 +18,7 @@ import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
 import { selectPeriods } from '&front/app/statistics/periods.selectors';
@@ -29,7 +29,7 @@ import { PeriodChooser } from './features/period-chooser';
 import { useDateRange } from './helpers/useDateRange';
 
 interface Props {
-  group: GroupBy;
+  group: PeriodType;
   detailType: string;
   detailTitle: string;
   dataPath: 'expenses' | 'earnings';

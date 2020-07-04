@@ -10,7 +10,7 @@ import { historyToTableData, createColumns } from '&front/features/history';
 import { wantUTC } from '&front/helpers/wantUTC';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { useDelete } from '&front/features/transaction/delete/useDelete';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 import { FullHistoryButton } from './components/full-history-button';
 
@@ -18,7 +18,7 @@ interface Props {
   className?: string;
 }
 
-const groupBy = GroupBy.Month;
+const groupBy = PeriodType.Month;
 const historyLength = 10;
 const from = wantUTC(startOfMonth)(new Date());
 const to = wantUTC(endOfMonth)(new Date());

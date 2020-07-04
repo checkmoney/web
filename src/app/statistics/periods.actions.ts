@@ -1,7 +1,7 @@
 import actionCreatorFactory from 'typescript-fsa';
 
-import { GroupBy } from '&front/enum/GroupBy';
 import { Interval } from '&front/app/api/api.types';
+import { PeriodType } from '&front/shared';
 
 import { PeriodAmount } from './periods.types';
 
@@ -9,7 +9,7 @@ const actionCreator = actionCreatorFactory('STATISTICS_PERIODS');
 
 export const actions = actionCreator.async<
   {
-    periodType: GroupBy;
+    periodType: PeriodType;
     dateRange: Interval;
     attempt?: number;
   },

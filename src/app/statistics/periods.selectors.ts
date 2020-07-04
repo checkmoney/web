@@ -3,9 +3,9 @@ import { isWithinRange } from 'date-fns';
 import { Interval } from '&front/app/api/api.types';
 import { intervalIdentity } from '&front/app/api/api.utils';
 import { State } from '&front/domain/store/State';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
-export const selectPeriods = (periodType: GroupBy, dateRange: Interval) => (
+export const selectPeriods = (periodType: PeriodType, dateRange: Interval) => (
   state: State,
 ) =>
   (state.application.statistics.periods[periodType] || []).filter((item) =>
@@ -13,7 +13,7 @@ export const selectPeriods = (periodType: GroupBy, dateRange: Interval) => (
   );
 
 export const selectPeriodsHasError = (
-  periodType: GroupBy,
+  periodType: PeriodType,
   dateRange: Interval,
 ) => (state: State) =>
   state.application.statistics.periods.errors.some(

@@ -6,7 +6,7 @@ import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 import { Route } from '&front/application/router';
 
 import { Categories } from './features/categories';
@@ -24,7 +24,7 @@ export const Statistics = () => {
   const { navigate } = useRouter();
 
   const renderContent = useCallback(
-    (title: string, group: GroupBy.Month | GroupBy.Year) => (
+    (title: string, group: PeriodType.Month | PeriodType.Year) => (
       <Tab title={title} className={styles.statistics}>
         <aside className={styles.aside}>
           <Dynamics group={group} />
@@ -43,8 +43,8 @@ export const Statistics = () => {
         </aside>
 
         <div className={styles.charts}>
-          {group === GroupBy.Month && <Monthly currency={currency!} />}
-          {group === GroupBy.Year && <Yearly currency={currency!} />}
+          {group === PeriodType.Month && <Monthly currency={currency!} />}
+          {group === PeriodType.Year && <Yearly currency={currency!} />}
         </div>
       </Tab>
     ),
@@ -56,8 +56,8 @@ export const Statistics = () => {
       <PageHeader title="Статистика" onBack={() => navigate(Route.Dashboard)} />
 
       <Tabs>
-        {renderContent('Месяц', GroupBy.Month)}
-        {renderContent('Год', GroupBy.Year)}
+        {renderContent('Месяц', PeriodType.Month)}
+        {renderContent('Год', PeriodType.Year)}
       </Tabs>
     </Container>
   );

@@ -1,4 +1,4 @@
-export enum GroupBy {
+export enum PeriodType {
   Week = 'week',
   Month = 'month',
   Year = 'year',

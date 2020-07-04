@@ -3,15 +3,15 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
 import { Interval } from '&front/app/api/api.types';
 import { intervalIdentity } from '&front/app/api/api.utils';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 import { actions } from './categories.actions';
 import { PeriodCategories } from './categories.types';
 
-type StateData = { [key in GroupBy]?: PeriodCategories[] };
+type StateData = { [key in PeriodType]?: PeriodCategories[] };
 
 export interface CategoriesState extends StateData {
-  errors: Array<{ dateRange: Interval; periodType: GroupBy }>;
+  errors: Array<{ dateRange: Interval; periodType: PeriodType }>;
 }
 
 const initialState: CategoriesState = {

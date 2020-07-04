@@ -1,10 +1,11 @@
 import { createEffect, attach } from 'effector';
-import { stringify } from 'qs';
 import axios, { AxiosError } from 'axios';
+import { stringify } from 'qs';
 
 import { $configuration } from '&front/application/configuration';
 import { errorHappened } from '&front/application/notify';
 import { $token } from '&front/application/viewer';
+import { sleep } from '&front/shared';
 
 const DEFAULT_ATTEMPT_THRESHOLD = 4;
 
@@ -45,32 +46,36 @@ const requestInternalFx = createEffect<InternalRequest, any, AxiosError>({
   },
 });
 
-requestInternalFx.fail.watch(({ params }) => {
+requestInternalFx.fail.watch(async ({ params, error }) => {
   const { attemptThreshold, attempt } = params;
   const threshold = params.attemptThreshold || DEFAULT_ATTEMPT_THRESHOLD;
 
   if (params.attempt < threshold) {
+    await sleep(attempt * 500);
     requestInternalFx({ ...params, attemptThreshold, attempt: attempt + 1 });
+  } else {
+    errorHappened(error.response?.data.message ?? error.message);
   }
 });
 
 const requestFx = attach({
   source: {
-    backUrl: $configuration.map(({ backUrl }) => backUrl),
-    token: $token.map((t) => t),
+    config: $configuration,
+    token: $token,
   },
   effect: requestInternalFx,
-  mapParams: ({ path, ...config }: Request, { backUrl, token }) => {
+  mapParams: ({ path, ...rest }: Request, { config, token }) => {
+    const prefix = path.includes('statistics')
+      ? config.statsUrl
+      : config.backUrl;
+
     return {
-      ...config,
-      path: `${backUrl}${path}`,
+      ...rest,
+      path: `${prefix}${path}`,
       token,
       attempt: 0,
     };
   },
 });
-requestFx.failData.watch((error) =>
-  errorHappened(error.response?.data.message ?? error.message),
-);
 
 export { requestFx };

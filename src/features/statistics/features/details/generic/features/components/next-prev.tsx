@@ -1,19 +1,19 @@
 import React, { useCallback } from 'react';
 
 import { Button } from '&front/presentation/atoms/button';
-import { GroupBy } from '&front/enum/GroupBy';
+import { PeriodType } from '&front/shared';
 
 interface Props {
-  group: GroupBy;
+  group: PeriodType;
   previousPeriodNumber: number;
   setPreviousPeriodNumber: (t: (v: number) => number) => void;
 }
 
 const prevTitles = {
-  [GroupBy.Month]: 'Предыдущий месяц',
-  [GroupBy.Year]: 'Предыдущий год',
-  [GroupBy.Day]: 'Предыдущий день',
-  [GroupBy.Week]: 'Предыдущая неделя',
+  [PeriodType.Month]: 'Предыдущий месяц',
+  [PeriodType.Year]: 'Предыдущий год',
+  [PeriodType.Day]: 'Предыдущий день',
+  [PeriodType.Week]: 'Предыдущая неделя',
 };
 
 export const Prev = ({ group, setPreviousPeriodNumber }: Props) => {
@@ -29,10 +29,10 @@ export const Prev = ({ group, setPreviousPeriodNumber }: Props) => {
 };
 
 const nextTitles = {
-  [GroupBy.Year]: 'Следующий год',
-  [GroupBy.Month]: 'Следующий месяц',
-  [GroupBy.Day]: 'Следующий день',
-  [GroupBy.Week]: 'Следующая неделя',
+  [PeriodType.Year]: 'Следующий год',
+  [PeriodType.Month]: 'Следующий месяц',
+  [PeriodType.Day]: 'Следующий день',
+  [PeriodType.Week]: 'Следующая неделя',
 };
 
 export const Next = ({
