@@ -1,24 +1,14 @@
 import React from 'react';
 
-import { ForbiddenMessage } from './components/fornidden-message';
-import { HelloMessage } from './components/hello-message';
-import { SignIn } from './features/sign-in';
-import { SignUp } from './features/sign-up';
-import { Social } from './features/social';
+import { SignIn } from './features/SignIn';
+import { SignUp } from './features/SignUp';
+import { Social } from './features/Social';
 import * as styles from './Landing.css';
 
-interface Props {
-  forbidden?: boolean;
-}
-
-export const Landing = ({ forbidden = false }: Props) => {
+export const Landing = () => {
   return (
     <section className={styles.container}>
-      {forbidden ? (
-        <ForbiddenMessage className={styles.message} />
-      ) : (
-        <HelloMessage className={styles.message} />
-      )}
+      <p className={styles.message}>Привет! 💸</p>
       <SignIn className={styles.signIn} />
       <SignUp className={styles.signUp} />
       <Social className={styles.social} />

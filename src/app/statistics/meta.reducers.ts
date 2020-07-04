@@ -1,6 +1,6 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 
 import { actions } from './meta.actions';
 

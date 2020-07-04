@@ -1,6 +1,6 @@
 import actionCreatorFactory from 'typescript-fsa';
 
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 
 const actionCreator = actionCreatorFactory('STATISTICS_META');
 

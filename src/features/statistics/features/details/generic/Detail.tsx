@@ -20,7 +20,7 @@ import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { GroupBy } from '&front/enum/GroupBy';
 import { displayMoney } from '&front/helpers/displayMoney';
-import { Route } from '&front/app/router';
+import { Route } from '&front/application/router';
 import { selectPeriods } from '&front/app/statistics/periods.selectors';
 import { NON_BREAKING_SPACE } from '&front/helpers/NON_BREAKING_SPACE';
 

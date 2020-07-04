@@ -1,4 +1,4 @@
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 
 import { getCurrencySign } from './getCurrencySign';
 import { NON_BREAKING_SPACE } from './NON_BREAKING_SPACE';

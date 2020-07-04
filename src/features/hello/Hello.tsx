@@ -1,23 +1,20 @@
 import React, { useCallback, useState } from 'react';
 import { useRouter } from 'react-router5';
 
-import { useThunk } from '&front/domain/store';
-import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
-import { Button } from '&front/ui/components/form/button';
-import { Currency } from '&front/enum/Currency';
-import { Route } from '&front/app/router';
+import { Button } from '&front/presentation/atoms/button';
+import { Currency, setCurrencyFx } from '&front/application/profile';
+import { Route } from '&front/application/router';
 
 import * as styles from './Hello.css';
 
 export const Hello = () => {
-  const dispatchThunk = useThunk();
   const { navigate } = useRouter();
 
   const [currency, setCurrency] = useState(Currency.USD);
 
   const next = useCallback(async () => {
-    await dispatchThunk(setDefaultCurrency(currency));
+    await setCurrencyFx(currency);
     navigate(Route.Dashboard);
   }, [currency]);
 
@@ -32,7 +29,9 @@ export const Hello = () => {
           <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
         </section>
       </h1>
-      <Button onClick={next}>Поехали</Button>
+      <Button mod="primary" onClick={next}>
+        Поехали
+      </Button>
     </section>
   );
 };

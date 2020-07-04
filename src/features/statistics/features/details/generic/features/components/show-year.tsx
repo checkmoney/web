@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'react-router5';
 
-import { Button, ButtonType } from '&front/ui/components/form/button';
+import { Button } from '&front/presentation/atoms/button';
 import { GroupBy } from '&front/enum/GroupBy';
-import { Route } from '&front/app/router';
+import { Route } from '&front/application/router';
 
 interface Props {
   group?: GroupBy;
@@ -19,7 +19,7 @@ export const ShowYear = ({ group, detailType }: Props) => {
       onClick={() =>
         navigate(Route.DetailedStatistics, { type: detailType, group: 'year' })
       }
-      type={ButtonType.Secondary}
+      mod="default"
     >
       Показать за год
     </Button>

@@ -43,14 +43,10 @@ module.exports = {
       ...resolveTsconfigPathsToAlias(),
       'lodash-es': 'lodash',
     },
-    plugins: [
-      PnpWebpackPlugin,
-    ],
+    plugins: [PnpWebpackPlugin],
   },
   resolveLoader: {
-    plugins: [
-      PnpWebpackPlugin.moduleLoader(module),
-    ],
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
   devServer: {
     contentBase: './dist',

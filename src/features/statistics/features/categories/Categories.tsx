@@ -12,12 +12,12 @@ import {
 } from '&front/app/statistics/categories.selectors';
 import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
-import { Button, ButtonType } from '&front/ui/components/form/button';
+import { Button } from '&front/presentation/atoms/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 import { GroupBy } from '&front/enum/GroupBy';
 import { displayMoney } from '&front/helpers/displayMoney';
-import { Route } from '&front/app/router';
+import { Route } from '&front/application/router';
 
 interface Props {
   className?: string;
@@ -87,7 +87,7 @@ export const Categories = ({
       hideHeader
       footer={
         <Button
-          type={ButtonType.Text}
+          mod="ghost"
           onClick={() =>
             navigate(Route.DetailedStatistics, { type: 'categories', group })
           }

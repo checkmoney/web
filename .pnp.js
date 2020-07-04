@@ -106,6 +106,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:4.14.120"
       ],
       [
+        "@types/qs",
+        "npm:6.9.3"
+      ],
+      [
         "@types/randomcolor",
         "npm:0.5.1"
       ],
@@ -192,6 +196,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [
         "date-fns",
         "npm:1.30.1"
+      ],
+      [
+        "effector",
+        "npm:20.17.2"
+      ],
+      [
+        "effector-react",
+        "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:20.9.0"
       ],
       [
         "eslint",
@@ -308,6 +320,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [
         "prop-types",
         "npm:15.7.2"
+      ],
+      [
+        "qs",
+        "npm:6.9.4"
       ],
       [
         "react",
@@ -468,6 +484,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/js-base64", "npm:2.3.1"],
             ["@types/js-cookie", "npm:2.2.0"],
             ["@types/lodash", "npm:4.14.120"],
+            ["@types/qs", "npm:6.9.3"],
             ["@types/randomcolor", "npm:0.5.1"],
             ["@types/react", "npm:16.9.35"],
             ["@types/react-dom", "npm:16.9.8"],
@@ -490,6 +507,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["css-loader", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.5.3"],
             ["cz-conventional-changelog", "npm:3.2.0"],
             ["date-fns", "npm:1.30.1"],
+            ["effector", "npm:20.17.2"],
+            ["effector-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:20.9.0"],
             ["eslint", "npm:6.8.0"],
             ["eslint-config-airbnb-base", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:14.1.0"],
             ["eslint-config-prettier", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:6.11.0"],
@@ -519,6 +538,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss-preset-env", "npm:6.5.0"],
             ["prettier", "npm:2.0.5"],
             ["prop-types", "npm:15.7.2"],
+            ["qs", "npm:6.9.4"],
             ["react", "npm:16.13.1"],
             ["react-chartjs-2", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.7.4"],
             ["react-dom", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:16.13.1"],
@@ -4234,6 +4254,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-q-npm-1.5.4-af8ca8cb0d-1a19cf2c41.zip/node_modules/@types/q/",
           "packageDependencies": [
             ["@types/q", "npm:1.5.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/qs", [
+        ["npm:6.9.3", {
+          "packageLocation": "./.yarn/cache/@types-qs-npm-6.9.3-046bf2ee97-4b6b5b7594.zip/node_modules/@types/qs/",
+          "packageDependencies": [
+            ["@types/qs", "npm:6.9.3"]
           ],
           "linkType": "HARD",
         }]
@@ -8733,6 +8762,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ee-first-npm-1.1.1-33f8535b39-ba74f91398.zip/node_modules/ee-first/",
           "packageDependencies": [
             ["ee-first", "npm:1.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["effector", [
+        ["npm:20.17.2", {
+          "packageLocation": "./.yarn/cache/effector-npm-20.17.2-48413cb0d3-774f76bc79.zip/node_modules/effector/",
+          "packageDependencies": [
+            ["effector", "npm:20.17.2"],
+            ["symbol-observable", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["effector-react", [
+        ["virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:20.9.0", {
+          "packageLocation": "./.yarn/$$virtual/effector-react-virtual-2276c9b697/0/cache/effector-react-npm-20.9.0-a7dce6f4a9-937f0997b4.zip/node_modules/effector-react/",
+          "packageDependencies": [
+            ["effector-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:20.9.0"],
+            ["effector", "npm:20.17.2"],
+            ["react", "npm:16.13.1"]
+          ],
+          "packagePeers": [
+            "effector",
+            "react"
           ],
           "linkType": "HARD",
         }]
@@ -16602,6 +16656,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["qs", "npm:6.7.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:6.9.4", {
+          "packageLocation": "./.yarn/cache/qs-npm-6.9.4-7b853cfa85-beba62d1e1.zip/node_modules/qs/",
+          "packageDependencies": [
+            ["qs", "npm:6.9.4"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["query-string", [
@@ -21287,6 +21348,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/js-base64", "npm:2.3.1"],
             ["@types/js-cookie", "npm:2.2.0"],
             ["@types/lodash", "npm:4.14.120"],
+            ["@types/qs", "npm:6.9.3"],
             ["@types/randomcolor", "npm:0.5.1"],
             ["@types/react", "npm:16.9.35"],
             ["@types/react-dom", "npm:16.9.8"],
@@ -21309,6 +21371,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["css-loader", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:3.5.3"],
             ["cz-conventional-changelog", "npm:3.2.0"],
             ["date-fns", "npm:1.30.1"],
+            ["effector", "npm:20.17.2"],
+            ["effector-react", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:20.9.0"],
             ["eslint", "npm:6.8.0"],
             ["eslint-config-airbnb-base", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:14.1.0"],
             ["eslint-config-prettier", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:6.11.0"],
@@ -21338,6 +21402,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["postcss-preset-env", "npm:6.5.0"],
             ["prettier", "npm:2.0.5"],
             ["prop-types", "npm:15.7.2"],
+            ["qs", "npm:6.9.4"],
             ["react", "npm:16.13.1"],
             ["react-chartjs-2", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:2.7.4"],
             ["react-dom", "virtual:5f667c73984ed00ed0af2d2ee5bb7487501bcb7981faa0f3174f6b4e10779d128272858d90e1bd616db7bd20b70e6922af9582ba35aeace0a368e003ee8b65c2#npm:16.13.1"],

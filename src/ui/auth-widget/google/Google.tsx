@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { GoogleLogin } from 'react-google-login';
 
-import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
-import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
 import { config } from '&front/app/config';
+import { GoogleProfile } from '&front/application/login';
+import { somethingHappened } from '&front/application/notify';
 
 const googleClientId = config('GOOGLE_CLIENT_ID');
 
@@ -12,8 +12,6 @@ interface Props {
 }
 
 export const Google = ({ onLogin }: Props) => {
-  const showNotify = useNotifyAlert();
-
   const handleSuccess = useCallback(
     (googleUser: any) => {
       const rawProfile = googleUser.getBasicProfile();
@@ -32,8 +30,8 @@ export const Google = ({ onLogin }: Props) => {
   );
 
   const handleError = useCallback(
-    () => showNotify('Что-то пошло не так, попробуйте еще раз'),
-    [showNotify],
+    () => somethingHappened('Что-то пошло не так, попробуйте еще раз'),
+    [],
   );
 
   return (

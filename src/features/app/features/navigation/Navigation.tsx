@@ -1,17 +1,18 @@
 import React from 'react';
 import { useRouter } from 'react-router5';
+import { useStore } from 'effector-react';
 
 import { Menu } from '&front/ui/components/controls/menu/Menu';
 import { MenuItem } from '&front/ui/components/controls/menu/MenuItem';
-import { Route } from '&front/app/router';
-import { decodeToken, retrieveToken } from '&front/app/auth/auth.utils';
+import { Route } from '&front/application/router';
+import { $manager } from '&front/application/viewer';
 
 interface Props {
   className?: string;
 }
 
 export const Navigation = ({ className }: Props) => {
-  const { isManager } = decodeToken(retrieveToken() || '');
+  const { isManager } = useStore($manager);
   const { navigate } = useRouter();
 
   const defaultMenu = [

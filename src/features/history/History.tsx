@@ -8,7 +8,7 @@ import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
 import { useMemoState } from '&front/domain/store';
-import { Route } from '&front/app/router';
+import { Route } from '&front/application/router';
 
 import { TransactionList } from './components/transaction-list';
 import { createMonths } from './helpers/createMonths';

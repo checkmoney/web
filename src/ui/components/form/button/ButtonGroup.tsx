@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import React, { ReactElement } from 'react';
 
-import { ButtonProps } from './ButtonProps';
+import { ButtonProps } from '&front/presentation/atoms/button';
 
 const AntButtonGroup = Button.Group;
 

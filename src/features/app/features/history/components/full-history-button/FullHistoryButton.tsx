@@ -1,20 +1,14 @@
 import React from 'react';
 import { useRouter } from 'react-router5';
 
-import { Button, ButtonType } from '&front/ui/components/form/button';
-import { Route } from '&front/app/router';
-
-import * as styles from './FullHistoryButton.css';
+import { Button } from '&front/presentation/atoms/button';
+import { Route } from '&front/application/router';
 
 export const FullHistoryButton = () => {
   const { navigate } = useRouter();
 
   return (
-    <Button
-      className={styles.button}
-      onClick={() => navigate(Route.History)}
-      type={ButtonType.Text}
-    >
+    <Button onClick={() => navigate(Route.History)} mod={'link'}>
       Полная история
     </Button>
   );

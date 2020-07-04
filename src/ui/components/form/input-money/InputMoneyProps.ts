@@ -1,6 +1,6 @@
 import { Omit } from 'utility-types';
 
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 
 import { InputProps } from '../input';
 

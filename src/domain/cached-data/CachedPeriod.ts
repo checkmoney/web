@@ -1,4 +1,4 @@
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 import { GroupBy } from '&front/enum/GroupBy';
 
 export interface CachedPeriod {

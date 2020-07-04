@@ -3122,6 +3122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/qs@npm:^6.9.3":
+  version: 6.9.3
+  resolution: "@types/qs@npm:6.9.3"
+  checksum: 4b6b5b759423dbd08581e6dc55d140651455f01a8587a03ac557799e605c190119f6f9446494665d7409889f08aaec7763223f7c26972de0d897a3238710ed71
+  languageName: node
+  linkType: hard
+
 "@types/randomcolor@npm:^0.5.1":
   version: 0.5.1
   resolution: "@types/randomcolor@npm:0.5.1"
@@ -7143,6 +7150,25 @@ __metadata:
   version: 1.1.1
   resolution: "ee-first@npm:1.1.1"
   checksum: ba74f91398e3ee3b6d665b2f0d13ad6530e89a7e64ec886a6eec0602fb8a5a274652960e21bd5d4b42fdeb9017d873ff872f50342d38779e955285977edb337c
+  languageName: node
+  linkType: hard
+
+"effector-react@npm:^20.9.0":
+  version: 20.9.0
+  resolution: "effector-react@npm:20.9.0"
+  peerDependencies:
+    effector: ^20.9.0
+    react: ^16.8.0
+  checksum: 937f0997b4e4edeab538c2c46251dae7dbeec378b28ca053e2adc22f2800990acbb796250e26b84f2632ef1c2e1dbc967659370514c9c730c746231053f94da4
+  languageName: node
+  linkType: hard
+
+"effector@npm:^20.17.2":
+  version: 20.17.2
+  resolution: "effector@npm:20.17.2"
+  dependencies:
+    symbol-observable: ^1.2.0
+  checksum: 774f76bc79624e98c545eea916a570503d0f5fd336aa74861ebb05e0a337485e687c26db86ad19d394293e4a52a517828b649abc04c3647069ca2056c167d507
   languageName: node
   linkType: hard
 
@@ -14346,6 +14372,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.9.4":
+  version: 6.9.4
+  resolution: "qs@npm:6.9.4"
+  checksum: beba62d1e1c66e9888cc08a488eb95771c252a92289a96bff4b767a49e4e7afe9487d7ee3269b856292d8281b855ac5eac927c2e77f845e407ee4fe54743fea7
+  languageName: node
+  linkType: hard
+
 "qs@npm:~6.5.2":
   version: 6.5.2
   resolution: "qs@npm:6.5.2"
@@ -18543,6 +18576,7 @@ typescript@^3.9.3:
     "@types/js-base64": ^2.3.1
     "@types/js-cookie": ^2.2.0
     "@types/lodash": ^4.14.120
+    "@types/qs": ^6.9.3
     "@types/randomcolor": ^0.5.1
     "@types/react": ^16.9.35
     "@types/react-dom": ^16.9.8
@@ -18565,6 +18599,8 @@ typescript@^3.9.3:
     css-loader: ^3.5.3
     cz-conventional-changelog: ^3.1.0
     date-fns: ^1.30.1
+    effector: ^20.17.2
+    effector-react: ^20.9.0
     eslint: ^6.8.0
     eslint-config-airbnb-base: ^14.1.0
     eslint-config-prettier: ^6.10.1
@@ -18594,6 +18630,7 @@ typescript@^3.9.3:
     postcss-preset-env: ^6.5.0
     prettier: ^2.0.4
     prop-types: ^15.7.2
+    qs: ^6.9.4
     react: ^16.13.1
     react-chartjs-2: ^2.7.4
     react-dom: ^16.13.1

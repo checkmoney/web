@@ -1,3 +1,4 @@
+import { useStore } from 'effector-react';
 import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,17 +20,13 @@ import {
 import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
 import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { Label } from '&front/ui/components/form/label';
-import { LoadingButton } from '&front/ui/components/form/loading-button';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
-import { Currency } from '&front/enum/Currency';
+import { Currency, $currency } from '&front/application/profile';
 import { actions as requireActions } from '&front/app/utility/required.actions';
 import { RequireType } from '&front/app/utility/required.types';
-import {
-  selectDefaultCurrency,
-  selectDefaultCurrencyIsAvailable,
-} from '&front/app/profile/default_currency.selectors';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
+import { Button } from '&front/presentation/atoms/button';
 
 import * as styles from './CreateTransaction.css';
 import { getCommentByKind } from './helpers/getCommentByKind';
@@ -47,8 +44,7 @@ export const CreateTransaction = ({ className }: Props) => {
 
   const onSubmit = useOnSubmit();
 
-  const defaultCurrency = useSelector(selectDefaultCurrency);
-  const isLoaded = useSelector(selectDefaultCurrencyIsAvailable);
+  const { data: defaultCurrency, isReady: isLoaded } = useStore($currency);
 
   const outcomeFetching = useSelector(getCreateOutcomeFetching);
   const incomeFetching = useSelector(getCreateIncomeFetching);
@@ -132,9 +128,14 @@ export const CreateTransaction = ({ className }: Props) => {
               <Variant value={Kind.Income}>Доход</Variant>
             </Toggle>
 
-            <LoadingButton fethcing={fetching} submit className={styles.submit}>
+            <Button
+              loading={fetching.loading}
+              type="submit"
+              mod="primary"
+              className={styles.submit}
+            >
               Создать
-            </LoadingButton>
+            </Button>
           </Card>
         </form>
       )}

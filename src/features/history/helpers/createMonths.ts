@@ -3,8 +3,14 @@ import { startOfMonth, addMonths, endOfMonth } from 'date-fns';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { wantUTC } from '&front/helpers/wantUTC';
 
+interface Month {
+  title: string;
+  from: Date;
+  to: Date;
+}
+
 export const createMonths = (from: Date, to: Date) => {
-  const groups = [];
+  const groups: Month[] = [];
 
   let now = wantUTC(startOfMonth)(from);
   while (now < to) {

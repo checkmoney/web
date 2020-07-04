@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { mergeTypos } from '&front/domain/mind/actions/mergeTypos';
 import { useThunk } from '&front/domain/store';
-import { Button, ButtonType } from '&front/ui/components/form/button';
+import { Button } from '&front/presentation/atoms/button';
 import { Card } from '&front/ui/components/layout/card';
 
 import { DismissButton } from './dismiss-button';
@@ -36,11 +36,7 @@ export const Merge = ({ token, variants }: Props) => {
       title="Возможная опечатка"
       extra={<DismissButton token={token} />}
       actions={variants.map((variant) => (
-        <Button
-          type={ButtonType.Text}
-          key={variant}
-          onClick={createOnMerge(variant)}
-        >
+        <Button mod={'ghost'} key={variant} onClick={createOnMerge(variant)}>
           {variant}
         </Button>
       ))}

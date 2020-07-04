@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { Button, ButtonType } from '&front/ui/components/form/button';
+import { Button } from '&front/presentation/atoms/button';
 import { GroupBy } from '&front/enum/GroupBy';
 
 interface Props {
@@ -22,7 +22,7 @@ export const Prev = ({ group, setPreviousPeriodNumber }: Props) => {
   ]);
 
   return (
-    <Button onClick={back} type={ButtonType.Text}>
+    <Button onClick={back} mod="ghost">
       {prevTitles[group]}
     </Button>
   );
@@ -49,7 +49,7 @@ export const Next = ({
   }
 
   return (
-    <Button onClick={next} type={ButtonType.Text}>
+    <Button onClick={next} mod="ghost">
       {nextTitles[group]}
     </Button>
   );

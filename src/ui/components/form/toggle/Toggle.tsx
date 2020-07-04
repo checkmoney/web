@@ -2,8 +2,9 @@ import cx from 'classnames';
 import React, { useCallback } from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
+import { Button } from '&front/presentation/atoms/button';
 
-import { ButtonGroup, Button, ButtonType } from '../button';
+import { ButtonGroup } from '../button';
 import * as styles from './Toggle.css';
 import { ToggleProps } from './ToggleProps';
 import { VariantProps } from './VariantProps';
@@ -18,7 +19,7 @@ export const Toggle = ({
 
   const resolveType = useCallback(
     (props: VariantProps) =>
-      props.value === currentValue ? ButtonType.Primary : ButtonType.Secondary,
+      props.value === currentValue ? 'primary' : 'default',
     [currentValue],
   );
 
@@ -27,7 +28,7 @@ export const Toggle = ({
       {children.map((child) => (
         <Button
           onClick={() => handleChange(child.props.value)}
-          type={resolveType(child.props)}
+          mod={resolveType(child.props)}
           key={child.props.value}
         >
           {child.props.children || child.props.value}

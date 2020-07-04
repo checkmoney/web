@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { EnumSelect } from '&front/ui/components/form/select';
-import { Currency } from '&front/enum/Currency';
+import { Currency } from '&front/application/profile';
 
 interface Props {
   currency: Currency;

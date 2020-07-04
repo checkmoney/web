@@ -1,42 +1,37 @@
+import { useStore } from 'effector-react';
 import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'react-router5';
 
-import { useThunk } from '&front/domain/store';
-import { bindGoogle } from '&front/domain/user/actions/bindGoogle';
-import { setDefaultCurrency } from '&front/domain/user/actions/setDefaultCurrency';
-import { signOut } from '&front/domain/user/actions/signOut';
 import { Google } from '&front/ui/auth-widget/google';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
-import { Button } from '&front/ui/components/form/button';
+import { Button } from '&front/presentation/atoms/button';
 import { Label } from '&front/ui/components/form/label';
 import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
-import { GoogleProfile } from '&front/models/user/external/GoogleProfile';
 import { actions as requireActions } from '&front/app/utility/required.actions';
-import {
-  selectDefaultCurrency,
-  selectDefaultCurrencyIsAvailable,
-} from '&front/app/profile/default_currency.selectors';
 import { RequireType } from '&front/app/utility/required.types';
-import { Route } from '&front/app/router';
+import { Route } from '&front/application/router';
+import { $currency, setCurrencyFx } from '&front/application/profile';
+import {
+  loggedOut,
+  bindGoogleFx,
+  GoogleProfile,
+} from '&front/application/login';
+import { somethingHappened } from '&front/application/notify';
 
 import * as styles from './Profile.css';
 
 export const Profile = () => {
-  const dispatchThunk = useThunk();
   const dispatch = useDispatch();
-  const notify = useNotifyAlert();
   const { navigate } = useRouter();
 
   useEffect(() => {
     dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
   }, []);
 
-  const defaultCurrency = useSelector(selectDefaultCurrency);
-  const isReady = useSelector(selectDefaultCurrencyIsAvailable);
+  const { data: defaultCurrency, isReady } = useStore($currency);
 
   const [currency, setCurrency] = useState(defaultCurrency);
 
@@ -44,26 +39,25 @@ export const Profile = () => {
     setCurrency(defaultCurrency);
   }, [defaultCurrency]);
 
-  const saved = useCallback(() => notify('Saved'), [notify]);
+  const saved = useCallback(() => somethingHappened('Saved'), []);
   const bound = useCallback(
-    (social: string) => notify(`Аккаунт "${social}" прикреплен`),
-    [notify],
+    (social: string) => somethingHappened(`Аккаунт "${social}" прикреплен`),
+    [],
   );
 
   const handleGoogleLogin = useCallback(async (profile: GoogleProfile) => {
-    await dispatchThunk(bindGoogle(profile));
+    await bindGoogleFx(profile);
     bound('google');
   }, []);
 
   useEffect(() => {
     if (currency && currency !== defaultCurrency) {
-      dispatchThunk(setDefaultCurrency(currency)).then(saved);
+      setCurrencyFx(currency).then(saved);
     }
   }, [currency, saved, defaultCurrency]);
 
-  const logout = useCallback(async () => {
-    dispatchThunk(signOut());
-    navigate(Route.Login);
+  const logout = useCallback(() => {
+    loggedOut();
   }, []);
 
   return (
@@ -72,7 +66,9 @@ export const Profile = () => {
 
       <section className={styles.container}>
         <Card title="Профиль">
-          <Button onClick={logout}>Выйти</Button>
+          <Button mod="primary" onClick={logout}>
+            Выйти
+          </Button>
         </Card>
 
         <Card title="Настройки">

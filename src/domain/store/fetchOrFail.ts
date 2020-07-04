@@ -4,7 +4,7 @@ import { Option } from 'tsoption';
 
 import { Api } from '&front/domain/api';
 import { ExtraArg, State } from '&front/domain/store';
-import { retrieveToken } from '&front/app/auth/auth.utils';
+import { $token } from '&front/application/viewer';
 
 interface FetchActions {
   request: () => AnyAction;
@@ -37,8 +37,13 @@ export const fetchOrFail = (
   try {
     dispatch(request());
 
-    const token = retrieveToken();
-    await execute(dispatch, () => createApi(Option.of(token)), getState);
+    const token = $token.getState();
+
+    await execute(
+      dispatch,
+      () => createApi(Option.of<string>(token!)),
+      getState,
+    );
 
     dispatch(success());
   } catch (error) {

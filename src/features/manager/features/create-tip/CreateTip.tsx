@@ -10,25 +10,21 @@ import {
   Checkbox,
   TextArea,
 } from '&front/features/final-form';
-import { Button } from '&front/ui/components/form/button';
+import { Button } from '&front/presentation/atoms/button';
 import { Label } from '&front/ui/components/form/label';
 import { Card } from '&front/ui/components/layout/card';
-import { useNotifyAlert } from '&front/ui/hooks/useNotifyAlert';
+import { somethingHappened } from '&front/application/notify';
 
 import * as styles from './CreateTip.css';
 
 export const CreateTip = () => {
   const dispatch = useThunk();
-  const notify = useNotifyAlert();
 
-  const onSubmit = useCallback(
-    async (fields: any) => {
-      await dispatch(createTip(fields));
+  const onSubmit = useCallback(async (fields: any) => {
+    await dispatch(createTip(fields));
 
-      notify('Tip created');
-    },
-    [notify],
-  );
+    somethingHappened('Tip created');
+  }, []);
 
   return (
     <Form
@@ -60,7 +56,9 @@ export const CreateTip = () => {
               <Checkbox name="important" />
             </Label>
 
-            <Button submit>Create</Button>
+            <Button type="submit" mod="primary">
+              Create
+            </Button>
           </Card>
         </form>
       )}
