@@ -6,7 +6,7 @@ import { requestFx, Method } from '&front/application/api';
 import { Currency } from './currency/currency';
 
 // TODO: add `force` param and stop refetching data if it available and non-force request
-const getCurrencyFx = attach<void, typeof requestFx>({
+const fetchUserCurrencyFx = attach<void, typeof requestFx>({
   effect: requestFx,
   mapParams: () => ({
     path: '/det-bell/v1/default-currency',
@@ -21,11 +21,11 @@ const setCurrencyFx = attach({
     method: Method.Post,
   }),
 });
-setCurrencyFx.done.watch(() => getCurrencyFx());
+setCurrencyFx.done.watch(() => fetchUserCurrencyFx());
 
 const $currency = createStore<Currency | null>(null).on(
-  getCurrencyFx.doneData,
+  fetchUserCurrencyFx.doneData,
   (_, { data }: AxiosResponse<Currency>) => data,
 );
 
-export { $currency, getCurrencyFx, setCurrencyFx };
+export { $currency, fetchUserCurrencyFx, setCurrencyFx };

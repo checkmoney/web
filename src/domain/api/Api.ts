@@ -1,9 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { Option } from 'tsoption';
 
-import { config } from '&front/app/config';
-
-const backUrl = config('BACK_URL');
+import { $configuration } from '&front/application/configuration';
 
 export class Api {
   public get client() {
@@ -18,7 +16,7 @@ export class Api {
       : {};
 
     this.axios = axios.create({
-      baseURL: backUrl,
+      baseURL: $configuration.getState().backUrl,
       headers: authHeaders,
     });
   }

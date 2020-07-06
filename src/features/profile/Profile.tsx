@@ -14,7 +14,7 @@ import { Route } from '&front/application/router';
 import {
   $currency,
   setCurrencyFx,
-  getCurrencyFx,
+  fetchUserCurrencyFx,
 } from '&front/application/profile';
 import {
   loggedOut,
@@ -29,7 +29,7 @@ export const Profile = () => {
   const { navigate } = useRouter();
 
   useEffect(() => {
-    getCurrencyFx();
+    fetchUserCurrencyFx();
   }, []);
 
   const defaultCurrency = useStore($currency);

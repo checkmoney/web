@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react';
 import { GoogleLogin } from 'react-google-login';
+import React, { useCallback } from 'react';
+import { useStore } from 'effector-react';
 
-import { config } from '&front/app/config';
 import { GoogleProfile } from '&front/application/login';
 import { somethingHappened } from '&front/application/notify';
-
-const googleClientId = config('GOOGLE_CLIENT_ID');
+import { $configuration } from '&front/application/configuration';
 
 interface Props {
   onLogin: (profile: GoogleProfile) => any;
@@ -33,6 +32,8 @@ export const Google = ({ onLogin }: Props) => {
     () => somethingHappened('Что-то пошло не так, попробуйте еще раз'),
     [],
   );
+
+  const { googleClientId } = useStore($configuration);
 
   return (
     <GoogleLogin

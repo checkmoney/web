@@ -22,7 +22,11 @@ import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { Label } from '&front/ui/components/form/label';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
-import { Currency, $currency, getCurrencyFx } from '&front/application/profile';
+import {
+  Currency,
+  $currency,
+  fetchUserCurrencyFx,
+} from '&front/application/profile';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
 import { Button } from '&front/presentation/atoms/button';
 
@@ -54,7 +58,7 @@ export const CreateTransaction = ({ className }: Props) => {
     dispatchThunk(fetchSources());
     dispatchThunk(fetchCategories());
 
-    getCurrencyFx();
+    fetchUserCurrencyFx();
   }, []);
 
   const getVariants = useCallback(
