@@ -1,10 +1,11 @@
 import { createStore, attach } from 'effector';
 import { Type } from 'class-transformer';
 import { isWithinRange } from 'date-fns';
-import { uniqBy } from 'lodash';
 
 import { PeriodType, TransformBigInt, DateRange } from '&front/shared';
 import { requestFx, Method } from '&front/application/api';
+
+import { mergePeriodicStatistics } from './utils/merge_periodic_statistics';
 
 export class PeriodAmount {
   @TransformBigInt()
@@ -31,13 +32,8 @@ const fetchPeriodAmountsFx = attach({
 
 const $periods = createStore<PeriodsState>({}).on(
   fetchPeriodAmountsFx.done,
-  (state, { params: { periodType }, result: { data } }) => ({
-    ...state,
-    [periodType]: uniqBy(
-      [...(state[periodType] || []), ...data],
-      (item: PeriodAmount) => item.period.identity,
-    ),
-  }),
+  (state, { params: { periodType }, result: { data } }) =>
+    mergePeriodicStatistics(state, periodType, data),
 );
 
 const selectAmoutsByPeriod = (

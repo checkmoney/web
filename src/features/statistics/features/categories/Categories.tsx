@@ -1,15 +1,9 @@
-import { take } from 'lodash';
 import React, { useMemo, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Option } from 'tsoption';
+import { useStoreMap } from 'effector-react';
 import { useRouter } from 'react-router5';
+import { Option } from 'tsoption';
+import { take } from 'lodash';
 
-import { actions } from '&front/app/statistics/categories.actions';
-import {
-  selectCategories,
-  selectCategoriesHasError,
-} from '&front/app/statistics/categories.selectors';
-import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button } from '&front/presentation/atoms/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
@@ -17,6 +11,11 @@ import { Currency } from '&front/application/profile';
 import { PeriodType, DateRange } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
+import {
+  fetchCategoriesFx,
+  selectCategoriesByPeriod,
+  $categories,
+} from '&front/application/statistics';
 
 interface Props {
   className?: string;
@@ -49,31 +48,27 @@ export const Categories = ({
 
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
   const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
-  const dispatch = useDispatch();
   const { navigate } = useRouter();
 
   useEffect(() => {
-    dispatch(actions.started({ periodType: group, dateRange }));
+    fetchCategoriesFx({ periodType: group, dateRange });
   }, [group, dateRange]);
 
-  const data = useMemoMappedState(selectCategories(group, dateRange), [
-    group,
-    dateRange,
-  ]);
-  const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
-    group,
-    dateRange,
-  ]);
+  const data = useStoreMap({
+    store: $categories,
+    keys: [group, dateRange],
+    fn: selectCategoriesByPeriod,
+  });
 
   const preparedData = useMemo(
     () =>
       Option.of(data)
-        .map((v) => v.expenses)
+        .map((v) => v!.expenses)
         .map((v) => take(v, maxLength)),
     [data, maxLength],
   );
 
-  const errorState = error ? Option.of('Error') : Option.of<string>(null);
+  const errorState = Option.of<string>(null);
 
   return (
     <LoaderTable

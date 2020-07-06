@@ -10,10 +10,12 @@ import { Label } from '&front/ui/components/form/label';
 import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { actions as requireActions } from '&front/app/utility/required.actions';
-import { RequireType } from '&front/app/utility/required.types';
 import { Route } from '&front/application/router';
-import { $currency, setCurrencyFx } from '&front/application/profile';
+import {
+  $currency,
+  setCurrencyFx,
+  getCurrencyFx,
+} from '&front/application/profile';
 import {
   loggedOut,
   bindGoogleFx,
@@ -24,14 +26,14 @@ import { somethingHappened } from '&front/application/notify';
 import * as styles from './Profile.css';
 
 export const Profile = () => {
-  const dispatch = useDispatch();
   const { navigate } = useRouter();
 
   useEffect(() => {
-    dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
+    getCurrencyFx();
   }, []);
 
-  const { data: defaultCurrency, isReady } = useStore($currency);
+  const defaultCurrency = useStore($currency);
+  const isReady = defaultCurrency;
 
   const [currency, setCurrency] = useState(defaultCurrency);
 

@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
 import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
 import { fetchSources } from '&front/domain/money/actions/fetchSources';
@@ -22,9 +22,7 @@ import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { Label } from '&front/ui/components/form/label';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
-import { Currency, $currency } from '&front/application/profile';
-import { actions as requireActions } from '&front/app/utility/required.actions';
-import { RequireType } from '&front/app/utility/required.types';
+import { Currency, $currency, getCurrencyFx } from '&front/application/profile';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
 import { Button } from '&front/presentation/atoms/button';
 
@@ -40,11 +38,11 @@ interface Props {
 
 export const CreateTransaction = ({ className }: Props) => {
   const dispatchThunk = useThunk();
-  const dispatch = useDispatch();
 
   const onSubmit = useOnSubmit();
 
-  const { data: defaultCurrency, isReady: isLoaded } = useStore($currency);
+  const defaultCurrency = useStore($currency);
+  const isLoaded = defaultCurrency;
 
   const outcomeFetching = useSelector(getCreateOutcomeFetching);
   const incomeFetching = useSelector(getCreateIncomeFetching);
@@ -56,7 +54,7 @@ export const CreateTransaction = ({ className }: Props) => {
     dispatchThunk(fetchSources());
     dispatchThunk(fetchCategories());
 
-    dispatch(requireActions.dataRequired(RequireType.DefaultCurrency));
+    getCurrencyFx();
   }, []);
 
   const getVariants = useCallback(

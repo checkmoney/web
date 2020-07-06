@@ -23,19 +23,9 @@ const setCurrencyFx = attach({
 });
 setCurrencyFx.done.watch(() => getCurrencyFx());
 
-interface CurrencyStore {
-  data: Currency | null;
-  isReady: boolean;
-  error?: string;
-}
-
-const $currency = createStore<CurrencyStore>({
-  data: null,
-  isReady: false,
-}).on(getCurrencyFx.doneData, (state, { data }: AxiosResponse<Currency>) => ({
-  ...state,
-  data,
-  isReady: true,
-}));
+const $currency = createStore<Currency | null>(null).on(
+  getCurrencyFx.doneData,
+  (_, { data }: AxiosResponse<Currency>) => data,
+);
 
 export { $currency, getCurrencyFx, setCurrencyFx };

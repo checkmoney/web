@@ -1,17 +1,9 @@
-import { useStoreMap } from 'effector-react';
 import React, { useState, useMemo, useEffect, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useStoreMap, useStore } from 'effector-react';
+import { useRouter } from 'react-router5';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
-import { useRouter } from 'react-router5';
 
-import { actions as categoriesActions } from '&front/app/statistics/categories.actions';
-import {
-  selectCategories,
-  selectCategoriesHasError,
-} from '&front/app/statistics/categories.selectors';
-import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
-import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
 import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
@@ -24,6 +16,10 @@ import {
   fetchPeriodAmountsFx,
   $periods,
   selectTotalAmountByPeriod,
+  fetchCategoriesFx,
+  selectCategoriesByPeriod,
+  $categories,
+  $statisticsMeta,
 } from '&front/application/statistics';
 
 import * as styles from './Detail.css';
@@ -38,7 +34,7 @@ interface Props {
 }
 
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
-  const currency = useSelector(selectStatisticsCurrency);
+  const { currency } = useStore($statisticsMeta);
   const isSmall = useMedia({ maxWidth: 768 });
   const { navigate } = useRouter();
 
@@ -46,18 +42,17 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   const { from, to } = useDateRange(previousPeriodNumber, group);
   const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(categoriesActions.started({ periodType: group, dateRange }));
-
+    fetchCategoriesFx({ periodType: group, dateRange });
     fetchPeriodAmountsFx({ periodType: group, dateRange });
   }, [group, dateRange]);
 
-  const data = useMemoMappedState(selectCategories(group, dateRange), [
-    group,
-    dateRange,
-  ]);
+  const data = useStoreMap({
+    store: $categories,
+    keys: [group, dateRange],
+    fn: selectCategoriesByPeriod,
+  });
 
   const dataByPeriod = useStoreMap({
     store: $periods,
@@ -66,15 +61,10 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   });
   const total = dataByPeriod[dataPath];
 
-  const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
-    group,
-    dateRange,
-  ]);
-
   const preparedData = useMemo(
     () =>
       Option.of(data).map((t) =>
-        t[dataPath].map((i) => ({
+        t![dataPath].map((i) => ({
           name: i.category,
           data: i.amount,
         })),
@@ -82,7 +72,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     [data, dataPath],
   );
 
-  const errorState = error ? Option.of('Error') : Option.of<string>(null);
+  const errorState = Option.of<string>(null);
 
   return (
     <Container>
