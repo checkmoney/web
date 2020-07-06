@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useStore } from 'effector-react';
 import { useRouter } from 'react-router5';
 
-import { selectStatisticsCurrency } from '&front/app/statistics/meta.selectors';
+import { $statisticsMeta } from '&front/application/statistics';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tabs, Tab } from '&front/ui/components/layout/tabs';
@@ -20,7 +20,7 @@ const columnWidthPercent = 40;
 const maxLength = 5;
 
 export const Statistics = () => {
-  const currency = useSelector(selectStatisticsCurrency);
+  const { currency } = useStore($statisticsMeta);
   const { navigate } = useRouter();
 
   const renderContent = useCallback(

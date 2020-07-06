@@ -1,4 +1,5 @@
 import { createStore, attach } from 'effector';
+import { AxiosResponse } from 'axios';
 
 import { requestFx, Method } from '&front/application/api';
 
@@ -31,9 +32,9 @@ interface CurrencyStore {
 const $currency = createStore<CurrencyStore>({
   data: null,
   isReady: false,
-}).on(getCurrencyFx.doneData, (state, currency: Currency) => ({
+}).on(getCurrencyFx.doneData, (state, { data }: AxiosResponse<Currency>) => ({
   ...state,
-  data: currency,
+  data,
   isReady: true,
 }));
 

@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import { useRouter } from 'react-router5';
 
-import { Interval } from '&front/app/api/api.types';
 import { actions } from '&front/app/statistics/categories.actions';
 import {
   selectCategories,
@@ -15,7 +14,7 @@ import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button } from '&front/presentation/atoms/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&front/application/profile';
-import { PeriodType } from '&front/shared';
+import { PeriodType, DateRange } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
 
@@ -49,7 +48,7 @@ export const Categories = ({
   );
 
   const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
-  const dateRange = useMemo(() => new Interval(from, to), [from, to]);
+  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
   const dispatch = useDispatch();
   const { navigate } = useRouter();
 

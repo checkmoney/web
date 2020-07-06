@@ -1,5 +1,7 @@
+import { ClassType } from 'class-transformer/ClassTransformer';
+import { plainToClass } from 'class-transformer';
 import { createEffect, attach } from 'effector';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { stringify } from 'qs';
 
 import { $configuration } from '&front/application/configuration';
@@ -16,22 +18,27 @@ export enum Method {
   Delete = 'delete',
 }
 
-interface Request {
+interface Request<T = any> {
   path: string;
   query?: Record<string, number | boolean | string | Date>;
   body?: object;
   method: Method;
   attemptThreshold?: number;
+  targetClass?: ClassType<T>;
 }
 
-interface InternalRequest extends Request {
+interface InternalRequest<T = any> extends Request<T> {
   token: string | null;
   attempt: number;
 }
 
-const requestInternalFx = createEffect<InternalRequest, any, AxiosError>({
-  handler: async ({ path, method, query, body, token }) => {
-    const { data } = await axios({
+const requestInternalFx = createEffect<
+  InternalRequest,
+  AxiosResponse,
+  AxiosError
+>({
+  handler: async ({ path, method, query, body, token, targetClass }) => {
+    const response = await axios({
       url: `${path}?${stringify(query || {})}`,
       method,
       data: body,
@@ -42,7 +49,14 @@ const requestInternalFx = createEffect<InternalRequest, any, AxiosError>({
         : {},
     });
 
-    return data;
+    const data = targetClass
+      ? plainToClass(targetClass, response.data)
+      : response.data;
+
+    return {
+      ...response,
+      data,
+    };
   },
 });
 

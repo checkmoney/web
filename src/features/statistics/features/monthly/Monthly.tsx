@@ -1,17 +1,15 @@
 import { endOfYear, startOfYear, getYear, parse } from 'date-fns';
 import React, { useState, useMemo, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Option } from 'tsoption';
+import { useStoreMap } from 'effector-react';
 import { useMedia } from 'use-media';
+import { Option } from 'tsoption';
 
-import { Interval } from '&front/app/api/api.types';
-import { actions } from '&front/app/statistics/periods.actions';
 import {
-  selectPeriods,
-  selectPeriodsHasError,
-} from '&front/app/statistics/periods.selectors';
+  fetchPeriodAmountsFx,
+  selectAmoutsByPeriod,
+  $periods,
+} from '&front/application/statistics';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
-import { useMemoMappedState } from '&front/domain/store/useMemoMappedState';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { wantUTC } from '&front/helpers/wantUTC';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
@@ -19,7 +17,7 @@ import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { YearPicker } from '&front/ui/components/form/year-picker';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&front/application/profile';
-import { PeriodType } from '&front/shared';
+import { PeriodType, DateRange } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
@@ -36,7 +34,6 @@ export const Monthly = ({ className, currency }: Props) => {
     [],
   );
   const isSmall = useMedia({ maxWidth: 768 });
-  const dispatch = useDispatch();
 
   const [year, setYear] = useState(getYear(new Date()));
 
@@ -45,22 +42,19 @@ export const Monthly = ({ className, currency }: Props) => {
 
     return [wantUTC(startOfYear)(date), wantUTC(endOfYear)(date)];
   }, [year]);
-  const dateRange = useMemo(() => new Interval(from, to), [from, to]);
+  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
 
   useEffect(() => {
-    dispatch(actions.started({ dateRange, periodType: PeriodType.Month }));
+    fetchPeriodAmountsFx({ dateRange, periodType: PeriodType.Month });
   }, [dateRange]);
 
-  const data = useMemoMappedState(selectPeriods(PeriodType.Month, dateRange), [
-    dateRange,
-  ]);
-  const error = useMemoMappedState(
-    selectPeriodsHasError(PeriodType.Month, dateRange),
-    [dateRange],
-  );
+  const data = useStoreMap({
+    store: $periods,
+    keys: [PeriodType.Month, dateRange],
+    fn: selectAmoutsByPeriod,
+  });
 
-  const stats = Option.of(data);
-  const errorState = error ? Option.of('Error') : Option.of<string>(null);
+  const errorState = Option.of<string>(null);
 
   return (
     <section className={className}>
@@ -73,10 +67,10 @@ export const Monthly = ({ className, currency }: Props) => {
       </ControlHeader>
 
       <Loader status={{ error: errorState, loading: false }}>
-        {stats.nonEmpty() && stats.get().length > 0 && (
+        {data.length > 0 && (
           <BarChart
             displayValue={displayMoney(currency)}
-            dataSets={stats.get().map(({ period, earnings, expenses }) => ({
+            dataSets={data.map(({ period, earnings, expenses }) => ({
               name: translatedMonthTitle(period.start, false),
               data: {
                 income: {

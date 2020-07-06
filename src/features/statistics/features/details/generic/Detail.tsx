@@ -1,13 +1,11 @@
+import { useStoreMap } from 'effector-react';
 import React, { useState, useMemo, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
 import { useRouter } from 'react-router5';
-import { head } from 'lodash';
 
-import { Interval } from '&front/app/api/api.types';
 import { actions as categoriesActions } from '&front/app/statistics/categories.actions';
-import { actions as periodsActions } from '&front/app/statistics/periods.actions';
 import {
   selectCategories,
   selectCategoriesHasError,
@@ -18,11 +16,15 @@ import { PieChart } from '&front/ui/components/chart/pie-chart';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { PeriodType } from '&front/shared';
+import { PeriodType, DateRange } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
-import { selectPeriods } from '&front/app/statistics/periods.selectors';
 import { NON_BREAKING_SPACE } from '&front/helpers/NON_BREAKING_SPACE';
+import {
+  fetchPeriodAmountsFx,
+  $periods,
+  selectTotalAmountByPeriod,
+} from '&front/application/statistics';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -43,12 +45,13 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
 
   const { from, to } = useDateRange(previousPeriodNumber, group);
-  const dateRange = useMemo(() => new Interval(from, to), [from, to]);
+  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(categoriesActions.started({ periodType: group, dateRange }));
-    dispatch(periodsActions.started({ periodType: group, dateRange }));
+
+    fetchPeriodAmountsFx({ periodType: group, dateRange });
   }, [group, dateRange]);
 
   const data = useMemoMappedState(selectCategories(group, dateRange), [
@@ -56,9 +59,12 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     dateRange,
   ]);
 
-  const dataByPeriod = useMemoMappedState(selectPeriods(group, dateRange), [
-    dateRange,
-  ]);
+  const dataByPeriod = useStoreMap({
+    store: $periods,
+    keys: [group, dateRange],
+    fn: selectTotalAmountByPeriod,
+  });
+  const total = dataByPeriod[dataPath];
 
   const error = useMemoMappedState(selectCategoriesHasError(group, dateRange), [
     group,
@@ -75,16 +81,6 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
       ),
     [data, dataPath],
   );
-
-  const total = useMemo(() => {
-    if (!dataByPeriod) return Option.of<number>(null);
-
-    const lastPeriod = head(dataByPeriod);
-
-    if (!lastPeriod) return Option.of<number>(null);
-
-    return Option.of(lastPeriod[dataPath]);
-  }, [dataByPeriod, dataPath]);
 
   const errorState = error ? Option.of('Error') : Option.of<string>(null);
 
@@ -113,12 +109,12 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
           >
             {preparedData.nonEmpty() && (
               <Fragment>
-                {total.nonEmpty() && (
+                {Boolean(total) && (
                   <p>
                     Всего:
-                    {`${NON_BREAKING_SPACE}${displayMoney(
-                      currency!,
-                    )(total.get(), { withPenny: false })}`}
+                    {`${NON_BREAKING_SPACE}${displayMoney(currency!)(total, {
+                      withPenny: false,
+                    })}`}
                   </p>
                 )}
                 <PieChart

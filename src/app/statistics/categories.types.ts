@@ -1,9 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { Type } from 'class-transformer';
 
-import { Interval } from '&front/app/api/api.types';
-
-import { TransformBigInt } from '../api/api.utils';
+import { TransformBigInt, DateRange } from '&front/shared';
 
 export class CategoryData {
   @TransformBigInt()
@@ -24,13 +22,13 @@ export class PeriodCategories {
   @Type(() => CategoryData)
   readonly earnings: CategoryData[];
 
-  @Type(() => Interval)
-  readonly period: Interval;
+  @Type(() => DateRange)
+  readonly period: DateRange;
 
   constructor(
     expenses: CategoryData[],
     earnings: CategoryData[],
-    period: Interval,
+    period: DateRange,
   ) {
     this.expenses = expenses;
     this.earnings = earnings;

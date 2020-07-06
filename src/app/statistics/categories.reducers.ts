@@ -1,9 +1,7 @@
 import { uniqBy } from 'lodash';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { Interval } from '&front/app/api/api.types';
-import { intervalIdentity } from '&front/app/api/api.utils';
-import { PeriodType } from '&front/shared';
+import { PeriodType, DateRange } from '&front/shared';
 
 import { actions } from './categories.actions';
 import { PeriodCategories } from './categories.types';
@@ -11,7 +9,7 @@ import { PeriodCategories } from './categories.types';
 type StateData = { [key in PeriodType]?: PeriodCategories[] };
 
 export interface CategoriesState extends StateData {
-  errors: Array<{ dateRange: Interval; periodType: PeriodType }>;
+  errors: Array<{ dateRange: DateRange; periodType: PeriodType }>;
 }
 
 const initialState: CategoriesState = {
@@ -23,12 +21,11 @@ export const categoriesReducer = reducerWithInitialState(initialState)
     ...state,
     [params.periodType]: uniqBy(
       [...(state[params.periodType] || []), ...result],
-      (item) => intervalIdentity(item.period),
+      (item) => item.period.identity,
     ),
     errors: state.errors.filter(
       (error) =>
-        intervalIdentity(error.dateRange) !==
-          intervalIdentity(params.dateRange) &&
+        error.dateRange.identity !== params.dateRange.identity &&
         error.periodType !== params.periodType,
     ),
   }))
@@ -36,6 +33,6 @@ export const categoriesReducer = reducerWithInitialState(initialState)
     ...state,
     errors: uniqBy(
       [...state.errors, params],
-      (error) => `${intervalIdentity(error.dateRange)}-${error.periodType}`,
+      (error) => `${error.dateRange.identity}-${error.periodType}`,
     ),
   }));

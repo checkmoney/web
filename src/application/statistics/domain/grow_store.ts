@@ -21,7 +21,7 @@ const fetchGrowFx = attach({
 
 const $grow = createStore<GrowState>({}).on(
   fetchGrowFx.done,
-  (state, { params, result }) => ({ ...state, [params]: result }),
+  (state, { params, result }) => ({ ...state, [params]: result.data }),
 );
 
 const selectGrowByPeriodType = (state: GrowState, [periodType]: [PeriodType]) =>

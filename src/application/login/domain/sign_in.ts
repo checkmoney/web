@@ -1,4 +1,5 @@
 import { attach } from 'effector';
+import { AxiosResponse } from 'axios';
 
 import { requestFx, Method } from '&front/application/api';
 import { router, Route } from '&front/application/router';
@@ -10,9 +11,7 @@ interface TokenReponse {
   readonly token: string;
 }
 
-const handleSignIn = (route: Route = Route.Dashboard) => ({
-  token,
-}: TokenReponse) => {
+const handleSignIn = (token: string, route: Route = Route.Dashboard) => {
   tokenChanged(token);
   router.navigate(route);
 };
@@ -30,7 +29,9 @@ const signInByPasswordFx = attach({
     body: creds,
   }),
 });
-signInByPasswordFx.doneData.watch(handleSignIn());
+signInByPasswordFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
+  handleSignIn(data.token),
+);
 
 const signUpFx = attach({
   effect: requestFx,
@@ -40,7 +41,9 @@ const signUpFx = attach({
     body: creds,
   }),
 });
-signUpFx.doneData.watch(handleSignIn(Route.Hello));
+signUpFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
+  handleSignIn(data.token, Route.Hello),
+);
 
 const signInByGoogleFx = attach({
   effect: requestFx,
@@ -50,6 +53,8 @@ const signInByGoogleFx = attach({
     body: profile,
   }),
 });
-signInByGoogleFx.doneData.watch(handleSignIn());
+signInByGoogleFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
+  handleSignIn(data.token),
+);
 
 export { signInByPasswordFx, signInByGoogleFx, signUpFx };
