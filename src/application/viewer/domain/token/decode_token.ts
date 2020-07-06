@@ -1,7 +1,10 @@
 import { Base64 } from 'js-base64';
 import { dropRight, flow } from 'lodash';
 
-import { TokenPayloadModel } from '&front/models/user/TokenPayloadModel';
+interface TokenPayloadModel {
+  login: string;
+  isManager: boolean;
+}
 
 const removeSignature = (token: string) =>
   dropRight(token.split('.'), 1).join('.');

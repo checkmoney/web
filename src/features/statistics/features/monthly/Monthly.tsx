@@ -11,7 +11,7 @@ import {
 } from '&front/application/statistics';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
-import { wantUTC } from '&front/helpers/wantUTC';
+import { wantUTC } from '&front/shared';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { YearPicker } from '&front/ui/components/form/year-picker';
@@ -42,7 +42,7 @@ export const Monthly = ({ className, currency }: Props) => {
 
     return [wantUTC(startOfYear)(date), wantUTC(endOfYear)(date)];
   }, [year]);
-  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
+  const dateRange = DateRange.memoized(from, to);
 
   useEffect(() => {
     fetchPeriodAmountsFx({ dateRange, periodType: PeriodType.Month });

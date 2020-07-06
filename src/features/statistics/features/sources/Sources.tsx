@@ -4,7 +4,6 @@ import { useRouter } from 'react-router5';
 import { Option } from 'tsoption';
 import { take } from 'lodash';
 
-import { createRangeForGroup } from '&front/helpers/createRangeForGroup';
 import { Button } from '&front/presentation/atoms/button';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&front/application/profile';
@@ -46,8 +45,7 @@ export const Sources = ({
     [currency, widthPercent],
   );
 
-  const { from, to } = useMemo(() => createRangeForGroup(group), [group]);
-  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
+  const dateRange = DateRange.createUtcPeriod(group);
   const { navigate } = useRouter();
 
   useEffect(() => {

@@ -7,10 +7,9 @@ import { getHistory } from '&front/domain/money/selectors/getHistory';
 import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
 import { useMemoState } from '&front/domain/store';
 import { historyToTableData, createColumns } from '&front/features/history';
-import { wantUTC } from '&front/helpers/wantUTC';
+import { wantUTC, PeriodType } from '&front/shared';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { useDelete } from '&front/features/transaction/delete/useDelete';
-import { PeriodType } from '&front/shared';
 
 import { FullHistoryButton } from './components/full-history-button';
 

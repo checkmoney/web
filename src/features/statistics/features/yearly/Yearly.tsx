@@ -5,12 +5,11 @@ import { useMedia } from 'use-media';
 import { Option } from 'tsoption';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
-import { wantUTC } from '&front/helpers/wantUTC';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&front/application/profile';
-import { PeriodType, DateRange } from '&front/shared';
+import { PeriodType, DateRange, wantUTC } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
@@ -37,7 +36,7 @@ export const Yearly = ({ className, currency }: Props) => {
     firstTransactionDate,
   ]);
   const to = useMemo(() => wantUTC(endOfYear)(new Date()), []);
-  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
+  const dateRange = DateRange.memoized(from, to);
 
   useEffect(() => {
     fetchPeriodAmountsFx({ dateRange, periodType: PeriodType.Year });

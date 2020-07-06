@@ -24,7 +24,6 @@ import {
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
-import { useDateRange } from './helpers/useDateRange';
 
 interface Props {
   group: PeriodType;
@@ -40,8 +39,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
 
-  const { from, to } = useDateRange(previousPeriodNumber, group);
-  const dateRange = useMemo(() => new DateRange(from, to), [from, to]);
+  const dateRange = DateRange.createUtcPeriod(group, previousPeriodNumber);
 
   useEffect(() => {
     fetchCategoriesFx({ periodType: group, dateRange });
@@ -87,8 +85,8 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
             setPreviousPeriodNumber={setPreviousPeriodNumber}
             previousPeriodNumber={previousPeriodNumber}
             detailType={detailType}
-            from={from}
-            to={to}
+            from={dateRange.start}
+            to={dateRange.end}
             group={group}
           />
         </aside>

@@ -1,7 +1,7 @@
 import { startOfMonth, addMonths, endOfMonth } from 'date-fns';
 
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
-import { wantUTC } from '&front/helpers/wantUTC';
+import { wantUTC } from '&front/shared';
 
 interface Month {
   title: string;
