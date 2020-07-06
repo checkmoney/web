@@ -3,12 +3,7 @@ import { createStore, attach } from 'effector';
 import { PeriodType } from '&front/shared';
 import { requestFx, Method } from '&front/application/api';
 
-interface Grow {
-  expenses: number | null;
-  earnings: number | null;
-}
-
-type GrowState = { [key in PeriodType]?: Grow };
+import { Grow } from '../types/grow';
 
 const fetchGrowFx = attach({
   effect: requestFx,
@@ -18,6 +13,8 @@ const fetchGrowFx = attach({
     method: Method.Get,
   }),
 });
+
+type GrowState = { [key in PeriodType]?: Grow };
 
 const $grow = createStore<GrowState>({}).on(
   fetchGrowFx.done,

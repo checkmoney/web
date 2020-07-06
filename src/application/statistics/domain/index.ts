@@ -5,7 +5,6 @@ export { $statisticsMeta } from './meta_store';
 export {
   $periods,
   selectAmoutsByPeriod,
-  selectTotalAmountByPeriod,
   fetchPeriodAmountsFx,
 } from './periods_store';
 
@@ -13,4 +12,5 @@ export {
   $categories,
   fetchCategoriesFx,
   selectCategoriesByPeriod,
+  selectTotalInPeriod,
 } from './categories_store';

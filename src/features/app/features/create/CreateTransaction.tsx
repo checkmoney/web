@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react';
+import { useStore, useGate } from 'effector-react';
 import React, { useCallback, useEffect } from 'react';
 import { Form } from 'react-final-form';
 import { useSelector } from 'react-redux';
@@ -22,11 +22,7 @@ import { translatedCurrency } from '&front/helpers/translatedCurrency';
 import { Label } from '&front/ui/components/form/label';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
-import {
-  Currency,
-  $currency,
-  fetchUserCurrencyFx,
-} from '&front/application/profile';
+import { Currency, $currency, CurrencyGate } from '&front/application/profile';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
 import { Button } from '&front/presentation/atoms/button';
 
@@ -41,11 +37,13 @@ interface Props {
 }
 
 export const CreateTransaction = ({ className }: Props) => {
+  useGate(CurrencyGate);
+  const defaultCurrency = useStore($currency);
+
   const dispatchThunk = useThunk();
 
   const onSubmit = useOnSubmit();
 
-  const defaultCurrency = useStore($currency);
   const isLoaded = defaultCurrency;
 
   const outcomeFetching = useSelector(getCreateOutcomeFetching);
@@ -57,8 +55,6 @@ export const CreateTransaction = ({ className }: Props) => {
   useEffect(() => {
     dispatchThunk(fetchSources());
     dispatchThunk(fetchCategories());
-
-    fetchUserCurrencyFx();
   }, []);
 
   const getVariants = useCallback(

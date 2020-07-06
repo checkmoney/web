@@ -1,5 +1,5 @@
 import React, { useMemo, useEffect } from 'react';
-import { useStoreMap } from 'effector-react';
+import { useStoreMap, useGate } from 'effector-react';
 import { useRouter } from 'react-router5';
 import { Option } from 'tsoption';
 import { take } from 'lodash';
@@ -11,9 +11,9 @@ import { PeriodType, DateRange } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
 import {
-  fetchCategoriesFx,
   $categories,
   selectCategoriesByPeriod,
+  CategoriesGate,
 } from '&front/application/statistics';
 
 interface Props {
@@ -48,9 +48,7 @@ export const Sources = ({
   const dateRange = DateRange.createUtcPeriod(group);
   const { navigate } = useRouter();
 
-  useEffect(() => {
-    fetchCategoriesFx({ periodType: group, dateRange });
-  }, [group, dateRange]);
+  useGate(CategoriesGate, { periodType: group, dateRange });
 
   const data = useStoreMap({
     store: $categories,
@@ -66,14 +64,12 @@ export const Sources = ({
     [data, maxLength],
   );
 
-  const errorState = Option.of<string>(null);
-
   return (
     <LoaderTable
       title="Что приносит вам деньги"
       columns={columns}
       data={preparedData}
-      fetching={{ error: errorState, loading: preparedData.isEmpty() }}
+      fetching={{ loading: preparedData.isEmpty() }}
       expectedRows={maxLength}
       className={className}
       hideHeader

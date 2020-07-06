@@ -8,7 +8,7 @@ import { Card } from './card';
 import { Table, TableProps } from './table';
 
 interface OwnProps<Data extends Array<{}>> {
-  fetching: FetchingState;
+  fetching: Partial<FetchingState>;
   data: Option<TableProps<Data>['data']>;
   expectedRows: number;
 }
@@ -22,7 +22,7 @@ export const LoaderTable = <Data extends Array<{}>>({
   expectedRows,
   ...rest
 }: Props<Data>) => {
-  if (fetching.error.nonEmpty()) {
+  if (fetching.error?.nonEmpty()) {
     return <p>error</p>;
   }
 

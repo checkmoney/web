@@ -4,7 +4,7 @@ import { FetchingState } from 'redux-clear';
 import { Skeleton } from '../../controls/skeleton/Skeleton';
 
 interface Props {
-  status: FetchingState;
+  status: Partial<FetchingState>;
   children: ReactNode;
   skeleton?: boolean;
   expectedRows?: number;
@@ -22,7 +22,7 @@ export const Loader = ({
     return <p>error</p>;
   }
 
-  if (typeof error !== 'boolean' && error.nonEmpty()) {
+  if (typeof error !== 'boolean' && error?.nonEmpty()) {
     return <p>error: {error.get()}</p>;
   }
 

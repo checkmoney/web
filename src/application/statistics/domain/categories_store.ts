@@ -1,43 +1,24 @@
-/* eslint-disable max-classes-per-file */
-
 import { createStore, attach } from 'effector';
-import { Type } from 'class-transformer';
 import { isWithinRange } from 'date-fns';
 
-import { TransformBigInt, DateRange, PeriodType } from '&front/shared';
+import { DateRange, PeriodType } from '&front/shared';
 import { requestFx, Method } from '&front/application/api';
 
 import { mergePeriodicStatistics } from './utils/merge_periodic_statistics';
-
-class CategoryData {
-  @TransformBigInt()
-  readonly amount: number;
-
-  readonly category: string;
-}
-
-class PeriodCategories {
-  @Type(() => CategoryData)
-  readonly expenses: CategoryData[];
-
-  @Type(() => CategoryData)
-  readonly earnings: CategoryData[];
-
-  @Type(() => DateRange)
-  readonly period: DateRange;
-}
-
-type CategoriesState = { [key in PeriodType]?: PeriodCategories[] };
+import { StatisticsRequest } from '../types/statistics_request';
+import { PeriodCategories, CategoryData } from '../types/period_categories';
 
 const fetchCategoriesFx = attach({
   effect: requestFx,
-  mapParams: ({ periodType, dateRange }) => ({
+  mapParams: ({ periodType, dateRange }: StatisticsRequest) => ({
     path: '/v1/statistics/categories',
     query: { periodType, ...dateRange },
     method: Method.Get,
     targetClass: PeriodCategories,
   }),
 });
+
+type CategoriesState = { [key in PeriodType]?: PeriodCategories[] };
 
 const $categories = createStore<CategoriesState>({}).on(
   fetchCategoriesFx.done,
@@ -53,4 +34,24 @@ const selectCategoriesByPeriod = (
     isWithinRange(item.period.start, start, end),
   ) || null;
 
-export { $categories, fetchCategoriesFx, selectCategoriesByPeriod };
+const selectTotalInPeriod = (
+  state: CategoriesState,
+  params: [PeriodType, DateRange],
+) => {
+  const data = selectCategoriesByPeriod(state, params);
+
+  const sum = (categories?: CategoryData[]) =>
+    (categories || []).map(({ amount }) => amount).reduce((a, b) => a + b, 0);
+
+  return {
+    expenses: sum(data?.expenses),
+    earnings: sum(data?.earnings),
+  };
+};
+
+export {
+  $categories,
+  fetchCategoriesFx,
+  selectCategoriesByPeriod,
+  selectTotalInPeriod,
+};

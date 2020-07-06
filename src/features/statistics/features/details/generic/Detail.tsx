@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect, Fragment } from 'react';
-import { useStoreMap, useStore } from 'effector-react';
+import React, { useState, useMemo, Fragment } from 'react';
+import { useStoreMap, useStore, useGate } from 'effector-react';
 import { useRouter } from 'react-router5';
 import { Option } from 'tsoption';
 import useMedia from 'use-media';
@@ -13,13 +13,11 @@ import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';
 import { NON_BREAKING_SPACE } from '&front/helpers/NON_BREAKING_SPACE';
 import {
-  fetchPeriodAmountsFx,
-  $periods,
-  selectTotalAmountByPeriod,
-  fetchCategoriesFx,
   selectCategoriesByPeriod,
   $categories,
   $statisticsMeta,
+  selectTotalInPeriod,
+  CategoriesGate,
 } from '&front/application/statistics';
 
 import * as styles from './Detail.css';
@@ -41,10 +39,7 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   const dateRange = DateRange.createUtcPeriod(group, previousPeriodNumber);
 
-  useEffect(() => {
-    fetchCategoriesFx({ periodType: group, dateRange });
-    fetchPeriodAmountsFx({ periodType: group, dateRange });
-  }, [group, dateRange]);
+  useGate(CategoriesGate, { periodType: group, dateRange });
 
   const data = useStoreMap({
     store: $categories,
@@ -52,12 +47,11 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     fn: selectCategoriesByPeriod,
   });
 
-  const dataByPeriod = useStoreMap({
-    store: $periods,
+  const total = useStoreMap({
+    store: $categories,
     keys: [group, dateRange],
-    fn: selectTotalAmountByPeriod,
+    fn: selectTotalInPeriod,
   });
-  const total = dataByPeriod[dataPath];
 
   const preparedData = useMemo(
     () =>
@@ -69,8 +63,6 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
       ),
     [data, dataPath],
   );
-
-  const errorState = Option.of<string>(null);
 
   return (
     <Container>
@@ -92,27 +84,26 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
         </aside>
 
         <div className={styles.chart}>
-          <Loader
-            status={{ error: errorState, loading: preparedData.isEmpty() }}
-          >
+          <Loader status={{ loading: preparedData.isEmpty() }}>
+            {!!total && (
+              <p>
+                Всего:
+                {`${NON_BREAKING_SPACE}${displayMoney(currency!)(
+                  total[dataPath],
+                  {
+                    withPenny: false,
+                  },
+                )}`}
+              </p>
+            )}
             {preparedData.nonEmpty() && (
-              <Fragment>
-                {Boolean(total) && (
-                  <p>
-                    Всего:
-                    {`${NON_BREAKING_SPACE}${displayMoney(currency!)(total, {
-                      withPenny: false,
-                    })}`}
-                  </p>
-                )}
-                <PieChart
-                  dataSets={preparedData.get()}
-                  displayValue={(value) =>
-                    displayMoney(currency!)(value, { withPenny: false })
-                  }
-                  fitToContainer={isSmall}
-                />
-              </Fragment>
+              <PieChart
+                dataSets={preparedData.get()}
+                displayValue={(value) =>
+                  displayMoney(currency!)(value, { withPenny: false })
+                }
+                fitToContainer={isSmall}
+              />
             )}
           </Loader>
         </div>

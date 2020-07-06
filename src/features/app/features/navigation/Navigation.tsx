@@ -5,14 +5,14 @@ import { useStore } from 'effector-react';
 import { Menu } from '&front/ui/components/controls/menu/Menu';
 import { MenuItem } from '&front/ui/components/controls/menu/MenuItem';
 import { Route } from '&front/application/router';
-import { $manager } from '&front/application/viewer';
+import { $viewer } from '&front/application/viewer';
 
 interface Props {
   className?: string;
 }
 
 export const Navigation = ({ className }: Props) => {
-  const { isManager } = useStore($manager);
+  const { isManager } = useStore($viewer);
   const { navigate } = useRouter();
 
   const defaultMenu = [

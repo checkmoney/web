@@ -4,7 +4,7 @@ import { createEffect, attach } from 'effector';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { stringify } from 'qs';
 
-import { $configuration } from '&front/application/configuration';
+import { $config } from '&front/application/config';
 import { errorHappened } from '&front/application/notify';
 import { $token } from '&front/application/viewer';
 import { sleep } from '&front/shared';
@@ -74,7 +74,7 @@ requestInternalFx.fail.watch(async ({ params, error }) => {
 
 const requestFx = attach({
   source: {
-    config: $configuration,
+    config: $config,
     token: $token,
   },
   effect: requestInternalFx,

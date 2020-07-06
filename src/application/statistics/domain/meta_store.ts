@@ -1,25 +1,22 @@
-import { createStore, createEvent } from 'effector';
+import { createStore } from 'effector';
 
 import { Currency } from '&front/application/profile';
 import { requestFx } from '&front/application/api';
+
+/**
+ * In any request we can recieve new currency
+ */
+const newCurrencyRecieved = requestFx.doneData.filterMap<Currency>(
+  ({ headers }) => headers['checkmoney-currency'],
+);
 
 interface MetaStore {
   currency?: Currency;
 }
 
-const newCurrencyRecieved = createEvent<Currency>();
-
 const $statisticsMeta = createStore<MetaStore>({}).on(
   newCurrencyRecieved,
   (state, currency) => ({ ...state, currency }),
 );
-
-requestFx.doneData.watch(({ headers }) => {
-  const currency = headers['checkmoney-currency'];
-
-  if (currency) {
-    newCurrencyRecieved(currency);
-  }
-});
 
 export { $statisticsMeta };

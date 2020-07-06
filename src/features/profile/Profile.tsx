@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react';
+import { useStore, useGate } from 'effector-react';
 import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'react-router5';
@@ -14,7 +14,7 @@ import { Route } from '&front/application/router';
 import {
   $currency,
   setCurrencyFx,
-  fetchUserCurrencyFx,
+  CurrencyGate,
 } from '&front/application/profile';
 import {
   loggedOut,
@@ -26,13 +26,11 @@ import { somethingHappened } from '&front/application/notify';
 import * as styles from './Profile.css';
 
 export const Profile = () => {
+  useGate(CurrencyGate);
+  const defaultCurrency = useStore($currency);
+
   const { navigate } = useRouter();
 
-  useEffect(() => {
-    fetchUserCurrencyFx();
-  }, []);
-
-  const defaultCurrency = useStore($currency);
   const isReady = defaultCurrency;
 
   const [currency, setCurrency] = useState(defaultCurrency);

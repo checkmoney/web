@@ -1,8 +1,7 @@
 import { endOfYear, format, startOfYear } from 'date-fns';
-import React, { useMemo, useEffect } from 'react';
-import { useStoreMap } from 'effector-react';
+import React, { useMemo } from 'react';
+import { useStoreMap, useGate } from 'effector-react';
 import { useMedia } from 'use-media';
-import { Option } from 'tsoption';
 
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
@@ -14,9 +13,9 @@ import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import {
-  fetchPeriodAmountsFx,
   selectAmoutsByPeriod,
   $periods,
+  PeriodsAmountGate,
 } from '&front/application/statistics';
 
 interface Props {
@@ -38,9 +37,7 @@ export const Yearly = ({ className, currency }: Props) => {
   const to = useMemo(() => wantUTC(endOfYear)(new Date()), []);
   const dateRange = DateRange.memoized(from, to);
 
-  useEffect(() => {
-    fetchPeriodAmountsFx({ dateRange, periodType: PeriodType.Year });
-  }, [dateRange]);
+  useGate(PeriodsAmountGate, { dateRange, periodType: PeriodType.Month });
 
   const data = useStoreMap({
     store: $periods,
@@ -48,12 +45,10 @@ export const Yearly = ({ className, currency }: Props) => {
     fn: selectAmoutsByPeriod,
   });
 
-  const errorState = Option.of<string>(null);
-
   return (
     <section className={className}>
       <ControlHeader title="По годам" />
-      <Loader status={{ error: errorState, loading: false }}>
+      <Loader status={{ loading: false }}>
         {data.length > 0 && (
           <BarChart
             displayValue={(v) =>

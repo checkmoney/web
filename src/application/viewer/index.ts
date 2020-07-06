@@ -1,1 +1,1 @@
-export * from './domain';
+export { $token, $viewer, tokenChanged } from './store';

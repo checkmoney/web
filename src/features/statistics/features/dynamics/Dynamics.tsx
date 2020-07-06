@@ -1,12 +1,11 @@
-import { useStoreMap, useStore } from 'effector-react';
-import React, { useEffect } from 'react';
+import { useStoreMap, useGate } from 'effector-react';
+import React from 'react';
 import { format } from 'date-fns';
-import { Option } from 'tsoption';
 
 import {
-  fetchGrowFx,
   $grow,
   selectGrowByPeriodType,
+  GrowGate,
 } from '&front/application/statistics';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Stat } from '&front/ui/components/chart/stat';
@@ -29,17 +28,15 @@ const titles = {
 };
 
 export const Dynamics = ({ className, group }: Props) => {
+  useGate(GrowGate, group);
+
   const grow = useStoreMap({
     store: $grow,
     keys: [group] as any,
     fn: selectGrowByPeriodType,
   });
 
-  const loading = useStore(fetchGrowFx.pending);
-
-  useEffect(() => {
-    fetchGrowFx(group as any);
-  }, [group]);
+  const loading = !grow;
 
   const period =
     group === PeriodType.Month
@@ -51,11 +48,7 @@ export const Dynamics = ({ className, group }: Props) => {
     <Card title={period} className={className}>
       <p>{titles[group]}</p>
 
-      <Loader
-        skeleton
-        expectedRows={2}
-        status={{ error: Option.of<string>(null), loading }}
-      >
+      <Loader skeleton expectedRows={2} status={{ loading }}>
         <div className={styles.diff}>
           <Stat title="Доходы" value={grow && grow.earnings} suffix="%" />
           <Stat

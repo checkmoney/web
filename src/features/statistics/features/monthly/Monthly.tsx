@@ -1,23 +1,21 @@
 import { endOfYear, startOfYear, getYear, parse } from 'date-fns';
-import React, { useState, useMemo, useEffect } from 'react';
-import { useStoreMap } from 'effector-react';
+import React, { useState, useMemo } from 'react';
+import { useStoreMap, useGate } from 'effector-react';
 import { useMedia } from 'use-media';
-import { Option } from 'tsoption';
 
 import {
-  fetchPeriodAmountsFx,
   selectAmoutsByPeriod,
   $periods,
+  PeriodsAmountGate,
 } from '&front/application/statistics';
 import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
-import { wantUTC } from '&front/shared';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { YearPicker } from '&front/ui/components/form/year-picker';
 import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&front/application/profile';
-import { PeriodType, DateRange } from '&front/shared';
+import { PeriodType, DateRange, wantUTC } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
@@ -44,17 +42,13 @@ export const Monthly = ({ className, currency }: Props) => {
   }, [year]);
   const dateRange = DateRange.memoized(from, to);
 
-  useEffect(() => {
-    fetchPeriodAmountsFx({ dateRange, periodType: PeriodType.Month });
-  }, [dateRange]);
+  useGate(PeriodsAmountGate, { dateRange, periodType: PeriodType.Month });
 
   const data = useStoreMap({
     store: $periods,
     keys: [PeriodType.Month, dateRange],
     fn: selectAmoutsByPeriod,
   });
-
-  const errorState = Option.of<string>(null);
 
   return (
     <section className={className}>
@@ -66,7 +60,7 @@ export const Monthly = ({ className, currency }: Props) => {
         />
       </ControlHeader>
 
-      <Loader status={{ error: errorState, loading: false }}>
+      <Loader status={{ loading: false }}>
         {data.length > 0 && (
           <BarChart
             displayValue={displayMoney(currency)}

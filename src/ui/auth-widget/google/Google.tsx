@@ -4,7 +4,7 @@ import { useStore } from 'effector-react';
 
 import { GoogleProfile } from '&front/application/login';
 import { somethingHappened } from '&front/application/notify';
-import { $configuration } from '&front/application/configuration';
+import { $config } from '&front/application/config';
 
 interface Props {
   onLogin: (profile: GoogleProfile) => any;
@@ -33,7 +33,7 @@ export const Google = ({ onLogin }: Props) => {
     [],
   );
 
-  const { googleClientId } = useStore($configuration);
+  const { googleClientId } = useStore($config);
 
   return (
     <GoogleLogin
