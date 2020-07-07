@@ -1,22 +1,13 @@
 import React from 'react';
-import { Field, FieldRenderProps } from 'react-final-form';
-import { Diff } from 'utility-types';
+import { Field } from 'react-final-form';
 
-import {
-  Select as JustSelect,
-  SelectProps,
-} from '&front/ui/components/form/select';
+import { Select as JustSelect, SelectProps } from '&front/presentation/atoms';
 
 interface OwnProps {
   name: string;
 }
 
-type ComponentProps = Diff<SelectProps, FieldRenderProps['input']>;
-
-export const Select = ({
-  name,
-  ...componentProps
-}: OwnProps & ComponentProps) => (
+export const Select = ({ name, ...componentProps }: OwnProps & SelectProps) => (
   <Field
     name={name}
     render={({ input }) => <JustSelect {...componentProps} {...input} />}

@@ -1,9 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { useRouter } from 'react-router5';
 
-import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
 import { Button } from '&front/presentation/atoms';
-import { Currency, setCurrencyFx } from '&front/application/profile';
+import {
+  Currency,
+  setCurrencyFx,
+  CurrencySelect,
+} from '&front/application/currency';
 import { Route } from '&front/application/router';
 
 import * as styles from './Hello.css';
@@ -26,7 +29,7 @@ export const Hello = () => {
         <small>Лучший мани трекер</small>
         <section>
           <p className={styles.text}>Нужно выбрать валюту по умолчанию</p>
-          <CurrencySwitch currency={currency} updateCurrency={setCurrency} />
+          <CurrencySelect value={currency} onChange={setCurrency} />
         </section>
       </h1>
       <Button mod="primary" onClick={next}>

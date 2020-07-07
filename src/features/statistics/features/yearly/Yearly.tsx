@@ -7,7 +7,7 @@ import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstT
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { Loader } from '&front/ui/components/layout/loader';
-import { Currency } from '&front/application/profile';
+import { Currency } from '&front/application/currency';
 import { PeriodType, DateRange, wantUTC } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
@@ -37,7 +37,7 @@ export const Yearly = ({ className, currency }: Props) => {
   const to = useMemo(() => wantUTC(endOfYear)(new Date()), []);
   const dateRange = DateRange.memoized(from, to);
 
-  useGate(PeriodsAmountGate, { dateRange, periodType: PeriodType.Month });
+  useGate(PeriodsAmountGate, { dateRange, periodType: PeriodType.Year });
 
   const data = useStoreMap({
     store: $periods,

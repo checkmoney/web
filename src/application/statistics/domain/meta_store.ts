@@ -1,6 +1,6 @@
 import { createStore } from 'effector';
 
-import { Currency } from '&front/application/profile';
+import { Currency } from '&front/application/currency';
 import { requestFx } from '&front/application/api';
 
 /**

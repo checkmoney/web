@@ -1,4 +1,4 @@
-import { Currency } from '&front/application/profile';
+import { Currency } from '&front/application/currency';
 
 export interface OutcomeModel {
   readonly amount: number; // penny!

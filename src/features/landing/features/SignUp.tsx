@@ -1,13 +1,9 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useStore } from 'effector-react';
-import { Form } from 'react-final-form';
-import { Option } from 'tsoption';
+import { Form, Field } from 'react-final-form';
 import cx from 'classnames';
 
-import { Input } from '&front/features/final-form';
-import { InputType } from '&front/ui/components/form/input/InputType';
-import { Label } from '&front/ui/components/form/label';
-import { Button } from '&front/presentation/atoms';
+import { Button, Input, Label } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
 import { signUpFx } from '&front/application/login';
 
@@ -18,36 +14,43 @@ interface Props {
 }
 
 export const SignUp = ({ className }: Props) => {
-  const onSubmit = useCallback(
-    ({ email, password }) => signUpFx({ email, password }),
-    [],
-  );
-
   const isLoading = useStore(signUpFx.pending);
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={signUpFx}>
       {({ handleSubmit }) => (
         <form
           onSubmit={handleSubmit}
           className={cx(styles.container, className)}
         >
           <Card title="Регистрация" className={styles.card}>
-            <Label text="Email">
-              <Input
-                name="email"
-                type={InputType.Email}
-                placeholder="email@example.com"
-              />
-            </Label>
+            <Field name="email">
+              {({ input }) => (
+                <Label text="Email">
+                  <Input
+                    {...input}
+                    type="email"
+                    placeholder="email@example.com"
+                  />
+                </Label>
+              )}
+            </Field>
 
-            <Label text="Пароль">
-              <Input name="password" type={InputType.Password} />
-            </Label>
+            <Field name="password">
+              {({ input }) => (
+                <Label text="Пароль">
+                  <Input {...input} type="password" />
+                </Label>
+              )}
+            </Field>
 
-            <Label text="Пароль еще раз">
-              <Input name="password-repeat" type={InputType.Password} />
-            </Label>
+            <Field name="password-repeat">
+              {({ input }) => (
+                <Label text="Пароль ещё раз">
+                  <Input {...input} type="password" />
+                </Label>
+              )}
+            </Field>
 
             <Button loading={isLoading} mod="primary" type="submit">
               Зарегистрироваться

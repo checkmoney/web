@@ -6,7 +6,7 @@ import { take } from 'lodash';
 
 import { Button } from '&front/presentation/atoms';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
-import { Currency } from '&front/application/profile';
+import { Currency } from '&front/application/currency';
 import { PeriodType, DateRange } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { Route } from '&front/application/router';

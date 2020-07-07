@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
-import { getCurrencySign } from '&front/helpers/getCurrencySign';
+import { getCurrencySign } from '&front/application/currency';
+import { Input } from '&front/presentation/atoms';
 
-import { Input } from '../input';
 import { format } from './helpers/format';
 import { InputMoneyProps } from './InputMoneyProps';
 

@@ -1,6 +1,6 @@
 import { useStore, useGate } from 'effector-react';
 import React, { useCallback, useEffect } from 'react';
-import { Form } from 'react-final-form';
+import { Form, Field } from 'react-final-form';
 import { useSelector } from 'react-redux';
 
 import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
@@ -12,19 +12,20 @@ import { getSources } from '&front/domain/money/selectors/getSources';
 import { useThunk } from '&front/domain/store';
 import {
   DatePicker,
-  EnumSelect,
   InputMoney,
   Toggle,
   AutoComplete,
 } from '&front/features/final-form';
 import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
-import { translatedCurrency } from '&front/helpers/translatedCurrency';
-import { Label } from '&front/ui/components/form/label';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
-import { Currency, $currency, CurrencyGate } from '&front/application/profile';
+import {
+  $currency,
+  CurrencyGate,
+  CurrencySelect,
+} from '&front/application/currency';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
-import { Button } from '&front/presentation/atoms';
+import { Button, Label } from '&front/presentation/atoms';
 
 import * as styles from './CreateTransaction.css';
 import { getCommentByKind } from './helpers/getCommentByKind';
@@ -108,13 +109,14 @@ export const CreateTransaction = ({ className }: Props) => {
             </Label>
 
             <Label text="Валюта" className={styles.currency}>
-              <EnumSelect
-                showSearch
-                name="currency"
-                options={Currency}
-                className={styles.input}
-                getLabel={translatedCurrency}
-              />
+              <Field name="currency">
+                {({ input }) => (
+                  <CurrencySelect
+                    value={input.value}
+                    onChange={input.onChange}
+                  />
+                )}
+              </Field>
             </Label>
 
             <Label text="Дата" className={styles.date}>

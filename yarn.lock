@@ -2366,16 +2366,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.3.1":
-  version: 7.3.1
-  resolution: "@babel/runtime@npm:7.3.1"
-  dependencies:
-    regenerator-runtime: ^0.12.0
-  checksum: 2bff42a4d75e8aeb165caacd814cac726e5519dbd9403092f7ec406ec388aefc2a1d1f2c943f9afafadb53e34cdb4ebed52803e514e1ea1e6e58809887031aac
-  languageName: node
-  linkType: hard
-
-"@babel/runtime@npm:^7.10.2":
+"@babel/runtime@npm:^7.10.0, @babel/runtime@npm:^7.10.2":
   version: 7.10.2
   resolution: "@babel/runtime@npm:7.10.2"
   dependencies:
@@ -2797,6 +2788,13 @@ __metadata:
   dependencies:
     any-observable: ^0.3.0
   checksum: 70b3766c46278d2b0070ecef27f127680ae2b4bd8769757fef34b74a8db18603b597f19c29020d91e839d41817772a1ed4d6df4f7dc277650813ab47857e8cc2
+  languageName: node
+  linkType: hard
+
+"@scarf/scarf@npm:^1.0.5":
+  version: 1.0.6
+  resolution: "@scarf/scarf@npm:1.0.6"
+  checksum: e86e85b0496afe7fab177098f8e41e6dee174c4d7dc1d15dc06ca0aa15876bd1062b7c28e4f54f5220cacd384572458c0031bb05d7e64ad48d7d83565aae711f
   languageName: node
   linkType: hard
 
@@ -7097,6 +7095,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"effector-debounce@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "effector-debounce@npm:1.1.0"
+  peerDependencies:
+    effector: ^20.11.5
+  checksum: dacf6a357f636f7c5af58ec00b2d3e86e9bb007580805897f20faec9a90ca3572d86e7ec38b39610730097bea1478e59c69064a2154f577c044700f21df9f3d6
+  languageName: node
+  linkType: hard
+
 "effector-react@npm:^20.9.0":
   version: 20.9.0
   resolution: "effector-react@npm:20.9.0"
@@ -7104,6 +7111,15 @@ __metadata:
     effector: ^20.9.0
     react: ^16.8.0
   checksum: 937f0997b4e4edeab538c2c46251dae7dbeec378b28ca053e2adc22f2800990acbb796250e26b84f2632ef1c2e1dbc967659370514c9c730c746231053f94da4
+  languageName: node
+  linkType: hard
+
+"effector-throttle@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "effector-throttle@npm:1.1.0"
+  peerDependencies:
+    effector: ^20.11.5
+  checksum: ca059cbc4777e98d6a39721161dbcf62ff7d96d718a86e2a15f5dffe0562cf43df2c60b45427dd4d1eef47402f21dfbb181fc8611f250bec5b8a04f7b59655ee
   languageName: node
   linkType: hard
 
@@ -8076,12 +8092,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"final-form@npm:^4.11.1":
-  version: 4.11.1
-  resolution: "final-form@npm:4.11.1"
+"final-form@npm:^4.20.1":
+  version: 4.20.1
+  resolution: "final-form@npm:4.20.1"
   dependencies:
-    "@babel/runtime": ^7.3.1
-  checksum: d156e2af75e1807d550b04a7b6613ba7b80e7f2b8364b7736bb984cd036909b9a5199aa38f1e8737278a823be6bcb1ff96911c179a3671060cccce7634d9c663
+    "@babel/runtime": ^7.10.0
+  checksum: 007bc31ead06ad92ec9a3a917183c8e36cbf2f4a5a7188fa938b8212953e16580db61eedbfca443edcc8402d671b7828b3514f82f5ab03886611f8ccf8f3f847
   languageName: node
   linkType: hard
 
@@ -12896,6 +12912,18 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"patronum@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "patronum@npm:0.14.1"
+  dependencies:
+    effector-debounce: ^1.1.0
+    effector-throttle: ^1.1.0
+  peerDependencies:
+    effector: ^20.7.0
+  checksum: 82610a231cb11c2dfa6a000237be7bf2d49c5469393bcd935f50b7be6deb28a1cb17fd26634a903d65e17401630ac6fc3f4435ca8b410bfc7e2e585e0aee576c
+  languageName: node
+  linkType: hard
+
 "pbkdf2@npm:^3.0.3":
   version: 3.0.17
   resolution: "pbkdf2@npm:3.0.17"
@@ -14998,16 +15026,17 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"react-final-form@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "react-final-form@npm:4.0.2"
+"react-final-form@npm:^6.5.0":
+  version: 6.5.0
+  resolution: "react-final-form@npm:6.5.0"
   dependencies:
-    "@babel/runtime": ^7.1.2
+    "@babel/runtime": ^7.10.0
+    "@scarf/scarf": ^1.0.5
+    ts-essentials: ^6.0.5
   peerDependencies:
-    final-form: ^4.11.0
-    prop-types: ^15.6.0
-    react: ^16.3.0
-  checksum: b0fe2af385104250105422cf215bc3f916a024c890dca29e46568f78b9eee92865278fc09f86479865beb48440b3eb24841df2587eb986b6622d24f6aa2de9ff
+    final-form: ^4.20.0
+    react: ^16.8.0
+  checksum: 81e787f780fa982d293204513c1bcfcd26218d72e033e8356a15d656ff2f8fe9190f3d30dc08d6f970da23af59bd78f71e7a9ca7831f334086dda69b497735d7
   languageName: node
   linkType: hard
 
@@ -15387,13 +15416,6 @@ fsevents@~2.1.2:
   version: 0.11.1
   resolution: "regenerator-runtime@npm:0.11.1"
   checksum: d98d44b9f5c9c3c670dcb615c5f5374931f937f3075dc8338126f45231643aa8c47ed2bfdef6ae593e311be54ca02d25d943971ca86a3dc1fa99068c2e1b88b2
-  languageName: node
-  linkType: hard
-
-"regenerator-runtime@npm:^0.12.0":
-  version: 0.12.1
-  resolution: "regenerator-runtime@npm:0.12.1"
-  checksum: a6fd2b5809d82690213aa7f2b560dc71269caabf0f208d03ce51b841314184504c990d02a5858d5d96cf6957403be992ecd78a2cfe2b90859f8e71974ae8f0a3
   languageName: node
   linkType: hard
 
@@ -17732,6 +17754,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"ts-essentials@npm:^6.0.5":
+  version: 6.0.7
+  resolution: "ts-essentials@npm:6.0.7"
+  peerDependencies:
+    typescript: ">=3.7.0"
+  checksum: 767c686785d0ab498271b8283eba05d969fa5892aa175329ff2f48964067814aa8368911e3457557d92f99ec010df7fd534bf9c91bbd5ab6cb4a7fabd14782f8
+  languageName: node
+  linkType: hard
+
 "ts-pnp@npm:^1.1.6":
   version: 1.2.0
   resolution: "ts-pnp@npm:1.2.0"
@@ -18519,7 +18550,7 @@ typescript@^3.9.3:
     eslint-plugin-import-helpers: ^1.0.2
     eslint-plugin-react: ^7.20.0
     eslint-plugin-react-hooks: ^3.0.0
-    final-form: ^4.11.1
+    final-form: ^4.20.1
     html-webpack-plugin: ^4.3.0
     husky: ^4.2.5
     js-base64: ^2.5.1
@@ -18530,6 +18561,7 @@ typescript@^3.9.3:
     moment: ^2.27.0
     moment-locales-webpack-plugin: ^1.2.0
     parcel-bundler: ^1.12.4
+    patronum: ^0.14.1
     pnp-webpack-plugin: ^1.6.4
     postcss: ^7.0.14
     postcss-custom-media: ^7.0.7
@@ -18544,7 +18576,7 @@ typescript@^3.9.3:
     react: ^16.13.1
     react-chartjs-2: ^2.7.4
     react-dom: ^16.13.1
-    react-final-form: ^4.0.2
+    react-final-form: ^6.5.0
     react-google-login: ^5.0.5
     react-redux: ^7.2.0
     react-router5: ^8.0.1

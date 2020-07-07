@@ -1,9 +1,7 @@
 import { ComponentType } from 'react';
 
-import { TipAction } from '&front/models/mind/TipAction';
-import { TipModel } from '&front/models/mind/TipModel';
+import { TipAction, TipModel } from '&front/application/tips';
 
-import { Custom } from './custom';
 import { DailyBudget } from './daily-budget';
 import { ExtraSpending } from './extra-spending';
 import { MergeCategories } from './merge-categories';
@@ -21,7 +19,7 @@ export const getTipComponent = (tip: TipModel): ComponentType<Props> =>
     [TipAction.MergeCategories]: MergeCategories,
     [TipAction.DailyBudget]: DailyBudget,
     [TipAction.ExtraSpending]: ExtraSpending,
-    [TipAction.Custom]: Custom,
+    [TipAction.Custom]: () => null, // Custom tips support has been dropped
     [TipAction.RecurrentPayment]: RecurrentPayment,
     [TipAction.PastDaysBudget]: PastDaysBudget,
   }[tip.action]);

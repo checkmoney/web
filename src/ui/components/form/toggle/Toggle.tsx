@@ -1,10 +1,10 @@
 import cx from 'classnames';
 import React, { useCallback } from 'react';
+import { Button as AntButton } from 'antd';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
 import { Button } from '&front/presentation/atoms';
 
-import { ButtonGroup } from '../button';
 import * as styles from './Toggle.css';
 import { ToggleProps } from './ToggleProps';
 import { VariantProps } from './VariantProps';
@@ -24,7 +24,7 @@ export const Toggle = ({
   );
 
   return (
-    <ButtonGroup className={cx(styles.group, className)}>
+    <AntButton.Group className={cx(styles.group, className)}>
       {children.map((child) => (
         <Button
           onClick={() => handleChange(child.props.value)}
@@ -34,6 +34,6 @@ export const Toggle = ({
           {child.props.children || child.props.value}
         </Button>
       ))}
-    </ButtonGroup>
+    </AntButton.Group>
   );
 };

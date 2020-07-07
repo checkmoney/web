@@ -1,6 +1,5 @@
 import React from 'react';
-import { Field, FieldRenderProps } from 'react-final-form';
-import { Diff } from 'utility-types';
+import { Field } from 'react-final-form';
 
 import {
   DatePicker as JustDatePicker,
@@ -11,12 +10,10 @@ interface OwnProps {
   name: string;
 }
 
-type ComponentProps = Diff<DatePickerProps, FieldRenderProps['input']>;
-
 export const DatePicker = ({
   name,
   ...componentProps
-}: OwnProps & ComponentProps) => (
+}: OwnProps & DatePickerProps) => (
   <Field
     name={name}
     render={({ input }) => <JustDatePicker {...componentProps} {...input} />}

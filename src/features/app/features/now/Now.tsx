@@ -1,9 +1,8 @@
+import { useList, useGate } from 'effector-react';
+import React from 'react';
 import cx from 'classnames';
-import React, { useMemo } from 'react';
 
-import { fetchTips } from '&front/domain/mind/actions/fetchTips';
-import { getTips } from '&front/domain/mind/selectors/getTips';
-import { useMemoState } from '&front/domain/store';
+import { TipsGate, $tips } from '&front/application/tips';
 
 import * as styles from './Now.css';
 import { getTipComponent } from './tips/getTipComponent';
@@ -13,20 +12,13 @@ interface Props {
 }
 
 export const Now = ({ className }: Props) => {
-  const tips = useMemoState(
-    () => getTips,
-    () => fetchTips(),
-    [],
-  );
-  const components = useMemo(
-    () =>
-      tips.map((tip) => {
-        const Component = getTipComponent(tip);
+  useGate(TipsGate);
 
-        return <Component tip={tip} key={tip.token} />;
-      }),
-    [tips],
-  );
+  const components = useList($tips, (tip) => {
+    const Component = getTipComponent(tip);
+
+    return <Component tip={tip} key={tip.token} />;
+  });
 
   return <div className={cx(styles.now, className)}>{components}</div>;
 };

@@ -12,45 +12,26 @@ interface Props {
 }
 
 export const Navigation = ({ className }: Props) => {
-  const { isManager } = useStore($viewer);
   const { navigate } = useRouter();
 
-  const defaultMenu = [
-    <MenuItem id="home" key="home" selected>
-      Сводка
-    </MenuItem>,
-    <MenuItem id="stats" key="stats" onClick={() => navigate(Route.Statistics)}>
-      Статистика
-    </MenuItem>,
-    <MenuItem
-      id="history"
-      key="history"
-      onClick={() => navigate(Route.History)}
-    >
-      История
-    </MenuItem>,
-    <MenuItem
-      id="profile"
-      key="profile"
-      onClick={() => navigate(Route.Profile)}
-    >
-      Профиль
-    </MenuItem>,
-  ];
-
-  const managerMenu = isManager
-    ? [
-        <MenuItem
-          id="manager"
-          key="manager"
-          onClick={() => navigate(Route.Manager)}
-        >
-          Менеджерская
-        </MenuItem>,
-      ]
-    : [];
-
-  const menu = [...defaultMenu, ...managerMenu];
-
-  return <Menu className={className}>{menu}</Menu>;
+  return (
+    <Menu className={className}>
+      <MenuItem id="home" selected>
+        Сводка
+      </MenuItem>
+      <MenuItem
+        id="stats"
+        key="stats"
+        onClick={() => navigate(Route.Statistics)}
+      >
+        Статистика
+      </MenuItem>
+      <MenuItem id="history" onClick={() => navigate(Route.History)}>
+        История
+      </MenuItem>
+      <MenuItem id="profile" onClick={() => navigate(Route.Profile)}>
+        Профиль
+      </MenuItem>
+    </Menu>
+  );
 };

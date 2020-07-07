@@ -12,13 +12,13 @@ import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstT
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
-import { YearPicker } from '&front/ui/components/form/year-picker';
 import { Loader } from '&front/ui/components/layout/loader';
-import { Currency } from '&front/application/profile';
+import { Currency } from '&front/application/currency';
 import { PeriodType, DateRange, wantUTC } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { useMemoState } from '&front/domain/store';
 import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
+import { RangeSelect } from '&front/presentation/molecules';
 
 interface Props {
   className?: string;
@@ -53,10 +53,11 @@ export const Monthly = ({ className, currency }: Props) => {
   return (
     <section className={className}>
       <ControlHeader title="По месяцам в">
-        <YearPicker
+        <RangeSelect
           min={getYear(firstTransactionDate)}
+          max={getYear(new Date())}
           value={year}
-          onChange={(d) => setYear(d || getYear(new Date()))}
+          onChange={setYear}
         />
       </ControlHeader>
 

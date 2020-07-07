@@ -1,6 +1,5 @@
 import React from 'react';
-import { Field, FieldRenderProps } from 'react-final-form';
-import { Diff } from 'utility-types';
+import { Field } from 'react-final-form';
 
 import {
   InputMoney as JustInputMoney,
@@ -11,12 +10,10 @@ interface OwnProps {
   name: string;
 }
 
-type ComponentProps = Diff<InputMoneyProps, FieldRenderProps['input']>;
-
 export const InputMoney = ({
   name,
   ...componentProps
-}: OwnProps & ComponentProps) => (
+}: OwnProps & InputMoneyProps) => (
   <Field
     name={name}
     render={({ input }) => <JustInputMoney {...input} {...componentProps} />}

@@ -1,6 +1,7 @@
 import { ClassType } from 'class-transformer/ClassTransformer';
 import { plainToClass } from 'class-transformer';
 import { createEffect, attach } from 'effector';
+import { condition } from 'patronum';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { stringify } from 'qs';
 
@@ -37,7 +38,18 @@ const requestInternalFx = createEffect<
   AxiosResponse,
   AxiosError
 >({
-  handler: async ({ path, method, query, body, token, targetClass }) => {
+  handler: async ({
+    path,
+    method,
+    query,
+    body,
+    token,
+    targetClass,
+    attempt,
+  }) => {
+    // Lets sleep, if it is a retry call
+    await sleep(attempt * 1000);
+
     const response = await axios({
       url: `${path}?${stringify(query || {})}`,
       method,
@@ -60,16 +72,30 @@ const requestInternalFx = createEffect<
   },
 });
 
-requestInternalFx.fail.watch(async ({ params, error }) => {
-  const { attemptThreshold, attempt } = params;
-  const threshold = params.attemptThreshold || DEFAULT_ATTEMPT_THRESHOLD;
+condition({
+  source: requestInternalFx.fail,
+  // If we can retry
+  if: ({ params }) => {
+    const {
+      attemptThreshold = DEFAULT_ATTEMPT_THRESHOLD,
+      attempt,
+      method,
+    } = params;
 
-  if (params.attempt < threshold) {
-    await sleep(attempt * 500);
-    requestInternalFx({ ...params, attemptThreshold, attempt: attempt + 1 });
-  } else {
-    errorHappened(error.response?.data.message ?? error.message);
-  }
+    const attemptThresoldExceeded = attempt >= attemptThreshold;
+    const methodIsRetriable = method === Method.Get;
+
+    return !attemptThresoldExceeded && methodIsRetriable;
+  },
+  // Lets retry
+  then: requestInternalFx.prepend(({ params }) => ({
+    ...params,
+    attempt: params.attempt + 1,
+  })),
+  // Okay, error happened
+  else: errorHappened.prepend(
+    ({ error }) => error.response?.data.message ?? error.message,
+  ),
 });
 
 const requestFx = attach({

@@ -9,7 +9,6 @@ enum Route {
   Profile = '/app/profile',
   Statistics = '/app/stats',
   DetailedStatistics = '/app/stats/:type/:group',
-  Manager = '/manager',
 }
 
 const routes = [
@@ -20,7 +19,6 @@ const routes = [
   { name: Route.Profile, path: '/app/profile' },
   { name: Route.Statistics, path: '/app/stats' },
   { name: Route.DetailedStatistics, path: '/app/stats/:type/:group' },
-  { name: Route.Manager, path: '/manager' },
 ];
 
 const router = createRouter(routes);

@@ -1,31 +1,20 @@
 import { createGate } from 'effector-react';
-import { forward } from 'effector';
 
 import { PeriodType } from '&front/shared';
+import { forwardOpenGateState } from '&front/application/view';
 
 import { StatisticsRequest } from '../types/statistics_request';
-import {
-  fetchPeriodAmountsFx,
-  fetchGrowFx,
-  fetchCategoriesFx,
-} from '../domain';
+import { fetchCategoriesFx } from '../domain/categories_store';
+import { fetchPeriodAmountsFx } from '../domain/periods_store';
+import { fetchGrowFx } from '../domain/grow_store';
 
 const PeriodsAmountGate = createGate<StatisticsRequest>();
-forward({
-  from: PeriodsAmountGate.state,
-  to: fetchPeriodAmountsFx,
-});
+forwardOpenGateState({ gate: PeriodsAmountGate, target: fetchPeriodAmountsFx });
 
 const CategoriesGate = createGate<StatisticsRequest>();
-forward({
-  from: CategoriesGate.state,
-  to: fetchCategoriesFx,
-});
+forwardOpenGateState({ gate: CategoriesGate, target: fetchCategoriesFx });
 
 const GrowGate = createGate<PeriodType>();
-forward({
-  from: GrowGate.state,
-  to: fetchGrowFx,
-});
+forwardOpenGateState({ gate: GrowGate, target: fetchGrowFx });
 
 export { GrowGate, CategoriesGate, PeriodsAmountGate };

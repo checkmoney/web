@@ -1,17 +1,14 @@
 import React, { useCallback } from 'react';
 
-import { disableTips } from '&front/domain/mind/actions/disableTips';
-import { useThunk } from '&front/domain/store';
 import { Button } from '&front/presentation/atoms';
+import { disableTipFx } from '&front/application/tips';
 
 interface Props {
   token: string;
 }
 
 export const DismissButton = ({ token }: Props) => {
-  const dispatch = useThunk();
-
-  const onDismiss = useCallback(() => dispatch(disableTips([token])), [token]);
+  const onDismiss = useCallback(() => disableTipFx(token), [token]);
 
   return (
     <Button mod="ghost" onClick={onDismiss}>

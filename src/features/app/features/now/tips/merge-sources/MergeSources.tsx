@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TipModel } from '&front/models/mind/TipModel';
+import { TipModel } from '&front/application/tips';
 
 import { Merge } from '../components/merge';
 import { MergeSourcesMeta } from './MergeSourcesMeta';

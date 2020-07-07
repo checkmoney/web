@@ -4,7 +4,7 @@ import React from 'react';
 import { Card } from '&front/ui/components/layout/card';
 import { displayMoney } from '&front/helpers/displayMoney';
 import { formatDate } from '&front/helpers/formatDate';
-import { TipModel } from '&front/models/mind/TipModel';
+import { TipModel } from '&front/application/tips';
 
 import { DismissButton } from '../components/dismiss-button';
 import { RecurrentPaymentMeta } from './RecurrentPaymentMeta';

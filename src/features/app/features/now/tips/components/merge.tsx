@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { mergeTypos } from '&front/domain/mind/actions/mergeTypos';
+import { mergeTypoInCategoryFx } from '&front/application/tips';
 import { useThunk } from '&front/domain/store';
 import { Button } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
@@ -13,19 +13,14 @@ interface Props {
 }
 
 export const Merge = ({ token, variants }: Props) => {
-  const dispatch = useThunk();
+  const createOnMerge = (mainVariant: string) => {
+    const merge = {
+      primary: mainVariant,
+      secondary: variants.filter((varinat) => varinat !== mainVariant),
+    };
 
-  const createOnMerge = useCallback(
-    (mainVariant: string) => {
-      const merge = {
-        primary: mainVariant,
-        secondary: variants.filter((varinat) => varinat !== mainVariant),
-      };
-
-      return () => dispatch(mergeTypos(token, merge));
-    },
-    [variants, token],
-  );
+    return () => mergeTypoInCategoryFx({ token, merge });
+  };
 
   if (!Array.isArray(variants)) {
     return null;

@@ -1,6 +1,5 @@
-import { Currency } from '&front/application/profile';
+import { Currency, getCurrencySign } from '&front/application/currency';
 
-import { getCurrencySign } from './getCurrencySign';
 import { NON_BREAKING_SPACE } from './NON_BREAKING_SPACE';
 
 interface Params {

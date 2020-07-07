@@ -1,12 +1,8 @@
 import { useStore, useGate } from 'effector-react';
 import React, { useEffect, useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'react-router5';
 
-import { Google } from '&front/ui/auth-widget/google';
-import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
-import { Button } from '&front/presentation/atoms';
-import { Label } from '&front/ui/components/form/label';
+import { Button, Label } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
@@ -15,11 +11,12 @@ import {
   $currency,
   setCurrencyFx,
   CurrencyGate,
-} from '&front/application/profile';
+  CurrencySelect,
+} from '&front/application/currency';
 import {
   loggedOut,
   bindGoogleFx,
-  GoogleProfile,
+  GoogleWidget,
 } from '&front/application/login';
 import { somethingHappened } from '&front/application/notify';
 
@@ -40,15 +37,10 @@ export const Profile = () => {
   }, [defaultCurrency]);
 
   const saved = useCallback(() => somethingHappened('Saved'), []);
-  const bound = useCallback(
-    (social: string) => somethingHappened(`Аккаунт "${social}" прикреплен`),
+  const boundGoogle = useCallback(
+    () => somethingHappened(`Google-аккаунт прикреплен`),
     [],
   );
-
-  const handleGoogleLogin = useCallback(async (profile: GoogleProfile) => {
-    await bindGoogleFx(profile);
-    bound('google');
-  }, []);
 
   useEffect(() => {
     if (currency && currency !== defaultCurrency) {
@@ -75,16 +67,13 @@ export const Profile = () => {
           <Label text="Валюта по умолчанию">
             {!isReady && 'Loading...'}
             {isReady && (
-              <CurrencySwitch
-                currency={currency!}
-                updateCurrency={setCurrency}
-              />
+              <CurrencySelect value={currency!} onChange={setCurrency} />
             )}
           </Label>
         </Card>
 
         <Card title="Logins">
-          <Google onLogin={handleGoogleLogin} />
+          <GoogleWidget handleLogin={bindGoogleFx} onSuccess={boundGoogle} />
         </Card>
       </section>
     </Container>

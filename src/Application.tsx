@@ -10,7 +10,6 @@ import { Profile } from '&front/features/profile';
 import { Statistics } from '&front/features/statistics';
 import { Sources } from '&front/features/statistics/features/details/sources';
 import { Categories } from '&front/features/statistics/features/details/categories';
-import { Manager } from '&front/features/manager';
 
 export function Application() {
   const { route } = useRoute();
@@ -36,8 +35,6 @@ export function Application() {
         return <Categories group={route.params.group} />;
       }
       return null;
-    case Route.Manager:
-      return <Manager />;
     default:
       return null;
   }

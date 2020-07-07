@@ -1,8 +1,7 @@
 import { Omit } from 'utility-types';
 
-import { Currency } from '&front/application/profile';
-
-import { InputProps } from '../input';
+import { Currency } from '&front/application/currency';
+import { InputProps } from '&front/presentation/atoms';
 
 type ExternalProps = Omit<InputProps, 'value' | 'addonAfter' | 'addonBefore'>;
 
