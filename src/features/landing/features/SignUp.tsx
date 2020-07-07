@@ -7,7 +7,7 @@ import cx from 'classnames';
 import { Input } from '&front/features/final-form';
 import { InputType } from '&front/ui/components/form/input/InputType';
 import { Label } from '&front/ui/components/form/label';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
 import { signUpFx } from '&front/application/login';
 

@@ -26,6 +26,10 @@ const $categories = createStore<CategoriesState>({}).on(
     mergePeriodicStatistics(state, periodType, data),
 );
 
+const $categoriesStatus = fetchCategoriesFx.pending.map((loading) => ({
+  loading,
+}));
+
 const selectCategoriesByPeriod = (
   state: CategoriesState,
   [periodType, { start, end }]: [PeriodType, DateRange],
@@ -51,6 +55,7 @@ const selectTotalInPeriod = (
 
 export {
   $categories,
+  $categoriesStatus,
   fetchCategoriesFx,
   selectCategoriesByPeriod,
   selectTotalInPeriod,

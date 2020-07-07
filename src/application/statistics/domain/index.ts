@@ -10,6 +10,7 @@ export {
 
 export {
   $categories,
+  $categoriesStatus,
   fetchCategoriesFx,
   selectCategoriesByPeriod,
   selectTotalInPeriod,

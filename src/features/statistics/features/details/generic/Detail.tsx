@@ -1,10 +1,8 @@
-import React, { useState, useMemo, Fragment } from 'react';
+import React, { useState } from 'react';
 import { useStoreMap, useStore, useGate } from 'effector-react';
 import { useRouter } from 'react-router5';
-import { Option } from 'tsoption';
-import useMedia from 'use-media';
 
-import { PieChart } from '&front/ui/components/chart/pie-chart';
+import { PieChart } from '&front/presentation/molecules';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
@@ -18,6 +16,7 @@ import {
   $statisticsMeta,
   selectTotalInPeriod,
   CategoriesGate,
+  $categoriesStatus,
 } from '&front/application/statistics';
 
 import * as styles from './Detail.css';
@@ -31,8 +30,6 @@ interface Props {
 }
 
 export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
-  const { currency } = useStore($statisticsMeta);
-  const isSmall = useMedia({ maxWidth: 768 });
   const { navigate } = useRouter();
 
   const [previousPeriodNumber, setPreviousPeriodNumber] = useState(0);
@@ -41,7 +38,9 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
 
   useGate(CategoriesGate, { periodType: group, dateRange });
 
-  const data = useStoreMap({
+  const { currency } = useStore($statisticsMeta);
+
+  const categories = useStoreMap({
     store: $categories,
     keys: [group, dateRange],
     fn: selectCategoriesByPeriod,
@@ -53,16 +52,10 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
     fn: selectTotalInPeriod,
   });
 
-  const preparedData = useMemo(
-    () =>
-      Option.of(data).map((t) =>
-        t![dataPath].map((i) => ({
-          name: i.category,
-          data: i.amount,
-        })),
-      ),
-    [data, dataPath],
-  );
+  const { loading } = useStore($categoriesStatus);
+
+  const chartData = categories?.[dataPath] || [];
+  const totalData = total[dataPath];
 
   return (
     <Container>
@@ -84,27 +77,21 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
         </aside>
 
         <div className={styles.chart}>
-          <Loader status={{ loading: preparedData.isEmpty() }}>
-            {!!total && (
-              <p>
-                Всего:
-                {`${NON_BREAKING_SPACE}${displayMoney(currency!)(
-                  total[dataPath],
-                  {
-                    withPenny: false,
-                  },
-                )}`}
-              </p>
-            )}
-            {preparedData.nonEmpty() && (
-              <PieChart
-                dataSets={preparedData.get()}
-                displayValue={(value) =>
-                  displayMoney(currency!)(value, { withPenny: false })
-                }
-                fitToContainer={isSmall}
-              />
-            )}
+          <Loader status={{ loading }}>
+            <p>
+              Всего:
+              {`${NON_BREAKING_SPACE}${displayMoney(currency!)(totalData, {
+                withPenny: false,
+              })}`}
+            </p>
+            <PieChart
+              data={chartData}
+              valueKey="amount"
+              nameKey="category"
+              valueToString={(value) =>
+                displayMoney(currency!)(value, { withPenny: false })
+              }
+            />
           </Loader>
         </div>
       </section>

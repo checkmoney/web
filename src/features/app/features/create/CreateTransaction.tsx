@@ -24,7 +24,7 @@ import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
 import { Currency, $currency, CurrencyGate } from '&front/application/profile';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 
 import * as styles from './CreateTransaction.css';
 import { getCommentByKind } from './helpers/getCommentByKind';

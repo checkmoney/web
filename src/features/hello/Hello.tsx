@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useRouter } from 'react-router5';
 
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { Currency, setCurrencyFx } from '&front/application/profile';
 import { Route } from '&front/application/router';
 

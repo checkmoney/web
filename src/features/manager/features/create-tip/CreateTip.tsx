@@ -10,7 +10,7 @@ import {
   Checkbox,
   TextArea,
 } from '&front/features/final-form';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { Label } from '&front/ui/components/form/label';
 import { Card } from '&front/ui/components/layout/card';
 import { somethingHappened } from '&front/application/notify';

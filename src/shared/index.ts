@@ -3,3 +3,4 @@ export * from './sleep';
 export * from './transformers';
 export * from './date_range';
 export * from './utc';
+export * from './color';

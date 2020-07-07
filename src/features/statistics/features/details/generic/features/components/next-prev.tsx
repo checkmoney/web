@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { PeriodType } from '&front/shared';
 
 interface Props {

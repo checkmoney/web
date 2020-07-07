@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'react-router5';
 
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { PeriodType } from '&front/shared';
 import { Route } from '&front/application/router';
 

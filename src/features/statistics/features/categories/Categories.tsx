@@ -4,7 +4,7 @@ import { useRouter } from 'react-router5';
 import { Option } from 'tsoption';
 import { take } from 'lodash';
 
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { Currency } from '&front/application/profile';
 import { PeriodType, DateRange } from '&front/shared';

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { mergeTypos } from '&front/domain/mind/actions/mergeTypos';
 import { useThunk } from '&front/domain/store';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
 
 import { DismissButton } from './dismiss-button';

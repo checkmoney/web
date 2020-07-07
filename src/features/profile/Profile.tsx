@@ -5,7 +5,7 @@ import { useRouter } from 'react-router5';
 
 import { Google } from '&front/ui/auth-widget/google';
 import { CurrencySwitch } from '&front/ui/components/controls/currency-switch';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 import { Label } from '&front/ui/components/form/label';
 import { Card } from '&front/ui/components/layout/card';
 import { Container } from '&front/ui/components/layout/container';

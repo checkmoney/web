@@ -2,7 +2,7 @@ import cx from 'classnames';
 import React, { useCallback } from 'react';
 
 import { useCustomInput } from '&front/ui/hooks/useCustomInput';
-import { Button } from '&front/presentation/atoms/button';
+import { Button } from '&front/presentation/atoms';
 
 import { ButtonGroup } from '../button';
 import * as styles from './Toggle.css';
