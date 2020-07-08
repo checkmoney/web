@@ -1,6 +1,6 @@
 import { endOfYear, startOfYear, getYear, parse } from 'date-fns';
 import React, { useState, useMemo } from 'react';
-import { useStoreMap, useGate } from 'effector-react';
+import { useStoreMap, useGate, useStore } from 'effector-react';
 import { useMedia } from 'use-media';
 
 import {
@@ -8,7 +8,6 @@ import {
   $periods,
   PeriodsAmountGate,
 } from '&front/application/statistics';
-import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
@@ -16,9 +15,11 @@ import { Loader } from '&front/ui/components/layout/loader';
 import { Currency } from '&front/application/currency';
 import { PeriodType, DateRange, wantUTC } from '&front/shared';
 import { displayMoney } from '&front/helpers/displayMoney';
-import { useMemoState } from '&front/domain/store';
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
 import { RangeSelect } from '&front/presentation/molecules';
+import {
+  FirstTransactionDateGate,
+  $transactionsMeta,
+} from '&front/application/transaction';
 
 interface Props {
   className?: string;
@@ -26,11 +27,9 @@ interface Props {
 }
 
 export const Monthly = ({ className, currency }: Props) => {
-  const firstTransactionDate = useMemoState(
-    () => getFirstTransactionDate,
-    fetchFirstTransactionDate,
-    [],
-  );
+  useGate(FirstTransactionDateGate);
+  const { firstTransactionDate } = useStore($transactionsMeta);
+
   const isSmall = useMedia({ maxWidth: 768 });
 
   const [year, setYear] = useState(getYear(new Date()));

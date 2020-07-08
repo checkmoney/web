@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react';
 import { useRouter } from 'react-router5';
+import { useGate, useStore } from 'effector-react';
 
-import { getFirstTransactionDate } from '&front/domain/money/selectors/getFirstTransactionDate';
-import { fetchFirstTransactionDate } from '&front/domain/money/actions/fetchFirstTransactionDate';
+import {
+  FirstTransactionDateGate,
+  $transactionsMeta,
+} from '&front/application/transaction';
 import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
-import { useMemoState } from '&front/domain/store';
 import { Route } from '&front/application/router';
 
 import { TransactionList } from './components/transaction-list';
@@ -15,11 +17,9 @@ import { createMonths } from './helpers/createMonths';
 import * as styles from './History.css';
 
 export const History = () => {
-  const firstTransactionDate = useMemoState(
-    () => getFirstTransactionDate,
-    fetchFirstTransactionDate,
-    [],
-  );
+  useGate(FirstTransactionDateGate);
+  const { firstTransactionDate } = useStore($transactionsMeta);
+
   const { navigate } = useRouter();
 
   const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [

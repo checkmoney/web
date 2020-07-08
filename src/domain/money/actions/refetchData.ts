@@ -1,7 +1,6 @@
 import { fetchOrFail } from '&front/domain/store';
 
 import { getHistoryCachedPeriods } from '../selectors/getHistoryCachedPeriods';
-import { fetchFirstTransactionDate } from './fetchFirstTransactionDate';
 import { forceFetchHistory } from './forceFetchHistory';
 
 export const refetchData = () =>
@@ -9,7 +8,6 @@ export const refetchData = () =>
     const historyCachedPeriods = getHistoryCachedPeriods(getState());
 
     await Promise.all([
-      dispatch(fetchFirstTransactionDate()),
       ...historyCachedPeriods.map(
         ({ from, to, groupBy }) =>
           groupBy &&
