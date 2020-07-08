@@ -1,15 +1,10 @@
 import { useStore, useGate } from 'effector-react';
-import React, { useCallback, useEffect } from 'react';
+import React from 'react';
 import { Form, Field } from 'react-final-form';
 import { useSelector } from 'react-redux';
 
-import { fetchCategories } from '&front/domain/money/actions/fetchCategories';
-import { fetchSources } from '&front/domain/money/actions/fetchSources';
-import { getCategories } from '&front/domain/money/selectors/getCategories';
 import { getCreateIncomeFetching } from '&front/domain/money/selectors/getCreateIncomeFetching';
 import { getCreateOutcomeFetching } from '&front/domain/money/selectors/getCreateOutcomeFetching';
-import { getSources } from '&front/domain/money/selectors/getSources';
-import { useThunk } from '&front/domain/store';
 import {
   DatePicker,
   InputMoney,
@@ -24,6 +19,10 @@ import {
   CurrencyGate,
   CurrencySelect,
 } from '&front/application/currency';
+import {
+  ExistsCategoriesGate,
+  $existCategories,
+} from '&front/application/transaction';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
 import { Button, Label } from '&front/presentation/atoms';
 
@@ -39,9 +38,10 @@ interface Props {
 
 export const CreateTransaction = ({ className }: Props) => {
   useGate(CurrencyGate);
-  const defaultCurrency = useStore($currency);
+  useGate(ExistsCategoriesGate);
 
-  const dispatchThunk = useThunk();
+  const defaultCurrency = useStore($currency);
+  const existCategories = useStore($existCategories);
 
   const onSubmit = useOnSubmit();
 
@@ -51,21 +51,11 @@ export const CreateTransaction = ({ className }: Props) => {
   const incomeFetching = useSelector(getCreateIncomeFetching);
   const fetching = mergeFetchingState(outcomeFetching, incomeFetching);
 
-  const existSources = useSelector(getSources);
-  const existCategories = useSelector(getCategories);
-  useEffect(() => {
-    dispatchThunk(fetchSources());
-    dispatchThunk(fetchCategories());
-  }, []);
-
-  const getVariants = useCallback(
-    (kind: Kind) =>
-      ({
-        [Kind.Income]: existSources,
-        [Kind.Outcome]: existCategories,
-      }[kind]),
-    [existSources, existCategories],
-  );
+  const getVariants = (kind: Kind) =>
+    ({
+      [Kind.Income]: existCategories.earnings,
+      [Kind.Outcome]: existCategories.expenses,
+    }[kind]);
 
   if (!isLoaded) {
     return (
