@@ -1,7 +1,6 @@
 import { startOfMonth, addMonths, endOfMonth } from 'date-fns';
 
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
-import { wantUTC } from '&front/shared';
+import { wantUTC, getTranslatedMonthTitle } from '&front/shared';
 
 interface Month {
   title: string;
@@ -16,7 +15,7 @@ export const createMonths = (from: Date, to: Date) => {
   while (now < to) {
     const next = wantUTC(startOfMonth)(wantUTC(addMonths)(now, 1));
     groups.push({
-      title: translatedMonthTitle(now),
+      title: getTranslatedMonthTitle(now),
       from: now,
       to: wantUTC(endOfMonth)(now),
     });

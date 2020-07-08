@@ -1,5 +1,4 @@
 import React from 'react';
-import { FetchingState } from 'redux-clear';
 import { Option } from 'tsoption';
 import { Omit } from 'utility-types';
 
@@ -8,7 +7,7 @@ import { Card } from './card';
 import { Table, TableProps } from './table';
 
 interface OwnProps<Data extends Array<{}>> {
-  fetching: Partial<FetchingState>;
+  fetching: Partial<{ loading: boolean }>;
   data: Option<TableProps<Data>['data']>;
   expectedRows: number;
 }
@@ -22,10 +21,6 @@ export const LoaderTable = <Data extends Array<{}>>({
   expectedRows,
   ...rest
 }: Props<Data>) => {
-  if (fetching.error?.nonEmpty()) {
-    return <p>error</p>;
-  }
-
   if (fetching.loading || data.isEmpty()) {
     return (
       <Card title={rest.title}>

@@ -1,6 +1,9 @@
-import { createStore, attach, createEvent, forward } from 'effector';
+import { createStore, attach, createEvent, forward, merge } from 'effector';
+import { uniq } from 'lodash';
 
 import { requestFx, Method } from '&front/application/api';
+
+import { expenseCreated, earningCreated } from './transactions';
 
 interface CategoriesState {
   expenses: string[];
@@ -24,13 +27,10 @@ const fetchExistCategoriesForEarnings = attach({
 });
 
 const existCategoriesRequested = createEvent();
-
 forward({
   from: existCategoriesRequested,
   to: [fetchExistCategoriesForExpenses, fetchExistCategoriesForEarnings],
 });
-
-// TODO: Listen newTransactionCreated and add category to this store
 
 const $existCategories = createStore<CategoriesState>({
   expenses: [],
@@ -43,6 +43,14 @@ const $existCategories = createStore<CategoriesState>({
   .on(fetchExistCategoriesForEarnings.doneData, (state, { data }) => ({
     ...state,
     earnings: data,
+  }))
+  .on(earningCreated, (state, item) => ({
+    ...state,
+    earnings: uniq([...state.earnings, item.source]),
+  }))
+  .on(expenseCreated, (state, item) => ({
+    ...state,
+    expenses: uniq([...state.expenses, item.category]),
   }));
 
 export { $existCategories, existCategoriesRequested };

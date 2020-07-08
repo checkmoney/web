@@ -6,7 +6,7 @@ import {
   FirstTransactionDateGate,
   $transactionsMeta,
 } from '&front/application/transaction';
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
+import { getTranslatedMonthTitle } from '&front/shared';
 import { Container } from '&front/ui/components/layout/container';
 import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Tab, Tabs } from '&front/ui/components/layout/tabs';
@@ -25,7 +25,10 @@ export const History = () => {
   const months = useMemo(() => createMonths(firstTransactionDate, new Date()), [
     firstTransactionDate,
   ]);
-  const defaultMonthTitle = useMemo(() => translatedMonthTitle(new Date()), []);
+  const defaultMonthTitle = useMemo(
+    () => getTranslatedMonthTitle(new Date()),
+    [],
+  );
 
   return (
     <Container>

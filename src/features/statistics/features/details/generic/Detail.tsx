@@ -6,10 +6,8 @@ import { PieChart } from '&front/presentation/molecules';
 import { Container } from '&front/ui/components/layout/container';
 import { Loader } from '&front/ui/components/layout/loader';
 import { PageHeader } from '&front/ui/components/layout/page-header';
-import { PeriodType, DateRange } from '&front/shared';
-import { displayMoney } from '&front/helpers/displayMoney';
+import { PeriodType, DateRange, NON_BREAKING_SPACE } from '&front/shared';
 import { Route } from '&front/application/router';
-import { NON_BREAKING_SPACE } from '&front/helpers/NON_BREAKING_SPACE';
 import {
   selectCategoriesByPeriod,
   $categories,
@@ -18,6 +16,7 @@ import {
   CategoriesGate,
   $categoriesStatus,
 } from '&front/application/statistics';
+import { formatMoney } from '&front/application/currency';
 
 import * as styles from './Detail.css';
 import { PeriodChooser } from './features/period-chooser';
@@ -57,6 +56,8 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
   const chartData = categories?.[dataPath] || [];
   const totalData = total[dataPath];
 
+  const formatMoneyWithCurrency = formatMoney(currency);
+
   return (
     <Container>
       <PageHeader
@@ -80,17 +81,13 @@ export const Detail = ({ group, detailType, detailTitle, dataPath }: Props) => {
           <Loader status={{ loading }}>
             <p>
               Всего:
-              {`${NON_BREAKING_SPACE}${displayMoney(currency!)(totalData, {
-                withPenny: false,
-              })}`}
+              {`${NON_BREAKING_SPACE}${formatMoneyWithCurrency(totalData)}`}
             </p>
             <PieChart
               data={chartData}
               valueKey="amount"
               nameKey="category"
-              valueToString={(value) =>
-                displayMoney(currency!)(value, { withPenny: false })
-              }
+              valueToString={formatMoneyWithCurrency}
             />
           </Loader>
         </div>

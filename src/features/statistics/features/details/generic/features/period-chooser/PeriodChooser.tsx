@@ -1,9 +1,8 @@
 import { format } from 'date-fns';
 import React from 'react';
 
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Card } from '&front/ui/components/layout/card';
-import { PeriodType } from '&front/shared';
+import { PeriodType, getTranslatedMonthTitle } from '&front/shared';
 
 import { Next, Prev } from '../components/next-prev';
 import { ShowMonth } from '../components/show-month';
@@ -29,7 +28,7 @@ export const PeriodChooser = ({
   const title =
     group === PeriodType.Year
       ? format(from, 'YYYY')
-      : translatedMonthTitle(from);
+      : getTranslatedMonthTitle(from);
 
   const actionProps = {
     setPreviousPeriodNumber,

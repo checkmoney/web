@@ -33,7 +33,7 @@ signInByPasswordFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
   handleSignIn(data.token),
 );
 
-const signUpFx = attach({
+const signUpPasswordFx = attach({
   effect: requestFx,
   mapParams: (creds: PasswordCredentials) => ({
     path: 'user/auth/sign-up',
@@ -41,7 +41,7 @@ const signUpFx = attach({
     body: creds,
   }),
 });
-signUpFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
+signUpPasswordFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
   handleSignIn(data.token, Route.Hello),
 );
 
@@ -57,4 +57,4 @@ signInByGoogleFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
   handleSignIn(data.token),
 );
 
-export { signInByPasswordFx, signInByGoogleFx, signUpFx };
+export { signInByPasswordFx, signInByGoogleFx, signUpPasswordFx };

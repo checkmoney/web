@@ -7,11 +7,10 @@ import {
   selectGrowByPeriodType,
   GrowGate,
 } from '&front/application/statistics';
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { Stat } from '&front/ui/components/chart/stat';
 import { Card } from '&front/ui/components/layout/card';
 import { Loader } from '&front/ui/components/layout/loader';
-import { PeriodType } from '&front/shared';
+import { PeriodType, getTranslatedMonthTitle } from '&front/shared';
 
 import * as styles from './Dynamics.css';
 
@@ -40,7 +39,7 @@ export const Dynamics = ({ className, group }: Props) => {
 
   const period =
     group === PeriodType.Month
-      ? translatedMonthTitle(new Date())
+      ? getTranslatedMonthTitle(new Date())
       : format(new Date(), 'YYYY');
 
   // TODO: add info about calculation in tooltip

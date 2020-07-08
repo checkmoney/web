@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import { Button, Input, Label } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
-import { signUpFx } from '&front/application/login';
+import { signUpPasswordFx } from '&front/application/login';
 
 import * as styles from './SignForm.css';
 
@@ -14,10 +14,10 @@ interface Props {
 }
 
 export const SignUp = ({ className }: Props) => {
-  const isLoading = useStore(signUpFx.pending);
+  const isLoading = useStore(signUpPasswordFx.pending);
 
   return (
-    <Form onSubmit={signUpFx}>
+    <Form onSubmit={signUpPasswordFx}>
       {({ handleSubmit }) => (
         <form
           onSubmit={handleSubmit}

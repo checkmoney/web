@@ -1,25 +1,24 @@
 import { useCallback } from 'react';
 
-import { createIncome } from '&front/domain/money/actions/createIncome';
-import { createOutcome } from '&front/domain/money/actions/createOutcome';
-import { useThunk } from '&front/domain/store';
+import {
+  createEarningFx,
+  createExpenseFx,
+} from '&front/application/transaction';
 
 import { fieldsToIncomeModel } from './fieldsToIncomeModel';
 import { fieldsToOutcomeModel } from './fieldsToOutcomeModel';
 import { Kind } from './Kind';
 
 export const useOnSubmit = () => {
-  const dispatch = useThunk();
-
   const onSubmit = useCallback(async (fields) => {
     if (fields.kind === Kind.Income) {
       const income = fieldsToIncomeModel(fields);
-      await dispatch(createIncome(income));
+      await createEarningFx(income);
     }
 
     if (fields.kind === Kind.Outcome) {
       const outcome = fieldsToOutcomeModel(fields);
-      await dispatch(createOutcome(outcome));
+      await createExpenseFx(outcome);
     }
   }, []);
 

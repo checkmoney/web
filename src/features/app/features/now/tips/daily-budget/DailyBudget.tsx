@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&front/helpers/displayMoney';
 import { TipModel } from '&front/application/tips';
+import { formatMoney } from '&front/application/currency';
 
 import { DailyBudgetMeta } from './DailyBudgetMeta';
 
@@ -19,7 +19,7 @@ export const DailyBudget = ({ tip: { meta } }: Props) => {
     );
   }
 
-  const budget = displayMoney(meta.currency)(meta.amount, { withPenny: false });
+  const budget = formatMoney(meta.currency)(meta.amount);
 
   return (
     <Card title="Бюджет на день">

@@ -1,9 +1,9 @@
-import { createStore, attach } from 'effector';
+import { createStore, attach, forward } from 'effector';
 import { AxiosResponse } from 'axios';
 
 import { requestFx, Method } from '&front/application/api';
 
-import { Currency } from './currency';
+import { Currency } from './data';
 
 const fetchUserCurrencyFx = attach<void, typeof requestFx>({
   effect: requestFx,
@@ -13,18 +13,25 @@ const fetchUserCurrencyFx = attach<void, typeof requestFx>({
   }),
 });
 
-const setCurrencyFx = attach({
+const setUserCurrencyFx = attach({
   effect: requestFx,
   mapParams: (currency: Currency) => ({
     path: `/user/profile/set-currency/${currency}`,
     method: Method.Post,
   }),
 });
-setCurrencyFx.done.watch(() => fetchUserCurrencyFx());
+
+/**
+ * Refetch currency after setting
+ */
+forward({
+  from: setUserCurrencyFx.done,
+  to: fetchUserCurrencyFx,
+});
 
 const $currency = createStore<Currency | null>(null).on(
   fetchUserCurrencyFx.doneData,
   (_, { data }: AxiosResponse<Currency>) => data,
 );
 
-export { $currency, fetchUserCurrencyFx, setCurrencyFx };
+export { $currency, fetchUserCurrencyFx, setUserCurrencyFx };

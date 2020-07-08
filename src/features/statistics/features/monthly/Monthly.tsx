@@ -8,13 +8,16 @@ import {
   $periods,
   PeriodsAmountGate,
 } from '&front/application/statistics';
-import { translatedMonthTitle } from '&front/helpers/translatedMonthTitle';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { Loader } from '&front/ui/components/layout/loader';
-import { Currency } from '&front/application/currency';
-import { PeriodType, DateRange, wantUTC } from '&front/shared';
-import { displayMoney } from '&front/helpers/displayMoney';
+import { Currency, formatMoney } from '&front/application/currency';
+import {
+  PeriodType,
+  DateRange,
+  wantUTC,
+  getTranslatedMonthTitle,
+} from '&front/shared';
 import { RangeSelect } from '&front/presentation/molecules';
 import {
   FirstTransactionDateGate,
@@ -63,9 +66,9 @@ export const Monthly = ({ className, currency }: Props) => {
       <Loader status={{ loading: false }}>
         {data.length > 0 && (
           <BarChart
-            displayValue={displayMoney(currency)}
+            displayValue={formatMoney(currency)}
             dataSets={data.map(({ period, earnings, expenses }) => ({
-              name: translatedMonthTitle(period.start, false),
+              name: getTranslatedMonthTitle(period.start, false),
               data: {
                 income: {
                   label: 'Доходы',

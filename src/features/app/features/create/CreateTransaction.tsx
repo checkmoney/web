@@ -1,17 +1,13 @@
 import { useStore, useGate } from 'effector-react';
-import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
-import { getCreateIncomeFetching } from '&front/domain/money/selectors/getCreateIncomeFetching';
-import { getCreateOutcomeFetching } from '&front/domain/money/selectors/getCreateOutcomeFetching';
 import {
   DatePicker,
   InputMoney,
   Toggle,
   AutoComplete,
 } from '&front/features/final-form';
-import { mergeFetchingState } from '&front/helpers/mergeFetchingState';
 import { Variant } from '&front/ui/components/form/toggle/Variant';
 import { Card } from '&front/ui/components/layout/card';
 import {
@@ -22,6 +18,7 @@ import {
 import {
   ExistsCategoriesGate,
   $existCategories,
+  $creationStatus,
 } from '&front/application/transaction';
 import { Skeleton } from '&front/ui/components/controls/skeleton/Skeleton';
 import { Button, Label } from '&front/presentation/atoms';
@@ -42,14 +39,9 @@ export const CreateTransaction = ({ className }: Props) => {
 
   const defaultCurrency = useStore($currency);
   const existCategories = useStore($existCategories);
+  const { inProgress } = useStore($creationStatus);
 
   const onSubmit = useOnSubmit();
-
-  const isLoaded = defaultCurrency;
-
-  const outcomeFetching = useSelector(getCreateOutcomeFetching);
-  const incomeFetching = useSelector(getCreateIncomeFetching);
-  const fetching = mergeFetchingState(outcomeFetching, incomeFetching);
 
   const getVariants = (kind: Kind) =>
     ({
@@ -57,7 +49,7 @@ export const CreateTransaction = ({ className }: Props) => {
       [Kind.Outcome]: existCategories.expenses,
     }[kind]);
 
-  if (!isLoaded) {
+  if (!defaultCurrency) {
     return (
       <Card title="Новая транзакция">
         <Skeleton rows={7} />
@@ -119,7 +111,7 @@ export const CreateTransaction = ({ className }: Props) => {
             </Toggle>
 
             <Button
-              loading={fetching.loading}
+              loading={inProgress}
               type="submit"
               mod="primary"
               className={styles.submit}

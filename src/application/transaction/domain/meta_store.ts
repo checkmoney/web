@@ -1,6 +1,11 @@
-import { createStore, attach } from 'effector';
+import { createStore, attach, createEvent, forward } from 'effector';
+import { min } from 'date-fns';
 
 import { requestFx, Method } from '&front/application/api';
+
+import { earningCreated, expenseCreated } from './transactions';
+
+const newTransactionDateReceived = createEvent<Date>();
 
 const fetchFirstTransactionDateFx = attach({
   effect: requestFx,
@@ -10,14 +15,25 @@ const fetchFirstTransactionDateFx = attach({
     targetClass: Date,
   }),
 });
+forward({
+  from: fetchFirstTransactionDateFx.doneData.map(({ data }) => data),
+  to: newTransactionDateReceived,
+});
 
-// TODO: listen NewTransactionCreated and check new first transaction date
+forward({
+  from: earningCreated.filterMap((item) => item.date),
+  to: newTransactionDateReceived,
+});
+forward({
+  from: expenseCreated.filterMap((item) => item.date),
+  to: newTransactionDateReceived,
+});
 
 const $transactionsMeta = createStore({
   firstTransactionDate: new Date(),
-}).on(fetchFirstTransactionDateFx.doneData, (state, { data }) => ({
+}).on(newTransactionDateReceived, (state, date) => ({
   ...state,
-  firstTransactionDate: data,
+  firstTransactionDate: min(state.firstTransactionDate, date),
 }));
 
 export { $transactionsMeta, fetchFirstTransactionDateFx };

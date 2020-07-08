@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&front/helpers/displayMoney';
 import { PeriodType } from '&front/shared';
 import { TipModel } from '&front/application/tips';
+import { formatMoney } from '&front/application/currency';
 
 import { DismissButton } from '../components/dismiss-button';
 import { PastDaysBudgetMeta } from './PastDaysBudgetMeta';
@@ -28,9 +28,7 @@ const contents = {
 };
 
 export const PastDaysBudget = ({ tip: { token, meta } }: Props) => {
-  const amount = displayMoney(meta.currency)(meta.outcome, {
-    withPenny: false,
-  });
+  const amount = formatMoney(meta.currency)(meta.outcome);
 
   return (
     <Card title={titles[meta.group]} extra={<DismissButton token={token} />}>

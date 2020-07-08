@@ -1,10 +1,9 @@
 import React, { ReactNode } from 'react';
-import { FetchingState } from 'redux-clear';
 
 import { Skeleton } from '../../controls/skeleton/Skeleton';
 
 interface Props {
-  status: Partial<FetchingState>;
+  status: Partial<{ loading: boolean }>;
   children: ReactNode;
   skeleton?: boolean;
   expectedRows?: number;
@@ -12,20 +11,12 @@ interface Props {
 }
 
 export const Loader = ({
-  status: { loading, error },
+  status: { loading },
   children,
   expectedRows,
   skeleton = false,
   dataAvaiable = true,
 }: Props) => {
-  if (typeof error === 'boolean' && error) {
-    return <p>error</p>;
-  }
-
-  if (typeof error !== 'boolean' && error?.nonEmpty()) {
-    return <p>error: {error.get()}</p>;
-  }
-
   const showLoader = loading || !dataAvaiable;
 
   if (skeleton && showLoader) {

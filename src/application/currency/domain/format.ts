@@ -1,6 +1,6 @@
-import { Currency, getCurrencySign } from '&front/application/currency';
+import { NON_BREAKING_SPACE } from '&front/shared';
 
-import { NON_BREAKING_SPACE } from './NON_BREAKING_SPACE';
+import { Currency, getCurrencySign } from './data';
 
 interface Params {
   withPenny?: boolean;
@@ -8,14 +8,14 @@ interface Params {
 }
 
 const defaultParams = {
-  withPenny: true,
+  withPenny: false,
   withSign: false,
 };
 
-export const displayMoney = (currency: Currency) => (
-  amount: number | string | undefined,
+export const formatMoney = (
+  currency?: Currency,
   params: Params = defaultParams,
-) => {
+) => (amount: number | string | undefined) => {
   const actualParams = {
     ...defaultParams,
     ...params,
@@ -30,7 +30,7 @@ export const displayMoney = (currency: Currency) => (
 
   const additionalSign = params.withSign && numberAmount > 0 ? '+' : '';
 
-  return `${additionalSign}${formattedAmount}${NON_BREAKING_SPACE}${getCurrencySign(
-    currency,
-  )}`;
+  const currencySign = currency ? getCurrencySign(currency) : '';
+
+  return `${additionalSign}${formattedAmount}${NON_BREAKING_SPACE}${currencySign}`;
 };

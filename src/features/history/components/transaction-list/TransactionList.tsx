@@ -1,14 +1,14 @@
+import { useGate, useStoreMap } from 'effector-react';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
-import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
-import { getHistory } from '&front/domain/money/selectors/getHistory';
-import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
-import { useMemoState } from '&front/domain/store';
 import { useDelete } from '&front/features/transaction/delete/useDelete';
-import { Loader } from '&front/ui/components/layout/loader';
 import { Table } from '&front/ui/components/layout/table';
-import { PeriodType } from '&front/shared';
+import { DateRange } from '&front/shared';
+import {
+  HistoryGate,
+  $history,
+  selectHistoryForDateRange,
+} from '&front/application/transaction';
 
 import { createColumns } from '../../helpers/createColumns';
 import { historyToTableData } from '../../helpers/historyToTableData';
@@ -25,48 +25,39 @@ interface Props {
 }
 
 export const TransactionList = ({ from, to, classNames }: Props) => {
-  const history = useMemoState(
-    () => getHistory(from, to, PeriodType.Month),
-    () => fetchHistory(from, to, PeriodType.Month),
-    [from, to],
-  );
+  const dateRange = DateRange.memoized(from, to);
 
-  const fetching = useSelector(getHistoryFetchingStatus);
+  useGate(HistoryGate, dateRange);
+  const history = useStoreMap({
+    store: $history,
+    keys: [dateRange],
+    fn: selectHistoryForDateRange,
+  });
 
   const incomeColumns = createColumns('comment', 'source');
-  const incomes = historyToTableData(history, {
-    filter: (transaction) => transaction.amount > 0,
-  });
+  const incomes = historyToTableData([], history.earnings);
 
   const outcomesColumns = createColumns('comment', 'category');
-  const outcomes = historyToTableData(history, {
-    filter: (transaction) => transaction.amount < 0,
-  });
+  const outcomes = historyToTableData(history.expenses, []);
 
   const { handleDelete } = useDelete();
 
   return (
     <>
-      <Loader status={fetching} dataAvaiable={history.nonEmpty()}>
-        {outcomes.nonEmpty() && (
-          <Table
-            className={classNames.outcomes}
-            title="Расходы"
-            columns={outcomesColumns}
-            data={outcomes.get()}
-            onRowClick={({ id }) => handleDelete(id)}
-          />
-        )}
-        {incomes.nonEmpty() && (
-          <Table
-            className={classNames.incomes}
-            title="Доходы"
-            columns={incomeColumns}
-            data={incomes.get()}
-            onRowClick={({ id }) => handleDelete(id)}
-          />
-        )}
-      </Loader>
+      <Table
+        className={classNames.outcomes}
+        title="Расходы"
+        columns={outcomesColumns}
+        data={outcomes}
+        onRowClick={({ id }) => handleDelete(id)}
+      />
+      <Table
+        className={classNames.incomes}
+        title="Доходы"
+        columns={incomeColumns}
+        data={incomes}
+        onRowClick={({ id }) => handleDelete(id)}
+      />
     </>
   );
 };

@@ -1,6 +1,10 @@
-import { createStore, attach, createEvent, forward } from 'effector';
+import { createStore, attach, createEvent, forward, merge } from 'effector';
 
 import { requestFx, Method } from '&front/application/api';
+import {
+  transactionCreated,
+  transactionDeleted,
+} from '&front/application/transaction';
 
 import { TipModel } from '../types/tip';
 
@@ -24,15 +28,22 @@ const disableTipFx = attach({
   }),
 });
 
-// Before start, hide tip from UI
+// Before start disabling, hide tip from UI
 forward({
   from: disableTipFx,
   to: tipHidden,
 });
 
-// After done, refetch tips
+// After disabling done, refetch tips
 forward({
   from: disableTipFx.done,
+  to: fetchTipsFx,
+});
+
+// When new transaction created or deleted
+// refetch tip
+forward({
+  from: merge([transactionCreated, transactionDeleted]),
   to: fetchTipsFx,
 });
 

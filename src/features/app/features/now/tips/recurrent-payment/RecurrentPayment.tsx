@@ -1,9 +1,8 @@
-import { setDate } from 'date-fns';
+import { setDate, format } from 'date-fns';
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&front/helpers/displayMoney';
-import { formatDate } from '&front/helpers/formatDate';
+import { formatMoney } from '&front/application/currency';
 import { TipModel } from '&front/application/tips';
 
 import { DismissButton } from '../components/dismiss-button';
@@ -21,9 +20,9 @@ export const RecurrentPayment = ({ tip: { meta, token } }: Props) => {
   const endDate = setDate(now, period.to);
 
   const { start, end, outcome } = {
-    start: formatDate(startDate),
-    end: formatDate(endDate),
-    outcome: displayMoney(currency)(amount),
+    start: format(startDate, 'DD.MM.YYYY'),
+    end: format(endDate, 'DD.MM.YYYY'),
+    outcome: formatMoney(currency, { withPenny: true })(amount),
   };
 
   return (

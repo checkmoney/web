@@ -2,7 +2,7 @@ export { bindGoogleFx } from './domain/bind';
 export {
   signInByGoogleFx,
   signInByPasswordFx,
-  signUpFx,
+  signUpPasswordFx,
 } from './domain/sign_in';
 export { loggedOut } from './domain/sign_out';
 

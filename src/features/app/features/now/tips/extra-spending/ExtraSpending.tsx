@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Card } from '&front/ui/components/layout/card';
-import { displayMoney } from '&front/helpers/displayMoney';
+import { formatMoney } from '&front/application/currency';
 import { TipModel } from '&front/application/tips';
 
 import { DismissButton } from '../components/dismiss-button';
@@ -12,9 +12,7 @@ interface Props {
 }
 
 export const ExtraSpending = ({ tip: { token, meta } }: Props) => {
-  const overrun = displayMoney(meta.currency)(meta.difference, {
-    withPenny: false,
-  });
+  const overrun = formatMoney(meta.currency)(meta.difference);
 
   return (
     <Card title="Большие траты" extra={<DismissButton token={token} />}>

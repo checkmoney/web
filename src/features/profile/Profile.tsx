@@ -9,7 +9,7 @@ import { PageHeader } from '&front/ui/components/layout/page-header';
 import { Route } from '&front/application/router';
 import {
   $currency,
-  setCurrencyFx,
+  setUserCurrencyFx,
   CurrencyGate,
   CurrencySelect,
 } from '&front/application/currency';
@@ -44,7 +44,7 @@ export const Profile = () => {
 
   useEffect(() => {
     if (currency && currency !== defaultCurrency) {
-      setCurrencyFx(currency).then(saved);
+      setUserCurrencyFx(currency).then(saved);
     }
   }, [currency, saved, defaultCurrency]);
 

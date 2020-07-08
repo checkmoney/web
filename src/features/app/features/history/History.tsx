@@ -1,15 +1,18 @@
-import { endOfMonth, startOfMonth } from 'date-fns';
-import React, { useMemo, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { startOfYear, endOfYear } from 'date-fns';
+import React, { useCallback } from 'react';
+import { useStore, useGate } from 'effector-react';
+import { Option } from 'tsoption';
 
-import { fetchHistory } from '&front/domain/money/actions/fetchHistory';
-import { getHistory } from '&front/domain/money/selectors/getHistory';
-import { getHistoryFetchingStatus } from '&front/domain/money/selectors/getHistoryFetchingStatus';
-import { useMemoState } from '&front/domain/store';
 import { historyToTableData, createColumns } from '&front/features/history';
-import { wantUTC, PeriodType } from '&front/shared';
+import { wantUTC, DateRange } from '&front/shared';
 import { LoaderTable } from '&front/ui/components/layout/loader-table';
 import { useDelete } from '&front/features/transaction/delete/useDelete';
+import {
+  $shortHistory,
+  HistoryGate,
+  SHORT_HISTORY_MAX_LENGTH,
+  $historyStatus,
+} from '&front/application/transaction';
 
 import { FullHistoryButton } from './components/full-history-button';
 
@@ -17,30 +20,20 @@ interface Props {
   className?: string;
 }
 
-const groupBy = PeriodType.Month;
-const historyLength = 10;
-const from = wantUTC(startOfMonth)(new Date());
-const to = wantUTC(endOfMonth)(new Date());
+const from = wantUTC(startOfYear)(new Date());
+const to = wantUTC(endOfYear)(new Date());
 
 export const History = ({ className }: Props) => {
-  const fetching = useSelector(getHistoryFetchingStatus);
-
-  const history = useMemoState(
-    () => getHistory(from, to, groupBy),
-    () => fetchHistory(from, to, groupBy),
-    [from, to],
-  );
-
-  const columns = createColumns('comment');
-
-  const lastOutcomes = useMemo(
-    () => historyToTableData(history, { maxLength: historyLength }),
-    [history],
-  );
+  useGate(HistoryGate, DateRange.memoized(from, to));
+  const history = useStore($shortHistory);
+  const { isLoading } = useStore($historyStatus);
 
   const { handleDelete } = useDelete();
-
   const onRowClick = useCallback(({ id }) => handleDelete(id), [handleDelete]);
+
+  const lastOutcomes = Option.of(
+    historyToTableData(history.expenses, history.earnings),
+  );
 
   return (
     <>
@@ -48,9 +41,9 @@ export const History = ({ className }: Props) => {
         title="Последние транзакции"
         className={className}
         data={lastOutcomes}
-        columns={columns}
-        expectedRows={historyLength * 1.5}
-        fetching={fetching}
+        columns={createColumns('comment')}
+        expectedRows={SHORT_HISTORY_MAX_LENGTH * 1.5}
+        fetching={{ loading: isLoading }}
         footer={<FullHistoryButton />}
         onRowClick={onRowClick}
       />

@@ -1,4 +1,4 @@
-import { displayNullableDate } from '&front/helpers/displayNullableDtae';
+import { format } from 'date-fns';
 
 const commentMap = {
   category: 'Категория',
@@ -13,7 +13,7 @@ export const createColumns = (
 ) => ({
   date: {
     title: 'Дата',
-    transform: displayNullableDate,
+    transform: (date) => (date ? format(date, 'D.MM.YYYY') : ''),
     widthPercent: 30,
   },
   amount: {

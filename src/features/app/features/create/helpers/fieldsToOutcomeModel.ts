@@ -1,11 +1,11 @@
-import { OutcomeModel } from '&front/models/money/OutcomeModel';
+import { Expense } from '&front/application/transaction';
 
 export const fieldsToOutcomeModel = ({
   amount,
   comment,
   currency,
   date,
-}: any): OutcomeModel => ({
+}: any): Expense => ({
   amount: Math.round(parseFloat(amount) * 100),
   currency,
   category: comment,

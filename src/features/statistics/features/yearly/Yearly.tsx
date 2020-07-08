@@ -6,9 +6,8 @@ import { useMedia } from 'use-media';
 import { BarChart } from '&front/ui/components/chart/bar-chart';
 import { ControlHeader } from '&front/ui/components/controls/control-header';
 import { Loader } from '&front/ui/components/layout/loader';
-import { Currency } from '&front/application/currency';
+import { Currency, formatMoney } from '&front/application/currency';
 import { PeriodType, DateRange, wantUTC } from '&front/shared';
-import { displayMoney } from '&front/helpers/displayMoney';
 import {
   selectAmoutsByPeriod,
   $periods,
@@ -50,9 +49,7 @@ export const Yearly = ({ className, currency }: Props) => {
       <Loader status={{ loading: false }}>
         {data.length > 0 && (
           <BarChart
-            displayValue={(v) =>
-              displayMoney(currency)(v, { withPenny: false })
-            }
+            displayValue={(v) => formatMoney(currency)(v)}
             dataSets={data.map(({ period, expenses, earnings }) => ({
               name: format(period.start, 'YYYY'),
               data: {
