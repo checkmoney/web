@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 
 import { mergeTypoInCategoryFx } from '&front/application/tips';
-import { useThunk } from '&front/domain/store';
 import { Button } from '&front/presentation/atoms';
 import { Card } from '&front/ui/components/layout/card';
 

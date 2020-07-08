@@ -17842,6 +17842,13 @@ typescript@^3.9.3:
   languageName: node
   linkType: hard
 
+"uid@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "uid@npm:1.0.0"
+  checksum: 746151b6d7698e578c1de676c6dbd2f475ebd7dd2d91b407958ba7ddc6216d9ab772233392fde1930673a8d69bc303327477807fd367e1696e495dfb111eda4e
+  languageName: node
+  linkType: hard
+
 "uncss@npm:^0.17.2":
   version: 0.17.3
   resolution: "uncss@npm:0.17.3"
@@ -18478,6 +18485,7 @@ typescript@^3.9.3:
     stylelint-order: ^4.1.0
     tsoption: ^0.7.0
     typescript: ^3.9.3
+    uid: ^1.0.0
     use-media: ^1.2.0
     utility-types: ^3.4.1
     webpack: ^4.43.0
