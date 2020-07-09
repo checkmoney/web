@@ -5,11 +5,7 @@
     "@typescript-eslint",
     "react-hooks"
   ],
-  "extends": [
-    "airbnb-base",
-    "prettier",
-    "plugin:react/recommended"
-  ],
+  "extends": ["airbnb-base", "prettier", "plugin:react/recommended"],
   "rules": {
     "no-undef": 0,
     "no-restricted-syntax": 0,

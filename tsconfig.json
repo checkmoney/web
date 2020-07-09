@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["DOM", "ES2019"],
+    "strictNullChecks": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
