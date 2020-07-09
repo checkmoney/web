@@ -2,14 +2,14 @@ import React from 'react';
 import { useRoute } from 'react-router5';
 
 import { Route } from '&front/application/router';
-import { Landing } from '&front/features/landing';
-import { App } from '&front/features/app';
-import { Hello } from '&front/features/hello';
-import { History } from '&front/features/history';
-import { Profile } from '&front/features/profile';
-import { Statistics } from '&front/features/statistics';
-import { Sources } from '&front/features/statistics/features/details/sources';
-import { Categories } from '&front/features/statistics/features/details/categories';
+import { Landing } from '&front/legacy_features/landing';
+import { App } from '&front/legacy_features/app';
+import { Hello } from '&front/legacy_features/hello';
+import { History } from '&front/legacy_features/history';
+import { Profile } from '&front/legacy_features/profile';
+import { Statistics } from '&front/legacy_features/statistics';
+import { Sources } from '&front/legacy_features/statistics/features/details/sources';
+import { Categories } from '&front/legacy_features/statistics/features/details/categories';
 
 export function Application() {
   const { route } = useRoute();
