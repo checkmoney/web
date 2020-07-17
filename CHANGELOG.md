@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/checkmoney/web/compare/v1.2.1...v1.3.0) (2020-07-17)
+
+
+### Features
+
+* **statistics:** migrate to gateway as source of stats ([5f72152](https://github.com/checkmoney/web/commit/5f7215278654c4c83acda85ccf742cbe7cc147d8))
+
 ### [1.2.1](https://github.com/checkmoney/web/compare/v1.2.0...v1.2.1) (2020-06-21)
 
 ## [1.2.0](https://github.com/checkmoney/web/compare/v1.1.10...v1.2.0) (2020-06-20)
