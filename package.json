@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "types": "tsc --noEmit",
-    "dev": "BACK_URL=https://api.checkmoney.space STATS_URL=https://stats.checkmoney.space GOOGLE_CLIENT_ID=619616345812-bi543g7ojta4uqq4kk1ccp428pik8hp8.apps.googleusercontent.com webpack-dev-server",
+    "dev": "BACK_URL=https://api.checkmoney.space GOOGLE_CLIENT_ID=619616345812-bi543g7ojta4uqq4kk1ccp428pik8hp8.apps.googleusercontent.com webpack-dev-server",
     "build": "webpack -p -c ./webpack/webpack.config.js",
     "pretty": "prettier --write .",
     "commit": "git-cz",

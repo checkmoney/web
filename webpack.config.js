@@ -69,7 +69,6 @@ module.exports = {
     }),
     new EnvironmentPlugin({
       BACK_URL: '',
-      STATS_URL: '',
       GOOGLE_CLIENT_ID: '',
     }),
     new MomentLocalesPlugin({

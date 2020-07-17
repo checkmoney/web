@@ -105,13 +105,9 @@ const requestFx = attach({
   },
   effect: requestInternalFx,
   mapParams: ({ path, ...rest }: Request, { config, token }) => {
-    const prefix = path.includes('statistics')
-      ? config.statsUrl
-      : config.backUrl;
-
     return {
       ...rest,
-      path: `${prefix}${path}`,
+      path: `${config.backUrl}${path}`,
       token,
       attempt: 0,
     };

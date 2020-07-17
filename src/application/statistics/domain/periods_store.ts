@@ -13,7 +13,7 @@ type PeriodsState = { [key in PeriodType]?: PeriodAmount[] };
 const fetchPeriodAmountsFx = attach({
   effect: requestFx,
   mapParams: ({ periodType, dateRange }: StatisticsRequest) => ({
-    path: `/v1/statistics/periods`,
+    path: `/s/statistics/periods`,
     query: { periodType, ...dateRange },
     method: Method.Get,
     targetClass: PeriodAmount,

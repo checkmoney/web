@@ -11,7 +11,7 @@ import { PeriodCategories, CategoryData } from '../types/period_categories';
 const fetchCategoriesFx = attach({
   effect: requestFx,
   mapParams: ({ periodType, dateRange }: StatisticsRequest) => ({
-    path: '/v1/statistics/categories',
+    path: '/s/statistics/categories',
     query: { periodType, ...dateRange },
     method: Method.Get,
     targetClass: PeriodCategories,

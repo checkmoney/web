@@ -8,7 +8,7 @@ import { Grow } from '../types/grow';
 const fetchGrowFx = attach({
   effect: requestFx,
   mapParams: (periodType: PeriodType) => ({
-    path: `/v1/statistics/grow`,
+    path: `/s/statistics/grow`,
     query: { periodType },
     method: Method.Get,
   }),
