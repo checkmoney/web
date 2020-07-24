@@ -17,11 +17,16 @@ export const historyToTableData = (expenses: Expense[], earnings: Earning[]) =>
       currency: outcome.currency,
       comment: outcome.category,
     })),
-  ].map((transaction) => ({
-    ...transaction,
-    rawAmount: transaction.amount,
-    amount: formatMoney(transaction.currency, {
-      withPenny: true,
-      withSign: true,
-    })(transaction.amount),
-  }));
+  ]
+    .map((transaction) => ({
+      ...transaction,
+      rawAmount: transaction.amount,
+      amount: formatMoney(transaction.currency, {
+        withPenny: true,
+        withSign: true,
+      })(transaction.amount),
+    }))
+    .sort(
+      ({ date: dateA }, { date: dateB }) =>
+      (dateB?.valueOf() ?? 0) - (dateA?.valueOf() ?? 0),
+    );
