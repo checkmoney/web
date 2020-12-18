@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/checkmoney/web/compare/v1.3.1...v1.4.0) (2020-12-18)
+
+
+### Features
+
+* add new message ([0ba10dd](https://github.com/checkmoney/web/commit/0ba10dd2e75a05a85a28335da7586defaa92890e))
+
 ### [1.3.1](https://github.com/checkmoney/web/compare/v1.3.0...v1.3.1) (2020-07-24)
 
 
