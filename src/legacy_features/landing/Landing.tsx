@@ -9,6 +9,7 @@ export const Landing = () => {
   return (
     <section className={styles.container}>
       <p className={styles.message}>Привет! 💸</p>
+      <p className={styles.message}>Это трекер доходов и расходов</p>
       <SignIn className={styles.signIn} />
       <SignUp className={styles.signUp} />
       <Social className={styles.social} />
