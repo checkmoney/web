@@ -21,7 +21,7 @@
     "antd": "^3.15.0",
     "axios": "^0.18.1",
     "chart.js": "^2.7.3",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "classnames": "^2.2.6",
     "color": "^3.1.0",
     "date-fns": "^1.30.1",
