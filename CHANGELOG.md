@@ -2,26 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.4.0](https://github.com/checkmoney/web/compare/v1.3.1...v1.4.0) (2020-12-18)
-
-
-### Features
-
-* add new message ([0ba10dd](https://github.com/checkmoney/web/commit/0ba10dd2e75a05a85a28335da7586defaa92890e))
-
-### [1.3.1](https://github.com/checkmoney/web/compare/v1.3.0...v1.3.1) (2020-07-24)
-
+### [1.4.1](https://github.com/checkmoney/web/compare/v1.4.0...v1.4.1) (2021-01-27)
 
 ### Bug Fixes
 
-* make sorting correct in short history ([cb57329](https://github.com/checkmoney/web/commit/cb57329a2ab0c9eecf7c7d661634944db88eef0a))
+- add first slash ([e891b65](https://github.com/checkmoney/web/commit/e891b65dd5519888e7e90300858ec25ec8d89e25))
 
-## [1.3.0](https://github.com/checkmoney/web/compare/v1.2.1...v1.3.0) (2020-07-17)
-
+## [1.4.0](https://github.com/checkmoney/web/compare/v1.3.1...v1.4.0) (2020-12-18)
 
 ### Features
 
-* **statistics:** migrate to gateway as source of stats ([5f72152](https://github.com/checkmoney/web/commit/5f7215278654c4c83acda85ccf742cbe7cc147d8))
+- add new message ([0ba10dd](https://github.com/checkmoney/web/commit/0ba10dd2e75a05a85a28335da7586defaa92890e))
+
+### [1.3.1](https://github.com/checkmoney/web/compare/v1.3.0...v1.3.1) (2020-07-24)
+
+### Bug Fixes
+
+- make sorting correct in short history ([cb57329](https://github.com/checkmoney/web/commit/cb57329a2ab0c9eecf7c7d661634944db88eef0a))
+
+## [1.3.0](https://github.com/checkmoney/web/compare/v1.2.1...v1.3.0) (2020-07-17)
+
+### Features
+
+- **statistics:** migrate to gateway as source of stats ([5f72152](https://github.com/checkmoney/web/commit/5f7215278654c4c83acda85ccf742cbe7cc147d8))
 
 ### [1.2.1](https://github.com/checkmoney/web/compare/v1.2.0...v1.2.1) (2020-06-21)
 
