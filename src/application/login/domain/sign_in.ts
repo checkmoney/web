@@ -36,7 +36,7 @@ signInByPasswordFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
 const signUpPasswordFx = attach({
   effect: requestFx,
   mapParams: (creds: PasswordCredentials) => ({
-    path: 'user/auth/sign-up',
+    path: '/user/auth/sign-up',
     method: Method.Post,
     body: creds,
   }),
@@ -48,7 +48,7 @@ signUpPasswordFx.doneData.watch(({ data }: AxiosResponse<TokenReponse>) =>
 const signInByGoogleFx = attach({
   effect: requestFx,
   mapParams: (profile: GoogleProfile) => ({
-    path: 'user/auth/google',
+    path: '/user/auth/google',
     method: Method.Post,
     body: profile,
   }),
